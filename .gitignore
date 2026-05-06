@@ -1,0 +1,16 @@
+# Worktrees
+.worktrees/
+
+# Node
+node_modules/
+dist/
+.vite/
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Env
+.env
+.env.local
