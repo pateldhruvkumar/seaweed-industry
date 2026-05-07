@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(ls -d .worktrees)",
+      "Bash(ls -d worktrees)",
+      "Bash(ls CLAUDE.md)",
+      "Bash(git check-ignore *)",
+      "Bash(git worktree *)",
+      "Bash(npm create *)",
+      "PowerShell(Set-Location \"D:\\\\github\\\\seaweed-industry\\\\.worktrees\\\\dashboard\"; $process = Start-Process -FilePath \"npm\" -ArgumentList \"create\", \"vite@latest\", \".\", \"--\", \"--template\", \"react\" -NoNewWindow -PassThru -RedirectStandardInput \"NUL\" -Wait; Write-Host \"Exit: $\\($process.ExitCode\\)\")",
+      "Bash(npx create-vite@latest . --template react --force)",
+      "Bash(cd /tmp)",
+      "Bash(npx create-vite@9.0.6 seaweed-temp --template react)",
+      "Bash(npm install *)",
+      "Bash(npx tailwindcss *)",
+      "Bash(git merge *)"
+    ]
+  }
+}
