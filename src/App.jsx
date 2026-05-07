@@ -4,14 +4,17 @@ import Sidebar from './components/layout/Sidebar'
 import Topbar from './components/layout/Topbar'
 import Footer from './components/layout/Footer'
 
-const OverviewTab    = lazy(() => import('./tabs/OverviewTab'))
-const CountriesTab   = lazy(() => import('./tabs/CountriesTab'))
-const RegionsTab     = lazy(() => import('./tabs/RegionsTab'))
-const SpeciesTab     = lazy(() => import('./tabs/SpeciesTab'))
-const EconomicsTab   = lazy(() => import('./tabs/EconomicsTab'))
-const DataQualityTab = lazy(() => import('./tabs/DataQualityTab'))
-const PsiaPricingTab = lazy(() => import('./tabs/PsiaPricingTab'))
-const PsiaDemandTab  = lazy(() => import('./tabs/PsiaDemandTab'))
+const OverviewTab       = lazy(() => import('./tabs/OverviewTab'))
+const CountriesTab      = lazy(() => import('./tabs/CountriesTab'))
+const RegionsTab        = lazy(() => import('./tabs/RegionsTab'))
+const SpeciesTab        = lazy(() => import('./tabs/SpeciesTab'))
+const EconomicsTab      = lazy(() => import('./tabs/EconomicsTab'))
+const DataQualityTab    = lazy(() => import('./tabs/DataQualityTab'))
+const PsiaPricingTab    = lazy(() => import('./tabs/PsiaPricingTab'))
+const PsiaDemandTab     = lazy(() => import('./tabs/PsiaDemandTab'))
+const KpiGrossOutputTab = lazy(() => import('./tabs/KpiGrossOutputTab'))
+const KpiValuePerLbTab  = lazy(() => import('./tabs/KpiValuePerLbTab'))
+const KpiExportValueTab = lazy(() => import('./tabs/KpiExportValueTab'))
 
 // Single source of truth for tab metadata. Sidebar uses `id`/`Icon`/`label`,
 // Topbar uses `title`/`subtitle` of the active tab.
@@ -46,15 +49,30 @@ const TABS = {
     title: 'Data Quality',
     subtitle: 'Coverage, status flags, and structural integrity of the FAO data.',
   },
-  'psia-pricing': {
-    Component: PsiaPricingTab,
-    title: 'Pricing Briefing',
-    subtitle: 'KPI 1 · Price per Wet Tonne by Species & End Use ($/tonne).',
+  'kpi-export-value': {
+    Component: KpiExportValueTab,
+    title: 'Export Value of Seaweed Products ($/year)',
+    subtitle: 'Total value of seaweed products entering the market each year (FAO production-value proxy).',
   },
-  'psia-demand': {
+  'kpi-price-wet-tonne': {
+    Component: PsiaPricingTab,
+    title: 'Price per Wet Tonne by Species and End Use ($/tonne)',
+    subtitle: 'Market price by species and application — global benchmarks 2010–2022 plus BC context.',
+  },
+  'kpi-value-per-lb': {
+    Component: KpiValuePerLbTab,
+    title: 'Value of Seaweed ($/lb)',
+    subtitle: 'Volume-weighted aquaculture price in $/lb, $/kg, or $/tonne — toggle the unit on the global chart.',
+  },
+  'kpi-wet-vs-processed': {
     Component: PsiaDemandTab,
-    title: 'Demand Briefing',
-    subtitle: 'KPI 2 · Wet vs. Processed Kelp Demand and emerging downstream markets.',
+    title: 'Wet vs. Processed Kelp Demand',
+    subtitle: 'Demand by product form — wet, dried, processed, hydrocolloid, biostimulant.',
+  },
+  'kpi-gross-output': {
+    Component: KpiGrossOutputTab,
+    title: 'Gross Value of Seaweed Industry Output ($/year)',
+    subtitle: 'Total economic output of global seaweed aquaculture, decomposed by environment and country.',
   },
 }
 

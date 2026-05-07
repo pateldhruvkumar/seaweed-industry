@@ -3,12 +3,10 @@ import numpy as np
 import json
 from pathlib import Path
 
-# From .worktrees/dashboard/scripts/preprocess.py:
-# .parent = scripts/
-# .parent.parent = dashboard/
-# .parent.parent.parent = .worktrees/
-# .parent.parent.parent.parent = seaweed-industry/
-DATA_DIR = Path(__file__).parent.parent.parent.parent / 'dataset'
+# Resolve relative to the repo root. From scripts/preprocess.py:
+#   .parent          = scripts/
+#   .parent.parent   = repo root  (seaweed-industry/)
+DATA_DIR = Path(__file__).parent.parent / 'dataset'
 OUT_DIR  = Path(__file__).parent.parent / 'public' / 'data'
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -293,5 +291,38 @@ for name, df in ds_map.items():
     }
 
 write_json({'records': rec_rows, 'quality_summary': quality_summary}, 'records_per_year.json')
+
+# ── 19. global_aquaculture_value_yearly.json ─────────────────────────────────
+# Total aquaculture VALUE per year, summed across all countries / species /
+# environments. Source values are in $1000 USD (FAO convention) — divide by
+# 1000 to surface as million-USD ($M) for chart-friendly numbers.
+df = aqua_val.groupby('PERIOD')['VALUE'].sum().div(1000)
+write_json(
+    [{'year': int(y), 'value_musd': round(float(v), 2)} for y, v in df.items()],
+    'global_aquaculture_value_yearly.json',
+)
+
+# ── 20. value_by_env_yearly.json ─────────────────────────────────────────────
+# Same total, but stacked by farming environment (Marine / Brackish / Inland).
+df = (aqua_val.groupby(['PERIOD', 'ENVIRONMENT_LABEL'])['VALUE']
+              .sum().div(1000).reset_index())
+write_json(
+    [{'year': int(r.PERIOD), 'environment': r.ENVIRONMENT_LABEL,
+      'value_musd': round(float(r.VALUE), 4)}
+     for _, r in df.iterrows() if pd.notna(r.ENVIRONMENT_LABEL)],
+    'value_by_env_yearly.json',
+)
+
+# ── 21. country_value_yearly.json ────────────────────────────────────────────
+# Country-level value per year — used for the "export value" KPI (proxy)
+# and as the source for top-producer-by-value time-series charts.
+df = (aqua_val.groupby(['PERIOD', 'Country_Name'])['VALUE']
+              .sum().div(1000).reset_index())
+write_json(
+    [{'year': int(r.PERIOD), 'country': r.Country_Name,
+      'value_musd': round(float(r.VALUE), 4)}
+     for _, r in df.iterrows()],
+    'country_value_yearly.json',
+)
 
 print(f'\nDone — all JSON files written to {OUT_DIR}')

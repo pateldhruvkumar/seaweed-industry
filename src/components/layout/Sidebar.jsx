@@ -13,9 +13,14 @@ import {
 
 /**
  * Vertical primary navigation. Lives at the left edge of the page on
- * desktop, hidden on small screens. Inspired by SaaS analytics dashboards
- * (Droitdash / Linear / Vercel) — section labels above grouped items, an
- * active pill state, and an "info" card pinned to the bottom.
+ * desktop (hidden on small screens). Inspired by SaaS analytics dashboards
+ * — section labels above grouped items, an active pill state, and an
+ * "info" card pinned to the bottom.
+ *
+ * The "Market & End-Use KPIs" group uses the official KPI names from the
+ * stakeholder tracker verbatim, so each entry is much longer than the
+ * other nav items. The button styles below allow text to wrap onto two
+ * lines for those entries while keeping single-line items unchanged.
  */
 
 const NAV_GROUPS = [
@@ -26,15 +31,15 @@ const NAV_GROUPS = [
   {
     label: 'Geography',
     items: [
-      { id: 'countries', label: 'Countries', Icon: IconGlobe },
-      { id: 'regions', label: 'Regions', Icon: IconMap },
+      { id: 'countries', label: 'Countries',         Icon: IconGlobe },
+      { id: 'regions',   label: 'Regions',           Icon: IconMap   },
     ],
   },
   {
     label: 'Production',
     items: [
-      { id: 'species', label: 'Species & Aquaculture', Icon: IconLeaf },
-      { id: 'economics', label: 'Economics', Icon: IconDollar },
+      { id: 'species',   label: 'Species & Aquaculture', Icon: IconLeaf },
+      { id: 'economics', label: 'Economics',             Icon: IconDollar },
     ],
   },
   {
@@ -42,17 +47,43 @@ const NAV_GROUPS = [
     items: [{ id: 'quality', label: 'Data Quality', Icon: IconShieldCheck }],
   },
   {
-    label: 'Briefings',
+    // Names below are the verbatim KPI titles from the Market & End-Use
+    // tracker — keep them intact so the dashboard ↔ tracker mapping is
+    // unambiguous, even if individual labels are long enough to wrap.
+    label: 'Market & End-Use KPIs',
     items: [
-      { id: 'psia-pricing', label: 'KPI 1 · Pricing', Icon: IconDollar },
-      { id: 'psia-demand',  label: 'KPI 2 · Demand',  Icon: IconReport },
+      {
+        id:    'kpi-export-value',
+        label: 'Export Value of Seaweed Products ($/year)',
+        Icon:  IconExternal,
+      },
+      {
+        id:    'kpi-price-wet-tonne',
+        label: 'Price per Wet Tonne by Species and End Use ($/tonne)',
+        Icon:  IconDollar,
+      },
+      {
+        id:    'kpi-value-per-lb',
+        label: 'Value of Seaweed ($/lb)',
+        Icon:  IconDollar,
+      },
+      {
+        id:    'kpi-wet-vs-processed',
+        label: 'Wet vs. Processed Kelp Demand',
+        Icon:  IconReport,
+      },
+      {
+        id:    'kpi-gross-output',
+        label: 'Gross Value of Seaweed Industry Output ($/year)',
+        Icon:  IconActivity,
+      },
     ],
   },
 ]
 
 export default function Sidebar({ active, onChange }) {
   return (
-    <aside className="hidden lg:flex w-64 shrink-0 bg-slate-900 text-slate-200 flex-col h-screen sticky top-0">
+    <aside className="hidden lg:flex w-72 shrink-0 bg-slate-900 text-slate-200 flex-col h-screen sticky top-0">
       {/* Brand */}
       <div className="px-5 pt-6 pb-8 flex items-center gap-3">
         <div className="w-10 h-10 rounded-xl bg-brand-500/10 ring-1 ring-brand-400/30 grid place-items-center">
@@ -81,9 +112,10 @@ export default function Sidebar({ active, onChange }) {
                     <button
                       onClick={() => onChange(id)}
                       aria-current={isActive ? 'page' : undefined}
+                      title={label}
                       className={`
-                        w-full group flex items-center gap-3 px-3 py-2 rounded-lg
-                        text-sm font-medium transition-colors
+                        w-full group flex items-start gap-3 px-3 py-2 rounded-lg
+                        text-sm font-medium transition-colors text-left
                         ${
                           isActive
                             ? 'bg-brand-500/15 text-white ring-1 ring-brand-400/20'
@@ -93,18 +125,22 @@ export default function Sidebar({ active, onChange }) {
                     >
                       {/* Status dot */}
                       <span
-                        className={`w-1.5 h-1.5 rounded-full shrink-0 ${
-                          isActive ? 'bg-brand-300' : 'bg-slate-600 group-hover:bg-slate-400'
+                        className={`w-1.5 h-1.5 rounded-full shrink-0 mt-2 ${
+                          isActive
+                            ? 'bg-brand-300'
+                            : 'bg-slate-600 group-hover:bg-slate-400'
                         }`}
                       />
                       <Icon
-                        className={`w-4 h-4 shrink-0 ${
+                        className={`w-4 h-4 shrink-0 mt-0.5 ${
                           isActive ? 'text-brand-300' : 'text-slate-400'
                         }`}
                       />
-                      <span className="truncate">{label}</span>
+                      <span className="flex-1 leading-snug break-words">
+                        {label}
+                      </span>
                       {isActive && (
-                        <IconChevronRight className="w-3.5 h-3.5 ml-auto text-brand-300" />
+                        <IconChevronRight className="w-3.5 h-3.5 mt-0.5 text-brand-300 shrink-0" />
                       )}
                     </button>
                   </li>
