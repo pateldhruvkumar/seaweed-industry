@@ -64,7 +64,13 @@ export default function SpeciesTab() {
           <Dropdown label="Period" options={WINDOW_OPTIONS} value={speciesWindow} onChange={setSpeciesWindow} />
         }
       >
-        <BarChart data={speciesBar} labelKey="species" valueKey="avg_tonnes_mt" xLabel="Million tonnes / year" />
+        <BarChart
+          data={speciesBar}
+          labelKey="species"
+          valueKey="avg_tonnes_mt"
+          xLabel="Million tonnes / year"
+          xDtick={0.5}
+        />
       </ChartCard>
 
       <ChartCard

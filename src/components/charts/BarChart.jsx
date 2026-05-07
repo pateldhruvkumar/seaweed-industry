@@ -17,11 +17,31 @@ import Plot from '../../lib/Plot'
  *   color       – fallback single color (default brand teal)
  *   orientation – 'horizontal' (default) or 'vertical'
  *   sort        – 'asc' | 'desc' | 'none' (default 'asc' for h, 'none' for v)
- *   xLabel      – axis title for the value axis
+ *   xLabel      – axis title for the X axis
+ *   yLabel      – axis title for the Y axis
  *   showLabels  – render value labels next to bars (default true)
- *   format      – function to format value labels (default toFixed(0))
+ *   format      – fn to format value labels (default scale-adaptive)
+ *   xDtick      – fixed tick interval on the X axis (number)
+ *   yDtick      – fixed tick interval on the Y axis (number)
  *   height      – px; defaults to 420
  */
+
+/**
+ * Scale-adaptive default label formatter. Picks decimal precision based
+ * on magnitude so a 0.2137 row doesn't render as "0" while a 13,000 row
+ * doesn't render as "13000.00".
+ */
+function defaultFormat(v) {
+  const n = Number(v)
+  if (!Number.isFinite(n) || n === 0) return '0'
+  const abs = Math.abs(n)
+  if (abs >= 1000) return Math.round(n).toLocaleString()
+  if (abs >= 100) return Math.round(n).toLocaleString()
+  if (abs >= 10) return n.toFixed(1)
+  if (abs >= 1) return n.toFixed(2)
+  return n.toFixed(2) // sub-unit values: keep 2 decimals (e.g. 0.21)
+}
+
 export default function BarChart({
   data,
   labelKey,
@@ -33,7 +53,9 @@ export default function BarChart({
   xLabel = '',
   yLabel = '',
   showLabels = true,
-  format = v => Number(v).toFixed(0),
+  format = defaultFormat,
+  xDtick,
+  yDtick,
   height = 420,
 }) {
   if (!data?.length)
@@ -44,9 +66,7 @@ export default function BarChart({
     )
 
   const sortMode = sort ?? (orientation === 'horizontal' ? 'asc' : 'none')
-  let rows = data.filter(
-    d => d[valueKey] != null && !isNaN(d[valueKey]),
-  )
+  let rows = data.filter(d => d[valueKey] != null && !isNaN(d[valueKey]))
   if (sortMode === 'asc') rows = [...rows].sort((a, b) => a[valueKey] - b[valueKey])
   if (sortMode === 'desc') rows = [...rows].sort((a, b) => b[valueKey] - a[valueKey])
 
@@ -84,10 +104,15 @@ export default function BarChart({
         xaxis: {
           title: isHorizontal ? xLabel : '',
           tickfont: { size: 11 },
+          // Force a fixed tick interval when caller passes xDtick — useful
+          // for ranked lists where small values need to be readable next to
+          // very large ones.
+          ...(xDtick != null ? { dtick: xDtick, tick0: 0 } : {}),
         },
         yaxis: {
           title: isHorizontal ? '' : yLabel,
           tickfont: { size: 11 },
+          ...(yDtick != null ? { dtick: yDtick, tick0: 0 } : {}),
         },
         margin: isHorizontal
           ? { t: 10, r: 80, b: 50, l: 160 }
