@@ -4,12 +4,13 @@ import Sidebar from './components/layout/Sidebar'
 import Topbar from './components/layout/Topbar'
 import Footer from './components/layout/Footer'
 
-const OverviewTab    = lazy(() => import('./tabs/OverviewTab'))
-const CountriesTab   = lazy(() => import('./tabs/CountriesTab'))
-const RegionsTab     = lazy(() => import('./tabs/RegionsTab'))
-const SpeciesTab     = lazy(() => import('./tabs/SpeciesTab'))
-const EconomicsTab   = lazy(() => import('./tabs/EconomicsTab'))
-const DataQualityTab = lazy(() => import('./tabs/DataQualityTab'))
+const OverviewTab     = lazy(() => import('./tabs/OverviewTab'))
+const CountriesTab    = lazy(() => import('./tabs/CountriesTab'))
+const RegionsTab      = lazy(() => import('./tabs/RegionsTab'))
+const SpeciesTab      = lazy(() => import('./tabs/SpeciesTab'))
+const EconomicsTab    = lazy(() => import('./tabs/EconomicsTab'))
+const DataQualityTab  = lazy(() => import('./tabs/DataQualityTab'))
+const PsiaBriefingTab = lazy(() => import('./tabs/PsiaBriefingTab'))
 
 // Single source of truth for tab metadata. Sidebar uses `id`/`Icon`/`label`,
 // Topbar uses `title`/`subtitle` of the active tab.
@@ -43,6 +44,11 @@ const TABS = {
     Component: DataQualityTab,
     title: 'Data Quality',
     subtitle: 'Coverage, status flags, and structural integrity of the FAO data.',
+  },
+  psia: {
+    Component: PsiaBriefingTab,
+    title: 'PSIA Briefing',
+    subtitle: 'BC Seaweed Industry — KPI data briefing on pricing and processed-form demand.',
   },
 }
 

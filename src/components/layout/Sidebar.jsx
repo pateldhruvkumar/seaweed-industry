@@ -8,6 +8,7 @@ import {
   IconWaves,
   IconChevronRight,
   IconExternal,
+  IconReport,
 } from '../../lib/icons'
 
 /**
@@ -39,6 +40,10 @@ const NAV_GROUPS = [
   {
     label: 'Operations',
     items: [{ id: 'quality', label: 'Data Quality', Icon: IconShieldCheck }],
+  },
+  {
+    label: 'Briefings',
+    items: [{ id: 'psia', label: 'PSIA Briefing', Icon: IconReport }],
   },
 ]
 
