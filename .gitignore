@@ -22,3 +22,15 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Worktrees
+.worktrees/
+
+# Python artifacts
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Environment / credentials
+.env
+.env.local
