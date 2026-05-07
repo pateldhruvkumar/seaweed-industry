@@ -4,13 +4,14 @@ import Sidebar from './components/layout/Sidebar'
 import Topbar from './components/layout/Topbar'
 import Footer from './components/layout/Footer'
 
-const OverviewTab     = lazy(() => import('./tabs/OverviewTab'))
-const CountriesTab    = lazy(() => import('./tabs/CountriesTab'))
-const RegionsTab      = lazy(() => import('./tabs/RegionsTab'))
-const SpeciesTab      = lazy(() => import('./tabs/SpeciesTab'))
-const EconomicsTab    = lazy(() => import('./tabs/EconomicsTab'))
-const DataQualityTab  = lazy(() => import('./tabs/DataQualityTab'))
-const PsiaBriefingTab = lazy(() => import('./tabs/PsiaBriefingTab'))
+const OverviewTab    = lazy(() => import('./tabs/OverviewTab'))
+const CountriesTab   = lazy(() => import('./tabs/CountriesTab'))
+const RegionsTab     = lazy(() => import('./tabs/RegionsTab'))
+const SpeciesTab     = lazy(() => import('./tabs/SpeciesTab'))
+const EconomicsTab   = lazy(() => import('./tabs/EconomicsTab'))
+const DataQualityTab = lazy(() => import('./tabs/DataQualityTab'))
+const PsiaPricingTab = lazy(() => import('./tabs/PsiaPricingTab'))
+const PsiaDemandTab  = lazy(() => import('./tabs/PsiaDemandTab'))
 
 // Single source of truth for tab metadata. Sidebar uses `id`/`Icon`/`label`,
 // Topbar uses `title`/`subtitle` of the active tab.
@@ -45,10 +46,15 @@ const TABS = {
     title: 'Data Quality',
     subtitle: 'Coverage, status flags, and structural integrity of the FAO data.',
   },
-  psia: {
-    Component: PsiaBriefingTab,
-    title: 'PSIA Briefing',
-    subtitle: 'BC Seaweed Industry — KPI data briefing on pricing and processed-form demand.',
+  'psia-pricing': {
+    Component: PsiaPricingTab,
+    title: 'Pricing Briefing',
+    subtitle: 'KPI 1 · Price per Wet Tonne by Species & End Use ($/tonne).',
+  },
+  'psia-demand': {
+    Component: PsiaDemandTab,
+    title: 'Demand Briefing',
+    subtitle: 'KPI 2 · Wet vs. Processed Kelp Demand and emerging downstream markets.',
   },
 }
 

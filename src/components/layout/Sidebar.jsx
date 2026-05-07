@@ -43,7 +43,10 @@ const NAV_GROUPS = [
   },
   {
     label: 'Briefings',
-    items: [{ id: 'psia', label: 'PSIA Briefing', Icon: IconReport }],
+    items: [
+      { id: 'psia-pricing', label: 'KPI 1 · Pricing', Icon: IconDollar },
+      { id: 'psia-demand',  label: 'KPI 2 · Demand',  Icon: IconReport },
+    ],
   },
 ]
 

@@ -82,7 +82,7 @@ export default function SpeciesTab() {
           groupKey="environment"
           valueKey="value_mt"
           yLabel="Million tonnes"
-          yDtick={2}
+          yDtick={5}
         />
       </ChartCard>
 
