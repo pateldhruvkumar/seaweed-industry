@@ -1,5 +1,6 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 import * as plotlyModule from 'plotly.js-dist-min'
+import { mergeLayout, mergeConfig } from './plotlyTheme'
 
 // plotly.js-dist-min is a UMD bundle — under Vite's CJS interop, the default
 // export may or may not be unwrapped, so accept either shape.
@@ -24,14 +25,20 @@ export default function Plot({
 }) {
   const containerRef = useRef(null)
 
+  // Merge caller's layout/config on top of the centralized theme defaults so
+  // every chart in the app inherits Inter font, refined gridlines, the brand
+  // color cycle, and consistent hover styling without per-chart boilerplate.
+  const themedLayout = useMemo(() => mergeLayout(layout), [layout])
+  const themedConfig = useMemo(() => mergeConfig(config), [config])
+
   // (Re-)render the plot whenever data/layout/config change. Plotly.react does
   // its own internal diffing, so passing fresh object identities each render
   // is fine and idiomatic.
   useEffect(() => {
     const node = containerRef.current
     if (!node) return
-    Plotly.react(node, data, layout, config)
-  }, [data, layout, config])
+    Plotly.react(node, data, themedLayout, themedConfig)
+  }, [data, themedLayout, themedConfig])
 
   // Mirror react-plotly.js' useResizeHandler: re-run plotly's resize logic
   // whenever the window changes size. We only attach the listener if the
