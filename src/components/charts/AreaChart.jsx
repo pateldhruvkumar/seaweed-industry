@@ -5,13 +5,13 @@ export default function AreaChart({ data, groupKey, valueKey, yLabel = '', heigh
   const groups = [...new Set(data.map(d => d[groupKey]))].filter(Boolean)
   const years  = [...new Set(data.map(d => d.year))].sort((a, b) => a - b)
   const lookup = Object.fromEntries(data.map(d => [`${d.year}__${d[groupKey]}`, d[valueKey]]))
-  const traces = groups.map(g => ({
+  const traces = groups.map((g, i) => ({
     x: years,
     y: years.map(y => lookup[`${y}__${g}`] ?? 0),
     name: g,
     type: 'scatter',
     mode: 'none',
-    fill: 'tonexty',
+    fill: i === 0 ? 'tozeroy' : 'tonexty',
     stackgroup: 'one',
   }))
   return (

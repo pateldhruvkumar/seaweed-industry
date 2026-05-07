@@ -9,7 +9,7 @@ export default function MultiSelect({ label, options, value, onChange }) {
         className="border border-gray-200 rounded-md px-2 py-1 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-teal-500 h-24 min-w-40"
       >
         {options.map(opt => (
-          <option key={opt} value={opt}>{opt}</option>
+          <option key={opt.value ?? opt} value={opt.value ?? opt}>{opt.label ?? opt}</option>
         ))}
       </select>
     </div>

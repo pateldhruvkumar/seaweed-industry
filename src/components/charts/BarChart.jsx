@@ -2,7 +2,9 @@ import Plot from 'react-plotly.js'
 
 export default function BarChart({ data, labelKey, valueKey, xLabel = '', height = 420 }) {
   if (!data?.length) return <div className="h-40 flex items-center justify-center text-gray-400">No data</div>
-  const sorted = [...data].sort((a, b) => a[valueKey] - b[valueKey])
+  const sorted = [...data]
+    .filter(d => d[valueKey] != null && !isNaN(d[valueKey]))
+    .sort((a, b) => a[valueKey] - b[valueKey])
   return (
     <Plot
       data={[{

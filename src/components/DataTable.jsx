@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export default function DataTable({ columns, data }) {
   const [sortKey, setSortKey] = useState(columns[0].key)
@@ -6,10 +6,13 @@ export default function DataTable({ columns, data }) {
   const [page, setPage]       = useState(0)
   const PAGE = 15
 
+  useEffect(() => { setPage(0) }, [data])
+
   const sorted = [...(data ?? [])].sort((a, b) => {
     const va = a[sortKey], vb = b[sortKey]
     if (va == null) return 1
     if (vb == null) return -1
+    if (typeof va === 'string') return sortDir === 'asc' ? va.localeCompare(vb) : vb.localeCompare(va)
     return sortDir === 'asc' ? va - vb : vb - va
   })
   const paged = sorted.slice(page * PAGE, (page + 1) * PAGE)
@@ -44,7 +47,7 @@ export default function DataTable({ columns, data }) {
               <tr key={i} className="border-b border-gray-50 hover:bg-gray-50">
                 {columns.map(col => (
                   <td key={col.key} className="px-4 py-2 text-gray-800">
-                    {col.format ? col.format(row[col.key]) : (row[col.key] ?? '—')}
+                    {row[col.key] == null ? '—' : col.format ? col.format(row[col.key]) : row[col.key]}
                   </td>
                 ))}
               </tr>

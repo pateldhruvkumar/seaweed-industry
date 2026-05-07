@@ -1,7 +1,7 @@
 import Plot from 'react-plotly.js'
 
 export default function Heatmap({ data, height = 460 }) {
-  if (!data) return <div className="h-40 flex items-center justify-center text-gray-400">No data</div>
+  if (!data?.values?.length) return <div className="h-40 flex items-center justify-center text-gray-400">No data</div>
   const { countries, species, values } = data
   return (
     <Plot
@@ -12,7 +12,7 @@ export default function Heatmap({ data, height = 460 }) {
         type: 'heatmap',
         colorscale: 'YlGnBu',
         hoverongaps: false,
-        text: values.map(row => row.map(v => v.toFixed(0))),
+        text: values.map(row => row.map(v => v != null ? v.toFixed(0) : '')),
         texttemplate: '%{text}',
         colorbar: { title: 'K t/yr' },
       }]}
