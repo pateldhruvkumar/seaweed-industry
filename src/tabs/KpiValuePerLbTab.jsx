@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
-import { useYear } from '../context/YearContext'
 import { useData } from '../hooks/useData'
 import ChartCard from '../components/ChartCard'
+import TimeFilteredChartCard from '../components/TimeFilteredChartCard'
 import KpiCard from '../components/KpiCard'
 import LineChart from '../components/charts/LineChart'
 import DataTable from '../components/DataTable'
@@ -47,9 +47,6 @@ const UNIT_FORMAT = {
 }
 
 export default function KpiValuePerLbTab() {
-  const {
-    yearRange: [yMin, yMax],
-  } = useYear()
   const [unit, setUnit] = useState('lb')
 
   const { data: priceGlobal, loading: l1 } = useData('price_global.json')
@@ -58,24 +55,6 @@ export default function KpiValuePerLbTab() {
 
   const divisor = UNIT_DIVISOR[unit]
   const fmt = UNIT_FORMAT[unit]
-
-  // Convert all $/tonne values into the active unit. Doing it as a memo
-  // keeps the conversion math out of the render loop.
-  const globalConverted = useMemo(
-    () =>
-      priceGlobal
-        ?.filter(d => d.year >= yMin && d.year <= yMax)
-        .map(d => ({ ...d, price: d.usd_per_tonne / divisor })) ?? [],
-    [priceGlobal, divisor, yMin, yMax],
-  )
-
-  const envConverted = useMemo(
-    () =>
-      priceEnv
-        ?.filter(d => d.year >= yMin && d.year <= yMax)
-        .map(d => ({ ...d, price: d.usd_per_tonne / divisor })) ?? [],
-    [priceEnv, divisor, yMin, yMax],
-  )
 
   // Latest-year species table
   const speciesTable = useMemo(() => {
@@ -195,11 +174,11 @@ export default function KpiValuePerLbTab() {
         </div>
       )}
 
-      {/* Unit toggle (global to all charts on this tab) */}
-      <ChartCard
+      {/* Global price (year slider + unit toggle) */}
+      <TimeFilteredChartCard
         title="Volume-weighted average aquaculture price — global"
         subtitle="Sum of value ÷ sum of quantity across all reporting countries each year. Toggle the price unit on the right."
-        controls={
+        extraControls={
           <Dropdown
             label="Unit"
             options={UNIT_OPTIONS}
@@ -208,30 +187,44 @@ export default function KpiValuePerLbTab() {
           />
         }
       >
-        <LineChart
-          data={globalConverted}
-          xKey="year"
-          yKey="price"
-          yLabel={UNIT_LABEL[unit]}
-          height={360}
-        />
-      </ChartCard>
+        {([yMin, yMax]) => {
+          const data = priceGlobal
+            .filter(d => d.year >= yMin && d.year <= yMax)
+            .map(d => ({ ...d, price: d.usd_per_tonne / divisor }))
+          return (
+            <LineChart
+              data={data}
+              xKey="year"
+              yKey="price"
+              yLabel={UNIT_LABEL[unit]}
+              height={360}
+            />
+          )
+        }}
+      </TimeFilteredChartCard>
 
-      {/* By environment */}
-      <ChartCard
+      {/* By environment (year slider, inherits unit) */}
+      <TimeFilteredChartCard
         title="Average price by farming environment (log scale)"
         subtitle="Marine vs Brackish water vs Inland/freshwater. Same volume-weighting, broken out by FAO environment code."
       >
-        <LineChart
-          data={envConverted}
-          xKey="year"
-          yKey="price"
-          groupKey="environment"
-          yLabel={`${UNIT_LABEL[unit]} (log)`}
-          yLog
-          height={380}
-        />
-      </ChartCard>
+        {([yMin, yMax]) => {
+          const data = priceEnv
+            .filter(d => d.year >= yMin && d.year <= yMax)
+            .map(d => ({ ...d, price: d.usd_per_tonne / divisor }))
+          return (
+            <LineChart
+              data={data}
+              xKey="year"
+              yKey="price"
+              groupKey="environment"
+              yLabel={`${UNIT_LABEL[unit]} (log)`}
+              yLog
+              height={380}
+            />
+          )
+        }}
+      </TimeFilteredChartCard>
 
       {/* Latest-year species table */}
       <ChartCard

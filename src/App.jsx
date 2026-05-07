@@ -1,5 +1,4 @@
 import { useState, Suspense, lazy } from 'react'
-import { YearProvider } from './context/YearContext'
 import Sidebar from './components/layout/Sidebar'
 import Topbar from './components/layout/Topbar'
 import Footer from './components/layout/Footer'
@@ -91,22 +90,20 @@ export default function App() {
   const TabComponent = tab.Component
 
   return (
-    <YearProvider>
-      <div className="min-h-screen flex">
-        <Sidebar active={activeTab} onChange={setActiveTab} />
+    <div className="min-h-screen flex">
+      <Sidebar active={activeTab} onChange={setActiveTab} />
 
-        <div className="flex-1 flex flex-col min-w-0">
-          <main className="flex-1 w-full">
-            <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-8">
-              <Topbar title={tab.title} subtitle={tab.subtitle} />
-              <Suspense fallback={<Loading />}>
-                <TabComponent />
-              </Suspense>
-            </div>
-          </main>
-          <Footer />
-        </div>
+      <div className="flex-1 flex flex-col min-w-0">
+        <main className="flex-1 w-full">
+          <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-8">
+            <Topbar title={tab.title} subtitle={tab.subtitle} />
+            <Suspense fallback={<Loading />}>
+              <TabComponent />
+            </Suspense>
+          </div>
+        </main>
+        <Footer />
       </div>
-    </YearProvider>
+    </div>
   )
 }

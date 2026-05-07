@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
-import { useYear } from '../context/YearContext'
 import { useData } from '../hooks/useData'
 import ChartCard from '../components/ChartCard'
+import TimeFilteredChartCard from '../components/TimeFilteredChartCard'
 import KpiCard from '../components/KpiCard'
 import LineChart from '../components/charts/LineChart'
 import BarChart from '../components/charts/BarChart'
@@ -22,32 +22,22 @@ import { BriefingHero } from '../components/psia'
  * dataset would replace this proxy if/when it's added to the pipeline.
  */
 export default function KpiExportValueTab() {
-  const {
-    yearRange: [yMin, yMax],
-  } = useYear()
-
   const { data: globalYearly,  loading: l1 } = useData('global_aquaculture_value_yearly.json')
   const { data: countryYearly, loading: l2 } = useData('country_value_yearly.json')
   const { data: countryWindow, loading: l3 } = useData('country_value_volume.json')
 
-  const globalFilt = useMemo(
-    () => globalYearly?.filter(d => d.year >= yMin && d.year <= yMax) ?? [],
-    [globalYearly, yMin, yMax],
-  )
-
-  // Default top-5 countries' time series for the trajectory chart.
-  const top5Trajectory = useMemo(() => {
-    if (!countryYearly || !countryWindow) return []
+  // The 5 countries to highlight in the trajectory chart are determined
+  // independent of the user's per-chart year-slider — pick from the most
+  // recent 5-year window each time.
+  const top5Names = useMemo(() => {
+    if (!countryWindow) return []
     const latestEnd = Math.max(...countryWindow.map(d => d.year_end))
-    const top5 = countryWindow
+    return countryWindow
       .filter(d => d.year_end === latestEnd)
       .sort((a, b) => b.avg_value_musd - a.avg_value_musd)
       .slice(0, 5)
       .map(d => d.country)
-    return countryYearly.filter(
-      d => top5.includes(d.country) && d.year >= yMin && d.year <= yMax,
-    )
-  }, [countryYearly, countryWindow, yMin, yMax])
+  }, [countryWindow])
 
   // Top contributing countries — most recent 5-year window
   const topByValue = useMemo(() => {
@@ -152,33 +142,42 @@ export default function KpiExportValueTab() {
       )}
 
       {/* Global trend */}
-      <ChartCard
+      <TimeFilteredChartCard
         title="Global aquaculture production value (proxy for export value)"
         subtitle="Sum of all reporting countries' aquaculture VALUE rows per year, FAO FishStat. Single global series."
       >
-        <LineChart
-          data={globalFilt}
-          xKey="year"
-          yKey="value_musd"
-          yLabel="Million USD / year"
-          height={360}
-        />
-      </ChartCard>
+        {([yMin, yMax]) => (
+          <LineChart
+            data={globalYearly.filter(d => d.year >= yMin && d.year <= yMax)}
+            xKey="year"
+            yKey="value_musd"
+            yLabel="Million USD / year"
+            height={360}
+          />
+        )}
+      </TimeFilteredChartCard>
 
       {/* Top-5 country trajectories */}
-      <ChartCard
+      <TimeFilteredChartCard
         title="Top-5 producing countries · trajectory"
         subtitle="Per-country production value time series. The same five countries dominate the export tables over the past two decades."
       >
-        <LineChart
-          data={top5Trajectory}
-          xKey="year"
-          yKey="value_musd"
-          groupKey="country"
-          yLabel="Million USD / year"
-          height={400}
-        />
-      </ChartCard>
+        {([yMin, yMax]) => (
+          <LineChart
+            data={countryYearly.filter(
+              d =>
+                top5Names.includes(d.country) &&
+                d.year >= yMin &&
+                d.year <= yMax,
+            )}
+            xKey="year"
+            yKey="value_musd"
+            groupKey="country"
+            yLabel="Million USD / year"
+            height={400}
+          />
+        )}
+      </TimeFilteredChartCard>
 
       {/* Top contributors bar */}
       <ChartCard

@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
-import { useYear } from '../context/YearContext'
 import { useData } from '../hooks/useData'
 import ChartCard from '../components/ChartCard'
+import TimeFilteredChartCard from '../components/TimeFilteredChartCard'
 import KpiCard from '../components/KpiCard'
 import LineChart from '../components/charts/LineChart'
 import AreaChart from '../components/charts/AreaChart'
@@ -21,25 +21,12 @@ import { BriefingHero } from '../components/psia'
  *   - country_value_volume.json            — top countries by 5-yr window
  */
 export default function KpiGrossOutputTab() {
-  const {
-    yearRange: [yMin, yMax],
-  } = useYear()
-
   const { data: globalYearly, loading: l1 } = useData(
     'global_aquaculture_value_yearly.json',
   )
   const { data: byEnv, loading: l2 } = useData('value_by_env_yearly.json')
   const { data: countryWindowed, loading: l3 } = useData(
     'country_value_volume.json',
-  )
-
-  const globalFilt = useMemo(
-    () => globalYearly?.filter(d => d.year >= yMin && d.year <= yMax) ?? [],
-    [globalYearly, yMin, yMax],
-  )
-  const byEnvFilt = useMemo(
-    () => byEnv?.filter(d => d.year >= yMin && d.year <= yMax) ?? [],
-    [byEnv, yMin, yMax],
   )
 
   // KPI numerics — anchored on the latest available year, not the slider.
@@ -148,32 +135,36 @@ export default function KpiGrossOutputTab() {
       )}
 
       {/* Global value time series */}
-      <ChartCard
+      <TimeFilteredChartCard
         title="Global aquaculture value over time"
         subtitle="Total across all producing countries, species, and environments. FAO FishStat aquaculture VALUE table, summed by year."
       >
-        <LineChart
-          data={globalFilt}
-          xKey="year"
-          yKey="value_musd"
-          yLabel="Million USD / year"
-          height={380}
-        />
-      </ChartCard>
+        {([yMin, yMax]) => (
+          <LineChart
+            data={globalYearly.filter(d => d.year >= yMin && d.year <= yMax)}
+            xKey="year"
+            yKey="value_musd"
+            yLabel="Million USD / year"
+            height={380}
+          />
+        )}
+      </TimeFilteredChartCard>
 
       {/* Stacked by environment */}
-      <ChartCard
+      <TimeFilteredChartCard
         title="Industry output by farming environment"
         subtitle="Same total as above, decomposed across Marine, Brackish water, and Inland/freshwater aquaculture."
       >
-        <AreaChart
-          data={byEnvFilt}
-          groupKey="environment"
-          valueKey="value_musd"
-          yLabel="Million USD / year"
-          height={400}
-        />
-      </ChartCard>
+        {([yMin, yMax]) => (
+          <AreaChart
+            data={byEnv.filter(d => d.year >= yMin && d.year <= yMax)}
+            groupKey="environment"
+            valueKey="value_musd"
+            yLabel="Million USD / year"
+            height={400}
+          />
+        )}
+      </TimeFilteredChartCard>
 
       {/* Top contributing countries */}
       <ChartCard

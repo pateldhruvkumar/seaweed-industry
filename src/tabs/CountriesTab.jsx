@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
-import { useYear } from '../context/YearContext'
 import { useData } from '../hooks/useData'
 import ChartCard from '../components/ChartCard'
+import TimeFilteredChartCard from '../components/TimeFilteredChartCard'
 import BarChart from '../components/charts/BarChart'
 import LineChart from '../components/charts/LineChart'
 import Dropdown from '../components/controls/Dropdown'
@@ -23,16 +23,17 @@ const TOP_N_OPTIONS = [
 ]
 
 export default function CountriesTab() {
-  const { yearRange: [yMin, yMax] } = useYear()
-  const [window, setWindow]   = useState('2020-2024')
-  const [topN, setTopN]       = useState('15')
+  const [window, setWindow] = useState('2020-2024')
+  const [topN, setTopN] = useState('15')
   const [selected, setSelected] = useState([])
 
   const { data: totalsData, loading: l1 } = useData('country_totals.json')
-  const { data: tsData,     loading: l2 } = useData('country_timeseries.json')
+  const { data: tsData, loading: l2 } = useData('country_timeseries.json')
 
   const [winStart, winEnd] = window.split('-').map(Number)
 
+  // Top-N bar uses a "Period" dropdown rather than a year slider — the
+  // chart's whole point is to compare a single 5-year window's averages.
   const barData = useMemo(() => {
     if (!totalsData) return []
     return totalsData
@@ -41,9 +42,9 @@ export default function CountriesTab() {
       .slice(0, +topN)
   }, [totalsData, winStart, winEnd, topN])
 
-  const allCountries = useMemo(() =>
-    [...new Set(tsData?.map(d => d.country) ?? [])].sort(),
-    [tsData]
+  const allCountries = useMemo(
+    () => [...new Set(tsData?.map(d => d.country) ?? [])].sort(),
+    [tsData],
   )
 
   const defaultTop5 = useMemo(() => {
@@ -57,12 +58,10 @@ export default function CountriesTab() {
 
   const activeCountries = selected.length > 0 ? selected : defaultTop5
 
-  const tsFiltered = useMemo(() =>
-    tsData?.filter(d => activeCountries.includes(d.country) && d.year >= yMin && d.year <= yMax) ?? [],
-    [tsData, activeCountries, yMin, yMax]
-  )
-
-  if (l1 || l2) return <div className="p-12 text-center text-gray-400">Loading…</div>
+  if (l1 || l2)
+    return (
+      <div className="p-12 text-center text-slate-400">Loading…</div>
+    )
 
   return (
     <div className="space-y-6">
@@ -75,12 +74,17 @@ export default function CountriesTab() {
           </>
         }
       >
-        <BarChart data={barData} labelKey="country" valueKey="avg_tonnes_mt" xLabel="Million tonnes / year" />
+        <BarChart
+          data={barData}
+          labelKey="country"
+          valueKey="avg_tonnes_mt"
+          xLabel="Million tonnes / year"
+        />
       </ChartCard>
 
-      <ChartCard
+      <TimeFilteredChartCard
         title="Production trajectory of selected countries (million tonnes / year)"
-        controls={
+        extraControls={
           <MultiSelect
             label="Countries"
             options={allCountries}
@@ -89,8 +93,20 @@ export default function CountriesTab() {
           />
         }
       >
-        <LineChart data={tsFiltered} yKey="value_mt" groupKey="country" yLabel="Million tonnes / year" />
-      </ChartCard>
+        {([yMin, yMax]) => (
+          <LineChart
+            data={tsData.filter(
+              d =>
+                activeCountries.includes(d.country) &&
+                d.year >= yMin &&
+                d.year <= yMax,
+            )}
+            yKey="value_mt"
+            groupKey="country"
+            yLabel="Million tonnes / year"
+          />
+        )}
+      </TimeFilteredChartCard>
     </div>
   )
 }
