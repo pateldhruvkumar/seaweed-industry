@@ -1,61 +1,119 @@
+import { Sparkline, IconArrowUp, IconArrowDown } from '../lib/icons'
+
 /**
- * Small at-a-glance metric tile. Used in the strip at the top of the
- * Overview tab to anchor the page with concrete numbers before the user
- * drills into charts.
+ * Pastel-tinted KPI tile used at the top of analytical pages.
  *
- * Props:
- *   label    – uppercase caption above the number ("Latest year")
- *   value    – the headline figure (string or number, already formatted)
- *   subtext  – small grey line under the value ("2024")
- *   icon     – optional Icon component (from lib/icons)
- *   trend    – optional { dir: 'up' | 'down' | 'flat', text: '+12.4%' } badge
- *   accent   – tailwind color class for the icon background tint
- *              (default 'bg-brand-50 text-brand-600')
+ * Visual structure:
+ *   ┌────────────────────────────────────────────┐
+ *   │ Label                          ╲╱╲╱  spark │
+ *   │ HEADLINE NUMBER                            │
+ *   │ Subtext   [+13.4% ↑]                       │
+ *   └────────────────────────────────────────────┘
+ *
+ * Each variant pairs a faint background tint with a saturated sparkline
+ * stroke so the row of tiles reads as a coordinated set rather than four
+ * unrelated cards. Variant choices follow a teal → cyan → indigo →
+ * emerald sweep that complements the brand palette.
  */
+const VARIANTS = {
+  teal: {
+    bg: 'bg-brand-50',
+    border: 'border-brand-100',
+    label: 'text-brand-700',
+    spark: 'text-brand-500',
+    sparkVariant: 'up',
+  },
+  cyan: {
+    bg: 'bg-cyan-50',
+    border: 'border-cyan-100',
+    label: 'text-cyan-700',
+    spark: 'text-cyan-500',
+    sparkVariant: 'wave',
+  },
+  indigo: {
+    bg: 'bg-indigo-50',
+    border: 'border-indigo-100',
+    label: 'text-indigo-700',
+    spark: 'text-indigo-500',
+    sparkVariant: 'up',
+  },
+  emerald: {
+    bg: 'bg-emerald-50',
+    border: 'border-emerald-100',
+    label: 'text-emerald-700',
+    spark: 'text-emerald-500',
+    sparkVariant: 'wave',
+  },
+  rose: {
+    bg: 'bg-rose-50',
+    border: 'border-rose-100',
+    label: 'text-rose-700',
+    spark: 'text-rose-500',
+    sparkVariant: 'up',
+  },
+  slate: {
+    bg: 'bg-slate-50',
+    border: 'border-slate-200',
+    label: 'text-slate-700',
+    spark: 'text-slate-500',
+    sparkVariant: 'wave',
+  },
+}
+
 export default function KpiCard({
   label,
   value,
   subtext,
-  icon: Icon,
   trend,
-  accent = 'bg-brand-50 text-brand-600',
+  variant = 'teal',
 }) {
+  const v = VARIANTS[variant] ?? VARIANTS.teal
+  const trendDir = trend?.dir
+  const TrendIcon =
+    trendDir === 'up' ? IconArrowUp : trendDir === 'down' ? IconArrowDown : null
+
   return (
-    <div className="bg-white rounded-xl border border-slate-200/70 shadow-card p-5 flex items-start gap-4 animate-fade-in">
-      {Icon && (
-        <div
-          className={`w-10 h-10 rounded-lg grid place-items-center shrink-0 ${accent}`}
-        >
-          <Icon className="w-5 h-5" />
-        </div>
-      )}
-      <div className="min-w-0 flex-1">
-        <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">
-          {label}
-        </p>
-        <p className="text-2xl font-bold text-slate-900 tabular-nums leading-tight mt-1 truncate">
-          {value}
-        </p>
-        <div className="flex items-center gap-2 mt-1">
-          {subtext && (
-            <span className="text-xs text-slate-500">{subtext}</span>
-          )}
-          {trend && (
-            <span
-              className={`text-[11px] font-semibold px-1.5 py-0.5 rounded ${
-                trend.dir === 'up'
-                  ? 'bg-emerald-50 text-emerald-700'
-                  : trend.dir === 'down'
-                  ? 'bg-rose-50 text-rose-700'
-                  : 'bg-slate-100 text-slate-600'
-              }`}
-            >
-              {trend.dir === 'up' ? '↑ ' : trend.dir === 'down' ? '↓ ' : ''}
-              {trend.text}
-            </span>
-          )}
-        </div>
-      </div>
-    </div>
+    <article
+      className={`relative rounded-2xl border ${v.border} ${v.bg} p-5 overflow-hidden animate-fade-in`}
+    >
+      {/* Top row: label + decorative sparkline */}
+      <header className="flex items-start justify-between gap-4">
+        <p className={`text-xs font-semibold ${v.label}`}>{label}</p>
+        <Sparkline
+          variant={v.sparkVariant}
+          className={`w-14 h-7 ${v.spark}`}
+        />
+      </header>
+
+      {/* Headline number */}
+      <p className="mt-2 text-[28px] leading-none font-bold text-slate-900 tabular-nums truncate">
+        {value}
+      </p>
+
+      {/* Footer: subtext + optional trend pill */}
+      <footer className="mt-3 flex items-center gap-2 flex-wrap">
+        {subtext && (
+          <span className="text-xs text-slate-600">{subtext}</span>
+        )}
+        {trend && (
+          <span
+            className={`
+              inline-flex items-center gap-0.5 text-[11px] font-semibold
+              px-1.5 py-0.5 rounded
+              ${
+                trendDir === 'up'
+                  ? 'bg-emerald-100 text-emerald-700'
+                  : trendDir === 'down'
+                  ? 'bg-rose-100 text-rose-700'
+                  : 'bg-slate-200 text-slate-700'
+              }
+            `}
+          >
+            {TrendIcon && <TrendIcon className="w-3 h-3" />}
+            {trend.text}
+          </span>
+        )}
+      </footer>
+    </article>
   )
 }

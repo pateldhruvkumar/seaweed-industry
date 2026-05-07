@@ -7,7 +7,7 @@ import { IconExternal } from '../../lib/icons'
 export default function Footer() {
   return (
     <footer className="border-t border-slate-200/70 bg-white/50 mt-12">
-      <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-slate-500">
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-slate-500">
         <div>
           <p>
             <span className="font-semibold text-slate-700">
