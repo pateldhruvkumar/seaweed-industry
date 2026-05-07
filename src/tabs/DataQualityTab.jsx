@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import { useData } from '../hooks/useData'
 import ChartCard from '../components/ChartCard'
 import DataTable from '../components/DataTable'
-import Plot from 'react-plotly.js'
+import Plot from '../lib/Plot'
 
 const DATASETS = ['global_production', 'aquaculture_quantity', 'aquaculture_value', 'capture_quantity']
 

@@ -1,4 +1,4 @@
-import Plot from 'react-plotly.js'
+import Plot from '../../lib/Plot'
 
 export default function LineChart({
   data, xKey = 'year', yKey, groupKey,

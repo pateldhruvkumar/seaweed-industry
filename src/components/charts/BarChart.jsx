@@ -1,4 +1,4 @@
-import Plot from 'react-plotly.js'
+import Plot from '../../lib/Plot'
 
 export default function BarChart({ data, labelKey, valueKey, xLabel = '', height = 420 }) {
   if (!data?.length) return <div className="h-40 flex items-center justify-center text-gray-400">No data</div>

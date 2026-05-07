@@ -1,4 +1,4 @@
-import Plot from 'react-plotly.js'
+import Plot from '../../lib/Plot'
 
 export default function AreaChart({ data, groupKey, valueKey, yLabel = '', height = 400 }) {
   if (!data?.length) return <div className="h-40 flex items-center justify-center text-gray-400">No data</div>
