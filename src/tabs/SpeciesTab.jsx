@@ -77,7 +77,13 @@ export default function SpeciesTab() {
       </ChartCard>
 
       <ChartCard title="Aquaculture quantity by environment (million tonnes / year)">
-        <AreaChart data={envQty} groupKey="environment" valueKey="value_mt" yLabel="Million tonnes" />
+        <AreaChart
+          data={envQty}
+          groupKey="environment"
+          valueKey="value_mt"
+          yLabel="Million tonnes"
+          yDtick={2}
+        />
       </ChartCard>
 
       <ChartCard title="Aquaculture environment share (%)">

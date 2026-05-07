@@ -41,6 +41,7 @@ export default function AreaChart({
   groupKey,
   valueKey,
   yLabel = '',
+  yDtick,
   height = 400,
 }) {
   if (!data?.length)
@@ -76,7 +77,14 @@ export default function AreaChart({
     <Plot
       data={traces}
       layout={{
-        yaxis: { title: yLabel, fixedrange: false },
+        yaxis: {
+          title: yLabel,
+          fixedrange: false,
+          // Caller can force a fixed tick interval. Plotly's auto-pick does
+          // a fine job for most charts, but small numbers of large slices
+          // sometimes look cleaner with a denser/sparser grid.
+          ...(yDtick != null ? { dtick: yDtick, tick0: 0 } : {}),
+        },
         xaxis: { title: 'Year' },
         template: 'plotly_white',
         autosize: true,
