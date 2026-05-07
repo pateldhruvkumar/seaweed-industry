@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
-import { useYear } from '../context/YearContext'
 import { useData } from '../hooks/useData'
 import ChartCard from '../components/ChartCard'
+import TimeFilteredChartCard from '../components/TimeFilteredChartCard'
 import BarChart from '../components/charts/BarChart'
 import Heatmap from '../components/charts/Heatmap'
 import AreaChart from '../components/charts/AreaChart'
@@ -22,17 +22,18 @@ const TOPN_OPTIONS = [
 ]
 
 export default function SpeciesTab() {
-  const { yearRange: [yMin, yMax] } = useYear()
   const [speciesWindow, setSpeciesWindow] = useState('2020-2024')
-  const [heatmapN, setHeatmapN]           = useState('10')
+  const [heatmapN, setHeatmapN] = useState('10')
 
-  const { data: speciesData, loading: l1 } = useData('species_totals.json')
-  const { data: matrixData,  loading: l2 } = useData('country_species_matrix.json')
-  const { data: envQtyData,  loading: l3 } = useData('env_quantity.json')
-  const { data: envShareData,loading: l4 } = useData('env_share.json')
+  const { data: speciesData,  loading: l1 } = useData('species_totals.json')
+  const { data: matrixData,   loading: l2 } = useData('country_species_matrix.json')
+  const { data: envQtyData,   loading: l3 } = useData('env_quantity.json')
+  const { data: envShareData, loading: l4 } = useData('env_share.json')
 
   const [wStart, wEnd] = speciesWindow.split('-').map(Number)
 
+  // Top species bar uses a Period dropdown (5-yr window average), not a year
+  // slider — same rationale as the Top countries bar on the Countries tab.
   const speciesBar = useMemo(() => {
     if (!speciesData) return []
     return speciesData
@@ -51,38 +52,67 @@ export default function SpeciesTab() {
     }
   }, [matrixData, heatmapN])
 
-  const envQty   = useMemo(() => envQtyData?.filter(d => d.year >= yMin && d.year <= yMax) ?? [], [envQtyData, yMin, yMax])
-  const envShare = useMemo(() => envShareData?.filter(d => d.year >= yMin && d.year <= yMax) ?? [], [envShareData, yMin, yMax])
-
-  if (l1 || l2 || l3 || l4) return <div className="p-12 text-center text-gray-400">Loading…</div>
+  if (l1 || l2 || l3 || l4)
+    return <div className="p-12 text-center text-slate-400">Loading…</div>
 
   return (
     <div className="space-y-6">
       <ChartCard
         title="Top 15 species / groups by output (million tonnes / year)"
         controls={
-          <Dropdown label="Period" options={WINDOW_OPTIONS} value={speciesWindow} onChange={setSpeciesWindow} />
+          <Dropdown
+            label="Period"
+            options={WINDOW_OPTIONS}
+            value={speciesWindow}
+            onChange={setSpeciesWindow}
+          />
         }
       >
-        <BarChart data={speciesBar} labelKey="species" valueKey="avg_tonnes_mt" xLabel="Million tonnes / year" />
+        <BarChart
+          data={speciesBar}
+          labelKey="species"
+          valueKey="avg_tonnes_mt"
+          xLabel="Million tonnes / year"
+          xDtick={0.5}
+        />
       </ChartCard>
 
       <ChartCard
         title="Country × species specialization — thousand tonnes / year"
         controls={
-          <Dropdown label="Show top" options={TOPN_OPTIONS} value={heatmapN} onChange={setHeatmapN} />
+          <Dropdown
+            label="Show top"
+            options={TOPN_OPTIONS}
+            value={heatmapN}
+            onChange={setHeatmapN}
+          />
         }
       >
         <Heatmap data={heatmap} />
       </ChartCard>
 
-      <ChartCard title="Aquaculture quantity by environment (million tonnes / year)">
-        <AreaChart data={envQty} groupKey="environment" valueKey="value_mt" yLabel="Million tonnes" />
-      </ChartCard>
+      <TimeFilteredChartCard title="Aquaculture quantity by environment (million tonnes / year)">
+        {([yMin, yMax]) => (
+          <AreaChart
+            data={envQtyData.filter(d => d.year >= yMin && d.year <= yMax)}
+            groupKey="environment"
+            valueKey="value_mt"
+            yLabel="Million tonnes"
+            yDtick={5}
+          />
+        )}
+      </TimeFilteredChartCard>
 
-      <ChartCard title="Aquaculture environment share (%)">
-        <AreaChart data={envShare} groupKey="environment" valueKey="share_pct" yLabel="% of aquaculture quantity" />
-      </ChartCard>
+      <TimeFilteredChartCard title="Aquaculture environment share (%)">
+        {([yMin, yMax]) => (
+          <AreaChart
+            data={envShareData.filter(d => d.year >= yMin && d.year <= yMax)}
+            groupKey="environment"
+            valueKey="share_pct"
+            yLabel="% of aquaculture quantity"
+          />
+        )}
+      </TimeFilteredChartCard>
     </div>
   )
 }
