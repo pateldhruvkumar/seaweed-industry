@@ -404,4 +404,21 @@ write_json(
     'eda_value_quantity_scatter.json',
 )
 
+# ── EDA: top-20 country production correlation matrix ────────────────────────
+top20 = (production.groupby('Country_Name')['VALUE'].sum()
+         .sort_values(ascending=False).head(20).index.tolist())
+yearly = (production[production['Country_Name'].isin(top20)]
+          .groupby(['PERIOD', 'Country_Name'])['VALUE'].sum()
+          .unstack(fill_value=0)
+          .reindex(columns=top20))
+corr = yearly.corr().round(3)
+write_json(
+    {
+        'countries': top20,
+        'matrix': [[None if pd.isna(v) else float(v) for v in row]
+                   for row in corr.values.tolist()],
+    },
+    'eda_country_correlation.json',
+)
+
 print(f'\nDone — all JSON files written to {OUT_DIR}')

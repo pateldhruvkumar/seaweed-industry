@@ -96,3 +96,14 @@ def test_eda_value_quantity_scatter_shape():
     assert {'country', 'year', 'qty', 'value'} <= r.keys()
     assert isinstance(r['year'], int)
     assert r['qty'] > 0 and r['value'] > 0  # zeros/nulls are dropped
+
+def test_eda_country_correlation_shape():
+    data = load('eda_country_correlation.json')
+    assert {'countries', 'matrix'} <= data.keys()
+    n = len(data['countries'])
+    assert n == 20
+    assert len(data['matrix']) == n
+    for row in data['matrix']:
+        assert len(row) == n
+        for v in row:
+            assert -1.0 <= v <= 1.0 or v is None
