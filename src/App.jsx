@@ -14,6 +14,7 @@ const PsiaDemandTab     = lazy(() => import('./tabs/PsiaDemandTab'))
 const KpiGrossOutputTab = lazy(() => import('./tabs/KpiGrossOutputTab'))
 const KpiValuePerLbTab  = lazy(() => import('./tabs/KpiValuePerLbTab'))
 const KpiExportValueTab = lazy(() => import('./tabs/KpiExportValueTab'))
+const EdaTab               = lazy(() => import('./tabs/EdaTab'))
 
 // Single source of truth for tab metadata. Sidebar uses `id`/`Icon`/`label`,
 // Topbar uses `title`/`subtitle` of the active tab.
@@ -47,6 +48,11 @@ const TABS = {
     Component: DataQualityTab,
     title: 'Data Quality',
     subtitle: 'Coverage, status flags, and structural integrity of the FAO data.',
+  },
+  eda: {
+    Component: EdaTab,
+    title: 'Exploratory Data Analysis',
+    subtitle: 'Summary statistics, distributions, and structural views across the four FAO datasets.',
   },
   'kpi-export-value': {
     Component: KpiExportValueTab,
