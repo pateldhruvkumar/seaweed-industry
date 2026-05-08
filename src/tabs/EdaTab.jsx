@@ -4,6 +4,7 @@ import ChartCard from '../components/ChartCard'
 import DataTable from '../components/DataTable'
 import Plot from '../lib/Plot'
 import BarChart from '../components/charts/BarChart'
+import Heatmap from '../components/charts/Heatmap'
 
 const DATASETS = ['global_production', 'aquaculture_quantity', 'aquaculture_value', 'capture_quantity']
 
@@ -106,6 +107,8 @@ export default function EdaTab() {
   const { data: countryTotals, loading: lCT } = useData('country_totals.json')
   const { data: speciesTotals, loading: lST } = useData('species_totals.json')
   const { data: envQuantity,   loading: lEQ } = useData('env_quantity.json')
+  const { data: scatter, loading: lSc } = useData('eda_value_quantity_scatter.json')
+  const { data: corr,    loading: lCr } = useData('eda_country_correlation.json')
 
   const countryTraces = useMemo(() => uniquePerYearTraces(uniqYr, 'n_countries'), [uniqYr])
   const speciesTraces = useMemo(() => uniquePerYearTraces(uniqYr, 'n_species'),   [uniqYr])
@@ -138,7 +141,16 @@ export default function EdaTab() {
     return Object.entries(sums).map(([environment, total_mt]) => ({ environment, total_mt }))
   }, [envQuantity])
 
-  if (lSum || lMiss || lVal || lUniq || lCT || lST || lEQ) return <div className="p-12 text-center text-gray-400">Loading…</div>
+  const heatmapData = useMemo(() => {
+    if (!corr) return null
+    return {
+      countries: corr.countries,
+      species: corr.countries,  // axes share the country list
+      values: corr.matrix,
+    }
+  }, [corr])
+
+  if (lSum || lMiss || lVal || lUniq || lCT || lST || lEQ || lSc || lCr) return <div className="p-12 text-center text-gray-400">Loading…</div>
 
   return (
     <div className="space-y-6">
@@ -227,6 +239,34 @@ export default function EdaTab() {
           xLabel="Total production (MT)"
           height={240}
         />
+      </ChartCard>
+
+      <ChartCard title="Aquaculture: value vs. quantity (log–log, country-species-year)">
+        <Plot
+          data={[{
+            x: (scatter ?? []).map(d => d.qty),
+            y: (scatter ?? []).map(d => d.value),
+            text: (scatter ?? []).map(d => `${d.country} ${d.year}`),
+            type: 'scattergl',
+            mode: 'markers',
+            marker: { size: 5, color: '#0d9488', opacity: 0.5 },
+            hoverinfo: 'text+x+y',
+          }]}
+          layout={{
+            template: 'plotly_white',
+            autosize: true,
+            margin: { t: 10, r: 10, b: 60, l: 70 },
+            xaxis: { title: 'Quantity (tonnes)', type: 'log' },
+            yaxis: { title: 'Value (USD)',       type: 'log' },
+          }}
+          useResizeHandler
+          style={{ width: '100%', height: '460px' }}
+          config={{ responsive: true, displaylogo: false }}
+        />
+      </ChartCard>
+
+      <ChartCard title="Top-20 country production correlation (Pearson, year-over-year)">
+        <Heatmap data={heatmapData} height={520} />
       </ChartCard>
     </div>
   )
