@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import { useData } from '../hooks/useData'
 import ChartCard from '../components/ChartCard'
 import DataTable from '../components/DataTable'
@@ -81,12 +82,31 @@ function ValueHistogram({ title, bins }) {
   )
 }
 
+function uniquePerYearTraces(uniqueByDs, metric) {
+  if (!uniqueByDs) return []
+  return DATASETS.map(ds => {
+    const rows = (uniqueByDs[ds] ?? []).slice().sort((a, b) => a.year - b.year)
+    return {
+      x: rows.map(r => r.year),
+      y: rows.map(r => r[metric]),
+      name: ds,
+      type: 'scatter',
+      mode: 'lines',
+      line: { width: 1.5 },
+    }
+  })
+}
+
 export default function EdaTab() {
   const { data: summary, loading: lSum }  = useData('eda_summary_stats.json')
   const { data: missing, loading: lMiss } = useData('eda_missing_data.json')
   const { data: valDist, loading: lVal }  = useData('value_distribution.json')
+  const { data: uniqYr,  loading: lUniq } = useData('eda_unique_per_year.json')
 
-  if (lSum || lMiss || lVal) return <div className="p-12 text-center text-gray-400">Loading…</div>
+  const countryTraces = useMemo(() => uniquePerYearTraces(uniqYr, 'n_countries'), [uniqYr])
+  const speciesTraces = useMemo(() => uniquePerYearTraces(uniqYr, 'n_species'),   [uniqYr])
+
+  if (lSum || lMiss || lVal || lUniq) return <div className="p-12 text-center text-gray-400">Loading…</div>
 
   return (
     <div className="space-y-6">
@@ -108,6 +128,40 @@ export default function EdaTab() {
             <ValueHistogram key={ds} title={ds} bins={valDist?.[ds]} />
           ))}
         </div>
+      </ChartCard>
+
+      <ChartCard title="Unique countries reporting per year, by dataset">
+        <Plot
+          data={countryTraces}
+          layout={{
+            template: 'plotly_white',
+            autosize: true,
+            margin: { t: 10, r: 10, b: 50, l: 60 },
+            xaxis: { title: 'Year' },
+            yaxis: { title: 'Countries' },
+            legend: { orientation: 'h', y: -0.2 },
+          }}
+          useResizeHandler
+          style={{ width: '100%', height: '320px' }}
+          config={{ responsive: true, displaylogo: false }}
+        />
+      </ChartCard>
+
+      <ChartCard title="Unique species reporting per year, by dataset">
+        <Plot
+          data={speciesTraces}
+          layout={{
+            template: 'plotly_white',
+            autosize: true,
+            margin: { t: 10, r: 10, b: 50, l: 60 },
+            xaxis: { title: 'Year' },
+            yaxis: { title: 'Species' },
+            legend: { orientation: 'h', y: -0.2 },
+          }}
+          useResizeHandler
+          style={{ width: '100%', height: '320px' }}
+          config={{ responsive: true, displaylogo: false }}
+        />
       </ChartCard>
     </div>
   )
