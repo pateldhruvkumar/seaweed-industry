@@ -54,3 +54,16 @@ def test_all_18_files_exist():
     ]
     for f in expected:
         assert (DATA / f).exists(), f'{f} missing'
+
+def test_eda_summary_stats_shape():
+    data = load('eda_summary_stats.json')
+    assert isinstance(data, list) and len(data) == 4
+    expected_datasets = {'global_production', 'aquaculture_quantity',
+                         'aquaculture_value', 'capture_quantity'}
+    assert {r['dataset'] for r in data} == expected_datasets
+    for r in data:
+        for k in ('rows', 'year_min', 'year_max', 'n_countries',
+                  'mean', 'median', 'std', 'min', 'p25', 'p75', 'max'):
+            assert k in r, f"missing {k} in {r['dataset']}"
+        assert isinstance(r['rows'], int) and r['rows'] > 0
+        assert r['year_min'] <= r['year_max']

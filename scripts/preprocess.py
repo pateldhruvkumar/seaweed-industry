@@ -325,4 +325,33 @@ write_json(
     'country_value_yearly.json',
 )
 
+# ── EDA: summary stats per dataset ───────────────────────────────────────────
+EDA_DATASETS = [
+    ('global_production',     production),
+    ('aquaculture_quantity',  aqua_qty),
+    ('aquaculture_value',     aqua_val),
+    ('capture_quantity',      capture),
+]
+
+eda_summary = []
+for name, df in EDA_DATASETS:
+    v = df['VALUE'].dropna()
+    eda_summary.append({
+        'dataset':     name,
+        'rows':        int(len(df)),
+        'year_min':    int(df['PERIOD'].min()),
+        'year_max':    int(df['PERIOD'].max()),
+        'n_countries': int(df['COUNTRY.UN_CODE'].nunique()),
+        'n_species':   int(df['SPECIES.ALPHA_3_CODE'].nunique())
+                       if 'SPECIES.ALPHA_3_CODE' in df.columns else None,
+        'mean':        round(float(v.mean()), 2),
+        'median':      round(float(v.median()), 2),
+        'std':         round(float(v.std()), 2),
+        'min':         round(float(v.min()), 2),
+        'p25':         round(float(v.quantile(0.25)), 2),
+        'p75':         round(float(v.quantile(0.75)), 2),
+        'max':         round(float(v.max()), 2),
+    })
+write_json(eda_summary, 'eda_summary_stats.json')
+
 print(f'\nDone — all JSON files written to {OUT_DIR}')
