@@ -62,7 +62,7 @@ def test_eda_summary_stats_shape():
                          'aquaculture_value', 'capture_quantity'}
     assert {r['dataset'] for r in data} == expected_datasets
     for r in data:
-        for k in ('rows', 'year_min', 'year_max', 'n_countries',
+        for k in ('rows', 'year_min', 'year_max', 'n_countries', 'n_species',
                   'mean', 'median', 'std', 'min', 'p25', 'p75', 'max'):
             assert k in r, f"missing {k} in {r['dataset']}"
         assert isinstance(r['rows'], int) and r['rows'] > 0
