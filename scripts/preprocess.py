@@ -354,4 +354,15 @@ for name, df in EDA_DATASETS:
     })
 write_json(eda_summary, 'eda_summary_stats.json')
 
+# ── EDA: missing-data % per column per dataset ───────────────────────────────
+eda_missing = {}
+for name, df in EDA_DATASETS:
+    cols = []
+    for c in df.columns:
+        null_pct = round(float(df[c].isna().mean() * 100), 2)
+        cols.append({'column': c, 'null_pct': null_pct})
+    cols.sort(key=lambda x: x['null_pct'], reverse=True)
+    eda_missing[name] = cols
+write_json(eda_missing, 'eda_missing_data.json')
+
 print(f'\nDone — all JSON files written to {OUT_DIR}')

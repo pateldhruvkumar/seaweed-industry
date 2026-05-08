@@ -67,3 +67,13 @@ def test_eda_summary_stats_shape():
             assert k in r, f"missing {k} in {r['dataset']}"
         assert isinstance(r['rows'], int) and r['rows'] > 0
         assert r['year_min'] <= r['year_max']
+
+def test_eda_missing_data_shape():
+    data = load('eda_missing_data.json')
+    assert set(data.keys()) == {'global_production', 'aquaculture_quantity',
+                                'aquaculture_value', 'capture_quantity'}
+    for ds, cols in data.items():
+        assert isinstance(cols, list) and len(cols) > 0
+        for c in cols:
+            assert {'column', 'null_pct'} <= c.keys()
+            assert 0 <= c['null_pct'] <= 100
