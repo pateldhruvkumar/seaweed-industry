@@ -14,7 +14,7 @@ const PsiaDemandTab     = lazy(() => import('./tabs/PsiaDemandTab'))
 const KpiGrossOutputTab = lazy(() => import('./tabs/KpiGrossOutputTab'))
 const KpiValuePerLbTab  = lazy(() => import('./tabs/KpiValuePerLbTab'))
 const KpiExportValueTab = lazy(() => import('./tabs/KpiExportValueTab'))
-const EdaTab               = lazy(() => import('./tabs/EdaTab'))
+const EdaTab            = lazy(() => import('./tabs/EdaTab'))
 
 // Single source of truth for tab metadata. Sidebar uses `id`/`Icon`/`label`,
 // Topbar uses `title`/`subtitle` of the active tab.
