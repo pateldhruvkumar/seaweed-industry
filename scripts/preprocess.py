@@ -421,4 +421,24 @@ write_json(
     'eda_country_correlation.json',
 )
 
+# ── EDA: boxplot stats + IQR outlier counts on log10(VALUE) ──────────────────
+eda_outliers = {}
+for name, df in EDA_DATASETS:
+    nz = df.loc[df['VALUE'] > 0, 'VALUE'].dropna()
+    log_v = np.log10(nz)
+    q1, med, q3 = log_v.quantile([0.25, 0.5, 0.75])
+    iqr = q3 - q1
+    lo, hi = q1 - 1.5 * iqr, q3 + 1.5 * iqr
+    n_out = int(((log_v < lo) | (log_v > hi)).sum())
+    eda_outliers[name] = {
+        'q1':             round(float(q1), 3),
+        'median':         round(float(med), 3),
+        'q3':             round(float(q3), 3),
+        'lower_whisker':  round(float(lo), 3),
+        'upper_whisker':  round(float(hi), 3),
+        'n_outliers':     n_out,
+        'total':          int(len(log_v)),
+    }
+write_json(eda_outliers, 'eda_outliers.json')
+
 print(f'\nDone — all JSON files written to {OUT_DIR}')

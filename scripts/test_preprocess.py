@@ -107,3 +107,15 @@ def test_eda_country_correlation_shape():
         assert len(row) == n
         for v in row:
             assert v is None or -1.0 <= v <= 1.0
+
+def test_eda_outliers_shape():
+    data = load('eda_outliers.json')
+    assert set(data.keys()) == {'global_production', 'aquaculture_quantity',
+                                'aquaculture_value', 'capture_quantity'}
+    for ds, s in data.items():
+        for k in ('q1', 'median', 'q3',
+                  'lower_whisker', 'upper_whisker',
+                  'n_outliers', 'total'):
+            assert k in s, f"{ds} missing {k}"
+        assert s['q1'] <= s['median'] <= s['q3']
+        assert 0 <= s['n_outliers'] <= s['total']
