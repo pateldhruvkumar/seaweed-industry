@@ -5,6 +5,7 @@ import {
   IconLeaf,
   IconDollar,
   IconShieldCheck,
+  IconSparkles,
   IconWaves,
   IconChevronRight,
   IconExternal,
@@ -25,6 +26,13 @@ import {
 
 const NAV_GROUPS = [
   {
+    label: 'Operations',
+    items: [
+      { id: 'quality', label: 'Data Quality', Icon: IconShieldCheck },
+      { id: 'eda',     label: 'EDA',          Icon: IconSparkles    },
+    ],
+  },
+  {
     label: 'Dashboard',
     items: [{ id: 'overview', label: 'Overview', Icon: IconActivity }],
   },
@@ -41,10 +49,6 @@ const NAV_GROUPS = [
       { id: 'species',   label: 'Species & Aquaculture', Icon: IconLeaf },
       { id: 'economics', label: 'Economics',             Icon: IconDollar },
     ],
-  },
-  {
-    label: 'Operations',
-    items: [{ id: 'quality', label: 'Data Quality', Icon: IconShieldCheck }],
   },
   {
     // Names below are the verbatim KPI titles from the Market & End-Use

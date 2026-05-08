@@ -325,4 +325,120 @@ write_json(
     'country_value_yearly.json',
 )
 
+# ── EDA: summary stats per dataset ───────────────────────────────────────────
+EDA_DATASETS = [
+    ('global_production',     production),
+    ('aquaculture_quantity',  aqua_qty),
+    ('aquaculture_value',     aqua_val),
+    ('capture_quantity',      capture),
+]
+
+eda_summary = []
+for name, df in EDA_DATASETS:
+    v = df['VALUE'].dropna()
+    eda_summary.append({
+        'dataset':     name,
+        'rows':        int(len(df)),
+        'year_min':    int(df['PERIOD'].min()),
+        'year_max':    int(df['PERIOD'].max()),
+        'n_countries': int(df['COUNTRY.UN_CODE'].nunique()),
+        'n_species':   int(df['SPECIES.ALPHA_3_CODE'].nunique())
+                       if 'SPECIES.ALPHA_3_CODE' in df.columns else None,
+        'mean':        round(float(v.mean()), 2),
+        'median':      round(float(v.median()), 2),
+        'std':         round(float(v.std()), 2),
+        'min':         round(float(v.min()), 2),
+        'p25':         round(float(v.quantile(0.25)), 2),
+        'p75':         round(float(v.quantile(0.75)), 2),
+        'max':         round(float(v.max()), 2),
+    })
+write_json(eda_summary, 'eda_summary_stats.json')
+
+# ── EDA: missing-data % per column per dataset ───────────────────────────────
+eda_missing = {}
+for name, df in EDA_DATASETS:
+    cols = []
+    for c in df.columns:
+        null_pct = round(float(df[c].isna().mean() * 100), 2)
+        cols.append({'column': c, 'null_pct': null_pct})
+    cols.sort(key=lambda x: x['null_pct'], reverse=True)
+    eda_missing[name] = cols
+write_json(eda_missing, 'eda_missing_data.json')
+
+# ── EDA: unique countries / species reporting per year ───────────────────────
+eda_unique_per_year = {}
+for name, df in EDA_DATASETS:
+    rows = []
+    grouped = df.groupby('PERIOD').agg(
+        n_countries=('COUNTRY.UN_CODE', 'nunique'),
+        n_species=('SPECIES.ALPHA_3_CODE', 'nunique')
+                   if 'SPECIES.ALPHA_3_CODE' in df.columns else ('COUNTRY.UN_CODE', 'size'),
+    ).reset_index()
+    for _, r in grouped.iterrows():
+        rows.append({
+            'year':        int(r['PERIOD']),
+            'n_countries': int(r['n_countries']),
+            'n_species':   int(r['n_species'])
+                           if 'SPECIES.ALPHA_3_CODE' in df.columns else None,
+        })
+    eda_unique_per_year[name] = rows
+write_json(eda_unique_per_year, 'eda_unique_per_year.json')
+
+# ── EDA: value vs. quantity scatter (aquaculture, country-species-year) ──────
+# Pre-aggregate across ENVIRONMENT before merging so multi-environment rows
+# don't produce a fan-out Cartesian product on the country-species-year key.
+join_cols = ['COUNTRY.UN_CODE', 'SPECIES.ALPHA_3_CODE', 'PERIOD']
+qty_slim = (aqua_qty.groupby(join_cols + ['Country_Name'], as_index=False)['VALUE']
+                    .sum()
+                    .rename(columns={'VALUE': 'qty'}))
+val_slim = (aqua_val.groupby(join_cols, as_index=False)['VALUE']
+                    .sum()
+                    .rename(columns={'VALUE': 'value'}))
+joined = qty_slim.merge(val_slim, on=join_cols, how='inner')
+joined = joined[(joined['qty'] > 0) & (joined['value'] > 0)]
+write_json(
+    [{'country': r['Country_Name'], 'year': int(r['PERIOD']),
+      'qty':   round(float(r['qty']), 3),
+      'value': round(float(r['value']), 3)}
+     for _, r in joined.iterrows()],
+    'eda_value_quantity_scatter.json',
+)
+
+# ── EDA: top-20 country production correlation matrix ────────────────────────
+top20 = (production.groupby('Country_Name')['VALUE'].sum()
+         .sort_values(ascending=False).head(20).index.tolist())
+yearly = (production[production['Country_Name'].isin(top20)]
+          .groupby(['PERIOD', 'Country_Name'])['VALUE'].sum()
+          .unstack(fill_value=0)
+          .reindex(columns=top20))
+corr = yearly.corr().round(3)
+write_json(
+    {
+        'countries': top20,
+        'matrix': [[None if pd.isna(v) else float(v) for v in row]
+                   for row in corr.values.tolist()],
+    },
+    'eda_country_correlation.json',
+)
+
+# ── EDA: boxplot stats + IQR outlier counts on log10(VALUE) ──────────────────
+eda_outliers = {}
+for name, df in EDA_DATASETS:
+    nz = df.loc[df['VALUE'] > 0, 'VALUE'].dropna()
+    log_v = np.log10(nz)
+    q1, med, q3 = log_v.quantile([0.25, 0.5, 0.75])
+    iqr = q3 - q1
+    lo, hi = q1 - 1.5 * iqr, q3 + 1.5 * iqr
+    n_out = int(((log_v < lo) | (log_v > hi)).sum())
+    eda_outliers[name] = {
+        'q1':             round(float(q1), 3),
+        'median':         round(float(med), 3),
+        'q3':             round(float(q3), 3),
+        'lower_whisker':  round(float(lo), 3),
+        'upper_whisker':  round(float(hi), 3),
+        'n_outliers':     n_out,
+        'total':          int(len(log_v)),
+    }
+write_json(eda_outliers, 'eda_outliers.json')
+
 print(f'\nDone — all JSON files written to {OUT_DIR}')

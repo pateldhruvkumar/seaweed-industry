@@ -54,3 +54,70 @@ def test_all_18_files_exist():
     ]
     for f in expected:
         assert (DATA / f).exists(), f'{f} missing'
+
+def test_eda_summary_stats_shape():
+    data = load('eda_summary_stats.json')
+    assert isinstance(data, list) and len(data) == 4
+    expected_datasets = {'global_production', 'aquaculture_quantity',
+                         'aquaculture_value', 'capture_quantity'}
+    assert {r['dataset'] for r in data} == expected_datasets
+    for r in data:
+        for k in ('rows', 'year_min', 'year_max', 'n_countries', 'n_species',
+                  'mean', 'median', 'std', 'min', 'p25', 'p75', 'max'):
+            assert k in r, f"missing {k} in {r['dataset']}"
+        assert isinstance(r['rows'], int) and r['rows'] > 0
+        assert r['year_min'] <= r['year_max']
+
+def test_eda_missing_data_shape():
+    data = load('eda_missing_data.json')
+    assert set(data.keys()) == {'global_production', 'aquaculture_quantity',
+                                'aquaculture_value', 'capture_quantity'}
+    for ds, cols in data.items():
+        assert isinstance(cols, list) and len(cols) > 0
+        for c in cols:
+            assert {'column', 'null_pct'} <= c.keys()
+            assert 0 <= c['null_pct'] <= 100
+
+def test_eda_unique_per_year_shape():
+    data = load('eda_unique_per_year.json')
+    assert set(data.keys()) == {'global_production', 'aquaculture_quantity',
+                                'aquaculture_value', 'capture_quantity'}
+    for ds, rows in data.items():
+        assert isinstance(rows, list) and len(rows) > 0
+        for r in rows:
+            assert {'year', 'n_countries', 'n_species'} <= r.keys()
+            assert isinstance(r['year'], int)
+            assert isinstance(r['n_countries'], int) and r['n_countries'] >= 0
+
+def test_eda_value_quantity_scatter_shape():
+    data = load('eda_value_quantity_scatter.json')
+    assert isinstance(data, list) and len(data) > 0
+    r = data[0]
+    assert {'country', 'year', 'qty', 'value'} <= r.keys()
+    assert isinstance(r['year'], int)
+    assert r['qty'] > 0 and r['value'] > 0  # zeros/nulls are dropped
+
+def test_eda_country_correlation_shape():
+    data = load('eda_country_correlation.json')
+    assert {'countries', 'matrix'} <= data.keys()
+    n = len(data['countries'])
+    assert n == 20
+    assert len(data['matrix']) == n
+    for row in data['matrix']:
+        assert len(row) == n
+        for v in row:
+            assert v is None or -1.0 <= v <= 1.0
+
+def test_eda_outliers_shape():
+    data = load('eda_outliers.json')
+    assert set(data.keys()) == {'global_production', 'aquaculture_quantity',
+                                'aquaculture_value', 'capture_quantity'}
+    for ds, s in data.items():
+        for k in ('q1', 'median', 'q3',
+                  'lower_whisker', 'upper_whisker',
+                  'n_outliers', 'total'):
+            assert k in s, f"{ds} missing {k}"
+        assert s['q1'] <= s['median'] <= s['q3']
+        assert s['lower_whisker'] <= s['q1']
+        assert s['q3'] <= s['upper_whisker']
+        assert 0 <= s['n_outliers'] <= s['total']
