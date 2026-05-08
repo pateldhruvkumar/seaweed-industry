@@ -266,7 +266,18 @@ export default function EdaTab() {
       </ChartCard>
 
       <ChartCard title="Top-20 country production correlation (Pearson, year-over-year)">
-        <Heatmap data={heatmapData} height={520} />
+        <Heatmap
+          data={heatmapData}
+          height={520}
+          colorscale="RdBu"
+          colorbarTitle="Pearson r"
+          valueFormat={v => v.toFixed(2)}
+          xLabel=""
+          yLabel="Country"
+          xTickAngle={-45}
+          zmin={-1}
+          zmax={1}
+        />
       </ChartCard>
     </div>
   )

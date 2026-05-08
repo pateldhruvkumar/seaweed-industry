@@ -1,6 +1,22 @@
 import Plot from '../../lib/Plot'
 
-export default function Heatmap({ data, height = 460 }) {
+/**
+ * Generic heatmap with sensible defaults for the production-by-country-by-species
+ * matrix. Optional props let callers override the labels, color scale, and value
+ * format for other matrix types (e.g. country-correlation heatmaps in [-1, 1]).
+ */
+export default function Heatmap({
+  data,
+  height = 460,
+  colorscale = 'YlGnBu',
+  colorbarTitle = 'K t/yr',
+  valueFormat = v => v.toFixed(0),
+  xLabel = 'Species / group',
+  yLabel = 'Country',
+  xTickAngle = -30,
+  zmin,
+  zmax,
+}) {
   if (!data?.values?.length) return <div className="h-40 flex items-center justify-center text-gray-400">No data</div>
   const { countries, species, values } = data
   return (
@@ -10,15 +26,17 @@ export default function Heatmap({ data, height = 460 }) {
         x: species,
         y: countries,
         type: 'heatmap',
-        colorscale: 'YlGnBu',
+        colorscale,
         hoverongaps: false,
-        text: values.map(row => row.map(v => v != null ? v.toFixed(0) : '')),
+        zmin,
+        zmax,
+        text: values.map(row => row.map(v => v != null ? valueFormat(v) : '')),
         texttemplate: '%{text}',
-        colorbar: { title: 'K t/yr' },
+        colorbar: { title: colorbarTitle },
       }]}
       layout={{
-        xaxis: { title: 'Species / group', tickangle: -30 },
-        yaxis: { title: 'Country', autorange: 'reversed' },
+        xaxis: { title: xLabel, tickangle: xTickAngle },
+        yaxis: { title: yLabel, autorange: 'reversed' },
         template: 'plotly_white',
         autosize: true,
         margin: { t: 10, r: 20, b: 120, l: 150 },
