@@ -3,6 +3,7 @@ import { useData } from '../hooks/useData'
 import ChartCard from '../components/ChartCard'
 import DataTable from '../components/DataTable'
 import Plot from '../lib/Plot'
+import BarChart from '../components/charts/BarChart'
 
 const DATASETS = ['global_production', 'aquaculture_quantity', 'aquaculture_value', 'capture_quantity']
 
@@ -102,11 +103,42 @@ export default function EdaTab() {
   const { data: missing, loading: lMiss } = useData('eda_missing_data.json')
   const { data: valDist, loading: lVal }  = useData('value_distribution.json')
   const { data: uniqYr,  loading: lUniq } = useData('eda_unique_per_year.json')
+  const { data: countryTotals, loading: lCT } = useData('country_totals.json')
+  const { data: speciesTotals, loading: lST } = useData('species_totals.json')
+  const { data: envQuantity,   loading: lEQ } = useData('env_quantity.json')
 
   const countryTraces = useMemo(() => uniquePerYearTraces(uniqYr, 'n_countries'), [uniqYr])
   const speciesTraces = useMemo(() => uniquePerYearTraces(uniqYr, 'n_species'),   [uniqYr])
 
-  if (lSum || lMiss || lVal || lUniq) return <div className="p-12 text-center text-gray-400">Loading…</div>
+  const top10Countries = useMemo(() => {
+    if (!countryTotals?.length) return []
+    const latestStart = Math.max(...countryTotals.map(r => r.year_start))
+    return countryTotals
+      .filter(r => r.year_start === latestStart)
+      .slice()
+      .sort((a, b) => b.avg_tonnes_mt - a.avg_tonnes_mt)
+      .slice(0, 10)
+  }, [countryTotals])
+
+  const top10Species = useMemo(() => {
+    if (!speciesTotals?.length) return []
+    const latestStart = Math.max(...speciesTotals.map(r => r.year_start))
+    return speciesTotals
+      .filter(r => r.year_start === latestStart)
+      .slice()
+      .sort((a, b) => b.avg_tonnes_mt - a.avg_tonnes_mt)
+      .slice(0, 10)
+  }, [speciesTotals])
+
+  const envTotals = useMemo(() => {
+    const sums = {}
+    for (const r of (envQuantity ?? [])) {
+      sums[r.environment] = (sums[r.environment] ?? 0) + r.value_mt
+    }
+    return Object.entries(sums).map(([environment, total_mt]) => ({ environment, total_mt }))
+  }, [envQuantity])
+
+  if (lSum || lMiss || lVal || lUniq || lCT || lST || lEQ) return <div className="p-12 text-center text-gray-400">Loading…</div>
 
   return (
     <div className="space-y-6">
@@ -161,6 +193,39 @@ export default function EdaTab() {
           useResizeHandler
           style={{ width: '100%', height: '320px' }}
           config={{ responsive: true, displaylogo: false }}
+        />
+      </ChartCard>
+
+      <ChartCard title="Top 10 countries by avg annual production (most recent 5-year window)">
+        <BarChart
+          data={top10Countries}
+          labelKey="country"
+          valueKey="avg_tonnes_mt"
+          orientation="horizontal"
+          xLabel="Avg annual production (MT)"
+          height={360}
+        />
+      </ChartCard>
+
+      <ChartCard title="Top 10 species by avg annual production (most recent 5-year window)">
+        <BarChart
+          data={top10Species}
+          labelKey="species"
+          valueKey="avg_tonnes_mt"
+          orientation="horizontal"
+          xLabel="Avg annual production (MT)"
+          height={360}
+        />
+      </ChartCard>
+
+      <ChartCard title="Total production by environment (MT, all years)">
+        <BarChart
+          data={envTotals}
+          labelKey="environment"
+          valueKey="total_mt"
+          orientation="horizontal"
+          xLabel="Total production (MT)"
+          height={240}
         />
       </ChartCard>
     </div>
