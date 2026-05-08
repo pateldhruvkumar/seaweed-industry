@@ -84,6 +84,44 @@ function ValueHistogram({ title, bins }) {
   )
 }
 
+function OutlierBox({ title, stats }) {
+  if (!stats) return null
+  const pct = stats.total ? ((stats.n_outliers / stats.total) * 100).toFixed(2) : '0.00'
+  return (
+    <div className="flex-1 min-w-48">
+      <p className="text-xs font-medium text-gray-500 mb-1 truncate">{title}</p>
+      <Plot
+        data={[{
+          type: 'box',
+          orientation: 'h',
+          q1:             [stats.q1],
+          median:         [stats.median],
+          q3:             [stats.q3],
+          lowerfence:     [stats.lower_whisker],
+          upperfence:     [stats.upper_whisker],
+          name: '',
+          marker: { color: '#0d9488' },
+          line:   { color: '#0f766e' },
+        }]}
+        layout={{
+          template: 'plotly_white',
+          autosize: true,
+          margin: { t: 5, r: 10, b: 35, l: 30 },
+          xaxis: { title: 'log₁₀(VALUE)' },
+          showlegend: false,
+        }}
+        useResizeHandler
+        style={{ width: '100%', height: '180px' }}
+        config={{ displaylogo: false, displayModeBar: false }}
+      />
+      <p className="text-[11px] text-slate-500 mt-1">
+        {stats.n_outliers.toLocaleString()} outliers flagged of{' '}
+        {stats.total.toLocaleString()} records ({pct}%)
+      </p>
+    </div>
+  )
+}
+
 function uniquePerYearTraces(uniqueByDs, metric) {
   if (!uniqueByDs) return []
   return DATASETS.map(ds => {
@@ -109,6 +147,7 @@ export default function EdaTab() {
   const { data: envQuantity,   loading: lEQ } = useData('env_quantity.json')
   const { data: scatter, loading: lSc } = useData('eda_value_quantity_scatter.json')
   const { data: corr,    loading: lCr } = useData('eda_country_correlation.json')
+  const { data: outliers, loading: lOut } = useData('eda_outliers.json')
 
   const countryTraces = useMemo(() => uniquePerYearTraces(uniqYr, 'n_countries'), [uniqYr])
   const speciesTraces = useMemo(() => uniquePerYearTraces(uniqYr, 'n_species'),   [uniqYr])
@@ -150,7 +189,7 @@ export default function EdaTab() {
     }
   }, [corr])
 
-  if (lSum || lMiss || lVal || lUniq || lCT || lST || lEQ || lSc || lCr) return <div className="p-12 text-center text-gray-400">Loading…</div>
+  if (lSum || lMiss || lVal || lUniq || lCT || lST || lEQ || lSc || lCr || lOut) return <div className="p-12 text-center text-gray-400">Loading…</div>
 
   return (
     <div className="space-y-6">
@@ -278,6 +317,14 @@ export default function EdaTab() {
           zmin={-1}
           zmax={1}
         />
+      </ChartCard>
+
+      <ChartCard title="Outliers — IQR rule on log₁₀(VALUE)">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {DATASETS.map(ds => (
+            <OutlierBox key={ds} title={ds} stats={outliers?.[ds]} />
+          ))}
+        </div>
       </ChartCard>
     </div>
   )
