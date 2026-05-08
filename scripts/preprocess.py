@@ -385,11 +385,17 @@ for name, df in EDA_DATASETS:
 write_json(eda_unique_per_year, 'eda_unique_per_year.json')
 
 # ── EDA: value vs. quantity scatter (aquaculture, country-species-year) ──────
+# Pre-aggregate across ENVIRONMENT before merging so multi-environment rows
+# don't produce a fan-out Cartesian product on the country-species-year key.
 join_cols = ['COUNTRY.UN_CODE', 'SPECIES.ALPHA_3_CODE', 'PERIOD']
-qty_slim = aqua_qty[join_cols + ['VALUE', 'Country_Name']].rename(columns={'VALUE': 'qty'})
-val_slim = aqua_val[join_cols + ['VALUE']].rename(columns={'VALUE': 'value'})
+qty_slim = (aqua_qty.groupby(join_cols + ['Country_Name'], as_index=False)['VALUE']
+                    .sum()
+                    .rename(columns={'VALUE': 'qty'}))
+val_slim = (aqua_val.groupby(join_cols, as_index=False)['VALUE']
+                    .sum()
+                    .rename(columns={'VALUE': 'value'}))
 joined = qty_slim.merge(val_slim, on=join_cols, how='inner')
-joined = joined[(joined['qty'] > 0) & (joined['value'] > 0)].dropna(subset=['qty', 'value'])
+joined = joined[(joined['qty'] > 0) & (joined['value'] > 0)]
 write_json(
     [{'country': r['Country_Name'], 'year': int(r['PERIOD']),
       'qty':   round(float(r['qty']), 3),
