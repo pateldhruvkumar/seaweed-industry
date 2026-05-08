@@ -52,11 +52,41 @@ function MissingDataBar({ title, columns }) {
   )
 }
 
+function ValueHistogram({ title, bins }) {
+  if (!bins?.length) return null
+  return (
+    <div className="flex-1 min-w-48">
+      <p className="text-xs font-medium text-gray-500 mb-1 truncate">{title}</p>
+      <Plot
+        data={[{
+          x: bins.map(b => (b.bin_start + b.bin_end) / 2),
+          y: bins.map(b => b.count),
+          type: 'bar',
+          marker: { color: '#0f766e' },
+          width: bins.map(b => b.bin_end - b.bin_start),
+        }]}
+        layout={{
+          template: 'plotly_white',
+          autosize: true,
+          margin: { t: 5, r: 10, b: 35, l: 50 },
+          xaxis: { title: 'log₁₀(VALUE)' },
+          yaxis: { title: 'count' },
+          bargap: 0.02,
+        }}
+        useResizeHandler
+        style={{ width: '100%', height: '220px' }}
+        config={{ displaylogo: false, displayModeBar: false }}
+      />
+    </div>
+  )
+}
+
 export default function EdaTab() {
   const { data: summary, loading: lSum }  = useData('eda_summary_stats.json')
   const { data: missing, loading: lMiss } = useData('eda_missing_data.json')
+  const { data: valDist, loading: lVal }  = useData('value_distribution.json')
 
-  if (lSum || lMiss) return <div className="p-12 text-center text-gray-400">Loading…</div>
+  if (lSum || lMiss || lVal) return <div className="p-12 text-center text-gray-400">Loading…</div>
 
   return (
     <div className="space-y-6">
@@ -68,6 +98,14 @@ export default function EdaTab() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {DATASETS.map(ds => (
             <MissingDataBar key={ds} title={ds} columns={missing?.[ds]} />
+          ))}
+        </div>
+      </ChartCard>
+
+      <ChartCard title="VALUE distribution on log₁₀ scale (non-zero records)">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {DATASETS.map(ds => (
+            <ValueHistogram key={ds} title={ds} bins={valDist?.[ds]} />
           ))}
         </div>
       </ChartCard>
