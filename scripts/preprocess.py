@@ -365,4 +365,23 @@ for name, df in EDA_DATASETS:
     eda_missing[name] = cols
 write_json(eda_missing, 'eda_missing_data.json')
 
+# ── EDA: unique countries / species reporting per year ───────────────────────
+eda_unique_per_year = {}
+for name, df in EDA_DATASETS:
+    rows = []
+    grouped = df.groupby('PERIOD').agg(
+        n_countries=('COUNTRY.UN_CODE', 'nunique'),
+        n_species=('SPECIES.ALPHA_3_CODE', 'nunique')
+                   if 'SPECIES.ALPHA_3_CODE' in df.columns else ('COUNTRY.UN_CODE', 'size'),
+    ).reset_index()
+    for _, r in grouped.iterrows():
+        rows.append({
+            'year':        int(r['PERIOD']),
+            'n_countries': int(r['n_countries']),
+            'n_species':   int(r['n_species'])
+                           if 'SPECIES.ALPHA_3_CODE' in df.columns else None,
+        })
+    eda_unique_per_year[name] = rows
+write_json(eda_unique_per_year, 'eda_unique_per_year.json')
+
 print(f'\nDone — all JSON files written to {OUT_DIR}')

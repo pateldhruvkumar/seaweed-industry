@@ -77,3 +77,14 @@ def test_eda_missing_data_shape():
         for c in cols:
             assert {'column', 'null_pct'} <= c.keys()
             assert 0 <= c['null_pct'] <= 100
+
+def test_eda_unique_per_year_shape():
+    data = load('eda_unique_per_year.json')
+    assert set(data.keys()) == {'global_production', 'aquaculture_quantity',
+                                'aquaculture_value', 'capture_quantity'}
+    for ds, rows in data.items():
+        assert isinstance(rows, list) and len(rows) > 0
+        for r in rows:
+            assert {'year', 'n_countries', 'n_species'} <= r.keys()
+            assert isinstance(r['year'], int)
+            assert isinstance(r['n_countries'], int) and r['n_countries'] >= 0
