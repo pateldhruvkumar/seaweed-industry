@@ -88,3 +88,11 @@ def test_eda_unique_per_year_shape():
             assert {'year', 'n_countries', 'n_species'} <= r.keys()
             assert isinstance(r['year'], int)
             assert isinstance(r['n_countries'], int) and r['n_countries'] >= 0
+
+def test_eda_value_quantity_scatter_shape():
+    data = load('eda_value_quantity_scatter.json')
+    assert isinstance(data, list) and len(data) > 0
+    r = data[0]
+    assert {'country', 'year', 'qty', 'value'} <= r.keys()
+    assert isinstance(r['year'], int)
+    assert r['qty'] > 0 and r['value'] > 0  # zeros/nulls are dropped

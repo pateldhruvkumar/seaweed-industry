@@ -384,4 +384,18 @@ for name, df in EDA_DATASETS:
     eda_unique_per_year[name] = rows
 write_json(eda_unique_per_year, 'eda_unique_per_year.json')
 
+# ── EDA: value vs. quantity scatter (aquaculture, country-species-year) ──────
+join_cols = ['COUNTRY.UN_CODE', 'SPECIES.ALPHA_3_CODE', 'PERIOD']
+qty_slim = aqua_qty[join_cols + ['VALUE', 'Country_Name']].rename(columns={'VALUE': 'qty'})
+val_slim = aqua_val[join_cols + ['VALUE']].rename(columns={'VALUE': 'value'})
+joined = qty_slim.merge(val_slim, on=join_cols, how='inner')
+joined = joined[(joined['qty'] > 0) & (joined['value'] > 0)].dropna(subset=['qty', 'value'])
+write_json(
+    [{'country': r['Country_Name'], 'year': int(r['PERIOD']),
+      'qty':   round(float(r['qty']), 3),
+      'value': round(float(r['value']), 3)}
+     for _, r in joined.iterrows()],
+    'eda_value_quantity_scatter.json',
+)
+
 print(f'\nDone — all JSON files written to {OUT_DIR}')
