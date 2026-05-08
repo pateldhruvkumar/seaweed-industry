@@ -118,4 +118,6 @@ def test_eda_outliers_shape():
                   'n_outliers', 'total'):
             assert k in s, f"{ds} missing {k}"
         assert s['q1'] <= s['median'] <= s['q3']
+        assert s['lower_whisker'] <= s['q1']
+        assert s['q3'] <= s['upper_whisker']
         assert 0 <= s['n_outliers'] <= s['total']
