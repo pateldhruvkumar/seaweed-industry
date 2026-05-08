@@ -106,4 +106,4 @@ def test_eda_country_correlation_shape():
     for row in data['matrix']:
         assert len(row) == n
         for v in row:
-            assert -1.0 <= v <= 1.0 or v is None
+            assert v is None or -1.0 <= v <= 1.0
