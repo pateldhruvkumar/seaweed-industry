@@ -21,7 +21,7 @@ Use seaweed_aquaculture_value when the user asks about money or USD value.
 PERIOD is an integer, not a string: WHERE PERIOD = 2022
 """
 
-GROQ_MODEL = "qwen-qwq-32b"
+GROQ_MODEL = "llama-3.3-70b-versatile"
 
 
 def _build_system_prompt(entity_hints: list[str], fewshots: list[dict]) -> str:

@@ -1,3 +1,7 @@
+import truststore
+
+truststore.inject_into_ssl()
+
 import os
 from contextlib import asynccontextmanager
 from pathlib import Path
