@@ -2,6 +2,7 @@ import { useState, Suspense, lazy } from 'react'
 import Sidebar from './components/layout/Sidebar'
 import Topbar from './components/layout/Topbar'
 import Footer from './components/layout/Footer'
+import ChatPanel from './components/chat/ChatPanel'
 
 const OverviewTab       = lazy(() => import('./tabs/OverviewTab'))
 const CountriesTab      = lazy(() => import('./tabs/CountriesTab'))
@@ -92,6 +93,7 @@ function Loading() {
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('overview')
+  const [chatOpen, setChatOpen] = useState(false)
   const tab = TABS[activeTab]
   const TabComponent = tab.Component
 
@@ -110,6 +112,23 @@ export default function App() {
         </main>
         <Footer />
       </div>
+
+      {/* Chat panel — fixed right side */}
+      {chatOpen && (
+        <div className="w-80 flex-shrink-0 flex flex-col h-screen sticky top-0">
+          <ChatPanel onClose={() => setChatOpen(false)} />
+        </div>
+      )}
+
+      {/* Floating toggle button when chat is closed */}
+      {!chatOpen && (
+        <button
+          onClick={() => setChatOpen(true)}
+          className="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-teal-700 hover:bg-teal-800 text-white text-sm font-medium px-4 py-2.5 rounded-full shadow-lg transition-colors"
+        >
+          <span>💬</span> Ask AI
+        </button>
+      )}
     </div>
   )
 }
