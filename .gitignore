@@ -32,5 +32,6 @@ __pycache__/
 .pytest_cache/
 
 # Environment / credentials
+backend/.env
 .env
 .env.local

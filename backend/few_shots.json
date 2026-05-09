@@ -1,0 +1,82 @@
+[
+  {
+    "question": "Which country produced the most seaweed in 2022?",
+    "sql": "SELECT Country_Name, SUM(VALUE) AS total FROM seaweed_global_production WHERE PERIOD = 2022 GROUP BY Country_Name ORDER BY total DESC LIMIT 1"
+  },
+  {
+    "question": "What are the top 5 seaweed-producing countries in 2020?",
+    "sql": "SELECT Country_Name, SUM(VALUE) AS total FROM seaweed_global_production WHERE PERIOD = 2020 GROUP BY Country_Name ORDER BY total DESC LIMIT 5"
+  },
+  {
+    "question": "How much seaweed did China produce each year from 2015 to 2022?",
+    "sql": "SELECT PERIOD, SUM(VALUE) AS total FROM seaweed_global_production WHERE Country_Name = 'China' AND PERIOD BETWEEN 2015 AND 2022 GROUP BY PERIOD ORDER BY PERIOD"
+  },
+  {
+    "question": "What is the total aquaculture value for Asia in 2021?",
+    "sql": "SELECT SUM(VALUE) AS total_value FROM seaweed_aquaculture_value WHERE Continent_Group_En = 'Asia' AND PERIOD = 2021"
+  },
+  {
+    "question": "Which seaweed species is most produced globally?",
+    "sql": "SELECT Seaweed_Name, SUM(VALUE) AS total FROM seaweed_global_production GROUP BY Seaweed_Name ORDER BY total DESC LIMIT 1"
+  },
+  {
+    "question": "What is the total capture quantity for Indonesia over all years?",
+    "sql": "SELECT SUM(VALUE) AS total FROM seaweed_capture_quantity WHERE Country_Name = 'Indonesia'"
+  },
+  {
+    "question": "Compare aquaculture vs capture quantity for the Philippines in 2019",
+    "sql": "SELECT 'aquaculture' AS source, SUM(VALUE) AS total FROM seaweed_aquaculture_quantity WHERE Country_Name = 'Philippines' AND PERIOD = 2019 UNION ALL SELECT 'capture', SUM(VALUE) FROM seaweed_capture_quantity WHERE Country_Name = 'Philippines' AND PERIOD = 2019"
+  },
+  {
+    "question": "What is the production trend for Brown algae from 2010 to 2022?",
+    "sql": "SELECT PERIOD, SUM(VALUE) AS total FROM seaweed_global_production WHERE Seaweed_Name = 'Brown algae' AND PERIOD BETWEEN 2010 AND 2022 GROUP BY PERIOD ORDER BY PERIOD"
+  },
+  {
+    "question": "Which countries in Oceania produce the most seaweed?",
+    "sql": "SELECT Country_Name, SUM(VALUE) AS total FROM seaweed_global_production WHERE Continent_Group_En = 'Oceania' GROUP BY Country_Name ORDER BY total DESC LIMIT 10"
+  },
+  {
+    "question": "How many countries produce seaweed?",
+    "sql": "SELECT COUNT(DISTINCT Country_Name) AS country_count FROM seaweed_global_production"
+  },
+  {
+    "question": "What are the top 3 most valuable seaweed-producing countries in 2020?",
+    "sql": "SELECT Country_Name, SUM(VALUE) AS total_value FROM seaweed_aquaculture_value WHERE PERIOD = 2020 GROUP BY Country_Name ORDER BY total_value DESC LIMIT 3"
+  },
+  {
+    "question": "What is the total global seaweed production in 2022?",
+    "sql": "SELECT SUM(VALUE) AS total FROM seaweed_global_production WHERE PERIOD = 2022"
+  },
+  {
+    "question": "Which high-income countries produce the most seaweed?",
+    "sql": "SELECT Country_Name, SUM(VALUE) AS total FROM seaweed_global_production WHERE EcoClass_Group_En = 'High-income countries' GROUP BY Country_Name ORDER BY total DESC LIMIT 10"
+  },
+  {
+    "question": "What is the year with the highest total seaweed production?",
+    "sql": "SELECT PERIOD, SUM(VALUE) AS total FROM seaweed_global_production GROUP BY PERIOD ORDER BY total DESC LIMIT 1"
+  },
+  {
+    "question": "Show me the production of Red algae by country in 2021",
+    "sql": "SELECT Country_Name, SUM(VALUE) AS total FROM seaweed_global_production WHERE Seaweed_Name = 'Red algae' AND PERIOD = 2021 GROUP BY Country_Name ORDER BY total DESC"
+  },
+  {
+    "question": "What is the total aquaculture quantity in Africa across all years?",
+    "sql": "SELECT SUM(VALUE) AS total FROM seaweed_aquaculture_quantity WHERE Continent_Group_En = 'Africa'"
+  },
+  {
+    "question": "How has global aquaculture value changed from 2000 to 2022?",
+    "sql": "SELECT PERIOD, SUM(VALUE) AS total_value FROM seaweed_aquaculture_value WHERE PERIOD BETWEEN 2000 AND 2022 GROUP BY PERIOD ORDER BY PERIOD"
+  },
+  {
+    "question": "Which species have official data (not estimated) in 2022?",
+    "sql": "SELECT DISTINCT Seaweed_Name FROM seaweed_global_production WHERE PERIOD = 2022 AND STATUS = 'A' ORDER BY Seaweed_Name"
+  },
+  {
+    "question": "What is the total production for Japan each year from 2018?",
+    "sql": "SELECT PERIOD, SUM(VALUE) AS total FROM seaweed_global_production WHERE Country_Name = 'Japan' AND PERIOD >= 2018 GROUP BY PERIOD ORDER BY PERIOD"
+  },
+  {
+    "question": "Average seaweed production per country in 2022",
+    "sql": "SELECT AVG(total) AS avg_production FROM (SELECT Country_Name, SUM(VALUE) AS total FROM seaweed_global_production WHERE PERIOD = 2022 GROUP BY Country_Name)"
+  }
+]
