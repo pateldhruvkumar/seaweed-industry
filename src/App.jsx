@@ -9,7 +9,6 @@ const CountriesTab      = lazy(() => import('./tabs/CountriesTab'))
 const RegionsTab        = lazy(() => import('./tabs/RegionsTab'))
 const SpeciesTab        = lazy(() => import('./tabs/SpeciesTab'))
 const EconomicsTab      = lazy(() => import('./tabs/EconomicsTab'))
-const DataQualityTab    = lazy(() => import('./tabs/DataQualityTab'))
 const PsiaPricingTab    = lazy(() => import('./tabs/PsiaPricingTab'))
 const PsiaDemandTab     = lazy(() => import('./tabs/PsiaDemandTab'))
 const KpiGrossOutputTab = lazy(() => import('./tabs/KpiGrossOutputTab'))
@@ -44,11 +43,6 @@ const TABS = {
     Component: EconomicsTab,
     title: 'Economics',
     subtitle: 'Prices, value-volume positioning, and species-level economics.',
-  },
-  quality: {
-    Component: DataQualityTab,
-    title: 'Data Quality',
-    subtitle: 'Coverage, status flags, and structural integrity of the FAO data.',
   },
   eda: {
     Component: EdaTab,

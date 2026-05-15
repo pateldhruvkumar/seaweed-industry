@@ -15,7 +15,20 @@
       "Bash(npx create-vite@9.0.6 seaweed-temp --template react)",
       "Bash(npm install *)",
       "Bash(npx tailwindcss *)",
-      "Bash(git merge *)"
+      "Bash(git merge *)",
+      "Bash(ls \"C:/Users/Dhruv/Downloads/PSIA - SLMP documents/PSIA - SLMP documents/\")",
+      "Bash(python -c ' *)",
+      "Bash(pip install *)",
+      "WebFetch(domain:seaweedindustry.ca)",
+      "Bash(curl -sSL \"https://images.squarespace-cdn.com/content/v1/5ee12ea980b1717fd2b79914/1624311041699-EQNKNMBQ6IXCXQT523F1/PSIA_Logo_White_Web_300ppi.png?format=1500w\" -o \"D:/github/seaweed-industry/src/assets/psia-logo-white.png\")",
+      "Bash(curl -sSL \"https://images.squarespace-cdn.com/content/v1/5ee12ea980b1717fd2b79914/1624311155531-B9GL0O2O8U2IOKGNGCP0/PSIA_Logo_White+and+Green_Web_300ppi.png\" -o \"D:/github/seaweed-industry/src/assets/psia-logo-white-green.png\")",
+      "Bash(curl -sSL \"https://seaweedindustry.ca/\")",
+      "Bash(curl -sSLk \"https://seaweedindustry.ca/\" -o /tmp/psia.html)",
+      "Read(//tmp/**)",
+      "Bash(curl -sSLk \"https://images.squarespace-cdn.com/content/v1/5ee12ea980b1717fd2b79914/1591915717022-7P2X6EF4LB464R2HXMXW/favicon.ico?format=100w\" -o \"D:/github/seaweed-industry/public/favicon.ico\")",
+      "WebFetch(domain:github.com)",
+      "Bash(ls \"C:\\\\Users\\\\Dhruv\\\\.claude\\\\\" 2>&1 | head -30)",
+      "PowerShell(Get-ChildItem \"$env:USERPROFILE\\\\.claude\\\\\" -Force -ErrorAction Continue | Format-Table Name, Mode -AutoSize; Write-Output \"---\"; Test-Path \"$env:USERPROFILE\\\\.claude\\\\plugins\"; Test-Path \"$env:USERPROFILE\\\\.claude\\\\skills\")"
     ]
   }
 }

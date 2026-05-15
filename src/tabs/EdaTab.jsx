@@ -24,6 +24,46 @@ const SUMMARY_COLS = [
   { key: 'max',         label: 'Max',         format: v => v?.toLocaleString(undefined, { maximumFractionDigits: 1 }) },
 ]
 
+const QUALITY_COLS = [
+  { key: 'dataset',           label: 'Dataset' },
+  { key: 'rows',              label: 'Rows',             format: v => v?.toLocaleString() },
+  { key: 'null_cells_total',  label: 'Null cells',       format: v => v?.toLocaleString() },
+  { key: 'rows_with_any_null',label: 'Rows w/ nulls',    format: v => v?.toLocaleString() },
+  { key: 'value_zeros',       label: 'VALUE = 0',        format: v => v?.toLocaleString() },
+  { key: 'value_nulls',       label: 'VALUE nulls',      format: v => v?.toLocaleString() },
+  { key: 'duplicate_rows',    label: 'Duplicates',       format: v => v?.toLocaleString() },
+]
+
+function StatusFlagBar({ title, records }) {
+  if (!records?.length) return null
+  return (
+    <div className="flex-1 min-w-48">
+      <p className="text-xs font-medium text-gray-500 mb-1 truncate">{title}</p>
+      <Plot
+        data={[{
+          x: records.map(r => r.pct),
+          y: records.map(r => r.status),
+          type: 'bar',
+          orientation: 'h',
+          marker: { color: '#0d9488' },
+          text: records.map(r => `${r.pct}%`),
+          textposition: 'outside',
+        }]}
+        layout={{
+          template: 'plotly_white',
+          autosize: true,
+          margin: { t: 5, r: 50, b: 30, l: 120 },
+          xaxis: { title: '%', range: [0, 110] },
+          yaxis: { autorange: 'reversed' },
+        }}
+        useResizeHandler
+        style={{ width: '100%', height: '200px' }}
+        config={{ displaylogo: false, displayModeBar: false }}
+      />
+    </div>
+  )
+}
+
 function MissingDataBar({ title, columns }) {
   const top = (columns ?? []).slice(0, 12)  // most-null columns first
   if (!top.length) return null
@@ -148,6 +188,25 @@ export default function EdaTab() {
   const { data: scatter, loading: lSc } = useData('eda_value_quantity_scatter.json')
   const { data: corr,    loading: lCr } = useData('eda_country_correlation.json')
   const { data: outliers, loading: lOut } = useData('eda_outliers.json')
+  const { data: recData,    loading: lRec }    = useData('records_per_year.json')
+  const { data: statusData, loading: lStatus } = useData('status_distribution.json')
+
+  const recRows     = recData?.records ?? []
+  const qualSummary = recData?.quality_summary ?? {}
+
+  const qualityTableData = useMemo(() =>
+    DATASETS.map(ds => ({ dataset: ds, ...(qualSummary[ds] ?? {}) })),
+    [qualSummary]
+  )
+
+  const recTraces = useMemo(() => {
+    if (!recRows.length) return []
+    return DATASETS.map(ds => {
+      const rows = recRows.filter(r => r.dataset === ds).sort((a, b) => a.year - b.year)
+      return { x: rows.map(r => r.year), y: rows.map(r => r.count), name: ds,
+               type: 'scatter', mode: 'lines', line: { width: 1.5 } }
+    })
+  }, [recRows])
 
   const countryTraces = useMemo(() => uniquePerYearTraces(uniqYr, 'n_countries'), [uniqYr])
   const speciesTraces = useMemo(() => uniquePerYearTraces(uniqYr, 'n_species'),   [uniqYr])
@@ -189,12 +248,16 @@ export default function EdaTab() {
     }
   }, [corr])
 
-  if (lSum || lMiss || lVal || lUniq || lCT || lST || lEQ || lSc || lCr || lOut) return <div className="p-12 text-center text-gray-400">Loading…</div>
+  if (lSum || lMiss || lVal || lUniq || lCT || lST || lEQ || lSc || lCr || lOut || lRec || lStatus) return <div className="p-12 text-center text-gray-400">Loading…</div>
 
   return (
     <div className="space-y-6">
       <ChartCard title="Dataset summary statistics">
         <DataTable columns={SUMMARY_COLS} data={summary ?? []} />
+      </ChartCard>
+
+      <ChartCard title="Data quality summary">
+        <DataTable columns={QUALITY_COLS} data={qualityTableData} />
       </ChartCard>
 
       <ChartCard title="Missing-data % per column (top 12 columns per dataset)">
@@ -205,12 +268,37 @@ export default function EdaTab() {
         </div>
       </ChartCard>
 
+      <ChartCard title="Data quality flag distribution per dataset (% of records)">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {DATASETS.map(ds => (
+            <StatusFlagBar key={ds} title={ds} records={statusData?.[ds]} />
+          ))}
+        </div>
+      </ChartCard>
+
       <ChartCard title="VALUE distribution on log₁₀ scale (non-zero records)">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {DATASETS.map(ds => (
             <ValueHistogram key={ds} title={ds} bins={valDist?.[ds]} />
           ))}
         </div>
+      </ChartCard>
+
+      <ChartCard title="Number of records reported per year, by dataset">
+        <Plot
+          data={recTraces}
+          layout={{
+            template: 'plotly_white',
+            autosize: true,
+            margin: { t: 10, r: 10, b: 50, l: 60 },
+            xaxis: { title: 'Year' },
+            yaxis: { title: 'Records' },
+            legend: { orientation: 'h', y: -0.2 },
+          }}
+          useResizeHandler
+          style={{ width: '100%', height: '360px' }}
+          config={{ responsive: true, displaylogo: false }}
+        />
       </ChartCard>
 
       <ChartCard title="Unique countries reporting per year, by dataset">

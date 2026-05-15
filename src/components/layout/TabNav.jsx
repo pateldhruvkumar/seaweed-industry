@@ -4,7 +4,6 @@ import {
   IconMap,
   IconLeaf,
   IconDollar,
-  IconShieldCheck,
 } from '../../lib/icons'
 
 const TABS = [
@@ -13,7 +12,6 @@ const TABS = [
   { id: 'regions',   label: 'Regions',               Icon: IconMap },
   { id: 'species',   label: 'Species & Aquaculture', Icon: IconLeaf },
   { id: 'economics', label: 'Economics',             Icon: IconDollar },
-  { id: 'quality',   label: 'Data Quality',          Icon: IconShieldCheck },
 ]
 
 /**

@@ -4,13 +4,13 @@ import {
   IconMap,
   IconLeaf,
   IconDollar,
-  IconShieldCheck,
   IconSparkles,
   IconWaves,
   IconChevronRight,
   IconExternal,
   IconReport,
 } from '../../lib/icons'
+import psiaLogo from '../../assets/psia-logo-white-green.png'
 
 /**
  * Vertical primary navigation. Lives at the left edge of the page on
@@ -28,8 +28,7 @@ const NAV_GROUPS = [
   {
     label: 'Operations',
     items: [
-      { id: 'quality', label: 'Data Quality', Icon: IconShieldCheck },
-      { id: 'eda',     label: 'EDA',          Icon: IconSparkles    },
+      { id: 'eda', label: 'EDA', Icon: IconSparkles },
     ],
   },
   {
@@ -89,17 +88,19 @@ export default function Sidebar({ active, onChange }) {
   return (
     <aside className="hidden lg:flex w-72 shrink-0 bg-slate-900 text-slate-200 flex-col h-screen sticky top-0">
       {/* Brand */}
-      <div className="px-5 pt-6 pb-8 flex items-center gap-3">
-        <div className="w-10 h-10 rounded-xl bg-brand-500/10 ring-1 ring-brand-400/30 grid place-items-center">
-          <IconWaves className="w-5 h-5 text-brand-300" />
-        </div>
-        <div className="leading-tight">
-          <p className="text-sm font-semibold text-white tracking-tight">
-            Seaweed Industry
-          </p>
-          <p className="text-[11px] text-slate-400">Global dashboard</p>
-        </div>
-      </div>
+      <a
+        href="https://seaweedindustry.ca/"
+        target="_blank"
+        rel="noreferrer"
+        className="px-5 pt-6 pb-8 block"
+      >
+        <img
+          src={psiaLogo}
+          alt="Pacific Seaweed Industry Association"
+          className="w-full h-auto"
+        />
+        <p className="text-[11px] text-slate-400 mt-2">Global dashboard</p>
+      </a>
 
       {/* Nav groups */}
       <nav className="flex-1 overflow-y-auto px-3 pb-4 space-y-6 no-scrollbar">
