@@ -1,5 +1,3 @@
-import { IconBell, IconSettings } from '../../lib/icons'
-
 /**
  * Top utility bar inside the main content area.
  *
@@ -21,28 +19,6 @@ export default function Topbar({ title, subtitle }) {
           {title}
         </h1>
         {subtitle && <p className="text-sm text-slate-500 mt-1">{subtitle}</p>}
-      </div>
-
-      {/* Right-side utilities */}
-      <div className="flex items-center gap-3 flex-wrap">
-        {/* Notification bell */}
-        <button
-          type="button"
-          aria-label="Notifications"
-          className="relative w-11 h-11 rounded-xl bg-white border border-slate-200 grid place-items-center text-slate-500 hover:text-slate-800 hover:border-slate-300 shadow-sm transition-colors"
-        >
-          <IconBell className="w-5 h-5" />
-          <span className="absolute top-2.5 right-2.5 w-2 h-2 rounded-full bg-brand-500 ring-2 ring-white" />
-        </button>
-
-        {/* Settings — dark accent box */}
-        <button
-          type="button"
-          aria-label="Settings"
-          className="w-11 h-11 rounded-xl bg-slate-900 grid place-items-center text-white hover:bg-slate-800 shadow-card transition-colors"
-        >
-          <IconSettings className="w-5 h-5" />
-        </button>
       </div>
     </div>
   )
