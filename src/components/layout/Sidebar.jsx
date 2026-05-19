@@ -26,14 +26,14 @@ import psiaLogo from '../../assets/psia-logo-white-green.png'
 
 const NAV_GROUPS = [
   {
+    label: 'Dashboard',
+    items: [{ id: 'overview', label: 'Overview', Icon: IconActivity }],
+  },
+  {
     label: 'Operations',
     items: [
       { id: 'eda', label: 'EDA', Icon: IconSparkles },
     ],
-  },
-  {
-    label: 'Dashboard',
-    items: [{ id: 'overview', label: 'Overview', Icon: IconActivity }],
   },
   {
     label: 'Geography',
@@ -159,7 +159,7 @@ export default function Sidebar({ active, onChange }) {
       {/* Bottom info card */}
       <div className="p-3">
         <a
-          href="https://www.fao.org/fishery/en/statistics"
+          href="https://drive.google.com/drive/folders/1onchAmV22tj-26CKrN7LQEKqwx9NcOlx?usp=sharing"
           target="_blank"
           rel="noreferrer"
           className="block bg-slate-800/60 hover:bg-slate-800 ring-1 ring-slate-700/60 rounded-xl p-4 transition-colors group"
@@ -170,11 +170,11 @@ export default function Sidebar({ active, onChange }) {
             </div>
             <div className="min-w-0 flex-1">
               <div className="flex items-center justify-between gap-1">
-                <p className="text-sm font-semibold text-white">FAO FishStat</p>
+                <p className="text-sm font-semibold text-white">PSIA Dataset</p>
                 <IconExternal className="w-3.5 h-3.5 text-slate-400 group-hover:text-brand-300 transition-colors" />
               </div>
               <p className="text-[11px] text-slate-400 mt-0.5 truncate">
-                Source · 1950 – 2024
+                Source · Google Drive
               </p>
             </div>
           </div>
