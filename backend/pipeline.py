@@ -1,3 +1,4 @@
+import json
 import re
 from groq import Groq
 from db import get_conn
@@ -106,7 +107,7 @@ def run(question: str, history: list[dict], groq_client: Groq) -> dict:
             "type": "error",
         }
 
-    rows = df.to_dict(orient="records")
+    rows = json.loads(df.to_json(orient="records", date_format="iso"))
     result_type = _classify_type(rows)
 
     if result_type == "scalar":
