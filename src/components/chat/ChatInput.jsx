@@ -82,7 +82,7 @@ export default function ChatInput({ onSubmit, onStop, loading }) {
         </div>
       </div>
       <p className="mt-2 text-center text-[11px] text-gray-400">
-        PSIA AI can make mistakes — verify important data.
+        PSIA AI can make mistakes. Please verify important data.
       </p>
     </div>
   )
