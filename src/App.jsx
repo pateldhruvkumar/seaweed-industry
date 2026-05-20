@@ -1,7 +1,6 @@
 import { useState, Suspense, lazy } from 'react'
 import Sidebar from './components/layout/Sidebar'
 import Topbar from './components/layout/Topbar'
-import Footer from './components/layout/Footer'
 import ChatPanel from './components/chat/ChatPanel'
 
 const OverviewTab       = lazy(() => import('./tabs/OverviewTab'))
@@ -104,7 +103,6 @@ export default function App() {
             </Suspense>
           </div>
         </main>
-        <Footer />
       </div>
 
       {/* Chat panel — fixed right side */}
