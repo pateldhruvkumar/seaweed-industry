@@ -30,6 +30,9 @@ def _build_system_prompt(entity_hints: list[str], fewshots: list[dict]) -> str:
         "You are a SQL expert. Generate DuckDB SQL SELECT statements only.",
         "Never use INSERT, UPDATE, DELETE, DROP, CREATE, or any DDL.",
         "Return ONLY the SQL query — no explanation, no markdown fences.",
+        "When computing a ratio or percent change, wrap the denominator in NULLIF(..., 0)"
+        " and add a HAVING clause that excludes rows where the baseline is 0 or NULL.",
+        "When using ORDER BY ... DESC for rankings, append NULLS LAST so NULL values do not win the sort.",
         "",
         "Schema:",
         SCHEMA,

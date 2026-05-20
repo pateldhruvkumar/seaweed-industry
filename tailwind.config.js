@@ -46,11 +46,16 @@ export default {
       },
       animation: {
         'fade-in': 'fadeIn 240ms ease-out both',
+        'typing-dot': 'typingDot 1.2s ease-in-out infinite',
       },
       keyframes: {
         fadeIn: {
           '0%': { opacity: '0', transform: 'translateY(4px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        typingDot: {
+          '0%, 80%, 100%': { opacity: '0.25', transform: 'translateY(0)' },
+          '40%':           { opacity: '1',    transform: 'translateY(-2px)' },
         },
       },
     },

@@ -78,5 +78,9 @@
   {
     "question": "Average seaweed production per country in 2022",
     "sql": "SELECT AVG(total) AS avg_production FROM (SELECT Country_Name, SUM(VALUE) AS total FROM seaweed_global_production WHERE PERIOD = 2022 GROUP BY Country_Name)"
+  },
+  {
+    "question": "Which country had the fastest growth in seaweed production between 2010 and 2020?",
+    "sql": "SELECT Country_Name, (SUM(CASE WHEN PERIOD = 2020 THEN VALUE ELSE 0 END) - SUM(CASE WHEN PERIOD = 2010 THEN VALUE ELSE 0 END)) / NULLIF(SUM(CASE WHEN PERIOD = 2010 THEN VALUE ELSE 0 END), 0) AS growth FROM seaweed_global_production WHERE PERIOD IN (2010, 2020) GROUP BY Country_Name HAVING SUM(CASE WHEN PERIOD = 2010 THEN VALUE ELSE 0 END) > 0 AND SUM(CASE WHEN PERIOD = 2020 THEN VALUE ELSE 0 END) > 0 ORDER BY growth DESC NULLS LAST LIMIT 1"
   }
 ]
