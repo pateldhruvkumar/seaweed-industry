@@ -109,7 +109,7 @@ export default function App() {
 
       {/* Chat panel — fixed right side */}
       {chatOpen && (
-        <div className="w-80 flex-shrink-0 flex flex-col h-screen sticky top-0">
+        <div className="w-96 flex-shrink-0 flex flex-col h-screen sticky top-0">
           <ChatPanel onClose={() => setChatOpen(false)} />
         </div>
       )}
