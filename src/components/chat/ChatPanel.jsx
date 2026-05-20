@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
+import ChatHeader from './ChatHeader'
 import MessageThread from './MessageThread'
 import ChatInput from './ChatInput'
 
@@ -7,15 +8,26 @@ const API_URL = 'http://localhost:8000/chat'
 export default function ChatPanel({ onClose }) {
   const [messages, setMessages] = useState([])
   const [loading, setLoading] = useState(false)
+  const abortRef = useRef(null)
 
-  async function handleSubmit(question) {
-    const userMsg = { role: 'user', content: question, sql: null, data: [], type: null }
-    const updatedMessages = [...messages, userMsg]
-    setMessages(updatedMessages)
+  async function sendMessage(question, replaceLastAssistant = false) {
+    const baseHistory = replaceLastAssistant
+      ? messages.slice(0, -1)
+      : messages
+
+    const userMsg = replaceLastAssistant
+      ? null
+      : { role: 'user', content: question, sql: null, data: [], type: null }
+
+    const nextHistory = userMsg ? [...baseHistory, userMsg] : baseHistory
+    setMessages(nextHistory)
     setLoading(true)
 
+    const controller = new AbortController()
+    abortRef.current = controller
+
     try {
-      const history = updatedMessages.slice(-10).map(m => ({
+      const history = nextHistory.slice(-10).map(m => ({
         role: m.role,
         content: m.content,
       }))
@@ -24,45 +36,67 @@ export default function ChatPanel({ onClose }) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: question, history }),
+        signal: controller.signal,
       })
-
       if (!resp.ok) throw new Error(`HTTP ${resp.status}`)
 
       const { answer, sql, data, type } = await resp.json()
       setMessages(prev => [
         ...prev,
-        { role: 'assistant', content: answer, sql, data, type },
-      ])
-    } catch (err) {
-      setMessages(prev => [
-        ...prev,
         {
           role: 'assistant',
-          content: 'Something went wrong. Is the backend running?',
-          sql: null,
-          data: [],
-          type: 'error',
+          content: '',
+          targetContent: answer,
+          sql,
+          data,
+          type,
+          streaming: true,
         },
       ])
+    } catch (err) {
+      if (err.name === 'AbortError') {
+        setMessages(prev => prev)
+      } else {
+        setMessages(prev => [
+          ...prev,
+          {
+            role: 'assistant',
+            content: 'Something went wrong. Is the backend running?',
+            sql: null,
+            data: [],
+            type: 'error',
+          },
+        ])
+      }
     } finally {
       setLoading(false)
+      abortRef.current = null
     }
   }
 
+  function handleStop() {
+    if (abortRef.current) abortRef.current.abort()
+  }
+
+  function handleRegenerate() {
+    const lastUser = [...messages].reverse().find(m => m.role === 'user')
+    if (!lastUser) return
+    sendMessage(lastUser.content, true)
+  }
+
   return (
-    <div className="flex flex-col h-full border-l border-gray-200 bg-white">
-      <div className="flex items-center justify-between px-3 py-2 border-b border-gray-200 bg-gray-50">
-        <span className="text-sm font-semibold text-gray-700">Ask your data</span>
-        <button
-          aria-label="close"
-          onClick={onClose}
-          className="text-gray-400 hover:text-gray-600 text-lg leading-none"
-        >
-          ✕
-        </button>
-      </div>
-      <MessageThread messages={messages} loading={loading} />
-      <ChatInput onSubmit={handleSubmit} loading={loading} />
+    <div className="flex flex-col h-full bg-gradient-to-b from-brand-50/40 via-white to-white">
+      <ChatHeader onClose={onClose} />
+      <MessageThread
+        messages={messages}
+        onSuggestion={sendMessage}
+        onRegenerate={handleRegenerate}
+      />
+      <ChatInput
+        onSubmit={sendMessage}
+        onStop={handleStop}
+        loading={loading}
+      />
     </div>
   )
 }
