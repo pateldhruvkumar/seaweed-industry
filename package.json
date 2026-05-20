@@ -12,13 +12,18 @@
     "test:watch": "vitest"
   },
   "dependencies": {
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^1.16.0",
     "plotly.js": "^3.5.1",
     "plotly.js-dist-min": "^3.5.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-markdown": "^9.1.0",
     "react-plotly.js": "^2.6.0",
-    "remark-gfm": "^4.0.1"
+    "recharts": "^3.8.1",
+    "remark-gfm": "^4.0.1",
+    "tailwind-merge": "^3.6.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

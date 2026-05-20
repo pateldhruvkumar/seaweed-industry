@@ -1,45 +1,31 @@
-import Plot from '../../lib/Plot'
+import {
+  BarChart as RechartsBarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Cell,
+  LabelList,
+} from 'recharts'
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from '../ui/chart'
+import { GRID_COLOR, axisProps } from '../../lib/chartTheme'
 
 /**
- * Generic bar chart. Defaults to a horizontal layout (good for ranked
- * categorical lists), but accepts orientation="vertical" for column
- * charts where the X axis is the category.
+ * Generic bar chart. Horizontal by default (good for ranked categorical
+ * lists); pass orientation="vertical" for column charts.
  *
- * Per-bar coloring is supported via the `colorKey` prop — pass the name
- * of a row field whose value is a hex string, and each bar takes that
- * color individually. Fall back to the brand teal otherwise.
- *
- * Props:
- *   data        – array of rows
- *   labelKey    – field for category label
- *   valueKey    – field for numeric value
- *   colorKey    – optional field whose value is a hex color (per-bar)
- *   color       – fallback single color (default brand teal)
- *   orientation – 'horizontal' (default) or 'vertical'
- *   sort        – 'asc' | 'desc' | 'none' (default 'asc' for h, 'none' for v)
- *   xLabel      – axis title for the X axis
- *   yLabel      – axis title for the Y axis
- *   showLabels  – render value labels next to bars (default true)
- *   format      – fn to format value labels (default scale-adaptive)
- *   xDtick      – fixed tick interval on the X axis (number)
- *   yDtick      – fixed tick interval on the Y axis (number)
- *   height      – px; defaults to 420
+ * Props match the legacy Plotly version so callers don't change:
+ *   data, labelKey, valueKey, colorKey, color, orientation,
+ *   sort, xLabel, yLabel, showLabels, format, xDtick, yDtick, height
  */
 
-/**
- * Scale-adaptive default label formatter. Picks decimal precision based
- * on magnitude so a 0.2137 row doesn't render as "0" while a 13,000 row
- * doesn't render as "13000.00".
- */
 function defaultFormat(v) {
   const n = Number(v)
   if (!Number.isFinite(n) || n === 0) return '0'
   const abs = Math.abs(n)
-  if (abs >= 1000) return Math.round(n).toLocaleString()
   if (abs >= 100) return Math.round(n).toLocaleString()
   if (abs >= 10) return n.toFixed(1)
-  if (abs >= 1) return n.toFixed(2)
-  return n.toFixed(2) // sub-unit values: keep 2 decimals (e.g. 0.21)
+  return n.toFixed(2)
 }
 
 export default function BarChart({
@@ -59,69 +45,54 @@ export default function BarChart({
   height = 420,
 }) {
   if (!data?.length)
-    return (
-      <div className="h-40 flex items-center justify-center text-slate-400">
-        No data
-      </div>
-    )
+    return <div className="h-40 flex items-center justify-center text-slate-400">No data</div>
 
-  const sortMode = sort ?? (orientation === 'horizontal' ? 'asc' : 'none')
+  const isHorizontal = orientation === 'horizontal'
+  const sortMode = sort ?? (isHorizontal ? 'asc' : 'none')
+
   let rows = data.filter(d => d[valueKey] != null && !isNaN(d[valueKey]))
   if (sortMode === 'asc') rows = [...rows].sort((a, b) => a[valueKey] - b[valueKey])
   if (sortMode === 'desc') rows = [...rows].sort((a, b) => b[valueKey] - a[valueKey])
 
-  const values = rows.map(d => d[valueKey])
-  const labels = rows.map(d => d[labelKey])
-  const colors = colorKey ? rows.map(d => d[colorKey] || color) : color
-  const labelText = showLabels ? rows.map(d => format(d[valueKey])) : []
-
-  const isHorizontal = orientation === 'horizontal'
-  const trace = isHorizontal
-    ? {
-        x: values,
-        y: labels,
-        orientation: 'h',
-        type: 'bar',
-        marker: { color: colors },
-        text: labelText,
-        textposition: 'outside',
-        cliponaxis: false,
-      }
-    : {
-        x: labels,
-        y: values,
-        type: 'bar',
-        marker: { color: colors },
-        text: labelText,
-        textposition: 'outside',
-        cliponaxis: false,
-      }
+  const xDomain = xDtick != null ? [0, undefined] : undefined
+  const yDomain = yDtick != null ? [0, undefined] : undefined
 
   return (
-    <Plot
-      data={[trace]}
-      layout={{
-        xaxis: {
-          title: isHorizontal ? xLabel : '',
-          tickfont: { size: 11 },
-          // Force a fixed tick interval when caller passes xDtick — useful
-          // for ranked lists where small values need to be readable next to
-          // very large ones.
-          ...(xDtick != null ? { dtick: xDtick, tick0: 0 } : {}),
-        },
-        yaxis: {
-          title: isHorizontal ? '' : yLabel,
-          tickfont: { size: 11 },
-          ...(yDtick != null ? { dtick: yDtick, tick0: 0 } : {}),
-        },
-        margin: isHorizontal
-          ? { t: 10, r: 80, b: 50, l: 160 }
-          : { t: 30, r: 20, b: 60, l: 70 },
-        bargap: 0.35,
-      }}
-      useResizeHandler
-      style={{ width: '100%', height: `${height}px` }}
-      config={{ responsive: true, displaylogo: false }}
-    />
+    <ChartContainer config={{}} className="aspect-auto" style={{ height: `${height}px`, width: '100%' }}>
+      <RechartsBarChart
+        data={rows}
+        layout={isHorizontal ? 'vertical' : 'horizontal'}
+        margin={isHorizontal ? { top: 8, right: 60, bottom: 24, left: 24 } : { top: 16, right: 16, bottom: 24, left: 24 }}
+      >
+        <CartesianGrid stroke={GRID_COLOR} horizontal={!isHorizontal} vertical={isHorizontal} />
+        {isHorizontal ? (
+          <>
+            <XAxis type="number" {...axisProps} domain={xDomain} interval={xDtick != null ? 0 : 'preserveEnd'}
+                   label={xLabel ? { value: xLabel, position: 'insideBottom', offset: -8, fill: '#64748b', fontSize: 11 } : undefined} />
+            <YAxis type="category" dataKey={labelKey} {...axisProps} width={150} interval={0} />
+          </>
+        ) : (
+          <>
+            <XAxis type="category" dataKey={labelKey} {...axisProps} interval={0} />
+            <YAxis type="number" {...axisProps} domain={yDomain}
+                   label={yLabel ? { value: yLabel, angle: -90, position: 'insideLeft', fill: '#64748b', fontSize: 11 } : undefined} />
+          </>
+        )}
+        <ChartTooltip cursor={{ fill: '#f1f5f9' }} content={<ChartTooltipContent valueFormatter={format} hideLabel={isHorizontal ? false : false} />} />
+        <Bar dataKey={valueKey} fill={color} radius={isHorizontal ? [0, 4, 4, 0] : [4, 4, 0, 0]}>
+          {rows.map((row, i) => (
+            <Cell key={i} fill={colorKey ? row[colorKey] || color : color} />
+          ))}
+          {showLabels && (
+            <LabelList
+              dataKey={valueKey}
+              position={isHorizontal ? 'right' : 'top'}
+              formatter={format}
+              style={{ fill: '#475569', fontSize: 11 }}
+            />
+          )}
+        </Bar>
+      </RechartsBarChart>
+    </ChartContainer>
   )
 }

@@ -3,6 +3,19 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --chart-1: 174 77% 32%;
+    --chart-2: 192 91% 36%;
+    --chart-3: 217 91% 60%;
+    --chart-4: 239 84% 67%;
+    --chart-5: 258 90% 66%;
+    --chart-6: 330 81% 60%;
+    --chart-7: 38 92% 50%;
+    --chart-8: 84 81% 44%;
+    --chart-9: 188 86% 53%;
+    --chart-10: 160 84% 39%;
+  }
+
   html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
