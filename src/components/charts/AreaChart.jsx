@@ -1,55 +1,32 @@
-import Plot from '../../lib/Plot'
+import {
+  AreaChart as RechartsAreaChart,
+  Area,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Legend,
+} from 'recharts'
+import {
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+  ChartLegendContent,
+} from '../ui/chart'
+import { AREA_COLORS, GRID_COLOR, axisProps, buildSeriesConfig } from '../../lib/chartTheme'
 
 /**
- * Stacked area chart. The default Plotly behavior with `mode:'none'` paints
- * the fill at low opacity, which makes thin slices (anything under ~5%) and
- * their legend swatches almost invisible against a dominant adjacent layer.
- *
- * To fix that we:
- *   1. Use a bold, high-contrast palette tuned for stacked areas — the
- *      adjacent slices intentionally swing across the spectrum (teal →
- *      orange → blue → violet) so even a 1% slice reads cleanly next to a
- *      99% slice.
- *   2. Draw a thin top line on each layer (`mode:'lines'`) so the boundary
- *      between layers is visible and the legend renders the saturated line
- *      color rather than the faded fill.
- *   3. Set `fillcolor` explicitly with a fixed alpha so we control opacity
- *      instead of letting Plotly pick.
+ * Stacked area chart with a bold, high-contrast palette tuned so adjacent
+ * slices stay readable even when one dominates (e.g. 99% / 1%).
  */
-
-const AREA_COLORS = [
-  '#0d9488', // teal-600
-  '#ea580c', // orange-600
-  '#2563eb', // blue-600
-  '#7c3aed', // violet-600
-  '#059669', // emerald-600
-  '#db2777', // pink-600
-  '#0891b2', // cyan-600
-  '#ca8a04', // yellow-600
-]
-
-function hexToRgba(hex, alpha) {
-  const h = hex.replace('#', '')
-  const r = parseInt(h.slice(0, 2), 16)
-  const g = parseInt(h.slice(2, 4), 16)
-  const b = parseInt(h.slice(4, 6), 16)
-  return `rgba(${r},${g},${b},${alpha})`
-}
-
 export default function AreaChart({
   data,
   groupKey,
   valueKey,
   yLabel = '',
-  yDtick,
   height = 400,
 }) {
   if (!data?.length)
-    return (
-      <div className="h-40 flex items-center justify-center text-slate-400">
-        No data
-      </div>
-    )
+    return <div className="h-40 flex items-center justify-center text-slate-400">No data</div>
 
   const groups = [...new Set(data.map(d => d[groupKey]))].filter(Boolean)
   const years = [...new Set(data.map(d => d.year))].sort((a, b) => a - b)
@@ -57,43 +34,42 @@ export default function AreaChart({
     data.map(d => [`${d.year}__${d[groupKey]}`, d[valueKey]]),
   )
 
-  const traces = groups.map((g, i) => {
-    const color = AREA_COLORS[i % AREA_COLORS.length]
-    return {
-      x: years,
-      y: years.map(y => lookup[`${y}__${g}`] ?? 0),
-      name: g,
-      type: 'scatter',
-      mode: 'lines',
-      line: { width: 1.5, color },
-      fill: i === 0 ? 'tozeroy' : 'tonexty',
-      fillcolor: hexToRgba(color, 0.55),
-      stackgroup: 'one',
-      hovertemplate: '<b>%{x}</b><br>%{y:.2f}<extra>' + g + '</extra>',
-    }
+  const rows = years.map(y => {
+    const row = { year: y }
+    groups.forEach(g => { row[g] = lookup[`${y}__${g}`] ?? 0 })
+    return row
   })
 
+  const config = buildSeriesConfig(groups, AREA_COLORS)
+
   return (
-    <Plot
-      data={traces}
-      layout={{
-        yaxis: {
-          title: yLabel,
-          fixedrange: false,
-          // Caller can force a fixed tick interval. Plotly's auto-pick does
-          // a fine job for most charts, but small numbers of large slices
-          // sometimes look cleaner with a denser/sparser grid.
-          ...(yDtick != null ? { dtick: yDtick, tick0: 0 } : {}),
-        },
-        xaxis: { title: 'Year' },
-        template: 'plotly_white',
-        autosize: true,
-        margin: { t: 10, r: 10, b: 50, l: 65 },
-        legend: { orientation: 'h', y: -0.2 },
-      }}
-      useResizeHandler
-      style={{ width: '100%', height: `${height}px` }}
-      config={{ responsive: true, displaylogo: false }}
-    />
+    <ChartContainer config={config} className="aspect-auto" style={{ height: `${height}px`, width: '100%' }}>
+      <RechartsAreaChart data={rows} margin={{ top: 10, right: 16, bottom: 8, left: 8 }}>
+        <CartesianGrid stroke={GRID_COLOR} vertical={false} />
+        <XAxis dataKey="year" {...axisProps} label={{ value: 'Year', position: 'insideBottom', offset: -4, fill: '#64748b', fontSize: 11 }} />
+        <YAxis
+          {...axisProps}
+          label={yLabel ? { value: yLabel, angle: -90, position: 'insideLeft', fill: '#64748b', fontSize: 11 } : undefined}
+        />
+        <ChartTooltip cursor={{ stroke: '#e2e8f0' }} content={<ChartTooltipContent />} />
+        <Legend content={<ChartLegendContent />} />
+        {groups.map((g, i) => {
+          const color = AREA_COLORS[i % AREA_COLORS.length]
+          return (
+            <Area
+              key={g}
+              type="monotone"
+              dataKey={g}
+              stackId="one"
+              stroke={color}
+              strokeWidth={1.5}
+              fill={color}
+              fillOpacity={0.55}
+              isAnimationActive={false}
+            />
+          )
+        })}
+      </RechartsAreaChart>
+    </ChartContainer>
   )
 }

@@ -14,7 +14,7 @@ export default function Footer() {
               Global Seaweed Industry Dashboard
             </span>
             {' · '}
-            Built with React + Plotly. Data preprocessed from FAO FishStat
+            Built with React + Recharts. Data preprocessed from FAO FishStat
             CSVs to static JSON.
           </p>
           <p className="mt-1 text-slate-400">

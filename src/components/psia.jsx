@@ -1,4 +1,22 @@
-import Plot from '../lib/Plot'
+import {
+  BarChart as RechartsBarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Legend,
+  ReferenceDot,
+  Area,
+  AreaChart as RechartsAreaChart,
+  LabelList,
+} from 'recharts'
+import {
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+  ChartLegendContent,
+} from './ui/chart'
+import { GRID_COLOR, axisProps } from '../lib/chartTheme'
 
 /**
  * Shared building blocks used by both PSIA briefing tabs.
@@ -125,105 +143,81 @@ function SwatchRow({ entries, suffix = '' }) {
 
 /** Two-bar grouped column chart for low/high price ranges. */
 export function GroupedRangeBars({ data }) {
+  const config = {
+    low: { label: 'Low estimate', color: '#94a3b8' },
+    high: { label: 'High estimate', color: '#0d9488' },
+  }
   return (
-    <Plot
-      data={[
-        {
-          type: 'bar',
-          name: 'Low estimate',
-          x: data.map(d => d.segment),
-          y: data.map(d => d.low),
-          marker: { color: '#94a3b8' }, // slate-400
-          text: data.map(d => `$${d.low.toLocaleString()}`),
-          textposition: 'outside',
-          cliponaxis: false,
-        },
-        {
-          type: 'bar',
-          name: 'High estimate',
-          x: data.map(d => d.segment),
-          y: data.map(d => d.high),
-          marker: { color: '#0d9488' }, // brand-600
-          text: data.map(d => `$${d.high.toLocaleString()}`),
-          textposition: 'outside',
-          cliponaxis: false,
-        },
-      ]}
-      layout={{
-        barmode: 'group',
-        bargap: 0.3,
-        bargroupgap: 0.12,
-        xaxis: { tickfont: { size: 11 } },
-        yaxis: { title: 'CAD/USD per Wet Tonne (approx.)' },
-        legend: { orientation: 'h', y: 1.12 },
-        margin: { t: 50, r: 20, b: 80, l: 80 },
-      }}
-      useResizeHandler
-      style={{ width: '100%', height: '420px' }}
-      config={{ responsive: true, displaylogo: false }}
-    />
+    <ChartContainer config={config} className="aspect-auto" style={{ width: '100%', height: '420px' }}>
+      <RechartsBarChart data={data} margin={{ top: 32, right: 24, bottom: 32, left: 24 }}>
+        <CartesianGrid stroke={GRID_COLOR} vertical={false} />
+        <XAxis dataKey="segment" {...axisProps} interval={0} />
+        <YAxis
+          {...axisProps}
+          label={{ value: 'CAD/USD per Wet Tonne (approx.)', angle: -90, position: 'insideLeft', fill: '#64748b', fontSize: 11 }}
+        />
+        <ChartTooltip cursor={{ fill: '#f1f5f9' }} content={<ChartTooltipContent valueFormatter={v => `$${v.toLocaleString()}`} />} />
+        <Legend content={<ChartLegendContent />} verticalAlign="top" />
+        <Bar dataKey="low" name="Low estimate" fill="#94a3b8" radius={[4, 4, 0, 0]}>
+          <LabelList dataKey="low" position="top" formatter={v => `$${v.toLocaleString()}`} style={{ fill: '#475569', fontSize: 10 }} />
+        </Bar>
+        <Bar dataKey="high" name="High estimate" fill="#0d9488" radius={[4, 4, 0, 0]}>
+          <LabelList dataKey="high" position="top" formatter={v => `$${v.toLocaleString()}`} style={{ fill: '#475569', fontSize: 10 }} />
+        </Bar>
+      </RechartsBarChart>
+    </ChartContainer>
   )
 }
 
 /** Line chart with a solid actual segment + dashed projected segment. */
 export function ProjectedLineChart({ actual, projected }) {
+  // Merge into a single timeline so the X axis stays continuous; each row
+  // carries either an `actual` or `projected` y value (or both at the join).
+  const allYears = [...new Set([...actual.map(d => d.year), ...projected.map(d => d.year)])].sort((a, b) => a - b)
+  const actualLookup = Object.fromEntries(actual.map(d => [d.year, d.value_busd]))
+  const projLookup = Object.fromEntries(projected.map(d => [d.year, d.value_busd]))
+  const rows = allYears.map(y => ({
+    year: y,
+    actual: actualLookup[y] ?? null,
+    projected: projLookup[y] ?? null,
+  }))
+
+  const config = {
+    actual: { label: 'Actual', color: '#0d9488' },
+    projected: { label: 'Projected (5.0% CAGR)', color: '#ea580c' },
+  }
+
   return (
-    <Plot
-      data={[
-        {
-          type: 'scatter',
-          mode: 'lines+markers',
-          name: 'Actual',
-          x: actual.map(d => d.year),
-          y: actual.map(d => d.value_busd),
-          line: { color: '#0d9488', width: 2.5 },
-          marker: { size: 6, color: '#0d9488' },
-          fill: 'tozeroy',
-          fillcolor: 'rgba(13,148,136,0.08)',
-          hovertemplate: '<b>%{x}</b><br>$%{y}B<extra>Actual</extra>',
-        },
-        {
-          type: 'scatter',
-          mode: 'lines+markers',
-          name: 'Projected (5.0% CAGR)',
-          x: projected.map(d => d.year),
-          y: projected.map(d => d.value_busd),
-          line: { color: '#ea580c', width: 2.5, dash: 'dash' },
-          marker: { size: 6, color: '#ea580c' },
-          fill: 'tozeroy',
-          fillcolor: 'rgba(234,88,12,0.05)',
-          hovertemplate: '<b>%{x}</b><br>$%{y}B<extra>Projected</extra>',
-        },
-      ]}
-      layout={{
-        xaxis: { title: 'Year' },
-        yaxis: {
-          title: 'Market Size (USD Billion)',
-          tickprefix: '$',
-          ticksuffix: 'B',
-        },
-        legend: { orientation: 'h', y: 1.12 },
-        margin: { t: 40, r: 20, b: 50, l: 70 },
-        annotations: [
-          {
-            x: 2025,
-            y: 13.6,
-            text: '<b>$13.6B (2025)</b>',
-            showarrow: true,
-            arrowhead: 2,
-            ax: -40,
-            ay: -30,
-            font: { color: '#0d9488', size: 12 },
-            bgcolor: 'white',
-            bordercolor: '#0d9488',
-            borderpad: 4,
-          },
-        ],
-      }}
-      useResizeHandler
-      style={{ width: '100%', height: '420px' }}
-      config={{ responsive: true, displaylogo: false }}
-    />
+    <ChartContainer config={config} className="aspect-auto" style={{ width: '100%', height: '420px' }}>
+      <RechartsAreaChart data={rows} margin={{ top: 24, right: 24, bottom: 16, left: 16 }}>
+        <CartesianGrid stroke={GRID_COLOR} vertical={false} />
+        <XAxis dataKey="year" {...axisProps} label={{ value: 'Year', position: 'insideBottom', offset: -4, fill: '#64748b', fontSize: 11 }} />
+        <YAxis
+          {...axisProps}
+          tickFormatter={v => `$${v}B`}
+          label={{ value: 'Market Size (USD Billion)', angle: -90, position: 'insideLeft', fill: '#64748b', fontSize: 11 }}
+        />
+        <ChartTooltip
+          cursor={{ stroke: '#e2e8f0' }}
+          content={<ChartTooltipContent valueFormatter={v => `$${v}B`} />}
+        />
+        <Legend content={<ChartLegendContent />} verticalAlign="top" />
+        <Area type="monotone" dataKey="actual" stroke="#0d9488" strokeWidth={2.5} fill="#0d9488" fillOpacity={0.08} dot={{ r: 4, fill: '#0d9488' }} isAnimationActive={false} connectNulls />
+        <Area type="monotone" dataKey="projected" stroke="#ea580c" strokeWidth={2.5} strokeDasharray="6 4" fill="#ea580c" fillOpacity={0.05} dot={{ r: 4, fill: '#ea580c' }} isAnimationActive={false} connectNulls />
+        <ReferenceDot
+          x={2025}
+          y={13.6}
+          r={0}
+          label={{
+            value: '$13.6B (2025)',
+            position: 'top',
+            fill: '#0d9488',
+            fontSize: 11,
+            fontWeight: 600,
+          }}
+        />
+      </RechartsAreaChart>
+    </ChartContainer>
   )
 }
 

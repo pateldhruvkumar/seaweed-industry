@@ -1,10 +1,30 @@
 import { useMemo } from 'react'
+import {
+  BarChart as RechartsBarChart,
+  Bar,
+  LineChart as RechartsLineChart,
+  Line,
+  ScatterChart as RechartsScatterChart,
+  Scatter,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Legend,
+  LabelList,
+} from 'recharts'
 import { useData } from '../hooks/useData'
 import ChartCard from '../components/ChartCard'
 import DataTable from '../components/DataTable'
 import Plot from '../lib/Plot'
 import BarChart from '../components/charts/BarChart'
 import Heatmap from '../components/charts/Heatmap'
+import {
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+  ChartLegendContent,
+} from '../components/ui/chart'
+import { PLOT_COLORS, GRID_COLOR, axisProps, buildSeriesConfig } from '../lib/chartTheme'
 
 const DATASETS = ['global_production', 'aquaculture_quantity', 'aquaculture_value', 'capture_quantity']
 
@@ -39,87 +59,60 @@ function StatusFlagBar({ title, records }) {
   return (
     <div className="flex-1 min-w-48">
       <p className="text-xs font-medium text-gray-500 mb-1 truncate">{title}</p>
-      <Plot
-        data={[{
-          x: records.map(r => r.pct),
-          y: records.map(r => r.status),
-          type: 'bar',
-          orientation: 'h',
-          marker: { color: '#0d9488' },
-          text: records.map(r => `${r.pct}%`),
-          textposition: 'outside',
-        }]}
-        layout={{
-          template: 'plotly_white',
-          autosize: true,
-          margin: { t: 5, r: 50, b: 30, l: 120 },
-          xaxis: { title: '%', range: [0, 110] },
-          yaxis: { autorange: 'reversed' },
-        }}
-        useResizeHandler
-        style={{ width: '100%', height: '200px' }}
-        config={{ displaylogo: false, displayModeBar: false }}
-      />
+      <ChartContainer config={{}} className="aspect-auto" style={{ width: '100%', height: '200px' }}>
+        <RechartsBarChart data={records} layout="vertical" margin={{ top: 4, right: 48, bottom: 24, left: 8 }}>
+          <CartesianGrid stroke={GRID_COLOR} horizontal={false} />
+          <XAxis type="number" domain={[0, 110]} {...axisProps} label={{ value: '%', position: 'insideBottom', offset: -8, fill: '#64748b', fontSize: 11 }} />
+          <YAxis type="category" dataKey="status" {...axisProps} width={110} interval={0} />
+          <ChartTooltip cursor={{ fill: '#f1f5f9' }} content={<ChartTooltipContent valueFormatter={v => `${v}%`} />} />
+          <Bar dataKey="pct" fill="#0d9488" radius={[0, 4, 4, 0]}>
+            <LabelList dataKey="pct" position="right" formatter={v => `${v}%`} style={{ fill: '#475569', fontSize: 10 }} />
+          </Bar>
+        </RechartsBarChart>
+      </ChartContainer>
     </div>
   )
 }
 
 function MissingDataBar({ title, columns }) {
-  const top = (columns ?? []).slice(0, 12)  // most-null columns first
+  const top = (columns ?? []).slice(0, 12)
   if (!top.length) return null
   return (
     <div className="flex-1 min-w-48">
       <p className="text-xs font-medium text-gray-500 mb-1 truncate">{title}</p>
-      <Plot
-        data={[{
-          x: top.map(c => c.null_pct),
-          y: top.map(c => c.column),
-          type: 'bar',
-          orientation: 'h',
-          marker: { color: '#0d9488' },
-          text: top.map(c => `${c.null_pct}%`),
-          textposition: 'outside',
-        }]}
-        layout={{
-          template: 'plotly_white',
-          autosize: true,
-          margin: { t: 5, r: 50, b: 30, l: 160 },
-          xaxis: { title: '% null', range: [0, 110] },
-          yaxis: { autorange: 'reversed' },
-        }}
-        useResizeHandler
-        style={{ width: '100%', height: '260px' }}
-        config={{ displaylogo: false, displayModeBar: false }}
-      />
+      <ChartContainer config={{}} className="aspect-auto" style={{ width: '100%', height: '260px' }}>
+        <RechartsBarChart data={top} layout="vertical" margin={{ top: 4, right: 48, bottom: 24, left: 8 }}>
+          <CartesianGrid stroke={GRID_COLOR} horizontal={false} />
+          <XAxis type="number" domain={[0, 110]} {...axisProps} label={{ value: '% null', position: 'insideBottom', offset: -8, fill: '#64748b', fontSize: 11 }} />
+          <YAxis type="category" dataKey="column" {...axisProps} width={150} interval={0} />
+          <ChartTooltip cursor={{ fill: '#f1f5f9' }} content={<ChartTooltipContent valueFormatter={v => `${v}%`} />} />
+          <Bar dataKey="null_pct" fill="#0d9488" radius={[0, 4, 4, 0]}>
+            <LabelList dataKey="null_pct" position="right" formatter={v => `${v}%`} style={{ fill: '#475569', fontSize: 10 }} />
+          </Bar>
+        </RechartsBarChart>
+      </ChartContainer>
     </div>
   )
 }
 
 function ValueHistogram({ title, bins }) {
   if (!bins?.length) return null
+  const rows = bins.map(b => ({
+    center: ((b.bin_start + b.bin_end) / 2).toFixed(2),
+    count: b.count,
+  }))
   return (
     <div className="flex-1 min-w-48">
       <p className="text-xs font-medium text-gray-500 mb-1 truncate">{title}</p>
-      <Plot
-        data={[{
-          x: bins.map(b => (b.bin_start + b.bin_end) / 2),
-          y: bins.map(b => b.count),
-          type: 'bar',
-          marker: { color: '#0f766e' },
-          width: bins.map(b => b.bin_end - b.bin_start),
-        }]}
-        layout={{
-          template: 'plotly_white',
-          autosize: true,
-          margin: { t: 5, r: 10, b: 35, l: 50 },
-          xaxis: { title: 'log₁₀(VALUE)' },
-          yaxis: { title: 'count' },
-          bargap: 0.02,
-        }}
-        useResizeHandler
-        style={{ width: '100%', height: '220px' }}
-        config={{ displaylogo: false, displayModeBar: false }}
-      />
+      <ChartContainer config={{}} className="aspect-auto" style={{ width: '100%', height: '220px' }}>
+        <RechartsBarChart data={rows} margin={{ top: 8, right: 12, bottom: 24, left: 8 }} barCategoryGap={1}>
+          <CartesianGrid stroke={GRID_COLOR} vertical={false} />
+          <XAxis dataKey="center" {...axisProps} label={{ value: 'log₁₀(VALUE)', position: 'insideBottom', offset: -8, fill: '#64748b', fontSize: 11 }} interval="preserveStartEnd" />
+          <YAxis {...axisProps} label={{ value: 'count', angle: -90, position: 'insideLeft', fill: '#64748b', fontSize: 11 }} />
+          <ChartTooltip cursor={{ fill: '#f1f5f9' }} content={<ChartTooltipContent />} />
+          <Bar dataKey="count" fill="#0f766e" />
+        </RechartsBarChart>
+      </ChartContainer>
     </div>
   )
 }
@@ -162,19 +155,66 @@ function OutlierBox({ title, stats }) {
   )
 }
 
-function uniquePerYearTraces(uniqueByDs, metric) {
+/**
+ * Reshape per-dataset year series into wide rows for Recharts:
+ *   [{ year, ds1: v, ds2: v, ... }, ...]
+ */
+function uniquePerYearRows(uniqueByDs, metric) {
   if (!uniqueByDs) return []
-  return DATASETS.map(ds => {
-    const rows = (uniqueByDs[ds] ?? []).slice().sort((a, b) => a.year - b.year)
-    return {
-      x: rows.map(r => r.year),
-      y: rows.map(r => r[metric]),
-      name: ds,
-      type: 'scatter',
-      mode: 'lines',
-      line: { width: 1.5 },
-    }
+  const years = new Set()
+  DATASETS.forEach(ds => (uniqueByDs[ds] ?? []).forEach(r => years.add(r.year)))
+  const sorted = [...years].sort((a, b) => a - b)
+  return sorted.map(y => {
+    const row = { year: y }
+    DATASETS.forEach(ds => {
+      const hit = (uniqueByDs[ds] ?? []).find(r => r.year === y)
+      row[ds] = hit ? hit[metric] : null
+    })
+    return row
   })
+}
+
+/** Same shape but for records-per-year (records array, sums by dataset). */
+function recordsPerYearRows(recRows) {
+  if (!recRows.length) return []
+  const years = [...new Set(recRows.map(r => r.year))].sort((a, b) => a - b)
+  return years.map(y => {
+    const row = { year: y }
+    DATASETS.forEach(ds => {
+      const hit = recRows.find(r => r.year === y && r.dataset === ds)
+      row[ds] = hit ? hit.count : null
+    })
+    return row
+  })
+}
+
+const DATASET_CONFIG = buildSeriesConfig(DATASETS)
+
+function DatasetLineChart({ rows, yLabel, height }) {
+  if (!rows.length) return null
+  return (
+    <ChartContainer config={DATASET_CONFIG} className="aspect-auto" style={{ width: '100%', height: `${height}px` }}>
+      <RechartsLineChart data={rows} margin={{ top: 10, right: 16, bottom: 24, left: 8 }}>
+        <CartesianGrid stroke={GRID_COLOR} vertical={false} />
+        <XAxis dataKey="year" {...axisProps} label={{ value: 'Year', position: 'insideBottom', offset: -4, fill: '#64748b', fontSize: 11 }} />
+        <YAxis {...axisProps} label={{ value: yLabel, angle: -90, position: 'insideLeft', fill: '#64748b', fontSize: 11 }} />
+        <ChartTooltip cursor={{ stroke: '#e2e8f0' }} content={<ChartTooltipContent />} />
+        <Legend content={<ChartLegendContent />} />
+        {DATASETS.map((ds, i) => (
+          <Line
+            key={ds}
+            type="monotone"
+            dataKey={ds}
+            stroke={PLOT_COLORS[i % PLOT_COLORS.length]}
+            strokeWidth={1.5}
+            dot={false}
+            isAnimationActive={false}
+            connectNulls
+          />
+        ))}
+      </RechartsLineChart>
+    </ChartContainer>
+  )
 }
 
 export default function EdaTab() {
@@ -199,17 +239,9 @@ export default function EdaTab() {
     [qualSummary]
   )
 
-  const recTraces = useMemo(() => {
-    if (!recRows.length) return []
-    return DATASETS.map(ds => {
-      const rows = recRows.filter(r => r.dataset === ds).sort((a, b) => a.year - b.year)
-      return { x: rows.map(r => r.year), y: rows.map(r => r.count), name: ds,
-               type: 'scatter', mode: 'lines', line: { width: 1.5 } }
-    })
-  }, [recRows])
-
-  const countryTraces = useMemo(() => uniquePerYearTraces(uniqYr, 'n_countries'), [uniqYr])
-  const speciesTraces = useMemo(() => uniquePerYearTraces(uniqYr, 'n_species'),   [uniqYr])
+  const recYearRows = useMemo(() => recordsPerYearRows(recRows), [recRows])
+  const countryYearRows = useMemo(() => uniquePerYearRows(uniqYr, 'n_countries'), [uniqYr])
+  const speciesYearRows = useMemo(() => uniquePerYearRows(uniqYr, 'n_species'), [uniqYr])
 
   const top10Countries = useMemo(() => {
     if (!countryTotals?.length) return []
@@ -285,54 +317,15 @@ export default function EdaTab() {
       </ChartCard>
 
       <ChartCard title="Number of records reported per year, by dataset">
-        <Plot
-          data={recTraces}
-          layout={{
-            template: 'plotly_white',
-            autosize: true,
-            margin: { t: 10, r: 10, b: 50, l: 60 },
-            xaxis: { title: 'Year' },
-            yaxis: { title: 'Records' },
-            legend: { orientation: 'h', y: -0.2 },
-          }}
-          useResizeHandler
-          style={{ width: '100%', height: '360px' }}
-          config={{ responsive: true, displaylogo: false }}
-        />
+        <DatasetLineChart rows={recYearRows} yLabel="Records" height={360} />
       </ChartCard>
 
       <ChartCard title="Unique countries reporting per year, by dataset">
-        <Plot
-          data={countryTraces}
-          layout={{
-            template: 'plotly_white',
-            autosize: true,
-            margin: { t: 10, r: 10, b: 50, l: 60 },
-            xaxis: { title: 'Year' },
-            yaxis: { title: 'Countries' },
-            legend: { orientation: 'h', y: -0.2 },
-          }}
-          useResizeHandler
-          style={{ width: '100%', height: '320px' }}
-          config={{ responsive: true, displaylogo: false }}
-        />
+        <DatasetLineChart rows={countryYearRows} yLabel="Countries" height={320} />
       </ChartCard>
 
       <ChartCard title="Unique species reporting per year, by dataset">
-        <Plot
-          data={speciesTraces}
-          layout={{
-            template: 'plotly_white',
-            autosize: true,
-            margin: { t: 10, r: 10, b: 50, l: 60 },
-            xaxis: { title: 'Year' },
-            yaxis: { title: 'Species' },
-            legend: { orientation: 'h', y: -0.2 },
-          }}
-          useResizeHandler
-          style={{ width: '100%', height: '320px' }}
-          config={{ responsive: true, displaylogo: false }}
-        />
+        <DatasetLineChart rows={speciesYearRows} yLabel="Species" height={320} />
       </ChartCard>
 
       <ChartCard title="Top 10 countries by avg annual production (most recent 5-year window)">
@@ -369,27 +362,37 @@ export default function EdaTab() {
       </ChartCard>
 
       <ChartCard title="Aquaculture: value vs. quantity (log–log, country-species-year)">
-        <Plot
-          data={[{
-            x: (scatter ?? []).map(d => d.qty),
-            y: (scatter ?? []).map(d => d.value),
-            text: (scatter ?? []).map(d => `${d.country} ${d.year}`),
-            type: 'scattergl',
-            mode: 'markers',
-            marker: { size: 5, color: '#0d9488', opacity: 0.5 },
-            hoverinfo: 'text+x+y',
-          }]}
-          layout={{
-            template: 'plotly_white',
-            autosize: true,
-            margin: { t: 10, r: 10, b: 60, l: 70 },
-            xaxis: { title: 'Quantity (tonnes)', type: 'log' },
-            yaxis: { title: 'Value (USD)',       type: 'log' },
-          }}
-          useResizeHandler
-          style={{ width: '100%', height: '460px' }}
-          config={{ responsive: true, displaylogo: false }}
-        />
+        <ChartContainer config={{}} className="aspect-auto" style={{ width: '100%', height: '460px' }}>
+          <RechartsScatterChart margin={{ top: 10, right: 16, bottom: 32, left: 16 }}>
+            <CartesianGrid stroke={GRID_COLOR} />
+            <XAxis
+              type="number"
+              dataKey="qty"
+              scale="log"
+              domain={['auto', 'auto']}
+              allowDataOverflow
+              {...axisProps}
+              label={{ value: 'Quantity (tonnes)', position: 'insideBottom', offset: -8, fill: '#64748b', fontSize: 11 }}
+            />
+            <YAxis
+              type="number"
+              dataKey="value"
+              scale="log"
+              domain={['auto', 'auto']}
+              allowDataOverflow
+              {...axisProps}
+              label={{ value: 'Value (USD)', angle: -90, position: 'insideLeft', fill: '#64748b', fontSize: 11 }}
+            />
+            <ChartTooltip cursor={{ strokeDasharray: '3 3' }} content={<ChartTooltipContent hideLabel />} />
+            <Scatter
+              data={(scatter ?? []).filter(d => d.qty > 0 && d.value > 0)}
+              fill="#0d9488"
+              fillOpacity={0.5}
+              shape="circle"
+              isAnimationActive={false}
+            />
+          </RechartsScatterChart>
+        </ChartContainer>
       </ChartCard>
 
       <ChartCard title="Top-20 country production correlation (Pearson, year-over-year)">
