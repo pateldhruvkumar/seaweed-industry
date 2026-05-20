@@ -33,20 +33,15 @@ export default function AssistantMessage({
   onRegenerate,
 }) {
   const final = targetContent ?? content ?? ''
-  const [revealed, setRevealed] = useState(streaming && targetContent ? '' : final)
-  const [done, setDone] = useState(!streaming || !targetContent)
+  const isAnimating = streaming && Boolean(targetContent)
+  const [revealed, setRevealed] = useState(() => (isAnimating ? '' : final))
+  const [done, setDone] = useState(() => !isAnimating)
   const [sqlOpen, setSqlOpen] = useState(false)
   const [copyState, setCopyState] = useState('idle')
   const intervalRef = useRef(null)
 
   useEffect(() => {
-    if (!streaming || !targetContent) {
-      setRevealed(final)
-      setDone(true)
-      return
-    }
-    setRevealed('')
-    setDone(false)
+    if (!isAnimating) return
     let i = 0
     intervalRef.current = setInterval(() => {
       i = Math.min(i + CHARS_PER_TICK, targetContent.length)
@@ -60,7 +55,7 @@ export default function AssistantMessage({
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current)
     }
-  }, [streaming, targetContent, final])
+  }, [isAnimating, targetContent])
 
   useEffect(() => {
     if (!streaming || done) return
@@ -78,7 +73,9 @@ export default function AssistantMessage({
       await navigator.clipboard.writeText(final)
       setCopyState('copied')
       setTimeout(() => setCopyState('idle'), 1500)
-    } catch {}
+    } catch {
+      // Clipboard API unavailable; copy silently fails.
+    }
   }
 
   const showTyping = streaming && revealed.length === 0
