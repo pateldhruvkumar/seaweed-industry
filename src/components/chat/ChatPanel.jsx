@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import ChatHeader from './ChatHeader'
 import MessageThread from './MessageThread'
 import ChatInput from './ChatInput'
@@ -9,6 +9,12 @@ export default function ChatPanel({ onClose }) {
   const [messages, setMessages] = useState([])
   const [loading, setLoading] = useState(false)
   const abortRef = useRef(null)
+
+  useEffect(() => {
+    return () => {
+      if (abortRef.current) abortRef.current.abort()
+    }
+  }, [])
 
   async function sendMessage(question, replaceLastAssistant = false) {
     const baseHistory = replaceLastAssistant
@@ -23,6 +29,7 @@ export default function ChatPanel({ onClose }) {
     setMessages(nextHistory)
     setLoading(true)
 
+    if (abortRef.current) abortRef.current.abort()
     const controller = new AbortController()
     abortRef.current = controller
 
@@ -54,9 +61,7 @@ export default function ChatPanel({ onClose }) {
         },
       ])
     } catch (err) {
-      if (err.name === 'AbortError') {
-        setMessages(prev => prev)
-      } else {
+      if (err.name !== 'AbortError') {
         setMessages(prev => [
           ...prev,
           {
