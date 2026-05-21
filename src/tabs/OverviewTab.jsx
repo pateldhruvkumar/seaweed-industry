@@ -157,55 +157,31 @@ export default function OverviewTab() {
         )}
       </TimeFilteredChartCard>
 
-      {/* ── Linear / log pair ───────────────────────────────────── */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <TimeFilteredChartCard
-          title="Capture vs. aquaculture · linear scale"
-          subtitle="Million tonnes per year. Modern dominance of aquaculture is clear."
-        >
-          {([yMin, yMax]) => {
-            const filtered = captureData
-              .filter(d => d.year >= yMin && d.year <= yMax)
-              .flatMap(d => [
-                { year: d.year, series: 'Capture',     value: d.capture_mt },
-                { year: d.year, series: 'Aquaculture', value: d.aquaculture_mt },
-              ])
-            return (
-              <LineChart
-                data={filtered}
-                yKey="value"
-                groupKey="series"
-                yLabel="Million tonnes / year"
-                height={340}
-              />
-            )
-          }}
-        </TimeFilteredChartCard>
-
-        <TimeFilteredChartCard
-          title="Capture vs. aquaculture · log scale"
-          subtitle="Same data on a log axis reveals the early decades of aquaculture growth."
-        >
-          {([yMin, yMax]) => {
-            const filtered = captureData
-              .filter(d => d.year >= yMin && d.year <= yMax)
-              .flatMap(d => [
-                { year: d.year, series: 'Capture',     value: d.capture_mt },
-                { year: d.year, series: 'Aquaculture', value: d.aquaculture_mt },
-              ])
-            return (
-              <LineChart
-                data={filtered}
-                yKey="value"
-                groupKey="series"
-                yLabel="Million tonnes / year (log)"
-                yLog
-                height={340}
-              />
-            )
-          }}
-        </TimeFilteredChartCard>
-      </div>
+      {/* ── Capture vs. aquaculture (log scale — the linear version was
+            uninformative because aquaculture dwarfs capture by ~30×) ───── */}
+      <TimeFilteredChartCard
+        title="Capture vs. aquaculture · log scale"
+        subtitle="Million tonnes per year on a log axis. Reveals the early decades of aquaculture growth and the long flat line of wild capture."
+      >
+        {([yMin, yMax]) => {
+          const filtered = captureData
+            .filter(d => d.year >= yMin && d.year <= yMax)
+            .flatMap(d => [
+              { year: d.year, series: 'Capture',     value: d.capture_mt },
+              { year: d.year, series: 'Aquaculture', value: d.aquaculture_mt },
+            ])
+          return (
+            <LineChart
+              data={filtered}
+              yKey="value"
+              groupKey="series"
+              yLabel="Million tonnes / year (log)"
+              yLog
+              height={380}
+            />
+          )
+        }}
+      </TimeFilteredChartCard>
     </div>
   )
 }

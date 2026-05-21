@@ -7,7 +7,6 @@ const OverviewTab       = lazy(() => import('./tabs/OverviewTab'))
 const CountriesTab      = lazy(() => import('./tabs/CountriesTab'))
 const RegionsTab        = lazy(() => import('./tabs/RegionsTab'))
 const SpeciesTab        = lazy(() => import('./tabs/SpeciesTab'))
-const EconomicsTab      = lazy(() => import('./tabs/EconomicsTab'))
 const PsiaPricingTab    = lazy(() => import('./tabs/PsiaPricingTab'))
 const PsiaDemandTab     = lazy(() => import('./tabs/PsiaDemandTab'))
 const KpiGrossOutputTab = lazy(() => import('./tabs/KpiGrossOutputTab'))
@@ -37,11 +36,6 @@ const TABS = {
     Component: SpeciesTab,
     title: 'Species & Aquaculture',
     subtitle: 'Which seaweeds are farmed where, and in what environment.',
-  },
-  economics: {
-    Component: EconomicsTab,
-    title: 'Economics',
-    subtitle: 'Prices, value-volume positioning, and species-level economics.',
   },
   eda: {
     Component: EdaTab,

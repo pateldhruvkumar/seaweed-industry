@@ -28,7 +28,6 @@ export default function SpeciesTab() {
   const { data: speciesData,  loading: l1 } = useData('species_totals.json')
   const { data: matrixData,   loading: l2 } = useData('country_species_matrix.json')
   const { data: envQtyData,   loading: l3 } = useData('env_quantity.json')
-  const { data: envShareData, loading: l4 } = useData('env_share.json')
 
   const [wStart, wEnd] = speciesWindow.split('-').map(Number)
 
@@ -52,7 +51,7 @@ export default function SpeciesTab() {
     }
   }, [matrixData, heatmapN])
 
-  if (l1 || l2 || l3 || l4)
+  if (l1 || l2 || l3)
     return <div className="p-12 text-center text-slate-400">Loading…</div>
 
   return (
@@ -99,17 +98,6 @@ export default function SpeciesTab() {
             valueKey="value_mt"
             yLabel="Million tonnes"
             yDtick={5}
-          />
-        )}
-      </TimeFilteredChartCard>
-
-      <TimeFilteredChartCard title="Aquaculture environment share (%)">
-        {([yMin, yMax]) => (
-          <AreaChart
-            data={envShareData.filter(d => d.year >= yMin && d.year <= yMax)}
-            groupKey="environment"
-            valueKey="share_pct"
-            yLabel="% of aquaculture quantity"
           />
         )}
       </TimeFilteredChartCard>

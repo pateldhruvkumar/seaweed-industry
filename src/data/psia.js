@@ -183,11 +183,29 @@ export const FORM_SPLIT = {
     { label: 'Dried / Processed', value: 80.6 },
     { label: 'Fresh / Wet',       value: 19.4 },
   ],
-  // Three corroborating sources for the "processed dominates" finding.
+  // Headline callout (donut number) + two narrower sub-segments. The three
+  // figures measure different things, so we surface that explicitly rather
+  // than implying they corroborate the same metric.
   callouts: [
-    { value: '80.6%', label: 'Dried / Processed', source: 'Global Market Insights 2026' },
-    { value: '62.1%', label: 'Frozen + Dried',    source: 'Mordor Intelligence 2025' },
-    { value: '69.9%', label: 'Powder form',       source: 'Fortune Business Insights 2026' },
+    {
+      kind: 'headline',
+      value: '80.6%',
+      label: 'Dried / Processed',
+      source: 'Global Market Insights 2026 — upper bound of a 60–80% range across reports',
+    },
+    { kind: 'group-header', text: 'Other slices of the processed segment' },
+    {
+      kind: 'sub',
+      value: '62.1%',
+      label: 'Frozen + Dried sub-segment',
+      source: 'Mordor Intelligence 2025',
+    },
+    {
+      kind: 'sub',
+      value: '69.9%',
+      label: 'Powder form sub-segment',
+      source: 'Fortune Business Insights 2026',
+    },
   ],
   notes: [
     '60 – 80% of commercial seaweed moves as dried or processed — consistent across 5+ reports.',

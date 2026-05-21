@@ -46,7 +46,6 @@ const NAV_GROUPS = [
     label: 'Production',
     items: [
       { id: 'species',   label: 'Species & Aquaculture', Icon: IconLeaf },
-      { id: 'economics', label: 'Economics',             Icon: IconDollar },
     ],
   },
   {

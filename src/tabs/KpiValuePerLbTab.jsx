@@ -4,6 +4,7 @@ import ChartCard from '../components/ChartCard'
 import TimeFilteredChartCard from '../components/TimeFilteredChartCard'
 import KpiCard from '../components/KpiCard'
 import LineChart from '../components/charts/LineChart'
+import ScatterChart from '../components/charts/ScatterChart'
 import DataTable from '../components/DataTable'
 import Dropdown from '../components/controls/Dropdown'
 import { BriefingHero } from '../components/psia'
@@ -46,12 +47,28 @@ const UNIT_FORMAT = {
   tonne: v => `$${Number(v).toLocaleString(undefined, { maximumFractionDigits: 0 })}`,
 }
 
+const SCATTER_WINDOW_OPTIONS = [
+  { label: '2020–2024', value: '2020-2024' },
+  { label: '2015–2019', value: '2015-2019' },
+  { label: '2010–2014', value: '2010-2014' },
+]
+
 export default function KpiValuePerLbTab() {
   const [unit, setUnit] = useState('lb')
+  const [scatterWindow, setScatterWindow] = useState('2020-2024')
 
   const { data: priceGlobal, loading: l1 } = useData('price_global.json')
   const { data: priceEnv, loading: l2 } = useData('price_by_env.json')
   const { data: speciesPrice, loading: l3 } = useData('species_price_table.json')
+  const { data: volVal, loading: l4 } = useData('country_value_volume.json')
+
+  const [scWStart, scWEnd] = scatterWindow.split('-').map(Number)
+  const scatter = useMemo(
+    () =>
+      volVal?.filter(d => d.year_start === scWStart && d.year_end === scWEnd) ??
+      [],
+    [volVal, scWStart, scWEnd],
+  )
 
   const divisor = UNIT_DIVISOR[unit]
   const fmt = UNIT_FORMAT[unit]
@@ -95,7 +112,7 @@ export default function KpiValuePerLbTab() {
     }
   }, [priceGlobal, divisor])
 
-  if (l1 || l2 || l3)
+  if (l1 || l2 || l3 || l4)
     return (
       <div className="space-y-6">
         <div className="rounded-2xl bg-slate-200/50 h-48 animate-pulse" />
@@ -232,6 +249,29 @@ export default function KpiValuePerLbTab() {
         subtitle="Sorted by implied unit price. Volume column is annual aquaculture tonnage of that species globally."
       >
         <DataTable columns={tableColumns} data={speciesTable.rows} />
+      </ChartCard>
+
+      {/* Country positioning scatter — moved here from the old Economics tab */}
+      <ChartCard
+        title="Country positioning: average annual volume vs. value (log-log scale)"
+        subtitle="Each point is a country's average aquaculture quantity vs value over the selected 5-year window."
+        controls={
+          <Dropdown
+            label="Period"
+            options={SCATTER_WINDOW_OPTIONS}
+            value={scatterWindow}
+            onChange={setScatterWindow}
+          />
+        }
+      >
+        <ScatterChart
+          data={scatter}
+          xKey="avg_tonnes"
+          yKey="avg_value_musd"
+          labelKey="country"
+          xLabel="Average annual quantity (tonnes, log scale)"
+          yLabel="Average annual value (million USD, log scale)"
+        />
       </ChartCard>
     </div>
   )

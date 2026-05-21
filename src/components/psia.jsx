@@ -233,20 +233,44 @@ export function FormSplitPanel({ donut, callouts }) {
       <DonutChart data={donut} colors={['#0d9488', '#cbd5e1']} height={300} />
 
       <div className="space-y-4">
-        {callouts.map((c, i) => (
-          <div
-            key={i}
-            className="flex items-baseline gap-4 border-b border-slate-100 last:border-b-0 pb-3 last:pb-0"
-          >
-            <p className="text-3xl font-bold text-brand-600 tabular-nums w-28 shrink-0">
-              {c.value}
-            </p>
-            <div className="min-w-0">
-              <p className="text-sm font-semibold text-slate-900">{c.label}</p>
-              <p className="text-xs text-slate-500 mt-0.5">{c.source}</p>
+        {callouts.map((c, i) => {
+          if (c.kind === 'group-header') {
+            return (
+              <p
+                key={i}
+                className="pt-2 text-[11px] font-semibold uppercase tracking-wider text-slate-500"
+              >
+                {c.text}
+              </p>
+            )
+          }
+          const isHeadline = c.kind === 'headline'
+          return (
+            <div
+              key={i}
+              className="flex items-baseline gap-4 border-b border-slate-100 last:border-b-0 pb-3 last:pb-0"
+            >
+              <p
+                className={
+                  isHeadline
+                    ? 'text-3xl font-bold text-brand-600 tabular-nums w-28 shrink-0'
+                    : 'text-2xl font-semibold text-slate-700 tabular-nums w-28 shrink-0'
+                }
+              >
+                {c.value}
+              </p>
+              <div className="min-w-0">
+                {isHeadline && (
+                  <p className="text-[10px] font-semibold uppercase tracking-wider text-brand-700 mb-0.5">
+                    Headline source
+                  </p>
+                )}
+                <p className="text-sm font-semibold text-slate-900">{c.label}</p>
+                <p className="text-xs text-slate-500 mt-0.5">{c.source}</p>
+              </div>
             </div>
-          </div>
-        ))}
+          )
+        })}
       </div>
     </div>
   )

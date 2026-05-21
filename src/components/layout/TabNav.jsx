@@ -3,7 +3,6 @@ import {
   IconGlobe,
   IconMap,
   IconLeaf,
-  IconDollar,
 } from '../../lib/icons'
 
 const TABS = [
@@ -11,7 +10,6 @@ const TABS = [
   { id: 'countries', label: 'Countries',             Icon: IconGlobe },
   { id: 'regions',   label: 'Regions',               Icon: IconMap },
   { id: 'species',   label: 'Species & Aquaculture', Icon: IconLeaf },
-  { id: 'economics', label: 'Economics',             Icon: IconDollar },
 ]
 
 /**
