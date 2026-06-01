@@ -1,5 +1,5 @@
 import { useData } from '../hooks/useData'
-import TimeFilteredChartCard from '../components/TimeFilteredChartCard'
+import VolumeTimeChartCard from '../components/VolumeTimeChartCard'
 import AreaChart from '../components/charts/AreaChart'
 
 export default function RegionsTab() {
@@ -11,27 +11,31 @@ export default function RegionsTab() {
 
   return (
     <div className="space-y-6">
-      <TimeFilteredChartCard title="Global seaweed production by continent (million tonnes)">
-        {([yMin, yMax]) => (
+      <VolumeTimeChartCard title="Global seaweed production by continent">
+        {([yMin, yMax], factor, volLabel) => (
           <AreaChart
-            data={contData.filter(d => d.year >= yMin && d.year <= yMax)}
+            data={contData
+              .filter(d => d.year >= yMin && d.year <= yMax)
+              .map(d => ({ ...d, value_mt: d.value_mt * factor }))}
             groupKey="continent"
             valueKey="value_mt"
-            yLabel="Million tonnes"
+            yLabel={volLabel}
           />
         )}
-      </TimeFilteredChartCard>
+      </VolumeTimeChartCard>
 
-      <TimeFilteredChartCard title="Global seaweed production by income group (million tonnes)">
-        {([yMin, yMax]) => (
+      <VolumeTimeChartCard title="Global seaweed production by income group">
+        {([yMin, yMax], factor, volLabel) => (
           <AreaChart
-            data={incomeData.filter(d => d.year >= yMin && d.year <= yMax)}
+            data={incomeData
+              .filter(d => d.year >= yMin && d.year <= yMax)
+              .map(d => ({ ...d, value_mt: d.value_mt * factor }))}
             groupKey="income_group"
             valueKey="value_mt"
-            yLabel="Million tonnes"
+            yLabel={volLabel}
           />
         )}
-      </TimeFilteredChartCard>
+      </VolumeTimeChartCard>
     </div>
   )
 }
