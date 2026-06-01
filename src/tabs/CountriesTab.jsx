@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import { useData } from '../hooks/useData'
-import ChartCard from '../components/ChartCard'
-import TimeFilteredChartCard from '../components/TimeFilteredChartCard'
+import VolumeChartCard from '../components/VolumeChartCard'
+import VolumeTimeChartCard from '../components/VolumeTimeChartCard'
 import BarChart from '../components/charts/BarChart'
 import LineChart from '../components/charts/LineChart'
 import Dropdown from '../components/controls/Dropdown'
@@ -65,8 +65,8 @@ export default function CountriesTab() {
 
   return (
     <div className="space-y-6">
-      <ChartCard
-        title={`Top ${topN} producing countries — ${winStart}–${winEnd} average (million tonnes/yr)`}
+      <VolumeChartCard
+        title={`Top ${topN} producing countries — ${winStart}–${winEnd} average`}
         controls={
           <>
             <Dropdown label="Window" options={WINDOW_OPTIONS} value={window} onChange={setWindow} />
@@ -74,16 +74,18 @@ export default function CountriesTab() {
           </>
         }
       >
-        <BarChart
-          data={barData}
-          labelKey="country"
-          valueKey="avg_tonnes_mt"
-          xLabel="Million tonnes / year"
-        />
-      </ChartCard>
+        {(factor, volLabel) => (
+          <BarChart
+            data={barData.map(d => ({ ...d, avg_tonnes_mt: d.avg_tonnes_mt * factor }))}
+            labelKey="country"
+            valueKey="avg_tonnes_mt"
+            xLabel={`${volLabel} / year`}
+          />
+        )}
+      </VolumeChartCard>
 
-      <TimeFilteredChartCard
-        title="Production trajectory of selected countries (million tonnes / year)"
+      <VolumeTimeChartCard
+        title="Production trajectory of selected countries"
         extraControls={
           <MultiSelect
             label="Countries"
@@ -93,20 +95,22 @@ export default function CountriesTab() {
           />
         }
       >
-        {([yMin, yMax]) => (
+        {([yMin, yMax], factor, volLabel) => (
           <LineChart
-            data={tsData.filter(
-              d =>
-                activeCountries.includes(d.country) &&
-                d.year >= yMin &&
-                d.year <= yMax,
-            )}
+            data={tsData
+              .filter(
+                d =>
+                  activeCountries.includes(d.country) &&
+                  d.year >= yMin &&
+                  d.year <= yMax,
+              )
+              .map(d => ({ ...d, value_mt: d.value_mt * factor }))}
             yKey="value_mt"
             groupKey="country"
-            yLabel="Million tonnes / year"
+            yLabel={`${volLabel} / year`}
           />
         )}
-      </TimeFilteredChartCard>
+      </VolumeTimeChartCard>
     </div>
   )
 }

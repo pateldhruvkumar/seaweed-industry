@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import { useData } from '../hooks/useData'
 import TimeFilteredChartCard from '../components/TimeFilteredChartCard'
+import VolumeTimeChartCard from '../components/VolumeTimeChartCard'
 import KpiCard from '../components/KpiCard'
 import AreaChart from '../components/charts/AreaChart'
 import LineChart from '../components/charts/LineChart'
@@ -129,19 +130,21 @@ export default function OverviewTab() {
       )}
 
       {/* ── Headline stacked area ───────────────────────────────── */}
-      <TimeFilteredChartCard
+      <VolumeTimeChartCard
         title="Global seaweed production by source"
-        subtitle="Million tonnes live weight, 1950–2024. Aquaculture (3 environments) now dwarfs wild capture."
+        subtitle="Live weight by year, 1950–2024. Aquaculture (3 environments) now dwarfs wild capture."
       >
-        {([yMin, yMax]) => (
+        {([yMin, yMax], factor, volLabel) => (
           <AreaChart
-            data={prodData.filter(d => d.year >= yMin && d.year <= yMax)}
+            data={prodData
+              .filter(d => d.year >= yMin && d.year <= yMax)
+              .map(d => ({ ...d, value_mt: d.value_mt * factor }))}
             groupKey="source"
             valueKey="value_mt"
-            yLabel="Million tonnes"
+            yLabel={volLabel}
           />
         )}
-      </TimeFilteredChartCard>
+      </VolumeTimeChartCard>
 
       {/* ── Aquaculture share over time ─────────────────────────── */}
       <TimeFilteredChartCard
@@ -159,52 +162,52 @@ export default function OverviewTab() {
 
       {/* ── Linear / log pair ───────────────────────────────────── */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <TimeFilteredChartCard
+        <VolumeTimeChartCard
           title="Capture vs. aquaculture · linear scale"
-          subtitle="Million tonnes per year. Modern dominance of aquaculture is clear."
+          subtitle="Volume per year. Modern dominance of aquaculture is clear."
         >
-          {([yMin, yMax]) => {
+          {([yMin, yMax], factor, volLabel) => {
             const filtered = captureData
               .filter(d => d.year >= yMin && d.year <= yMax)
               .flatMap(d => [
-                { year: d.year, series: 'Capture',     value: d.capture_mt },
-                { year: d.year, series: 'Aquaculture', value: d.aquaculture_mt },
+                { year: d.year, series: 'Capture',     value: d.capture_mt * factor },
+                { year: d.year, series: 'Aquaculture', value: d.aquaculture_mt * factor },
               ])
             return (
               <LineChart
                 data={filtered}
                 yKey="value"
                 groupKey="series"
-                yLabel="Million tonnes / year"
+                yLabel={`${volLabel} / year`}
                 height={340}
               />
             )
           }}
-        </TimeFilteredChartCard>
+        </VolumeTimeChartCard>
 
-        <TimeFilteredChartCard
+        <VolumeTimeChartCard
           title="Capture vs. aquaculture · log scale"
           subtitle="Same data on a log axis reveals the early decades of aquaculture growth."
         >
-          {([yMin, yMax]) => {
+          {([yMin, yMax], factor, volLabel) => {
             const filtered = captureData
               .filter(d => d.year >= yMin && d.year <= yMax)
               .flatMap(d => [
-                { year: d.year, series: 'Capture',     value: d.capture_mt },
-                { year: d.year, series: 'Aquaculture', value: d.aquaculture_mt },
+                { year: d.year, series: 'Capture',     value: d.capture_mt * factor },
+                { year: d.year, series: 'Aquaculture', value: d.aquaculture_mt * factor },
               ])
             return (
               <LineChart
                 data={filtered}
                 yKey="value"
                 groupKey="series"
-                yLabel="Million tonnes / year (log)"
+                yLabel={`${volLabel} / year (log)`}
                 yLog
                 height={340}
               />
             )
           }}
-        </TimeFilteredChartCard>
+        </VolumeTimeChartCard>
       </div>
     </div>
   )

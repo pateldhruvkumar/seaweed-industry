@@ -2,6 +2,8 @@ import { useMemo, useState } from 'react'
 import { useData } from '../hooks/useData'
 import ChartCard from '../components/ChartCard'
 import TimeFilteredChartCard from '../components/TimeFilteredChartCard'
+import VolumeChartCard from '../components/VolumeChartCard'
+import VolumeTimeChartCard from '../components/VolumeTimeChartCard'
 import BarChart from '../components/charts/BarChart'
 import Heatmap from '../components/charts/Heatmap'
 import AreaChart from '../components/charts/AreaChart'
@@ -57,8 +59,8 @@ export default function SpeciesTab() {
 
   return (
     <div className="space-y-6">
-      <ChartCard
-        title="Top 15 species / groups by output (million tonnes / year)"
+      <VolumeChartCard
+        title="Top 15 species / groups by output"
         controls={
           <Dropdown
             label="Period"
@@ -68,14 +70,16 @@ export default function SpeciesTab() {
           />
         }
       >
-        <BarChart
-          data={speciesBar}
-          labelKey="species"
-          valueKey="avg_tonnes_mt"
-          xLabel="Million tonnes / year"
-          xDtick={0.5}
-        />
-      </ChartCard>
+        {(factor, volLabel) => (
+          <BarChart
+            data={speciesBar.map(d => ({ ...d, avg_tonnes_mt: d.avg_tonnes_mt * factor }))}
+            labelKey="species"
+            valueKey="avg_tonnes_mt"
+            xLabel={`${volLabel} / year`}
+            xDtick={0.5 * factor}
+          />
+        )}
+      </VolumeChartCard>
 
       <ChartCard
         title="Country × species specialization — thousand tonnes / year"
@@ -91,17 +95,19 @@ export default function SpeciesTab() {
         <Heatmap data={heatmap} />
       </ChartCard>
 
-      <TimeFilteredChartCard title="Aquaculture quantity by environment (million tonnes / year)">
-        {([yMin, yMax]) => (
+      <VolumeTimeChartCard title="Aquaculture quantity by environment">
+        {([yMin, yMax], factor, volLabel) => (
           <AreaChart
-            data={envQtyData.filter(d => d.year >= yMin && d.year <= yMax)}
+            data={envQtyData
+              .filter(d => d.year >= yMin && d.year <= yMax)
+              .map(d => ({ ...d, value_mt: d.value_mt * factor }))}
             groupKey="environment"
             valueKey="value_mt"
-            yLabel="Million tonnes"
-            yDtick={5}
+            yLabel={volLabel}
+            yDtick={5 * factor}
           />
         )}
-      </TimeFilteredChartCard>
+      </VolumeTimeChartCard>
 
       <TimeFilteredChartCard title="Aquaculture environment share (%)">
         {([yMin, yMax]) => (
