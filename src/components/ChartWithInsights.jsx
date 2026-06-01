@@ -19,6 +19,7 @@ export default function ChartWithInsights({
   title,
   notes,
   takeaway,
+  legend,
   children,
 }) {
   return (
@@ -38,7 +39,7 @@ export default function ChartWithInsights({
       {/* Two-column body */}
       <div className="grid grid-cols-1 lg:grid-cols-[2fr,1fr] gap-6 p-6">
         <div className="min-w-0">{children}</div>
-        <InsightsList notes={notes} takeaway={takeaway} />
+        <InsightsList notes={notes} takeaway={takeaway} legend={legend} />
       </div>
     </section>
   )

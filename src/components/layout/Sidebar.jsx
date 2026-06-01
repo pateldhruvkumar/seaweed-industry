@@ -50,6 +50,12 @@ const NAV_GROUPS = [
     ],
   },
   {
+    label: 'Canada',
+    items: [
+      { id: 'canada-economics', label: 'Canada · Economics', Icon: IconMap },
+    ],
+  },
+  {
     // Names below are the verbatim KPI titles from the Market & End-Use
     // tracker — keep them intact so the dashboard ↔ tracker mapping is
     // unambiguous, even if individual labels are long enough to wrap.

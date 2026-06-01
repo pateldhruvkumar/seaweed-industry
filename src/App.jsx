@@ -14,6 +14,7 @@ const KpiGrossOutputTab = lazy(() => import('./tabs/KpiGrossOutputTab'))
 const KpiValuePerLbTab  = lazy(() => import('./tabs/KpiValuePerLbTab'))
 const KpiExportValueTab = lazy(() => import('./tabs/KpiExportValueTab'))
 const EdaTab            = lazy(() => import('./tabs/EdaTab'))
+const CanadaEconomicsTab = lazy(() => import('./tabs/CanadaEconomicsTab'))
 
 // Single source of truth for tab metadata. Sidebar uses `id`/`Icon`/`label`,
 // Topbar uses `title`/`subtitle` of the active tab.
@@ -47,6 +48,11 @@ const TABS = {
     Component: EdaTab,
     title: 'Exploratory Data Analysis',
     subtitle: 'Summary statistics, distributions, and structural views across the four FAO datasets.',
+  },
+  'canada-economics': {
+    Component: CanadaEconomicsTab,
+    title: 'Canada · Economics',
+    subtitle: 'Canadian Economic KPIs from StatCan, DFO and UN Comtrade — seaweed exports plus all-aquaculture context.',
   },
   'kpi-export-value': {
     Component: KpiExportValueTab,

@@ -441,4 +441,78 @@ for name, df in EDA_DATASETS:
     }
 write_json(eda_outliers, 'eda_outliers.json')
 
+# ═══════════════════════════════════════════════════════════════════════════
+#  CANADA economics (StatCan + UN Comtrade). See scripts/fetch_canada.py.
+#  Honest provenance: only the export series is seaweed-specific (HS 1212.21/.29);
+#  the StatCan series are ALL-aquaculture (no seaweed line) and are flagged as such
+#  in the UI. Dollar values in StatCan tables are scaled (see SCALAR_FACTOR).
+# ═══════════════════════════════════════════════════════════════════════════
+print('\nGenerating Canada JSON files:')
+SCALAR = {'units': 1.0, 'tens': 1e1, 'hundreds': 1e2, 'thousands': 1e3,
+          'millions': 1e6, 'billions': 1e9}
+
+
+def _to_musd(value, scalar_factor):
+    """StatCan VALUE × scalar → millions of dollars; None if suppressed/blank."""
+    v = pd.to_numeric(value, errors='coerce')
+    if pd.isna(v):
+        return None
+    return round(float(v) * SCALAR.get(str(scalar_factor), 1.0) / 1e6, 3)
+
+
+# ── canada_aqua_value_yearly.json — national value ($M) + volume (tonnes) ─────
+ca_pv = pd.read_csv(DATA_DIR / 'canada_aquaculture_production_value.csv')
+nat = ca_pv[(ca_pv['GEO'] == 'Canada') & (ca_pv['Finfish and shellfish'] == 'Total aquaculture')]
+val = nat[nat['Production'] == 'Dollars']
+vol = dict(zip(nat[nat['Production'] == 'Tonnes']['REF_DATE'],
+               pd.to_numeric(nat[nat['Production'] == 'Tonnes']['VALUE'], errors='coerce')))
+write_json(
+    [{'year': int(r['REF_DATE']),
+      'value_musd': _to_musd(r['VALUE'], r['SCALAR_FACTOR']),
+      'volume_tonnes': None if pd.isna(vol.get(r['REF_DATE'])) else int(vol[r['REF_DATE']])}
+     for _, r in val.sort_values('REF_DATE').iterrows()],
+    'canada_aqua_value_yearly.json',
+)
+
+# ── canada_aqua_value_by_province.json — latest-year value by province ────────
+latest_pv = int(ca_pv['REF_DATE'].max())
+prov = ca_pv[(ca_pv['GEO'] != 'Canada') & (ca_pv['Finfish and shellfish'] == 'Total aquaculture')
+             & (ca_pv['Production'] == 'Dollars') & (ca_pv['REF_DATE'] == latest_pv)]
+rows = [{'province': r['GEO'], 'value_musd': _to_musd(r['VALUE'], r['SCALAR_FACTOR'])}
+        for _, r in prov.iterrows()]
+rows = sorted([r for r in rows if r['value_musd'] is not None], key=lambda x: -x['value_musd'])
+write_json({'year': latest_pv, 'provinces': rows}, 'canada_aqua_value_by_province.json')
+
+# ── canada_valueadded.json — national value-added components over time ($M) ───
+ca_va = pd.read_csv(DATA_DIR / 'canada_aquaculture_valueadded.csv')
+va_nat = ca_va[ca_va['GEO'] == 'Canada']
+write_json(
+    [{'year': int(r['REF_DATE']), 'component': r['Output and input components'],
+      'value_musd': _to_musd(r['VALUE'], r['SCALAR_FACTOR'])}
+     for _, r in va_nat.sort_values('REF_DATE').iterrows()],
+    'canada_valueadded.json',
+)
+
+# ── canada_seaweed_exports.json — SEAWEED-SPECIFIC exports ($M, Comtrade) ─────
+ca_exp = pd.read_csv(DATA_DIR / 'canada_seaweed_exports.csv')
+write_json(
+    [{'year': int(r['year']),
+      'total_musd': round(r['total_usd'] / 1e6, 3),
+      'food_musd': round(r['hs_121221_usd'] / 1e6, 3),
+      'other_musd': round(r['hs_121229_usd'] / 1e6, 3)}
+     for _, r in ca_exp.sort_values('year').iterrows()],
+    'canada_seaweed_exports.json',
+)
+
+# ── canada_interprov_trade.json — fishery-product trade flows ($M) ────────────
+ca_tr = pd.read_csv(DATA_DIR / 'canada_interprovincial_trade.csv')
+tr_nat = ca_tr[(ca_tr['GEO'] == 'Canada')
+               & (ca_tr['Trade flow detail'].isin(['Interprovincial exports', 'International exports']))]
+write_json(
+    [{'year': int(r['REF_DATE']), 'flow': r['Trade flow detail'],
+      'value_musd': _to_musd(r['VALUE'], r['SCALAR_FACTOR'])}
+     for _, r in tr_nat.sort_values('REF_DATE').iterrows()],
+    'canada_interprov_trade.json',
+)
+
 print(f'\nDone — all JSON files written to {OUT_DIR}')

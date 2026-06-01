@@ -7,10 +7,35 @@
  *   notes    – array of strings (one per bullet)
  *   takeaway – optional string highlighted in a tinted block
  *   heading  – section heading (defaults to "Key Notes")
+ *   legend   – optional array of { color, label, desc } describing each series
+ *              in the chart, rendered as a colour-keyed guide above the notes.
  */
-export default function InsightsList({ notes = [], takeaway, heading = 'Key Notes' }) {
+export default function InsightsList({ notes = [], takeaway, heading = 'Key Notes', legend = [] }) {
   return (
     <div className="border-l border-slate-200 pl-6 py-1">
+      {legend.length > 0 && (
+        <div className="mb-5">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-700">
+            What each series means
+          </p>
+          <div className="h-px w-12 bg-brand-500 mt-1.5 mb-3" />
+          <ul className="space-y-2.5 text-sm text-slate-700 leading-snug">
+            {legend.map((l, i) => (
+              <li key={i} className="flex gap-2">
+                <span
+                  className="mt-1 w-3 h-3 rounded-sm shrink-0"
+                  style={{ backgroundColor: l.color }}
+                />
+                <span>
+                  <span className="font-semibold text-slate-800">{l.label}</span>
+                  {l.desc ? ` — ${l.desc}` : ''}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
       <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-700">
         {heading}
       </p>

@@ -1,0 +1,2245 @@
+REF_DATE,GEO,Finfish and shellfish,Production,SCALAR_FACTOR,VALUE,STATUS
+1991,Canada,Total aquaculture,Tonnes,units,49594,
+1991,Canada,Total aquaculture,Dollars,thousands,233559,
+1991,Canada,Total finfish,Tonnes,units,39004,
+1991,Canada,Total finfish,Dollars,thousands,221328,
+1991,Canada,Total shellfish,Tonnes,units,10590,
+1991,Canada,Total shellfish,Dollars,thousands,12231,
+1991,Newfoundland and Labrador,Total aquaculture,Tonnes,units,474,
+1991,Newfoundland and Labrador,Total aquaculture,Dollars,thousands,1108,
+1991,Newfoundland and Labrador,Total finfish,Tonnes,units,152,
+1991,Newfoundland and Labrador,Total finfish,Dollars,thousands,540,
+1991,Newfoundland and Labrador,Total shellfish,Tonnes,units,322,
+1991,Newfoundland and Labrador,Total shellfish,Dollars,thousands,568,
+1991,Prince Edward Island,Total aquaculture,Tonnes,units,5141,
+1991,Prince Edward Island,Total aquaculture,Dollars,thousands,6973,
+1991,Prince Edward Island,Total finfish,Tonnes,units,37,
+1991,Prince Edward Island,Total finfish,Dollars,thousands,309,
+1991,Prince Edward Island,Total shellfish,Tonnes,units,5104,
+1991,Prince Edward Island,Total shellfish,Dollars,thousands,6664,
+1991,Nova Scotia,Total aquaculture,Tonnes,units,1242,
+1991,Nova Scotia,Total aquaculture,Dollars,thousands,6397,
+1991,Nova Scotia,Total finfish,Tonnes,units,1010,
+1991,Nova Scotia,Total finfish,Dollars,thousands,6095,
+1991,Nova Scotia,Total shellfish,Tonnes,units,232,
+1991,Nova Scotia,Total shellfish,Dollars,thousands,302,
+1991,New Brunswick,Total aquaculture,Tonnes,units,9463,
+1991,New Brunswick,Total aquaculture,Dollars,thousands,82270,
+1991,New Brunswick,Total finfish,Tonnes,units,9272,
+1991,New Brunswick,Total finfish,Dollars,thousands,81700,
+1991,New Brunswick,Total shellfish,Tonnes,units,191,
+1991,New Brunswick,Total shellfish,Dollars,thousands,570,
+1991,Quebec,Total aquaculture,Tonnes,units,1590,
+1991,Quebec,Total aquaculture,Dollars,thousands,9746,
+1991,Quebec,Total finfish,Tonnes,units,1500,
+1991,Quebec,Total finfish,Dollars,thousands,9640,
+1991,Quebec,Total shellfish,Tonnes,units,90,
+1991,Quebec,Total shellfish,Dollars,thousands,106,
+1991,Ontario,Total aquaculture,Tonnes,units,2380,
+1991,Ontario,Total aquaculture,Dollars,thousands,10900,
+1991,Ontario,Total finfish,Tonnes,units,2380,
+1991,Ontario,Total finfish,Dollars,thousands,10900,
+1991,Ontario,Total shellfish,Tonnes,units,0,
+1991,Ontario,Total shellfish,Dollars,thousands,0,
+1991,Manitoba,Total aquaculture,Tonnes,units,,x
+1991,Manitoba,Total aquaculture,Dollars,thousands,,x
+1991,Manitoba,Total finfish,Tonnes,units,,x
+1991,Manitoba,Total finfish,Dollars,thousands,,x
+1991,Manitoba,Total shellfish,Tonnes,units,0,
+1991,Manitoba,Total shellfish,Dollars,thousands,0,
+1991,Saskatchewan,Total aquaculture,Tonnes,units,110,
+1991,Saskatchewan,Total aquaculture,Dollars,thousands,240,
+1991,Saskatchewan,Total finfish,Tonnes,units,110,
+1991,Saskatchewan,Total finfish,Dollars,thousands,240,
+1991,Saskatchewan,Total shellfish,Tonnes,units,0,
+1991,Saskatchewan,Total shellfish,Dollars,thousands,0,
+1991,Alberta,Total aquaculture,Tonnes,units,34,
+1991,Alberta,Total aquaculture,Dollars,thousands,187,
+1991,Alberta,Total finfish,Tonnes,units,34,
+1991,Alberta,Total finfish,Dollars,thousands,187,
+1991,Alberta,Total shellfish,Tonnes,units,0,
+1991,Alberta,Total shellfish,Dollars,thousands,0,
+1991,British Columbia,Total aquaculture,Tonnes,units,29126,
+1991,British Columbia,Total aquaculture,Dollars,thousands,115472,
+1991,British Columbia,Total finfish,Tonnes,units,24475,
+1991,British Columbia,Total finfish,Dollars,thousands,111451,
+1991,British Columbia,Total shellfish,Tonnes,units,4651,
+1991,British Columbia,Total shellfish,Dollars,thousands,4021,
+1992,Canada,Total aquaculture,Tonnes,units,46931,
+1992,Canada,Total aquaculture,Dollars,thousands,244014,
+1992,Canada,Total finfish,Tonnes,units,35808,
+1992,Canada,Total finfish,Dollars,thousands,231068,
+1992,Canada,Total shellfish,Tonnes,units,11123,
+1992,Canada,Total shellfish,Dollars,thousands,12946,
+1992,Newfoundland and Labrador,Total aquaculture,Tonnes,units,328,
+1992,Newfoundland and Labrador,Total aquaculture,Dollars,thousands,1366,
+1992,Newfoundland and Labrador,Total finfish,Tonnes,units,166,
+1992,Newfoundland and Labrador,Total finfish,Dollars,thousands,1219,
+1992,Newfoundland and Labrador,Total shellfish,Tonnes,units,162,
+1992,Newfoundland and Labrador,Total shellfish,Dollars,thousands,147,
+1992,Prince Edward Island,Total aquaculture,Tonnes,units,5406,
+1992,Prince Edward Island,Total aquaculture,Dollars,thousands,7265,
+1992,Prince Edward Island,Total finfish,Tonnes,units,42,
+1992,Prince Edward Island,Total finfish,Dollars,thousands,244,
+1992,Prince Edward Island,Total shellfish,Tonnes,units,5364,
+1992,Prince Edward Island,Total shellfish,Dollars,thousands,7021,
+1992,Nova Scotia,Total aquaculture,Tonnes,units,1217,
+1992,Nova Scotia,Total aquaculture,Dollars,thousands,6633,
+1992,Nova Scotia,Total finfish,Tonnes,units,744,
+1992,Nova Scotia,Total finfish,Dollars,thousands,6048,
+1992,Nova Scotia,Total shellfish,Tonnes,units,473,
+1992,Nova Scotia,Total shellfish,Dollars,thousands,585,
+1992,New Brunswick,Total aquaculture,Tonnes,units,10614,
+1992,New Brunswick,Total aquaculture,Dollars,thousands,85230,
+1992,New Brunswick,Total finfish,Tonnes,units,10375,
+1992,New Brunswick,Total finfish,Dollars,thousands,84800,
+1992,New Brunswick,Total shellfish,Tonnes,units,239,
+1992,New Brunswick,Total shellfish,Dollars,thousands,430,
+1992,Quebec,Total aquaculture,Tonnes,units,1512,
+1992,Quebec,Total aquaculture,Dollars,thousands,7388,
+1992,Quebec,Total finfish,Tonnes,units,1425,
+1992,Quebec,Total finfish,Dollars,thousands,7224,
+1992,Quebec,Total shellfish,Tonnes,units,87,
+1992,Quebec,Total shellfish,Dollars,thousands,164,
+1992,Ontario,Total aquaculture,Tonnes,units,2820,
+1992,Ontario,Total aquaculture,Dollars,thousands,14100,
+1992,Ontario,Total finfish,Tonnes,units,2820,
+1992,Ontario,Total finfish,Dollars,thousands,14100,
+1992,Ontario,Total shellfish,Tonnes,units,0,
+1992,Ontario,Total shellfish,Dollars,thousands,0,
+1992,Manitoba,Total aquaculture,Tonnes,units,,x
+1992,Manitoba,Total aquaculture,Dollars,thousands,,x
+1992,Manitoba,Total finfish,Tonnes,units,,x
+1992,Manitoba,Total finfish,Dollars,thousands,,x
+1992,Manitoba,Total shellfish,Tonnes,units,0,
+1992,Manitoba,Total shellfish,Dollars,thousands,0,
+1992,Saskatchewan,Total aquaculture,Tonnes,units,160,
+1992,Saskatchewan,Total aquaculture,Dollars,thousands,540,
+1992,Saskatchewan,Total finfish,Tonnes,units,160,
+1992,Saskatchewan,Total finfish,Dollars,thousands,540,
+1992,Saskatchewan,Total shellfish,Tonnes,units,0,
+1992,Saskatchewan,Total shellfish,Dollars,thousands,0,
+1992,Alberta,Total aquaculture,Tonnes,units,96,
+1992,Alberta,Total aquaculture,Dollars,thousands,420,
+1992,Alberta,Total finfish,Tonnes,units,96,
+1992,Alberta,Total finfish,Dollars,thousands,420,
+1992,Alberta,Total shellfish,Tonnes,units,0,
+1992,Alberta,Total shellfish,Dollars,thousands,0,
+1992,British Columbia,Total aquaculture,Tonnes,units,24689,
+1992,British Columbia,Total aquaculture,Dollars,thousands,120441,
+1992,British Columbia,Total finfish,Tonnes,units,19891,
+1992,British Columbia,Total finfish,Dollars,thousands,115842,
+1992,British Columbia,Total shellfish,Tonnes,units,4798,
+1992,British Columbia,Total shellfish,Dollars,thousands,4599,
+1993,Canada,Total aquaculture,Tonnes,units,53927,
+1993,Canada,Total aquaculture,Dollars,thousands,277604,
+1993,Canada,Total finfish,Tonnes,units,42349,
+1993,Canada,Total finfish,Dollars,thousands,263942,
+1993,Canada,Total shellfish,Tonnes,units,11578,
+1993,Canada,Total shellfish,Dollars,thousands,13662,
+1993,Newfoundland and Labrador,Total aquaculture,Tonnes,units,445,
+1993,Newfoundland and Labrador,Total aquaculture,Dollars,thousands,2114,
+1993,Newfoundland and Labrador,Total finfish,Tonnes,units,218,
+1993,Newfoundland and Labrador,Total finfish,Dollars,thousands,1913,
+1993,Newfoundland and Labrador,Total shellfish,Tonnes,units,227,
+1993,Newfoundland and Labrador,Total shellfish,Dollars,thousands,201,
+1993,Prince Edward Island,Total aquaculture,Tonnes,units,5680,
+1993,Prince Edward Island,Total aquaculture,Dollars,thousands,7244,
+1993,Prince Edward Island,Total finfish,Tonnes,units,35,
+1993,Prince Edward Island,Total finfish,Dollars,thousands,247,
+1993,Prince Edward Island,Total shellfish,Tonnes,units,5645,
+1993,Prince Edward Island,Total shellfish,Dollars,thousands,6997,
+1993,Nova Scotia,Total aquaculture,Tonnes,units,1415,
+1993,Nova Scotia,Total aquaculture,Dollars,thousands,7930,
+1993,Nova Scotia,Total finfish,Tonnes,units,1135,
+1993,Nova Scotia,Total finfish,Dollars,thousands,7400,
+1993,Nova Scotia,Total shellfish,Tonnes,units,280,
+1993,Nova Scotia,Total shellfish,Dollars,thousands,530,
+1993,New Brunswick,Total aquaculture,Tonnes,units,10795,
+1993,New Brunswick,Total aquaculture,Dollars,thousands,92280,
+1993,New Brunswick,Total finfish,Tonnes,units,10525,
+1993,New Brunswick,Total finfish,Dollars,thousands,91680,
+1993,New Brunswick,Total shellfish,Tonnes,units,270,
+1993,New Brunswick,Total shellfish,Dollars,thousands,600,
+1993,Quebec,Total aquaculture,Tonnes,units,1458,
+1993,Quebec,Total aquaculture,Dollars,thousands,7299,
+1993,Quebec,Total finfish,Tonnes,units,1424,
+1993,Quebec,Total finfish,Dollars,thousands,7224,
+1993,Quebec,Total shellfish,Tonnes,units,34,
+1993,Quebec,Total shellfish,Dollars,thousands,75,
+1993,Ontario,Total aquaculture,Tonnes,units,3020,
+1993,Ontario,Total aquaculture,Dollars,thousands,15280,
+1993,Ontario,Total finfish,Tonnes,units,3020,
+1993,Ontario,Total finfish,Dollars,thousands,15280,
+1993,Ontario,Total shellfish,Tonnes,units,0,
+1993,Ontario,Total shellfish,Dollars,thousands,0,
+1993,Manitoba,Total aquaculture,Tonnes,units,,x
+1993,Manitoba,Total aquaculture,Dollars,thousands,,x
+1993,Manitoba,Total finfish,Tonnes,units,,x
+1993,Manitoba,Total finfish,Dollars,thousands,,x
+1993,Manitoba,Total shellfish,Tonnes,units,0,
+1993,Manitoba,Total shellfish,Dollars,thousands,0,
+1993,Saskatchewan,Total aquaculture,Tonnes,units,160,
+1993,Saskatchewan,Total aquaculture,Dollars,thousands,540,
+1993,Saskatchewan,Total finfish,Tonnes,units,160,
+1993,Saskatchewan,Total finfish,Dollars,thousands,540,
+1993,Saskatchewan,Total shellfish,Tonnes,units,0,
+1993,Saskatchewan,Total shellfish,Dollars,thousands,0,
+1993,Alberta,Total aquaculture,Tonnes,units,127,
+1993,Alberta,Total aquaculture,Dollars,thousands,560,
+1993,Alberta,Total finfish,Tonnes,units,127,
+1993,Alberta,Total finfish,Dollars,thousands,560,
+1993,Alberta,Total shellfish,Tonnes,units,0,
+1993,Alberta,Total shellfish,Dollars,thousands,0,
+1993,British Columbia,Total aquaculture,Tonnes,units,30728,
+1993,British Columbia,Total aquaculture,Dollars,thousands,143659,
+1993,British Columbia,Total finfish,Tonnes,units,25606,
+1993,British Columbia,Total finfish,Dollars,thousands,138400,
+1993,British Columbia,Total shellfish,Tonnes,units,5122,
+1993,British Columbia,Total shellfish,Dollars,thousands,5259,
+1994,Canada,Total aquaculture,Tonnes,units,57147,
+1994,Canada,Total aquaculture,Dollars,thousands,301992,
+1994,Canada,Total finfish,Tonnes,units,42119,
+1994,Canada,Total finfish,Dollars,thousands,283082,
+1994,Canada,Total shellfish,Tonnes,units,15028,
+1994,Canada,Total shellfish,Dollars,thousands,18910,
+1994,Newfoundland and Labrador,Total aquaculture,Tonnes,units,792,
+1994,Newfoundland and Labrador,Total aquaculture,Dollars,thousands,2510,
+1994,Newfoundland and Labrador,Total finfish,Tonnes,units,380,
+1994,Newfoundland and Labrador,Total finfish,Dollars,thousands,2137,
+1994,Newfoundland and Labrador,Total shellfish,Tonnes,units,412,
+1994,Newfoundland and Labrador,Total shellfish,Dollars,thousands,373,
+1994,Prince Edward Island,Total aquaculture,Tonnes,units,8016,
+1994,Prince Edward Island,Total aquaculture,Dollars,thousands,10008,
+1994,Prince Edward Island,Total finfish,Tonnes,units,31,
+1994,Prince Edward Island,Total finfish,Dollars,thousands,213,
+1994,Prince Edward Island,Total shellfish,Tonnes,units,7985,
+1994,Prince Edward Island,Total shellfish,Dollars,thousands,9795,
+1994,Nova Scotia,Total aquaculture,Tonnes,units,1282,
+1994,Nova Scotia,Total aquaculture,Dollars,thousands,5690,
+1994,Nova Scotia,Total finfish,Tonnes,units,734,
+1994,Nova Scotia,Total finfish,Dollars,thousands,4728,
+1994,Nova Scotia,Total shellfish,Tonnes,units,548,
+1994,Nova Scotia,Total shellfish,Dollars,thousands,962,
+1994,New Brunswick,Total aquaculture,Tonnes,units,12657,
+1994,New Brunswick,Total aquaculture,Dollars,thousands,95720,
+1994,New Brunswick,Total finfish,Tonnes,units,12166,
+1994,New Brunswick,Total finfish,Dollars,thousands,94638,
+1994,New Brunswick,Total shellfish,Tonnes,units,491,
+1994,New Brunswick,Total shellfish,Dollars,thousands,1082,
+1994,Quebec,Total aquaculture,Tonnes,units,1533,
+1994,Quebec,Total aquaculture,Dollars,thousands,9083,
+1994,Quebec,Total finfish,Tonnes,units,1500,
+1994,Quebec,Total finfish,Dollars,thousands,9000,
+1994,Quebec,Total shellfish,Tonnes,units,33,
+1994,Quebec,Total shellfish,Dollars,thousands,83,
+1994,Ontario,Total aquaculture,Tonnes,units,3200,
+1994,Ontario,Total aquaculture,Dollars,thousands,16192,
+1994,Ontario,Total finfish,Tonnes,units,3200,
+1994,Ontario,Total finfish,Dollars,thousands,16192,
+1994,Ontario,Total shellfish,Tonnes,units,0,
+1994,Ontario,Total shellfish,Dollars,thousands,0,
+1994,Manitoba,Total aquaculture,Tonnes,units,,x
+1994,Manitoba,Total aquaculture,Dollars,thousands,,x
+1994,Manitoba,Total finfish,Tonnes,units,,x
+1994,Manitoba,Total finfish,Dollars,thousands,,x
+1994,Manitoba,Total shellfish,Tonnes,units,0,
+1994,Manitoba,Total shellfish,Dollars,thousands,0,
+1994,Saskatchewan,Total aquaculture,Tonnes,units,260,
+1994,Saskatchewan,Total aquaculture,Dollars,thousands,1160,
+1994,Saskatchewan,Total finfish,Tonnes,units,260,
+1994,Saskatchewan,Total finfish,Dollars,thousands,1160,
+1994,Saskatchewan,Total shellfish,Tonnes,units,0,
+1994,Saskatchewan,Total shellfish,Dollars,thousands,0,
+1994,Alberta,Total aquaculture,Tonnes,units,45,
+1994,Alberta,Total aquaculture,Dollars,thousands,275,
+1994,Alberta,Total finfish,Tonnes,units,45,
+1994,Alberta,Total finfish,Dollars,thousands,275,
+1994,Alberta,Total shellfish,Tonnes,units,0,
+1994,Alberta,Total shellfish,Dollars,thousands,0,
+1994,British Columbia,Total aquaculture,Tonnes,units,29291,
+1994,British Columbia,Total aquaculture,Dollars,thousands,160806,
+1994,British Columbia,Total finfish,Tonnes,units,23732,
+1994,British Columbia,Total finfish,Dollars,thousands,154191,
+1994,British Columbia,Total shellfish,Tonnes,units,5559,
+1994,British Columbia,Total shellfish,Dollars,thousands,6615,
+1995,Canada,Total aquaculture,Tonnes,units,66269,
+1995,Canada,Total aquaculture,Dollars,thousands,341957,
+1995,Canada,Total finfish,Tonnes,units,48854,
+1995,Canada,Total finfish,Dollars,thousands,317753,
+1995,Canada,Total shellfish,Tonnes,units,17415,
+1995,Canada,Total shellfish,Dollars,thousands,24204,
+1995,Newfoundland and Labrador,Total aquaculture,Tonnes,units,1006,
+1995,Newfoundland and Labrador,Total aquaculture,Dollars,thousands,3448,
+1995,Newfoundland and Labrador,Total finfish,Tonnes,units,580,
+1995,Newfoundland and Labrador,Total finfish,Dollars,thousands,3083,
+1995,Newfoundland and Labrador,Total shellfish,Tonnes,units,426,
+1995,Newfoundland and Labrador,Total shellfish,Dollars,thousands,365,
+1995,Prince Edward Island,Total aquaculture,Tonnes,units,9320,
+1995,Prince Edward Island,Total aquaculture,Dollars,thousands,12198,
+1995,Prince Edward Island,Total finfish,Tonnes,units,59,
+1995,Prince Edward Island,Total finfish,Dollars,thousands,532,
+1995,Prince Edward Island,Total shellfish,Tonnes,units,9261,
+1995,Prince Edward Island,Total shellfish,Dollars,thousands,11666,
+1995,Nova Scotia,Total aquaculture,Tonnes,units,1808,
+1995,Nova Scotia,Total aquaculture,Dollars,thousands,7618,
+1995,Nova Scotia,Total finfish,Tonnes,units,1120,
+1995,Nova Scotia,Total finfish,Dollars,thousands,6282,
+1995,Nova Scotia,Total shellfish,Tonnes,units,688,
+1995,Nova Scotia,Total shellfish,Dollars,thousands,1336,
+1995,New Brunswick,Total aquaculture,Tonnes,units,15791,
+1995,New Brunswick,Total aquaculture,Dollars,thousands,118911,
+1995,New Brunswick,Total finfish,Tonnes,units,15040,
+1995,New Brunswick,Total finfish,Dollars,thousands,117573,
+1995,New Brunswick,Total shellfish,Tonnes,units,751,
+1995,New Brunswick,Total shellfish,Dollars,thousands,1338,
+1995,Quebec,Total aquaculture,Tonnes,units,999,
+1995,Quebec,Total aquaculture,Dollars,thousands,3745,
+1995,Quebec,Total finfish,Tonnes,units,883,
+1995,Quebec,Total finfish,Dollars,thousands,3652,
+1995,Quebec,Total shellfish,Tonnes,units,116,
+1995,Quebec,Total shellfish,Dollars,thousands,93,
+1995,Ontario,Total aquaculture,Tonnes,units,3300,
+1995,Ontario,Total aquaculture,Dollars,thousands,13250,
+1995,Ontario,Total finfish,Tonnes,units,3300,
+1995,Ontario,Total finfish,Dollars,thousands,13250,
+1995,Ontario,Total shellfish,Tonnes,units,0,
+1995,Ontario,Total shellfish,Dollars,thousands,0,
+1995,Manitoba,Total aquaculture,Tonnes,units,,x
+1995,Manitoba,Total aquaculture,Dollars,thousands,,x
+1995,Manitoba,Total finfish,Tonnes,units,,x
+1995,Manitoba,Total finfish,Dollars,thousands,,x
+1995,Manitoba,Total shellfish,Tonnes,units,0,
+1995,Manitoba,Total shellfish,Dollars,thousands,0,
+1995,Saskatchewan,Total aquaculture,Tonnes,units,322,
+1995,Saskatchewan,Total aquaculture,Dollars,thousands,1420,
+1995,Saskatchewan,Total finfish,Tonnes,units,322,
+1995,Saskatchewan,Total finfish,Dollars,thousands,1420,
+1995,Saskatchewan,Total shellfish,Tonnes,units,0,
+1995,Saskatchewan,Total shellfish,Dollars,thousands,0,
+1995,Alberta,Total aquaculture,Tonnes,units,109,
+1995,Alberta,Total aquaculture,Dollars,thousands,660,
+1995,Alberta,Total finfish,Tonnes,units,109,
+1995,Alberta,Total finfish,Dollars,thousands,660,
+1995,Alberta,Total shellfish,Tonnes,units,0,
+1995,Alberta,Total shellfish,Dollars,thousands,0,
+1995,British Columbia,Total aquaculture,Tonnes,units,33533,
+1995,British Columbia,Total aquaculture,Dollars,thousands,180206,
+1995,British Columbia,Total finfish,Tonnes,units,27360,
+1995,British Columbia,Total finfish,Dollars,thousands,170800,
+1995,British Columbia,Total shellfish,Tonnes,units,6173,
+1995,British Columbia,Total shellfish,Dollars,thousands,9406,
+1996,Canada,Total aquaculture,Tonnes,units,72572,
+1996,Canada,Total aquaculture,Dollars,thousands,356241,
+1996,Canada,Total finfish,Tonnes,units,53499,
+1996,Canada,Total finfish,Dollars,thousands,327721,
+1996,Canada,Total shellfish,Tonnes,units,19073,
+1996,Canada,Total shellfish,Dollars,thousands,28520,
+1996,Newfoundland and Labrador,Total aquaculture,Tonnes,units,1450,
+1996,Newfoundland and Labrador,Total aquaculture,Dollars,thousands,5485,
+1996,Newfoundland and Labrador,Total finfish,Tonnes,units,1053,
+1996,Newfoundland and Labrador,Total finfish,Dollars,thousands,5029,
+1996,Newfoundland and Labrador,Total shellfish,Tonnes,units,397,
+1996,Newfoundland and Labrador,Total shellfish,Dollars,thousands,456,
+1996,Prince Edward Island,Total aquaculture,Tonnes,units,10557,
+1996,Prince Edward Island,Total aquaculture,Dollars,thousands,14444,
+1996,Prince Edward Island,Total finfish,Tonnes,units,64,
+1996,Prince Edward Island,Total finfish,Dollars,thousands,806,
+1996,Prince Edward Island,Total shellfish,Tonnes,units,10493,
+1996,Prince Edward Island,Total shellfish,Dollars,thousands,13638,
+1996,Nova Scotia,Total aquaculture,Tonnes,units,2284,
+1996,Nova Scotia,Total aquaculture,Dollars,thousands,10421,
+1996,Nova Scotia,Total finfish,Tonnes,units,1511,
+1996,Nova Scotia,Total finfish,Dollars,thousands,8337,
+1996,Nova Scotia,Total shellfish,Tonnes,units,773,
+1996,Nova Scotia,Total shellfish,Dollars,thousands,2084,
+1996,New Brunswick,Total aquaculture,Tonnes,units,17663,
+1996,New Brunswick,Total aquaculture,Dollars,thousands,129818,
+1996,New Brunswick,Total finfish,Tonnes,units,16930,
+1996,New Brunswick,Total finfish,Dollars,thousands,128522,
+1996,New Brunswick,Total shellfish,Tonnes,units,733,
+1996,New Brunswick,Total shellfish,Dollars,thousands,1296,
+1996,Quebec,Total aquaculture,Tonnes,units,963,
+1996,Quebec,Total aquaculture,Dollars,thousands,4359,
+1996,Quebec,Total finfish,Tonnes,units,887,
+1996,Quebec,Total finfish,Dollars,thousands,4257,
+1996,Quebec,Total shellfish,Tonnes,units,76,
+1996,Quebec,Total shellfish,Dollars,thousands,102,
+1996,Ontario,Total aquaculture,Tonnes,units,4240,
+1996,Ontario,Total aquaculture,Dollars,thousands,19600,
+1996,Ontario,Total finfish,Tonnes,units,4240,
+1996,Ontario,Total finfish,Dollars,thousands,19600,
+1996,Ontario,Total shellfish,Tonnes,units,0,
+1996,Ontario,Total shellfish,Dollars,thousands,0,
+1996,Manitoba,Total aquaculture,Tonnes,units,,x
+1996,Manitoba,Total aquaculture,Dollars,thousands,,x
+1996,Manitoba,Total finfish,Tonnes,units,,x
+1996,Manitoba,Total finfish,Dollars,thousands,,x
+1996,Manitoba,Total shellfish,Tonnes,units,0,
+1996,Manitoba,Total shellfish,Dollars,thousands,0,
+1996,Saskatchewan,Total aquaculture,Tonnes,units,775,
+1996,Saskatchewan,Total aquaculture,Dollars,thousands,3420,
+1996,Saskatchewan,Total finfish,Tonnes,units,775,
+1996,Saskatchewan,Total finfish,Dollars,thousands,3420,
+1996,Saskatchewan,Total shellfish,Tonnes,units,0,
+1996,Saskatchewan,Total shellfish,Dollars,thousands,0,
+1996,Alberta,Total aquaculture,Tonnes,units,110,
+1996,Alberta,Total aquaculture,Dollars,thousands,660,
+1996,Alberta,Total finfish,Tonnes,units,110,
+1996,Alberta,Total finfish,Dollars,thousands,660,
+1996,Alberta,Total shellfish,Tonnes,units,0,
+1996,Alberta,Total shellfish,Dollars,thousands,0,
+1996,British Columbia,Total aquaculture,Tonnes,units,34431,
+1996,British Columbia,Total aquaculture,Dollars,thousands,167266,
+1996,British Columbia,Total finfish,Tonnes,units,27830,
+1996,British Columbia,Total finfish,Dollars,thousands,156322,
+1996,British Columbia,Total shellfish,Tonnes,units,6601,
+1996,British Columbia,Total shellfish,Dollars,thousands,10944,
+1997,Canada,Total aquaculture,Tonnes,units,81843,
+1997,Canada,Total aquaculture,Dollars,thousands,385447,
+1997,Canada,Total finfish,Tonnes,units,63918,
+1997,Canada,Total finfish,Dollars,thousands,359655,
+1997,Canada,Total shellfish,Tonnes,units,17925,
+1997,Canada,Total shellfish,Dollars,thousands,25792,
+1997,Newfoundland and Labrador,Total aquaculture,Tonnes,units,1750,
+1997,Newfoundland and Labrador,Total aquaculture,Dollars,thousands,5011,
+1997,Newfoundland and Labrador,Total finfish,Tonnes,units,982,
+1997,Newfoundland and Labrador,Total finfish,Dollars,thousands,4282,
+1997,Newfoundland and Labrador,Total shellfish,Tonnes,units,768,
+1997,Newfoundland and Labrador,Total shellfish,Dollars,thousands,729,
+1997,Prince Edward Island,Total aquaculture,Tonnes,units,11496,
+1997,Prince Edward Island,Total aquaculture,Dollars,thousands,16128,
+1997,Prince Edward Island,Total finfish,Tonnes,units,94,
+1997,Prince Edward Island,Total finfish,Dollars,thousands,851,
+1997,Prince Edward Island,Total shellfish,Tonnes,units,11402,
+1997,Prince Edward Island,Total shellfish,Dollars,thousands,15277,
+1997,Nova Scotia,Total aquaculture,Tonnes,units,2631,
+1997,Nova Scotia,Total aquaculture,Dollars,thousands,11127,
+1997,Nova Scotia,Total finfish,Tonnes,units,1736,
+1997,Nova Scotia,Total finfish,Dollars,thousands,9203,
+1997,Nova Scotia,Total shellfish,Tonnes,units,895,
+1997,Nova Scotia,Total shellfish,Dollars,thousands,1924,
+1997,New Brunswick,Total aquaculture,Tonnes,units,19537,
+1997,New Brunswick,Total aquaculture,Dollars,thousands,145691,
+1997,New Brunswick,Total finfish,Tonnes,units,19135,
+1997,New Brunswick,Total finfish,Dollars,thousands,145016,
+1997,New Brunswick,Total shellfish,Tonnes,units,402,
+1997,New Brunswick,Total shellfish,Dollars,thousands,675,
+1997,Quebec,Total aquaculture,Tonnes,units,794,
+1997,Quebec,Total aquaculture,Dollars,thousands,3458,
+1997,Quebec,Total finfish,Tonnes,units,667,
+1997,Quebec,Total finfish,Dollars,thousands,3282,
+1997,Quebec,Total shellfish,Tonnes,units,127,
+1997,Quebec,Total shellfish,Dollars,thousands,176,
+1997,Ontario,Total aquaculture,Tonnes,units,3725,
+1997,Ontario,Total aquaculture,Dollars,thousands,15900,
+1997,Ontario,Total finfish,Tonnes,units,3725,
+1997,Ontario,Total finfish,Dollars,thousands,15900,
+1997,Ontario,Total shellfish,Tonnes,units,0,
+1997,Ontario,Total shellfish,Dollars,thousands,0,
+1997,Manitoba,Total aquaculture,Tonnes,units,5,
+1997,Manitoba,Total aquaculture,Dollars,thousands,23,
+1997,Manitoba,Total finfish,Tonnes,units,5,
+1997,Manitoba,Total finfish,Dollars,thousands,23,
+1997,Manitoba,Total shellfish,Tonnes,units,0,
+1997,Manitoba,Total shellfish,Dollars,thousands,0,
+1997,Saskatchewan,Total aquaculture,Tonnes,units,721,
+1997,Saskatchewan,Total aquaculture,Dollars,thousands,3175,
+1997,Saskatchewan,Total finfish,Tonnes,units,721,
+1997,Saskatchewan,Total finfish,Dollars,thousands,3175,
+1997,Saskatchewan,Total shellfish,Tonnes,units,0,
+1997,Saskatchewan,Total shellfish,Dollars,thousands,0,
+1997,Alberta,Total aquaculture,Tonnes,units,3,
+1997,Alberta,Total aquaculture,Dollars,thousands,12,
+1997,Alberta,Total finfish,Tonnes,units,3,
+1997,Alberta,Total finfish,Dollars,thousands,12,
+1997,Alberta,Total shellfish,Tonnes,units,0,
+1997,Alberta,Total shellfish,Dollars,thousands,0,
+1997,British Columbia,Total aquaculture,Tonnes,units,41008,
+1997,British Columbia,Total aquaculture,Dollars,thousands,183777,
+1997,British Columbia,Total finfish,Tonnes,units,36677,
+1997,British Columbia,Total finfish,Dollars,thousands,176766,
+1997,British Columbia,Total shellfish,Tonnes,units,4331,
+1997,British Columbia,Total shellfish,Dollars,thousands,7011,
+1998,Canada,Total aquaculture,Tonnes,units,91499,
+1998,Canada,Total aquaculture,Dollars,thousands,430414,
+1998,Canada,Total finfish,Tonnes,units,67554,
+1998,Canada,Total finfish,Dollars,thousands,396107,
+1998,Canada,Total shellfish,Tonnes,units,23945,
+1998,Canada,Total shellfish,Dollars,thousands,34307,
+1998,Newfoundland and Labrador,Total aquaculture,Tonnes,units,2727,
+1998,Newfoundland and Labrador,Total aquaculture,Dollars,thousands,10941,
+1998,Newfoundland and Labrador,Total finfish,Tonnes,units,1765,
+1998,Newfoundland and Labrador,Total finfish,Dollars,thousands,10041,
+1998,Newfoundland and Labrador,Total shellfish,Tonnes,units,962,
+1998,Newfoundland and Labrador,Total shellfish,Dollars,thousands,900,
+1998,Prince Edward Island,Total aquaculture,Tonnes,units,14532,
+1998,Prince Edward Island,Total aquaculture,Dollars,thousands,20439,
+1998,Prince Edward Island,Total finfish,Tonnes,units,99,
+1998,Prince Edward Island,Total finfish,Dollars,thousands,882,
+1998,Prince Edward Island,Total shellfish,Tonnes,units,14433,
+1998,Prince Edward Island,Total shellfish,Dollars,thousands,19557,
+1998,Nova Scotia,Total aquaculture,Tonnes,units,4066,
+1998,Nova Scotia,Total aquaculture,Dollars,thousands,19437,
+1998,Nova Scotia,Total finfish,Tonnes,units,2823,
+1998,Nova Scotia,Total finfish,Dollars,thousands,16635,
+1998,Nova Scotia,Total shellfish,Tonnes,units,1243,
+1998,Nova Scotia,Total shellfish,Dollars,thousands,2802,
+1998,New Brunswick,Total aquaculture,Tonnes,units,15748,
+1998,New Brunswick,Total aquaculture,Dollars,thousands,115021,
+1998,New Brunswick,Total finfish,Tonnes,units,14782,
+1998,New Brunswick,Total finfish,Dollars,thousands,112778,
+1998,New Brunswick,Total shellfish,Tonnes,units,966,
+1998,New Brunswick,Total shellfish,Dollars,thousands,2243,
+1998,Quebec,Total aquaculture,Tonnes,units,1013,
+1998,Quebec,Total aquaculture,Dollars,thousands,4565,
+1998,Quebec,Total finfish,Tonnes,units,895,
+1998,Quebec,Total finfish,Dollars,thousands,4391,
+1998,Quebec,Total shellfish,Tonnes,units,118,
+1998,Quebec,Total shellfish,Dollars,thousands,174,
+1998,Ontario,Total aquaculture,Tonnes,units,3580,
+1998,Ontario,Total aquaculture,Dollars,thousands,14200,
+1998,Ontario,Total finfish,Tonnes,units,3580,
+1998,Ontario,Total finfish,Dollars,thousands,14200,
+1998,Ontario,Total shellfish,Tonnes,units,0,
+1998,Ontario,Total shellfish,Dollars,thousands,0,
+1998,Manitoba,Total aquaculture,Tonnes,units,14,
+1998,Manitoba,Total aquaculture,Dollars,thousands,62,
+1998,Manitoba,Total finfish,Tonnes,units,14,
+1998,Manitoba,Total finfish,Dollars,thousands,62,
+1998,Manitoba,Total shellfish,Tonnes,units,0,
+1998,Manitoba,Total shellfish,Dollars,thousands,0,
+1998,Saskatchewan,Total aquaculture,Tonnes,units,875,
+1998,Saskatchewan,Total aquaculture,Dollars,thousands,3859,
+1998,Saskatchewan,Total finfish,Tonnes,units,875,
+1998,Saskatchewan,Total finfish,Dollars,thousands,3859,
+1998,Saskatchewan,Total shellfish,Tonnes,units,0,
+1998,Saskatchewan,Total shellfish,Dollars,thousands,0,
+1998,Alberta,Total aquaculture,Tonnes,units,,x
+1998,Alberta,Total aquaculture,Dollars,thousands,,x
+1998,Alberta,Total finfish,Tonnes,units,,x
+1998,Alberta,Total finfish,Dollars,thousands,,x
+1998,Alberta,Total shellfish,Tonnes,units,0,
+1998,Alberta,Total shellfish,Dollars,thousands,0,
+1998,British Columbia,Total aquaculture,Tonnes,units,48483,
+1998,British Columbia,Total aquaculture,Dollars,thousands,237831,
+1998,British Columbia,Total finfish,Tonnes,units,42260,
+1998,British Columbia,Total finfish,Dollars,thousands,229200,
+1998,British Columbia,Total shellfish,Tonnes,units,6223,
+1998,British Columbia,Total shellfish,Dollars,thousands,8631,
+1999,Canada,Total aquaculture,Tonnes,units,113253,
+1999,Canada,Total aquaculture,Dollars,thousands,558365,
+1999,Canada,Total finfish,Tonnes,units,86172,
+1999,Canada,Total finfish,Dollars,thousands,517352,
+1999,Canada,Total shellfish,Tonnes,units,27081,
+1999,Canada,Total shellfish,Dollars,thousands,41013,
+1999,Newfoundland and Labrador,Total aquaculture,Tonnes,units,4187,
+1999,Newfoundland and Labrador,Total aquaculture,Dollars,thousands,17744,
+1999,Newfoundland and Labrador,Total finfish,Tonnes,units,2487,
+1999,Newfoundland and Labrador,Total finfish,Dollars,thousands,13944,
+1999,Newfoundland and Labrador,Total shellfish,Tonnes,units,1700,
+1999,Newfoundland and Labrador,Total shellfish,Dollars,thousands,3800,
+1999,Prince Edward Island,Total aquaculture,Tonnes,units,16395,
+1999,Prince Edward Island,Total aquaculture,Dollars,thousands,22706,
+1999,Prince Edward Island,Total finfish,Tonnes,units,82,
+1999,Prince Edward Island,Total finfish,Dollars,thousands,786,
+1999,Prince Edward Island,Total shellfish,Tonnes,units,16313,
+1999,Prince Edward Island,Total shellfish,Dollars,thousands,21920,
+1999,Nova Scotia,Total aquaculture,Tonnes,units,6477,
+1999,Nova Scotia,Total aquaculture,Dollars,thousands,27883,
+1999,Nova Scotia,Total finfish,Tonnes,units,4715,
+1999,Nova Scotia,Total finfish,Dollars,thousands,24374,
+1999,Nova Scotia,Total shellfish,Tonnes,units,1762,
+1999,Nova Scotia,Total shellfish,Dollars,thousands,3509,
+1999,New Brunswick,Total aquaculture,Tonnes,units,23501,
+1999,New Brunswick,Total aquaculture,Dollars,thousands,157686,
+1999,New Brunswick,Total finfish,Tonnes,units,22550,
+1999,New Brunswick,Total finfish,Dollars,thousands,156100,
+1999,New Brunswick,Total shellfish,Tonnes,units,951,
+1999,New Brunswick,Total shellfish,Dollars,thousands,1586,
+1999,Quebec,Total aquaculture,Tonnes,units,1407,
+1999,Quebec,Total aquaculture,Dollars,thousands,6404,
+1999,Quebec,Total finfish,Tonnes,units,1185,
+1999,Quebec,Total finfish,Dollars,thousands,6121,
+1999,Quebec,Total shellfish,Tonnes,units,222,
+1999,Quebec,Total shellfish,Dollars,thousands,283,
+1999,Ontario,Total aquaculture,Tonnes,units,3850,
+1999,Ontario,Total aquaculture,Dollars,thousands,15500,
+1999,Ontario,Total finfish,Tonnes,units,3850,
+1999,Ontario,Total finfish,Dollars,thousands,15500,
+1999,Ontario,Total shellfish,Tonnes,units,0,
+1999,Ontario,Total shellfish,Dollars,thousands,0,
+1999,Manitoba,Total aquaculture,Tonnes,units,4,
+1999,Manitoba,Total aquaculture,Dollars,thousands,16,
+1999,Manitoba,Total finfish,Tonnes,units,4,
+1999,Manitoba,Total finfish,Dollars,thousands,16,
+1999,Manitoba,Total shellfish,Tonnes,units,0,
+1999,Manitoba,Total shellfish,Dollars,thousands,0,
+1999,Saskatchewan,Total aquaculture,Tonnes,units,875,
+1999,Saskatchewan,Total aquaculture,Dollars,thousands,3859,
+1999,Saskatchewan,Total finfish,Tonnes,units,875,
+1999,Saskatchewan,Total finfish,Dollars,thousands,3859,
+1999,Saskatchewan,Total shellfish,Tonnes,units,0,
+1999,Saskatchewan,Total shellfish,Dollars,thousands,0,
+1999,Alberta,Total aquaculture,Tonnes,units,,x
+1999,Alberta,Total aquaculture,Dollars,thousands,,x
+1999,Alberta,Total finfish,Tonnes,units,,x
+1999,Alberta,Total finfish,Dollars,thousands,,x
+1999,Alberta,Total shellfish,Tonnes,units,0,
+1999,Alberta,Total shellfish,Dollars,thousands,0,
+1999,British Columbia,Total aquaculture,Tonnes,units,55933,
+1999,British Columbia,Total aquaculture,Dollars,thousands,300915,
+1999,British Columbia,Total finfish,Tonnes,units,49800,
+1999,British Columbia,Total finfish,Dollars,thousands,291000,
+1999,British Columbia,Total shellfish,Tonnes,units,6133,
+1999,British Columbia,Total shellfish,Dollars,thousands,9915,
+2000,Canada,Total aquaculture,Tonnes,units,127336,
+2000,Canada,Total aquaculture,Dollars,thousands,601326,
+2000,Canada,Total finfish,Tonnes,units,95003,
+2000,Canada,Total finfish,Dollars,thousands,548843,
+2000,Canada,Total shellfish,Tonnes,units,32333,
+2000,Canada,Total shellfish,Dollars,thousands,52483,
+2000,Newfoundland and Labrador,Total aquaculture,Tonnes,units,2563,
+2000,Newfoundland and Labrador,Total aquaculture,Dollars,thousands,13156,
+2000,Newfoundland and Labrador,Total finfish,Tonnes,units,1512,
+2000,Newfoundland and Labrador,Total finfish,Dollars,thousands,10456,
+2000,Newfoundland and Labrador,Total shellfish,Tonnes,units,1051,
+2000,Newfoundland and Labrador,Total shellfish,Dollars,thousands,2700,
+2000,Prince Edward Island,Total aquaculture,Tonnes,units,20702,
+2000,Prince Edward Island,Total aquaculture,Dollars,thousands,28760,
+2000,Prince Edward Island,Total finfish,Tonnes,units,76,
+2000,Prince Edward Island,Total finfish,Dollars,thousands,733,
+2000,Prince Edward Island,Total shellfish,Tonnes,units,20626,
+2000,Prince Edward Island,Total shellfish,Dollars,thousands,28027,
+2000,Nova Scotia,Total aquaculture,Tonnes,units,10456,
+2000,Nova Scotia,Total aquaculture,Dollars,thousands,43476,
+2000,Nova Scotia,Total finfish,Tonnes,units,8106,
+2000,Nova Scotia,Total finfish,Dollars,thousands,38288,
+2000,Nova Scotia,Total shellfish,Tonnes,units,2350,
+2000,Nova Scotia,Total shellfish,Dollars,thousands,5188,
+2000,New Brunswick,Total aquaculture,Tonnes,units,31020,
+2000,New Brunswick,Total aquaculture,Dollars,thousands,190125,
+2000,New Brunswick,Total finfish,Tonnes,units,29650,
+2000,New Brunswick,Total finfish,Dollars,thousands,187600,
+2000,New Brunswick,Total shellfish,Tonnes,units,1370,
+2000,New Brunswick,Total shellfish,Dollars,thousands,2525,
+2000,Quebec,Total aquaculture,Tonnes,units,1354,
+2000,Quebec,Total aquaculture,Dollars,thousands,5912,
+2000,Quebec,Total finfish,Tonnes,units,982,
+2000,Quebec,Total finfish,Dollars,thousands,5414,
+2000,Quebec,Total shellfish,Tonnes,units,372,
+2000,Quebec,Total shellfish,Dollars,thousands,498,
+2000,Ontario,Total aquaculture,Tonnes,units,4000,
+2000,Ontario,Total aquaculture,Dollars,thousands,16500,
+2000,Ontario,Total finfish,Tonnes,units,4000,
+2000,Ontario,Total finfish,Dollars,thousands,16500,
+2000,Ontario,Total shellfish,Tonnes,units,0,
+2000,Ontario,Total shellfish,Dollars,thousands,0,
+2000,Manitoba,Total aquaculture,Tonnes,units,7,
+2000,Manitoba,Total aquaculture,Dollars,thousands,27,
+2000,Manitoba,Total finfish,Tonnes,units,7,
+2000,Manitoba,Total finfish,Dollars,thousands,27,
+2000,Manitoba,Total shellfish,Tonnes,units,0,
+2000,Manitoba,Total shellfish,Dollars,thousands,0,
+2000,Saskatchewan,Total aquaculture,Tonnes,units,875,
+2000,Saskatchewan,Total aquaculture,Dollars,thousands,3859,
+2000,Saskatchewan,Total finfish,Tonnes,units,875,
+2000,Saskatchewan,Total finfish,Dollars,thousands,3859,
+2000,Saskatchewan,Total shellfish,Tonnes,units,0,
+2000,Saskatchewan,Total shellfish,Dollars,thousands,0,
+2000,Alberta,Total aquaculture,Tonnes,units,,x
+2000,Alberta,Total aquaculture,Dollars,thousands,,x
+2000,Alberta,Total finfish,Tonnes,units,,x
+2000,Alberta,Total finfish,Dollars,thousands,,x
+2000,Alberta,Total shellfish,Tonnes,units,0,
+2000,Alberta,Total shellfish,Dollars,thousands,0,
+2000,British Columbia,Total aquaculture,Tonnes,units,55664,
+2000,British Columbia,Total aquaculture,Dollars,thousands,292445,
+2000,British Columbia,Total finfish,Tonnes,units,49100,
+2000,British Columbia,Total finfish,Dollars,thousands,278900,
+2000,British Columbia,Total shellfish,Tonnes,units,6564,
+2000,British Columbia,Total shellfish,Dollars,thousands,13545,
+2001,Canada,Total aquaculture,Tonnes,units,153112,
+2001,Canada,Total aquaculture,Dollars,thousands,597403,
+2001,Canada,Total finfish,Tonnes,units,118122,
+2001,Canada,Total finfish,Dollars,thousands,538232,
+2001,Canada,Total shellfish,Tonnes,units,34916,
+2001,Canada,Total shellfish,Dollars,thousands,59171,
+2001,Newfoundland and Labrador,Total aquaculture,Tonnes,units,4470,
+2001,Newfoundland and Labrador,Total aquaculture,Dollars,thousands,19406,
+2001,Newfoundland and Labrador,Total finfish,Tonnes,units,3018,
+2001,Newfoundland and Labrador,Total finfish,Dollars,thousands,15477,
+2001,Newfoundland and Labrador,Total shellfish,Tonnes,units,1452,
+2001,Newfoundland and Labrador,Total shellfish,Dollars,thousands,3929,
+2001,Prince Edward Island,Total aquaculture,Tonnes,units,20338,
+2001,Prince Edward Island,Total aquaculture,Dollars,thousands,30244,
+2001,Prince Edward Island,Total finfish,Tonnes,units,88,
+2001,Prince Edward Island,Total finfish,Dollars,thousands,811,
+2001,Prince Edward Island,Total shellfish,Tonnes,units,20250,
+2001,Prince Edward Island,Total shellfish,Dollars,thousands,29433,
+2001,Nova Scotia,Total aquaculture,Tonnes,units,8351,
+2001,Nova Scotia,Total aquaculture,Dollars,thousands,36152,
+2001,Nova Scotia,Total finfish,Tonnes,units,5866,
+2001,Nova Scotia,Total finfish,Dollars,thousands,29661,
+2001,Nova Scotia,Total shellfish,Tonnes,units,2485,
+2001,Nova Scotia,Total shellfish,Dollars,thousands,6491,
+2001,New Brunswick,Total aquaculture,Tonnes,units,35633,
+2001,New Brunswick,Total aquaculture,Dollars,thousands,187434,
+2001,New Brunswick,Total finfish,Tonnes,units,34450,
+2001,New Brunswick,Total finfish,Dollars,thousands,186110,
+2001,New Brunswick,Total shellfish,Tonnes,units,1183,
+2001,New Brunswick,Total shellfish,Dollars,thousands,1324,
+2001,Quebec,Total aquaculture,Tonnes,units,1362,
+2001,Quebec,Total aquaculture,Dollars,thousands,4841,
+2001,Quebec,Total finfish,Tonnes,units,723,
+2001,Quebec,Total finfish,Dollars,thousands,3931,
+2001,Quebec,Total shellfish,Tonnes,units,639,
+2001,Quebec,Total shellfish,Dollars,thousands,910,
+2001,Ontario,Total aquaculture,Tonnes,units,4335,
+2001,Ontario,Total aquaculture,Dollars,thousands,17900,
+2001,Ontario,Total finfish,Tonnes,units,4335,
+2001,Ontario,Total finfish,Dollars,thousands,17900,
+2001,Ontario,Total shellfish,Tonnes,units,0,
+2001,Ontario,Total shellfish,Dollars,thousands,0,
+2001,Manitoba,Total aquaculture,Tonnes,units,16,
+2001,Manitoba,Total aquaculture,Dollars,thousands,171,
+2001,Manitoba,Total finfish,Tonnes,units,16,
+2001,Manitoba,Total finfish,Dollars,thousands,171,
+2001,Manitoba,Total shellfish,Tonnes,units,0,
+2001,Manitoba,Total shellfish,Dollars,thousands,0,
+2001,Saskatchewan,Total aquaculture,Tonnes,units,989,
+2001,Saskatchewan,Total aquaculture,Dollars,thousands,4971,
+2001,Saskatchewan,Total finfish,Tonnes,units,989,
+2001,Saskatchewan,Total finfish,Dollars,thousands,4971,
+2001,Saskatchewan,Total shellfish,Tonnes,units,0,
+2001,Saskatchewan,Total shellfish,Dollars,thousands,0,
+2001,Alberta,Total aquaculture,Tonnes,units,,x
+2001,Alberta,Total aquaculture,Dollars,thousands,,x
+2001,Alberta,Total finfish,Tonnes,units,,x
+2001,Alberta,Total finfish,Dollars,thousands,,x
+2001,Alberta,Total shellfish,Tonnes,units,,x
+2001,Alberta,Total shellfish,Dollars,thousands,,x
+2001,British Columbia,Total aquaculture,Tonnes,units,77007,
+2001,British Columbia,Total aquaculture,Dollars,thousands,288484,
+2001,British Columbia,Total finfish,Tonnes,units,68100,
+2001,British Columbia,Total finfish,Dollars,thousands,271400,
+2001,British Columbia,Total shellfish,Tonnes,units,8907,
+2001,British Columbia,Total shellfish,Dollars,thousands,17084,
+2002,Canada,Total aquaculture,Tonnes,units,170668,
+2002,Canada,Total aquaculture,Dollars,thousands,621789,
+2002,Canada,Total finfish,Tonnes,units,136348,
+2002,Canada,Total finfish,Dollars,thousands,563871,
+2002,Canada,Total shellfish,Tonnes,units,34301,
+2002,Canada,Total shellfish,Dollars,thousands,57918,
+2002,Newfoundland and Labrador,Total aquaculture,Tonnes,units,4797,
+2002,Newfoundland and Labrador,Total aquaculture,Dollars,thousands,21332,
+2002,Newfoundland and Labrador,Total finfish,Tonnes,units,3097,
+2002,Newfoundland and Labrador,Total finfish,Dollars,thousands,15832,
+2002,Newfoundland and Labrador,Total shellfish,Tonnes,units,1700,
+2002,Newfoundland and Labrador,Total shellfish,Dollars,thousands,5500,
+2002,Prince Edward Island,Total aquaculture,Tonnes,units,19554,
+2002,Prince Edward Island,Total aquaculture,Dollars,thousands,28821,
+2002,Prince Edward Island,Total finfish,Tonnes,units,33,
+2002,Prince Edward Island,Total finfish,Dollars,thousands,892,
+2002,Prince Edward Island,Total shellfish,Tonnes,units,19521,
+2002,Prince Edward Island,Total shellfish,Dollars,thousands,27929,
+2002,Nova Scotia,Total aquaculture,Tonnes,units,4605,
+2002,Nova Scotia,Total aquaculture,Dollars,thousands,28221,
+2002,Nova Scotia,Total finfish,Tonnes,units,2772,
+2002,Nova Scotia,Total finfish,Dollars,thousands,21319,
+2002,Nova Scotia,Total shellfish,Tonnes,units,1833,
+2002,Nova Scotia,Total shellfish,Dollars,thousands,6902,
+2002,New Brunswick,Total aquaculture,Tonnes,units,41322,
+2002,New Brunswick,Total aquaculture,Dollars,thousands,202574,
+2002,New Brunswick,Total finfish,Tonnes,units,39450,
+2002,New Brunswick,Total finfish,Dollars,thousands,200600,
+2002,New Brunswick,Total shellfish,Tonnes,units,1872,
+2002,New Brunswick,Total shellfish,Dollars,thousands,1974,
+2002,Quebec,Total aquaculture,Tonnes,units,1184,
+2002,Quebec,Total aquaculture,Dollars,thousands,4106,
+2002,Quebec,Total finfish,Tonnes,units,603,
+2002,Quebec,Total finfish,Dollars,thousands,3273,
+2002,Quebec,Total shellfish,Tonnes,units,581,
+2002,Quebec,Total shellfish,Dollars,thousands,833,
+2002,Ontario,Total aquaculture,Tonnes,units,4535,
+2002,Ontario,Total aquaculture,Dollars,thousands,19700,
+2002,Ontario,Total finfish,Tonnes,units,4535,
+2002,Ontario,Total finfish,Dollars,thousands,19700,
+2002,Ontario,Total shellfish,Tonnes,units,0,
+2002,Ontario,Total shellfish,Dollars,thousands,0,
+2002,Manitoba,Total aquaculture,Tonnes,units,63,
+2002,Manitoba,Total aquaculture,Dollars,thousands,248,
+2002,Manitoba,Total finfish,Tonnes,units,63,
+2002,Manitoba,Total finfish,Dollars,thousands,248,
+2002,Manitoba,Total shellfish,Tonnes,units,0,
+2002,Manitoba,Total shellfish,Dollars,thousands,0,
+2002,Saskatchewan,Total aquaculture,Tonnes,units,914,
+2002,Saskatchewan,Total aquaculture,Dollars,thousands,4607,
+2002,Saskatchewan,Total finfish,Tonnes,units,914,
+2002,Saskatchewan,Total finfish,Dollars,thousands,4607,
+2002,Saskatchewan,Total shellfish,Tonnes,units,0,
+2002,Saskatchewan,Total shellfish,Dollars,thousands,0,
+2002,Alberta,Total aquaculture,Tonnes,units,,x
+2002,Alberta,Total aquaculture,Dollars,thousands,,x
+2002,Alberta,Total finfish,Tonnes,units,,x
+2002,Alberta,Total finfish,Dollars,thousands,,x
+2002,Alberta,Total shellfish,Tonnes,units,,x
+2002,Alberta,Total shellfish,Dollars,thousands,,x
+2002,British Columbia,Total aquaculture,Tonnes,units,93094,
+2002,British Columbia,Total aquaculture,Dollars,thousands,304380,
+2002,British Columbia,Total finfish,Tonnes,units,84300,
+2002,British Columbia,Total finfish,Dollars,thousands,289600,
+2002,British Columbia,Total shellfish,Tonnes,units,8794,
+2002,British Columbia,Total shellfish,Dollars,thousands,14780,
+2003,Canada,Total aquaculture,Tonnes,units,150484,
+2003,Canada,Total aquaculture,Dollars,thousands,586349,
+2003,Canada,Total finfish,Tonnes,units,114062,
+2003,Canada,Total finfish,Dollars,thousands,526124,
+2003,Canada,Total shellfish,Tonnes,units,36412,
+2003,Canada,Total shellfish,Dollars,thousands,60225,
+2003,Newfoundland and Labrador,Total aquaculture,Tonnes,units,3910,
+2003,Newfoundland and Labrador,Total aquaculture,Dollars,thousands,17224,
+2003,Newfoundland and Labrador,Total finfish,Tonnes,units,2610,
+2003,Newfoundland and Labrador,Total finfish,Dollars,thousands,13024,
+2003,Newfoundland and Labrador,Total shellfish,Tonnes,units,1300,
+2003,Newfoundland and Labrador,Total shellfish,Dollars,thousands,4200,
+2003,Prince Edward Island,Total aquaculture,Tonnes,units,19886,
+2003,Prince Edward Island,Total aquaculture,Dollars,thousands,31880,
+2003,Prince Edward Island,Total finfish,Tonnes,units,24,
+2003,Prince Edward Island,Total finfish,Dollars,thousands,852,
+2003,Prince Edward Island,Total shellfish,Tonnes,units,19862,
+2003,Prince Edward Island,Total shellfish,Dollars,thousands,31028,
+2003,Nova Scotia,Total aquaculture,Tonnes,units,7890,
+2003,Nova Scotia,Total aquaculture,Dollars,thousands,39964,
+2003,Nova Scotia,Total finfish,Tonnes,units,5664,
+2003,Nova Scotia,Total finfish,Dollars,thousands,36202,
+2003,Nova Scotia,Total shellfish,Tonnes,units,2226,
+2003,Nova Scotia,Total shellfish,Dollars,thousands,3762,
+2003,New Brunswick,Total aquaculture,Tonnes,units,36453,
+2003,New Brunswick,Total aquaculture,Dollars,thousands,188200,
+2003,New Brunswick,Total finfish,Tonnes,units,33650,
+2003,New Brunswick,Total finfish,Dollars,thousands,185100,
+2003,New Brunswick,Total shellfish,Tonnes,units,2803,
+2003,New Brunswick,Total shellfish,Dollars,thousands,3100,
+2003,Quebec,Total aquaculture,Tonnes,units,999,
+2003,Quebec,Total aquaculture,Dollars,thousands,2980,
+2003,Quebec,Total finfish,Tonnes,units,357,
+2003,Quebec,Total finfish,Dollars,thousands,1978,
+2003,Quebec,Total shellfish,Tonnes,units,642,
+2003,Quebec,Total shellfish,Dollars,thousands,1002,
+2003,Ontario,Total aquaculture,Tonnes,units,4485,
+2003,Ontario,Total aquaculture,Dollars,thousands,17900,
+2003,Ontario,Total finfish,Tonnes,units,4485,
+2003,Ontario,Total finfish,Dollars,thousands,17900,
+2003,Ontario,Total shellfish,Tonnes,units,0,
+2003,Ontario,Total shellfish,Dollars,thousands,0,
+2003,Manitoba,Total aquaculture,Tonnes,units,46,
+2003,Manitoba,Total aquaculture,Dollars,thousands,263,
+2003,Manitoba,Total finfish,Tonnes,units,46,
+2003,Manitoba,Total finfish,Dollars,thousands,263,
+2003,Manitoba,Total shellfish,Tonnes,units,0,
+2003,Manitoba,Total shellfish,Dollars,thousands,0,
+2003,Saskatchewan,Total aquaculture,Tonnes,units,,x
+2003,Saskatchewan,Total aquaculture,Dollars,thousands,,x
+2003,Saskatchewan,Total finfish,Tonnes,units,,x
+2003,Saskatchewan,Total finfish,Dollars,thousands,,x
+2003,Saskatchewan,Total shellfish,Tonnes,units,,x
+2003,Saskatchewan,Total shellfish,Dollars,thousands,,x
+2003,Alberta,Total aquaculture,Tonnes,units,,x
+2003,Alberta,Total aquaculture,Dollars,thousands,,x
+2003,Alberta,Total finfish,Tonnes,units,,x
+2003,Alberta,Total finfish,Dollars,thousands,,x
+2003,Alberta,Total shellfish,Tonnes,units,,x
+2003,Alberta,Total shellfish,Dollars,thousands,,x
+2003,British Columbia,Total aquaculture,Tonnes,units,75126,
+2003,British Columbia,Total aquaculture,Dollars,thousands,273531,
+2003,British Columbia,Total finfish,Tonnes,units,65547,
+2003,British Columbia,Total finfish,Dollars,thousands,256398,
+2003,British Columbia,Total shellfish,Tonnes,units,9579,
+2003,British Columbia,Total shellfish,Dollars,thousands,17133,
+2004,Canada,Total aquaculture,Tonnes,units,141934,
+2004,Canada,Total aquaculture,Dollars,thousands,536677,
+2004,Canada,Total finfish,Tonnes,units,100212,
+2004,Canada,Total finfish,Dollars,thousands,477087,
+2004,Canada,Total shellfish,Tonnes,units,38387,
+2004,Canada,Total shellfish,Dollars,thousands,59590,
+2004,Newfoundland and Labrador,Total aquaculture,Tonnes,units,5629,
+2004,Newfoundland and Labrador,Total aquaculture,Dollars,thousands,22055,
+2004,Newfoundland and Labrador,Total finfish,Tonnes,units,0,
+2004,Newfoundland and Labrador,Total finfish,Dollars,thousands,17000,
+2004,Newfoundland and Labrador,Total shellfish,Tonnes,units,2300,
+2004,Newfoundland and Labrador,Total shellfish,Dollars,thousands,5055,
+2004,Prince Edward Island,Total aquaculture,Tonnes,units,20931,
+2004,Prince Edward Island,Total aquaculture,Dollars,thousands,33175,
+2004,Prince Edward Island,Total finfish,Tonnes,units,20,
+2004,Prince Edward Island,Total finfish,Dollars,thousands,3256,
+2004,Prince Edward Island,Total shellfish,Tonnes,units,20911,
+2004,Prince Edward Island,Total shellfish,Dollars,thousands,29919,
+2004,Nova Scotia,Total aquaculture,Tonnes,units,5220,
+2004,Nova Scotia,Total aquaculture,Dollars,thousands,24546,
+2004,Nova Scotia,Total finfish,Tonnes,units,2474,
+2004,Nova Scotia,Total finfish,Dollars,thousands,19051,
+2004,Nova Scotia,Total shellfish,Tonnes,units,2746,
+2004,Nova Scotia,Total shellfish,Dollars,thousands,5495,
+2004,New Brunswick,Total aquaculture,Tonnes,units,37284,
+2004,New Brunswick,Total aquaculture,Dollars,thousands,181005,
+2004,New Brunswick,Total finfish,Tonnes,units,35400,
+2004,New Brunswick,Total finfish,Dollars,thousands,179000,
+2004,New Brunswick,Total shellfish,Tonnes,units,1884,
+2004,New Brunswick,Total shellfish,Dollars,thousands,2005,
+2004,Quebec,Total aquaculture,Tonnes,units,974,
+2004,Quebec,Total aquaculture,Dollars,thousands,3013,
+2004,Quebec,Total finfish,Tonnes,units,333,
+2004,Quebec,Total finfish,Dollars,thousands,1831,
+2004,Quebec,Total shellfish,Tonnes,units,641,
+2004,Quebec,Total shellfish,Dollars,thousands,1182,
+2004,Ontario,Total aquaculture,Tonnes,units,4485,
+2004,Ontario,Total aquaculture,Dollars,thousands,16350,
+2004,Ontario,Total finfish,Tonnes,units,4485,
+2004,Ontario,Total finfish,Dollars,thousands,16350,
+2004,Ontario,Total shellfish,Tonnes,units,0,
+2004,Ontario,Total shellfish,Dollars,thousands,0,
+2004,Manitoba,Total aquaculture,Tonnes,units,56,
+2004,Manitoba,Total aquaculture,Dollars,thousands,298,
+2004,Manitoba,Total finfish,Tonnes,units,56,
+2004,Manitoba,Total finfish,Dollars,thousands,298,
+2004,Manitoba,Total shellfish,Tonnes,units,0,
+2004,Manitoba,Total shellfish,Dollars,thousands,0,
+2004,Saskatchewan,Total aquaculture,Tonnes,units,,x
+2004,Saskatchewan,Total aquaculture,Dollars,thousands,,x
+2004,Saskatchewan,Total finfish,Tonnes,units,,x
+2004,Saskatchewan,Total finfish,Dollars,thousands,,x
+2004,Saskatchewan,Total shellfish,Tonnes,units,,x
+2004,Saskatchewan,Total shellfish,Dollars,thousands,,x
+2004,Alberta,Total aquaculture,Tonnes,units,,x
+2004,Alberta,Total aquaculture,Dollars,thousands,,x
+2004,Alberta,Total finfish,Tonnes,units,,x
+2004,Alberta,Total finfish,Dollars,thousands,,x
+2004,Alberta,Total shellfish,Tonnes,units,,x
+2004,Alberta,Total shellfish,Dollars,thousands,,x
+2004,British Columbia,Total aquaculture,Tonnes,units,65666,
+2004,British Columbia,Total aquaculture,Dollars,thousands,241828,
+2004,British Columbia,Total finfish,Tonnes,units,55761,
+2004,British Columbia,Total finfish,Dollars,thousands,225894,
+2004,British Columbia,Total shellfish,Tonnes,units,9905,
+2004,British Columbia,Total shellfish,Dollars,thousands,15934,
+2005,Canada,Total aquaculture,Tonnes,units,154834,
+2005,Canada,Total aquaculture,Dollars,thousands,709057,
+2005,Canada,Total finfish,Tonnes,units,116503,
+2005,Canada,Total finfish,Dollars,thousands,647373,
+2005,Canada,Total shellfish,Tonnes,units,38335,
+2005,Canada,Total shellfish,Dollars,thousands,61684,
+2005,Newfoundland and Labrador,Total aquaculture,Tonnes,units,8148,
+2005,Newfoundland and Labrador,Total aquaculture,Dollars,thousands,33465,
+2005,Newfoundland and Labrador,Total finfish,Tonnes,units,4991,
+2005,Newfoundland and Labrador,Total finfish,Dollars,thousands,26505,
+2005,Newfoundland and Labrador,Total shellfish,Tonnes,units,3157,
+2005,Newfoundland and Labrador,Total shellfish,Dollars,thousands,6960,
+2005,Prince Edward Island,Total aquaculture,Tonnes,units,18921,
+2005,Prince Edward Island,Total aquaculture,Dollars,thousands,28800,
+2005,Prince Edward Island,Total finfish,Tonnes,units,10,
+2005,Prince Edward Island,Total finfish,Dollars,thousands,1900,
+2005,Prince Edward Island,Total shellfish,Tonnes,units,18911,
+2005,Prince Edward Island,Total shellfish,Dollars,thousands,26900,
+2005,Nova Scotia,Total aquaculture,Tonnes,units,9122,
+2005,Nova Scotia,Total aquaculture,Dollars,thousands,43901,
+2005,Nova Scotia,Total finfish,Tonnes,units,6210,
+2005,Nova Scotia,Total finfish,Dollars,thousands,38596,
+2005,Nova Scotia,Total shellfish,Tonnes,units,2912,
+2005,Nova Scotia,Total shellfish,Dollars,thousands,5305,
+2005,New Brunswick,Total aquaculture,Tonnes,units,37657,
+2005,New Brunswick,Total aquaculture,Dollars,thousands,230500,
+2005,New Brunswick,Total finfish,Tonnes,units,35300,
+2005,New Brunswick,Total finfish,Dollars,thousands,228000,
+2005,New Brunswick,Total shellfish,Tonnes,units,2357,
+2005,New Brunswick,Total shellfish,Dollars,thousands,2500,
+2005,Quebec,Total aquaculture,Tonnes,units,1215,
+2005,Quebec,Total aquaculture,Dollars,thousands,4024,
+2005,Quebec,Total finfish,Tonnes,units,300,
+2005,Quebec,Total finfish,Dollars,thousands,1854,
+2005,Quebec,Total shellfish,Tonnes,units,915,
+2005,Quebec,Total shellfish,Dollars,thousands,2170,
+2005,Ontario,Total aquaculture,Tonnes,units,4485,
+2005,Ontario,Total aquaculture,Dollars,thousands,16350,
+2005,Ontario,Total finfish,Tonnes,units,4485,
+2005,Ontario,Total finfish,Dollars,thousands,16350,
+2005,Ontario,Total shellfish,Tonnes,units,0,
+2005,Ontario,Total shellfish,Dollars,thousands,0,
+2005,Manitoba,Total aquaculture,Tonnes,units,18,
+2005,Manitoba,Total aquaculture,Dollars,thousands,80,
+2005,Manitoba,Total finfish,Tonnes,units,18,
+2005,Manitoba,Total finfish,Dollars,thousands,80,
+2005,Manitoba,Total shellfish,Tonnes,units,0,
+2005,Manitoba,Total shellfish,Dollars,thousands,0,
+2005,Saskatchewan,Total aquaculture,Tonnes,units,,x
+2005,Saskatchewan,Total aquaculture,Dollars,thousands,,x
+2005,Saskatchewan,Total finfish,Tonnes,units,,x
+2005,Saskatchewan,Total finfish,Dollars,thousands,,x
+2005,Saskatchewan,Total shellfish,Tonnes,units,,x
+2005,Saskatchewan,Total shellfish,Dollars,thousands,,x
+2005,Alberta,Total aquaculture,Tonnes,units,,x
+2005,Alberta,Total aquaculture,Dollars,thousands,,x
+2005,Alberta,Total finfish,Tonnes,units,,x
+2005,Alberta,Total finfish,Dollars,thousands,,x
+2005,Alberta,Total shellfish,Tonnes,units,,x
+2005,Alberta,Total shellfish,Dollars,thousands,,x
+2005,British Columbia,Total aquaculture,Tonnes,units,73624,
+2005,British Columbia,Total aquaculture,Dollars,thousands,337158,
+2005,British Columbia,Total finfish,Tonnes,units,63541,
+2005,British Columbia,Total finfish,Dollars,thousands,319309,
+2005,British Columbia,Total shellfish,Tonnes,units,10083,
+2005,British Columbia,Total shellfish,Dollars,thousands,17849,
+2006,Canada,Total aquaculture,Tonnes,units,170594,
+2006,Canada,Total aquaculture,Dollars,thousands,877872,
+2006,Canada,Total finfish,Tonnes,units,130835,
+2006,Canada,Total finfish,Dollars,thousands,810013,
+2006,Canada,Total shellfish,Tonnes,units,39762,
+2006,Canada,Total shellfish,Dollars,thousands,67859,
+2006,Newfoundland and Labrador,Total aquaculture,Tonnes,units,10500,
+2006,Newfoundland and Labrador,Total aquaculture,Dollars,thousands,52289,
+2006,Newfoundland and Labrador,Total finfish,Tonnes,units,7300,
+2006,Newfoundland and Labrador,Total finfish,Dollars,thousands,44517,
+2006,Newfoundland and Labrador,Total shellfish,Tonnes,units,3200,
+2006,Newfoundland and Labrador,Total shellfish,Dollars,thousands,7772,
+2006,Prince Edward Island,Total aquaculture,Tonnes,units,20180,
+2006,Prince Edward Island,Total aquaculture,Dollars,thousands,31917,
+2006,Prince Edward Island,Total finfish,Tonnes,units,11,
+2006,Prince Edward Island,Total finfish,Dollars,thousands,1311,
+2006,Prince Edward Island,Total shellfish,Tonnes,units,20169,
+2006,Prince Edward Island,Total shellfish,Dollars,thousands,30606,
+2006,Nova Scotia,Total aquaculture,Tonnes,units,7657,
+2006,Nova Scotia,Total aquaculture,Dollars,thousands,42103,
+2006,Nova Scotia,Total finfish,Tonnes,units,4195,
+2006,Nova Scotia,Total finfish,Dollars,thousands,34771,
+2006,Nova Scotia,Total shellfish,Tonnes,units,3462,
+2006,Nova Scotia,Total shellfish,Dollars,thousands,7332,
+2006,New Brunswick,Total aquaculture,Tonnes,units,,x
+2006,New Brunswick,Total aquaculture,Dollars,thousands,,x
+2006,New Brunswick,Total finfish,Tonnes,units,,x
+2006,New Brunswick,Total finfish,Dollars,thousands,,x
+2006,New Brunswick,Total shellfish,Tonnes,units,,x
+2006,New Brunswick,Total shellfish,Dollars,thousands,,x
+2006,Quebec,Total aquaculture,Tonnes,units,771,
+2006,Quebec,Total aquaculture,Dollars,thousands,2974,
+2006,Quebec,Total finfish,Tonnes,units,414,
+2006,Quebec,Total finfish,Dollars,thousands,2407,
+2006,Quebec,Total shellfish,Tonnes,units,357,
+2006,Quebec,Total shellfish,Dollars,thousands,567,
+2006,Ontario,Total aquaculture,Tonnes,units,4495,
+2006,Ontario,Total aquaculture,Dollars,thousands,15700,
+2006,Ontario,Total finfish,Tonnes,units,4495,
+2006,Ontario,Total finfish,Dollars,thousands,15700,
+2006,Ontario,Total shellfish,Tonnes,units,0,
+2006,Ontario,Total shellfish,Dollars,thousands,0,
+2006,Manitoba,Total aquaculture,Tonnes,units,,x
+2006,Manitoba,Total aquaculture,Dollars,thousands,,x
+2006,Manitoba,Total finfish,Tonnes,units,,x
+2006,Manitoba,Total finfish,Dollars,thousands,,x
+2006,Manitoba,Total shellfish,Tonnes,units,,x
+2006,Manitoba,Total shellfish,Dollars,thousands,,x
+2006,Saskatchewan,Total aquaculture,Tonnes,units,,x
+2006,Saskatchewan,Total aquaculture,Dollars,thousands,,x
+2006,Saskatchewan,Total finfish,Tonnes,units,,x
+2006,Saskatchewan,Total finfish,Dollars,thousands,,x
+2006,Saskatchewan,Total shellfish,Tonnes,units,,x
+2006,Saskatchewan,Total shellfish,Dollars,thousands,,x
+2006,Alberta,Total aquaculture,Tonnes,units,,x
+2006,Alberta,Total aquaculture,Dollars,thousands,,x
+2006,Alberta,Total finfish,Tonnes,units,,x
+2006,Alberta,Total finfish,Dollars,thousands,,x
+2006,Alberta,Total shellfish,Tonnes,units,,x
+2006,Alberta,Total shellfish,Dollars,thousands,,x
+2006,British Columbia,Total aquaculture,Tonnes,units,80672,
+2006,British Columbia,Total aquaculture,Dollars,thousands,427530,
+2006,British Columbia,Total finfish,Tonnes,units,70455,
+2006,British Columbia,Total finfish,Dollars,thousands,408448,
+2006,British Columbia,Total shellfish,Tonnes,units,10217,
+2006,British Columbia,Total shellfish,Dollars,thousands,19082,
+2007,Canada,Total aquaculture,Tonnes,units,152973,
+2007,Canada,Total aquaculture,Dollars,thousands,716572,
+2007,Canada,Total finfish,Tonnes,units,115977,
+2007,Canada,Total finfish,Dollars,thousands,653399,
+2007,Canada,Total shellfish,Tonnes,units,36999,
+2007,Canada,Total shellfish,Dollars,thousands,63173,
+2007,Newfoundland and Labrador,Total aquaculture,Tonnes,units,8370,
+2007,Newfoundland and Labrador,Total aquaculture,Dollars,thousands,40000,
+2007,Newfoundland and Labrador,Total finfish,Tonnes,units,5770,
+2007,Newfoundland and Labrador,Total finfish,Dollars,thousands,35200,
+2007,Newfoundland and Labrador,Total shellfish,Tonnes,units,2600,
+2007,Newfoundland and Labrador,Total shellfish,Dollars,thousands,4800,
+2007,Prince Edward Island,Total aquaculture,Tonnes,units,19891,
+2007,Prince Edward Island,Total aquaculture,Dollars,thousands,30163,
+2007,Prince Edward Island,Total finfish,Tonnes,units,10,
+2007,Prince Edward Island,Total finfish,Dollars,thousands,1684,
+2007,Prince Edward Island,Total shellfish,Tonnes,units,19881,
+2007,Prince Edward Island,Total shellfish,Dollars,thousands,28479,
+2007,Nova Scotia,Total aquaculture,Tonnes,units,10173,
+2007,Nova Scotia,Total aquaculture,Dollars,thousands,17406,
+2007,Nova Scotia,Total finfish,Tonnes,units,7229,
+2007,Nova Scotia,Total finfish,Dollars,thousands,10796,
+2007,Nova Scotia,Total shellfish,Tonnes,units,2944,
+2007,Nova Scotia,Total shellfish,Dollars,thousands,6610,
+2007,New Brunswick,Total aquaculture,Tonnes,units,25996,
+2007,New Brunswick,Total aquaculture,Dollars,thousands,185809,
+2007,New Brunswick,Total finfish,Tonnes,units,24875,
+2007,New Brunswick,Total finfish,Dollars,thousands,184609,
+2007,New Brunswick,Total shellfish,Tonnes,units,1121,
+2007,New Brunswick,Total shellfish,Dollars,thousands,1200,
+2007,Quebec,Total aquaculture,Tonnes,units,1051,
+2007,Quebec,Total aquaculture,Dollars,thousands,3537,
+2007,Quebec,Total finfish,Tonnes,units,439,
+2007,Quebec,Total finfish,Dollars,thousands,2721,
+2007,Quebec,Total shellfish,Tonnes,units,612,
+2007,Quebec,Total shellfish,Dollars,thousands,816,
+2007,Ontario,Total aquaculture,Tonnes,units,4485,
+2007,Ontario,Total aquaculture,Dollars,thousands,17000,
+2007,Ontario,Total finfish,Tonnes,units,4485,
+2007,Ontario,Total finfish,Dollars,thousands,17000,
+2007,Ontario,Total shellfish,Tonnes,units,0,
+2007,Ontario,Total shellfish,Dollars,thousands,0,
+2007,Manitoba,Total aquaculture,Tonnes,units,25,
+2007,Manitoba,Total aquaculture,Dollars,thousands,112,
+2007,Manitoba,Total finfish,Tonnes,units,25,
+2007,Manitoba,Total finfish,Dollars,thousands,112,
+2007,Manitoba,Total shellfish,Tonnes,units,0,
+2007,Manitoba,Total shellfish,Dollars,thousands,0,
+2007,Saskatchewan,Total aquaculture,Tonnes,units,,x
+2007,Saskatchewan,Total aquaculture,Dollars,thousands,,x
+2007,Saskatchewan,Total finfish,Tonnes,units,,x
+2007,Saskatchewan,Total finfish,Dollars,thousands,,x
+2007,Saskatchewan,Total shellfish,Tonnes,units,,x
+2007,Saskatchewan,Total shellfish,Dollars,thousands,,x
+2007,Alberta,Total aquaculture,Tonnes,units,,x
+2007,Alberta,Total aquaculture,Dollars,thousands,,x
+2007,Alberta,Total finfish,Tonnes,units,,x
+2007,Alberta,Total finfish,Dollars,thousands,,x
+2007,Alberta,Total shellfish,Tonnes,units,,x
+2007,Alberta,Total shellfish,Dollars,thousands,,x
+2007,British Columbia,Total aquaculture,Tonnes,units,81344,
+2007,British Columbia,Total aquaculture,Dollars,thousands,407766,
+2007,British Columbia,Total finfish,Tonnes,units,71503,
+2007,British Columbia,Total finfish,Dollars,thousands,386498,
+2007,British Columbia,Total shellfish,Tonnes,units,9841,
+2007,British Columbia,Total shellfish,Dollars,thousands,21268,
+2008,Canada,Total aquaculture,Tonnes,units,155588,
+2008,Canada,Total aquaculture,Dollars,thousands,796523,
+2008,Canada,Total finfish,Tonnes,units,113204,
+2008,Canada,Total finfish,Dollars,thousands,740296,
+2008,Canada,Total shellfish,Tonnes,units,33506,
+2008,Canada,Total shellfish,Dollars,thousands,56228,
+2008,Newfoundland and Labrador,Total aquaculture,Tonnes,units,11545,
+2008,Newfoundland and Labrador,Total aquaculture,Dollars,thousands,63120,
+2008,Newfoundland and Labrador,Total finfish,Tonnes,units,,..
+2008,Newfoundland and Labrador,Total finfish,Dollars,thousands,,..
+2008,Newfoundland and Labrador,Total shellfish,Tonnes,units,,..
+2008,Newfoundland and Labrador,Total shellfish,Dollars,thousands,,..
+2008,Prince Edward Island,Total aquaculture,Tonnes,units,19726,
+2008,Prince Edward Island,Total aquaculture,Dollars,thousands,29659,
+2008,Prince Edward Island,Total finfish,Tonnes,units,242,
+2008,Prince Edward Island,Total finfish,Dollars,thousands,1624,
+2008,Prince Edward Island,Total shellfish,Tonnes,units,19484,
+2008,Prince Edward Island,Total shellfish,Dollars,thousands,28035,
+2008,Nova Scotia,Total aquaculture,Tonnes,units,7334,
+2008,Nova Scotia,Total aquaculture,Dollars,thousands,35996,
+2008,Nova Scotia,Total finfish,Tonnes,units,5131,
+2008,Nova Scotia,Total finfish,Dollars,thousands,29506,
+2008,Nova Scotia,Total shellfish,Tonnes,units,2203,
+2008,Nova Scotia,Total shellfish,Dollars,thousands,6490,
+2008,New Brunswick,Total aquaculture,Tonnes,units,27598,
+2008,New Brunswick,Total aquaculture,Dollars,thousands,198313,
+2008,New Brunswick,Total finfish,Tonnes,units,26500,
+2008,New Brunswick,Total finfish,Dollars,thousands,197140,
+2008,New Brunswick,Total shellfish,Tonnes,units,1098,
+2008,New Brunswick,Total shellfish,Dollars,thousands,1173,
+2008,Quebec,Total aquaculture,Tonnes,units,977,
+2008,Quebec,Total aquaculture,Dollars,thousands,3333,
+2008,Quebec,Total finfish,Tonnes,units,459,
+2008,Quebec,Total finfish,Dollars,thousands,2573,
+2008,Quebec,Total shellfish,Tonnes,units,518,
+2008,Quebec,Total shellfish,Dollars,thousands,760,
+2008,Ontario,Total aquaculture,Tonnes,units,4335,
+2008,Ontario,Total aquaculture,Dollars,thousands,17620,
+2008,Ontario,Total finfish,Tonnes,units,4335,
+2008,Ontario,Total finfish,Dollars,thousands,17620,
+2008,Ontario,Total shellfish,Tonnes,units,0,
+2008,Ontario,Total shellfish,Dollars,thousands,0,
+2008,Manitoba,Total aquaculture,Tonnes,units,,x
+2008,Manitoba,Total aquaculture,Dollars,thousands,,x
+2008,Manitoba,Total finfish,Tonnes,units,,x
+2008,Manitoba,Total finfish,Dollars,thousands,,x
+2008,Manitoba,Total shellfish,Tonnes,units,,x
+2008,Manitoba,Total shellfish,Dollars,thousands,,x
+2008,Saskatchewan,Total aquaculture,Tonnes,units,,x
+2008,Saskatchewan,Total aquaculture,Dollars,thousands,,x
+2008,Saskatchewan,Total finfish,Tonnes,units,,x
+2008,Saskatchewan,Total finfish,Dollars,thousands,,x
+2008,Saskatchewan,Total shellfish,Tonnes,units,,x
+2008,Saskatchewan,Total shellfish,Dollars,thousands,,x
+2008,Alberta,Total aquaculture,Tonnes,units,,x
+2008,Alberta,Total aquaculture,Dollars,thousands,,x
+2008,Alberta,Total finfish,Tonnes,units,,x
+2008,Alberta,Total finfish,Dollars,thousands,,x
+2008,Alberta,Total shellfish,Tonnes,units,,x
+2008,Alberta,Total shellfish,Dollars,thousands,,x
+2008,British Columbia,Total aquaculture,Tonnes,units,81873,
+2008,British Columbia,Total aquaculture,Dollars,thousands,433060,
+2008,British Columbia,Total finfish,Tonnes,units,74337,
+2008,British Columbia,Total finfish,Dollars,thousands,416859,
+2008,British Columbia,Total shellfish,Tonnes,units,7536,
+2008,British Columbia,Total shellfish,Dollars,thousands,16201,
+2009,Canada,Total aquaculture,Tonnes,units,155966,
+2009,Canada,Total aquaculture,Dollars,thousands,800223,
+2009,Canada,Total finfish,Tonnes,units,109186,
+2009,Canada,Total finfish,Dollars,thousands,648857,
+2009,Canada,Total shellfish,Tonnes,units,35232,
+2009,Canada,Total shellfish,Dollars,thousands,64472,
+2009,Newfoundland and Labrador,Total aquaculture,Tonnes,units,13625,
+2009,Newfoundland and Labrador,Total aquaculture,Dollars,thousands,92100,
+2009,Newfoundland and Labrador,Total finfish,Tonnes,units,,..
+2009,Newfoundland and Labrador,Total finfish,Dollars,thousands,,..
+2009,Newfoundland and Labrador,Total shellfish,Tonnes,units,,..
+2009,Newfoundland and Labrador,Total shellfish,Dollars,thousands,,..
+2009,Prince Edward Island,Total aquaculture,Tonnes,units,21163,
+2009,Prince Edward Island,Total aquaculture,Dollars,thousands,31558,
+2009,Prince Edward Island,Total finfish,Tonnes,units,243,
+2009,Prince Edward Island,Total finfish,Dollars,thousands,1828,
+2009,Prince Edward Island,Total shellfish,Tonnes,units,20920,
+2009,Prince Edward Island,Total shellfish,Dollars,thousands,29730,
+2009,Nova Scotia,Total aquaculture,Tonnes,units,10513,
+2009,Nova Scotia,Total aquaculture,Dollars,thousands,57728,
+2009,Nova Scotia,Total finfish,Tonnes,units,7880,
+2009,Nova Scotia,Total finfish,Dollars,thousands,51166,
+2009,Nova Scotia,Total shellfish,Tonnes,units,2633,
+2009,Nova Scotia,Total shellfish,Dollars,thousands,6562,
+2009,New Brunswick,Total aquaculture,Tonnes,units,24883,
+2009,New Brunswick,Total aquaculture,Dollars,thousands,163790,
+2009,New Brunswick,Total finfish,Tonnes,units,24150,
+2009,New Brunswick,Total finfish,Dollars,thousands,159670,
+2009,New Brunswick,Total shellfish,Tonnes,units,733,
+2009,New Brunswick,Total shellfish,Dollars,thousands,4120,
+2009,Quebec,Total aquaculture,Tonnes,units,1033,
+2009,Quebec,Total aquaculture,Dollars,thousands,3665,
+2009,Quebec,Total finfish,Tonnes,units,484,
+2009,Quebec,Total finfish,Dollars,thousands,2892,
+2009,Quebec,Total shellfish,Tonnes,units,549,
+2009,Quebec,Total shellfish,Dollars,thousands,772,
+2009,Ontario,Total aquaculture,Tonnes,units,4375,
+2009,Ontario,Total aquaculture,Dollars,thousands,17820,
+2009,Ontario,Total finfish,Tonnes,units,4375,
+2009,Ontario,Total finfish,Dollars,thousands,17820,
+2009,Ontario,Total shellfish,Tonnes,units,0,
+2009,Ontario,Total shellfish,Dollars,thousands,0,
+2009,Manitoba,Total aquaculture,Tonnes,units,,x
+2009,Manitoba,Total aquaculture,Dollars,thousands,,x
+2009,Manitoba,Total finfish,Tonnes,units,,x
+2009,Manitoba,Total finfish,Dollars,thousands,,x
+2009,Manitoba,Total shellfish,Tonnes,units,,x
+2009,Manitoba,Total shellfish,Dollars,thousands,,x
+2009,Saskatchewan,Total aquaculture,Tonnes,units,,x
+2009,Saskatchewan,Total aquaculture,Dollars,thousands,,x
+2009,Saskatchewan,Total finfish,Tonnes,units,,x
+2009,Saskatchewan,Total finfish,Dollars,thousands,,x
+2009,Saskatchewan,Total shellfish,Tonnes,units,,x
+2009,Saskatchewan,Total shellfish,Dollars,thousands,,x
+2009,Alberta,Total aquaculture,Tonnes,units,,x
+2009,Alberta,Total aquaculture,Dollars,thousands,,x
+2009,Alberta,Total finfish,Tonnes,units,,x
+2009,Alberta,Total finfish,Dollars,thousands,,x
+2009,Alberta,Total shellfish,Tonnes,units,,x
+2009,Alberta,Total shellfish,Dollars,thousands,,x
+2009,British Columbia,Total aquaculture,Tonnes,units,78345,
+2009,British Columbia,Total aquaculture,Dollars,thousands,422752,
+2009,British Columbia,Total finfish,Tonnes,units,70024,
+2009,British Columbia,Total finfish,Dollars,thousands,404671,
+2009,British Columbia,Total shellfish,Tonnes,units,8321,
+2009,British Columbia,Total shellfish,Dollars,thousands,18081,
+2010,Canada,Total aquaculture,Tonnes,units,162424,
+2010,Canada,Total aquaculture,Dollars,thousands,918354,
+2010,Canada,Total finfish,Tonnes,units,122924,
+2010,Canada,Total finfish,Dollars,thousands,846587,
+2010,Canada,Total shellfish,Tonnes,units,39500,
+2010,Canada,Total shellfish,Dollars,thousands,71767,
+2010,Newfoundland and Labrador,Total aquaculture,Tonnes,units,15360,
+2010,Newfoundland and Labrador,Total aquaculture,Dollars,thousands,106310,
+2010,Newfoundland and Labrador,Total finfish,Tonnes,units,12899,
+2010,Newfoundland and Labrador,Total finfish,Dollars,thousands,100301,
+2010,Newfoundland and Labrador,Total shellfish,Tonnes,units,2461,
+2010,Newfoundland and Labrador,Total shellfish,Dollars,thousands,6009,
+2010,Prince Edward Island,Total aquaculture,Tonnes,units,22872,
+2010,Prince Edward Island,Total aquaculture,Dollars,thousands,34647,
+2010,Prince Edward Island,Total finfish,Tonnes,units,283,
+2010,Prince Edward Island,Total finfish,Dollars,thousands,2200,
+2010,Prince Edward Island,Total shellfish,Tonnes,units,22589,
+2010,Prince Edward Island,Total shellfish,Dollars,thousands,32447,
+2010,Nova Scotia,Total aquaculture,Tonnes,units,8112,
+2010,Nova Scotia,Total aquaculture,Dollars,thousands,42695,
+2010,Nova Scotia,Total finfish,Tonnes,units,5305,
+2010,Nova Scotia,Total finfish,Dollars,thousands,36839,
+2010,Nova Scotia,Total shellfish,Tonnes,units,2807,
+2010,Nova Scotia,Total shellfish,Dollars,thousands,5856,
+2010,New Brunswick,Total aquaculture,Tonnes,units,26751,
+2010,New Brunswick,Total aquaculture,Dollars,thousands,166155,
+2010,New Brunswick,Total finfish,Tonnes,units,25775,
+2010,New Brunswick,Total finfish,Dollars,thousands,162700,
+2010,New Brunswick,Total shellfish,Tonnes,units,976,
+2010,New Brunswick,Total shellfish,Dollars,thousands,3455,
+2010,Quebec,Total aquaculture,Tonnes,units,954,
+2010,Quebec,Total aquaculture,Dollars,thousands,3065,
+2010,Quebec,Total finfish,Tonnes,units,408,
+2010,Quebec,Total finfish,Dollars,thousands,2295,
+2010,Quebec,Total shellfish,Tonnes,units,546,
+2010,Quebec,Total shellfish,Dollars,thousands,769,
+2010,Ontario,Total aquaculture,Tonnes,units,4060,
+2010,Ontario,Total aquaculture,Dollars,thousands,17100,
+2010,Ontario,Total finfish,Tonnes,units,4060,
+2010,Ontario,Total finfish,Dollars,thousands,17100,
+2010,Ontario,Total shellfish,Tonnes,units,0,
+2010,Ontario,Total shellfish,Dollars,thousands,0,
+2010,Manitoba,Total aquaculture,Tonnes,units,,x
+2010,Manitoba,Total aquaculture,Dollars,thousands,,x
+2010,Manitoba,Total finfish,Tonnes,units,,x
+2010,Manitoba,Total finfish,Dollars,thousands,,x
+2010,Manitoba,Total shellfish,Tonnes,units,,x
+2010,Manitoba,Total shellfish,Dollars,thousands,,x
+2010,Saskatchewan,Total aquaculture,Tonnes,units,,x
+2010,Saskatchewan,Total aquaculture,Dollars,thousands,,x
+2010,Saskatchewan,Total finfish,Tonnes,units,,x
+2010,Saskatchewan,Total finfish,Dollars,thousands,,x
+2010,Saskatchewan,Total shellfish,Tonnes,units,,x
+2010,Saskatchewan,Total shellfish,Dollars,thousands,,x
+2010,Alberta,Total aquaculture,Tonnes,units,,x
+2010,Alberta,Total aquaculture,Dollars,thousands,,x
+2010,Alberta,Total finfish,Tonnes,units,,x
+2010,Alberta,Total finfish,Dollars,thousands,,x
+2010,Alberta,Total shellfish,Tonnes,units,,x
+2010,Alberta,Total shellfish,Dollars,thousands,,x
+2010,British Columbia,Total aquaculture,Tonnes,units,82435,
+2010,British Columbia,Total aquaculture,Dollars,thousands,538490,
+2010,British Columbia,Total finfish,Tonnes,units,72315,
+2010,British Columbia,Total finfish,Dollars,thousands,515260,
+2010,British Columbia,Total shellfish,Tonnes,units,10120,
+2010,British Columbia,Total shellfish,Dollars,thousands,23230,
+2011,Canada,Total aquaculture,Tonnes,units,169707,
+2011,Canada,Total aquaculture,Dollars,thousands,837632,
+2011,Canada,Total finfish,Tonnes,units,132146,
+2011,Canada,Total finfish,Dollars,thousands,769052,
+2011,Canada,Total shellfish,Tonnes,units,37560,
+2011,Canada,Total shellfish,Dollars,thousands,68580,
+2011,Newfoundland and Labrador,Total aquaculture,Tonnes,units,17264,
+2011,Newfoundland and Labrador,Total aquaculture,Dollars,thousands,120050,
+2011,Newfoundland and Labrador,Total finfish,Tonnes,units,14264,
+2011,Newfoundland and Labrador,Total finfish,Dollars,thousands,111829,
+2011,Newfoundland and Labrador,Total shellfish,Tonnes,units,3000,
+2011,Newfoundland and Labrador,Total shellfish,Dollars,thousands,8221,
+2011,Prince Edward Island,Total aquaculture,Tonnes,units,24048,
+2011,Prince Edward Island,Total aquaculture,Dollars,thousands,37038,
+2011,Prince Edward Island,Total finfish,Tonnes,units,472,
+2011,Prince Edward Island,Total finfish,Dollars,thousands,3700,
+2011,Prince Edward Island,Total shellfish,Tonnes,units,23576,
+2011,Prince Edward Island,Total shellfish,Dollars,thousands,33338,
+2011,Nova Scotia,Total aquaculture,Tonnes,units,7817,
+2011,Nova Scotia,Total aquaculture,Dollars,thousands,43089,
+2011,Nova Scotia,Total finfish,Tonnes,units,5833,
+2011,Nova Scotia,Total finfish,Dollars,thousands,37622,
+2011,Nova Scotia,Total shellfish,Tonnes,units,1983,
+2011,Nova Scotia,Total shellfish,Dollars,thousands,5467,
+2011,New Brunswick,Total aquaculture,Tonnes,units,22274,
+2011,New Brunswick,Total aquaculture,Dollars,thousands,143314,
+2011,New Brunswick,Total finfish,Tonnes,units,21640,
+2011,New Brunswick,Total finfish,Dollars,thousands,140641,
+2011,New Brunswick,Total shellfish,Tonnes,units,634,
+2011,New Brunswick,Total shellfish,Dollars,thousands,2673,
+2011,Quebec,Total aquaculture,Tonnes,units,815,
+2011,Quebec,Total aquaculture,Dollars,thousands,3011,
+2011,Quebec,Total finfish,Tonnes,units,421,
+2011,Quebec,Total finfish,Dollars,thousands,2347,
+2011,Quebec,Total shellfish,Tonnes,units,394,
+2011,Quebec,Total shellfish,Dollars,thousands,664,
+2011,Ontario,Total aquaculture,Tonnes,units,3408,
+2011,Ontario,Total aquaculture,Dollars,thousands,17700,
+2011,Ontario,Total finfish,Tonnes,units,3408,
+2011,Ontario,Total finfish,Dollars,thousands,17700,
+2011,Ontario,Total shellfish,Tonnes,units,0,
+2011,Ontario,Total shellfish,Dollars,thousands,0,
+2011,Manitoba,Total aquaculture,Tonnes,units,,x
+2011,Manitoba,Total aquaculture,Dollars,thousands,,x
+2011,Manitoba,Total finfish,Tonnes,units,,x
+2011,Manitoba,Total finfish,Dollars,thousands,,x
+2011,Manitoba,Total shellfish,Tonnes,units,,x
+2011,Manitoba,Total shellfish,Dollars,thousands,,x
+2011,Saskatchewan,Total aquaculture,Tonnes,units,,x
+2011,Saskatchewan,Total aquaculture,Dollars,thousands,,x
+2011,Saskatchewan,Total finfish,Tonnes,units,,x
+2011,Saskatchewan,Total finfish,Dollars,thousands,,x
+2011,Saskatchewan,Total shellfish,Tonnes,units,,x
+2011,Saskatchewan,Total shellfish,Dollars,thousands,,x
+2011,Alberta,Total aquaculture,Tonnes,units,,x
+2011,Alberta,Total aquaculture,Dollars,thousands,,x
+2011,Alberta,Total finfish,Tonnes,units,,x
+2011,Alberta,Total finfish,Dollars,thousands,,x
+2011,Alberta,Total shellfish,Tonnes,units,,x
+2011,Alberta,Total shellfish,Dollars,thousands,,x
+2011,British Columbia,Total aquaculture,Tonnes,units,92264,
+2011,British Columbia,Total aquaculture,Dollars,thousands,463925,
+2011,British Columbia,Total finfish,Tonnes,units,84291,
+2011,British Columbia,Total finfish,Dollars,thousands,445708,
+2011,British Columbia,Total shellfish,Tonnes,units,7973,
+2011,British Columbia,Total shellfish,Dollars,thousands,18217,
+2012,Canada,Total aquaculture,Tonnes,units,183801,
+2012,Canada,Total aquaculture,Dollars,thousands,843097,
+2012,Canada,Total finfish,Tonnes,units,140779,
+2012,Canada,Total finfish,Dollars,thousands,769090,
+2012,Canada,Total shellfish,Tonnes,units,43022,
+2012,Canada,Total shellfish,Dollars,thousands,74007,
+2012,Newfoundland and Labrador,Total aquaculture,Tonnes,units,21228,
+2012,Newfoundland and Labrador,Total aquaculture,Dollars,thousands,92715,
+2012,Newfoundland and Labrador,Total finfish,Tonnes,units,16831,
+2012,Newfoundland and Labrador,Total finfish,Dollars,thousands,86900,
+2012,Newfoundland and Labrador,Total shellfish,Tonnes,units,4397,
+2012,Newfoundland and Labrador,Total shellfish,Dollars,thousands,5815,
+2012,Prince Edward Island,Total aquaculture,Tonnes,units,26172,
+2012,Prince Edward Island,Total aquaculture,Dollars,thousands,40984,
+2012,Prince Edward Island,Total finfish,Tonnes,units,620,
+2012,Prince Edward Island,Total finfish,Dollars,thousands,3200,
+2012,Prince Edward Island,Total shellfish,Tonnes,units,25552,
+2012,Prince Edward Island,Total shellfish,Dollars,thousands,37784,
+2012,Nova Scotia,Total aquaculture,Tonnes,units,8229,
+2012,Nova Scotia,Total aquaculture,Dollars,thousands,52035,
+2012,Nova Scotia,Total finfish,Tonnes,units,6280,
+2012,Nova Scotia,Total finfish,Dollars,thousands,46223,
+2012,Nova Scotia,Total shellfish,Tonnes,units,1949,
+2012,Nova Scotia,Total shellfish,Dollars,thousands,5812,
+2012,New Brunswick,Total aquaculture,Tonnes,units,31481,
+2012,New Brunswick,Total aquaculture,Dollars,thousands,191615,
+2012,New Brunswick,Total finfish,Tonnes,units,30359,
+2012,New Brunswick,Total finfish,Dollars,thousands,186386,
+2012,New Brunswick,Total shellfish,Tonnes,units,1122,
+2012,New Brunswick,Total shellfish,Dollars,thousands,5229,
+2012,Quebec,Total aquaculture,Tonnes,units,754,
+2012,Quebec,Total aquaculture,Dollars,thousands,2661,
+2012,Quebec,Total finfish,Tonnes,units,421,
+2012,Quebec,Total finfish,Dollars,thousands,2029,
+2012,Quebec,Total shellfish,Tonnes,units,333,
+2012,Quebec,Total shellfish,Dollars,thousands,631,
+2012,Ontario,Total aquaculture,Tonnes,units,3721,
+2012,Ontario,Total aquaculture,Dollars,thousands,18800,
+2012,Ontario,Total finfish,Tonnes,units,3721,
+2012,Ontario,Total finfish,Dollars,thousands,18800,
+2012,Ontario,Total shellfish,Tonnes,units,0,
+2012,Ontario,Total shellfish,Dollars,thousands,0,
+2012,Manitoba,Total aquaculture,Tonnes,units,,x
+2012,Manitoba,Total aquaculture,Dollars,thousands,,x
+2012,Manitoba,Total finfish,Tonnes,units,,x
+2012,Manitoba,Total finfish,Dollars,thousands,,x
+2012,Manitoba,Total shellfish,Tonnes,units,,x
+2012,Manitoba,Total shellfish,Dollars,thousands,,x
+2012,Saskatchewan,Total aquaculture,Tonnes,units,,x
+2012,Saskatchewan,Total aquaculture,Dollars,thousands,,x
+2012,Saskatchewan,Total finfish,Tonnes,units,,x
+2012,Saskatchewan,Total finfish,Dollars,thousands,,x
+2012,Saskatchewan,Total shellfish,Tonnes,units,,x
+2012,Saskatchewan,Total shellfish,Dollars,thousands,,x
+2012,Alberta,Total aquaculture,Tonnes,units,,x
+2012,Alberta,Total aquaculture,Dollars,thousands,,x
+2012,Alberta,Total finfish,Tonnes,units,,x
+2012,Alberta,Total finfish,Dollars,thousands,,x
+2012,Alberta,Total shellfish,Tonnes,units,,x
+2012,Alberta,Total shellfish,Dollars,thousands,,x
+2012,British Columbia,Total aquaculture,Tonnes,units,90382,
+2012,British Columbia,Total aquaculture,Dollars,thousands,434736,
+2012,British Columbia,Total finfish,Tonnes,units,80713,
+2012,British Columbia,Total finfish,Dollars,thousands,416001,
+2012,British Columbia,Total shellfish,Tonnes,units,9669,
+2012,British Columbia,Total shellfish,Dollars,thousands,18735,
+2013,Canada,Total aquaculture,Tonnes,units,167345,
+2013,Canada,Total aquaculture,Dollars,thousands,869542,
+2013,Canada,Total finfish,Tonnes,units,128308,
+2013,Canada,Total finfish,Dollars,thousands,792491,
+2013,Canada,Total shellfish,Tonnes,units,39037,
+2013,Canada,Total shellfish,Dollars,thousands,77051,
+2013,Newfoundland and Labrador,Total aquaculture,Tonnes,units,26550,
+2013,Newfoundland and Labrador,Total aquaculture,Dollars,thousands,118610,
+2013,Newfoundland and Labrador,Total finfish,Tonnes,units,22196,
+2013,Newfoundland and Labrador,Total finfish,Dollars,thousands,112370,
+2013,Newfoundland and Labrador,Total shellfish,Tonnes,units,4354,
+2013,Newfoundland and Labrador,Total shellfish,Dollars,thousands,6240,
+2013,Prince Edward Island,Total aquaculture,Tonnes,units,23990,
+2013,Prince Edward Island,Total aquaculture,Dollars,thousands,40569,
+2013,Prince Edward Island,Total finfish,Tonnes,units,593,
+2013,Prince Edward Island,Total finfish,Dollars,thousands,3000,
+2013,Prince Edward Island,Total shellfish,Tonnes,units,23398,
+2013,Prince Edward Island,Total shellfish,Dollars,thousands,37569,
+2013,Nova Scotia,Total aquaculture,Tonnes,units,8752,
+2013,Nova Scotia,Total aquaculture,Dollars,thousands,54097,
+2013,Nova Scotia,Total finfish,Tonnes,units,6975,
+2013,Nova Scotia,Total finfish,Dollars,thousands,49865,
+2013,Nova Scotia,Total shellfish,Tonnes,units,1777,
+2013,Nova Scotia,Total shellfish,Dollars,thousands,4232,
+2013,New Brunswick,Total aquaculture,Tonnes,units,19586,
+2013,New Brunswick,Total aquaculture,Dollars,thousands,123012,
+2013,New Brunswick,Total finfish,Tonnes,units,18837,
+2013,New Brunswick,Total finfish,Dollars,thousands,117334,
+2013,New Brunswick,Total shellfish,Tonnes,units,749,
+2013,New Brunswick,Total shellfish,Dollars,thousands,5678,
+2013,Quebec,Total aquaculture,Tonnes,units,1642,
+2013,Quebec,Total aquaculture,Dollars,thousands,11865,
+2013,Quebec,Total finfish,Tonnes,units,1247,
+2013,Quebec,Total finfish,Dollars,thousands,10702,
+2013,Quebec,Total shellfish,Tonnes,units,395,
+2013,Quebec,Total shellfish,Dollars,thousands,1163,
+2013,Ontario,Total aquaculture,Tonnes,units,3790,
+2013,Ontario,Total aquaculture,Dollars,thousands,19200,
+2013,Ontario,Total finfish,Tonnes,units,3790,
+2013,Ontario,Total finfish,Dollars,thousands,19200,
+2013,Ontario,Total shellfish,Tonnes,units,0,
+2013,Ontario,Total shellfish,Dollars,thousands,0,
+2013,Manitoba,Total aquaculture,Tonnes,units,,x
+2013,Manitoba,Total aquaculture,Dollars,thousands,,x
+2013,Manitoba,Total finfish,Tonnes,units,,x
+2013,Manitoba,Total finfish,Dollars,thousands,,x
+2013,Manitoba,Total shellfish,Tonnes,units,,x
+2013,Manitoba,Total shellfish,Dollars,thousands,,x
+2013,Saskatchewan,Total aquaculture,Tonnes,units,,x
+2013,Saskatchewan,Total aquaculture,Dollars,thousands,,x
+2013,Saskatchewan,Total finfish,Tonnes,units,,x
+2013,Saskatchewan,Total finfish,Dollars,thousands,,x
+2013,Saskatchewan,Total shellfish,Tonnes,units,,x
+2013,Saskatchewan,Total shellfish,Dollars,thousands,,x
+2013,Alberta,Total aquaculture,Tonnes,units,,x
+2013,Alberta,Total aquaculture,Dollars,thousands,,x
+2013,Alberta,Total finfish,Tonnes,units,,x
+2013,Alberta,Total finfish,Dollars,thousands,,x
+2013,Alberta,Total shellfish,Tonnes,units,,x
+2013,Alberta,Total shellfish,Dollars,thousands,,x
+2013,British Columbia,Total aquaculture,Tonnes,units,81025,
+2013,British Columbia,Total aquaculture,Dollars,thousands,491573,
+2013,British Columbia,Total finfish,Tonnes,units,72661,
+2013,British Columbia,Total finfish,Dollars,thousands,469403,
+2013,British Columbia,Total shellfish,Tonnes,units,8364,
+2013,British Columbia,Total shellfish,Dollars,thousands,22170,
+2014,Canada,Total aquaculture,Tonnes,units,139373,
+2014,Canada,Total aquaculture,Dollars,thousands,770328,
+2014,Canada,Total finfish,Tonnes,units,101423,
+2014,Canada,Total finfish,Dollars,thousands,690088,
+2014,Canada,Total shellfish,Tonnes,units,37950,
+2014,Canada,Total shellfish,Dollars,thousands,80240,
+2014,Newfoundland and Labrador,Total aquaculture,Tonnes,units,9240,
+2014,Newfoundland and Labrador,Total aquaculture,Dollars,thousands,58445,
+2014,Newfoundland and Labrador,Total finfish,Tonnes,units,5980,
+2014,Newfoundland and Labrador,Total finfish,Dollars,thousands,53415,
+2014,Newfoundland and Labrador,Total shellfish,Tonnes,units,3260,
+2014,Newfoundland and Labrador,Total shellfish,Dollars,thousands,5030,
+2014,Prince Edward Island,Total aquaculture,Tonnes,units,23807,
+2014,Prince Edward Island,Total aquaculture,Dollars,thousands,44237,
+2014,Prince Edward Island,Total finfish,Tonnes,units,358,
+2014,Prince Edward Island,Total finfish,Dollars,thousands,3200,
+2014,Prince Edward Island,Total shellfish,Tonnes,units,23448,
+2014,Prince Edward Island,Total shellfish,Dollars,thousands,41037,
+2014,Nova Scotia,Total aquaculture,Tonnes,units,8743,
+2014,Nova Scotia,Total aquaculture,Dollars,thousands,60358,
+2014,Nova Scotia,Total finfish,Tonnes,units,7102,
+2014,Nova Scotia,Total finfish,Dollars,thousands,56063,
+2014,Nova Scotia,Total shellfish,Tonnes,units,1641,
+2014,Nova Scotia,Total shellfish,Dollars,thousands,4295,
+2014,New Brunswick,Total aquaculture,Tonnes,units,18077,
+2014,New Brunswick,Total aquaculture,Dollars,thousands,133897,
+2014,New Brunswick,Total finfish,Tonnes,units,17184,
+2014,New Brunswick,Total finfish,Dollars,thousands,127414,
+2014,New Brunswick,Total shellfish,Tonnes,units,893,
+2014,New Brunswick,Total shellfish,Dollars,thousands,6483,
+2014,Quebec,Total aquaculture,Tonnes,units,1529,
+2014,Quebec,Total aquaculture,Dollars,thousands,10603,
+2014,Quebec,Total finfish,Tonnes,units,1134,
+2014,Quebec,Total finfish,Dollars,thousands,9340,
+2014,Quebec,Total shellfish,Tonnes,units,395,
+2014,Quebec,Total shellfish,Dollars,thousands,1263,
+2014,Ontario,Total aquaculture,Tonnes,units,4210,
+2014,Ontario,Total aquaculture,Dollars,thousands,21800,
+2014,Ontario,Total finfish,Tonnes,units,4210,
+2014,Ontario,Total finfish,Dollars,thousands,21800,
+2014,Ontario,Total shellfish,Tonnes,units,0,
+2014,Ontario,Total shellfish,Dollars,thousands,0,
+2014,Manitoba,Total aquaculture,Tonnes,units,,x
+2014,Manitoba,Total aquaculture,Dollars,thousands,,x
+2014,Manitoba,Total finfish,Tonnes,units,,x
+2014,Manitoba,Total finfish,Dollars,thousands,,x
+2014,Manitoba,Total shellfish,Tonnes,units,,x
+2014,Manitoba,Total shellfish,Dollars,thousands,,x
+2014,Saskatchewan,Total aquaculture,Tonnes,units,,x
+2014,Saskatchewan,Total aquaculture,Dollars,thousands,,x
+2014,Saskatchewan,Total finfish,Tonnes,units,,x
+2014,Saskatchewan,Total finfish,Dollars,thousands,,x
+2014,Saskatchewan,Total shellfish,Tonnes,units,,x
+2014,Saskatchewan,Total shellfish,Dollars,thousands,,x
+2014,Alberta,Total aquaculture,Tonnes,units,,x
+2014,Alberta,Total aquaculture,Dollars,thousands,,x
+2014,Alberta,Total finfish,Tonnes,units,,x
+2014,Alberta,Total finfish,Dollars,thousands,,x
+2014,Alberta,Total shellfish,Tonnes,units,,x
+2014,Alberta,Total shellfish,Dollars,thousands,,x
+2014,British Columbia,Total aquaculture,Tonnes,units,72007,
+2014,British Columbia,Total aquaculture,Dollars,thousands,431745,
+2014,British Columbia,Total finfish,Tonnes,units,63694,
+2014,British Columbia,Total finfish,Dollars,thousands,409613,
+2014,British Columbia,Total shellfish,Tonnes,units,8313,
+2014,British Columbia,Total shellfish,Dollars,thousands,22132,
+2015,Canada,Total aquaculture,Tonnes,units,189825,
+2015,Canada,Total aquaculture,Dollars,thousands,918034,
+2015,Canada,Total finfish,Tonnes,units,151193,
+2015,Canada,Total finfish,Dollars,thousands,835089,
+2015,Canada,Total shellfish,Tonnes,units,38633,
+2015,Canada,Total shellfish,Dollars,thousands,82945,
+2015,Newfoundland and Labrador,Total aquaculture,Tonnes,units,22814,
+2015,Newfoundland and Labrador,Total aquaculture,Dollars,thousands,110715,
+2015,Newfoundland and Labrador,Total finfish,Tonnes,units,19684,
+2015,Newfoundland and Labrador,Total finfish,Dollars,thousands,106230,
+2015,Newfoundland and Labrador,Total shellfish,Tonnes,units,3130,
+2015,Newfoundland and Labrador,Total shellfish,Dollars,thousands,4485,
+2015,Prince Edward Island,Total aquaculture,Tonnes,units,22355,
+2015,Prince Edward Island,Total aquaculture,Dollars,thousands,,x
+2015,Prince Edward Island,Total finfish,Tonnes,units,649,
+2015,Prince Edward Island,Total finfish,Dollars,thousands,,x
+2015,Prince Edward Island,Total shellfish,Tonnes,units,21706,
+2015,Prince Edward Island,Total shellfish,Dollars,thousands,39444,
+2015,Nova Scotia,Total aquaculture,Tonnes,units,7157,
+2015,Nova Scotia,Total aquaculture,Dollars,thousands,55719,
+2015,Nova Scotia,Total finfish,Tonnes,units,5989,
+2015,Nova Scotia,Total finfish,Dollars,thousands,51585,
+2015,Nova Scotia,Total shellfish,Tonnes,units,1168,
+2015,Nova Scotia,Total shellfish,Dollars,thousands,4134,
+2015,New Brunswick,Total aquaculture,Tonnes,units,24331,
+2015,New Brunswick,Total aquaculture,Dollars,thousands,162577,
+2015,New Brunswick,Total finfish,Tonnes,units,23391,
+2015,New Brunswick,Total finfish,Dollars,thousands,,x
+2015,New Brunswick,Total shellfish,Tonnes,units,940,
+2015,New Brunswick,Total shellfish,Dollars,thousands,,x
+2015,Quebec,Total aquaculture,Tonnes,units,1417,
+2015,Quebec,Total aquaculture,Dollars,thousands,9861,
+2015,Quebec,Total finfish,Tonnes,units,964,
+2015,Quebec,Total finfish,Dollars,thousands,8172,
+2015,Quebec,Total shellfish,Tonnes,units,453,
+2015,Quebec,Total shellfish,Dollars,thousands,1689,
+2015,Ontario,Total aquaculture,Tonnes,units,4890,
+2015,Ontario,Total aquaculture,Dollars,thousands,25400,
+2015,Ontario,Total finfish,Tonnes,units,4890,
+2015,Ontario,Total finfish,Dollars,thousands,25400,
+2015,Ontario,Total shellfish,Tonnes,units,0,
+2015,Ontario,Total shellfish,Dollars,thousands,0,
+2015,Manitoba,Total aquaculture,Tonnes,units,,x
+2015,Manitoba,Total aquaculture,Dollars,thousands,,x
+2015,Manitoba,Total finfish,Tonnes,units,,x
+2015,Manitoba,Total finfish,Dollars,thousands,,x
+2015,Manitoba,Total shellfish,Tonnes,units,,x
+2015,Manitoba,Total shellfish,Dollars,thousands,,x
+2015,Saskatchewan,Total aquaculture,Tonnes,units,,x
+2015,Saskatchewan,Total aquaculture,Dollars,thousands,,x
+2015,Saskatchewan,Total finfish,Tonnes,units,,x
+2015,Saskatchewan,Total finfish,Dollars,thousands,,x
+2015,Saskatchewan,Total shellfish,Tonnes,units,,x
+2015,Saskatchewan,Total shellfish,Dollars,thousands,,x
+2015,Alberta,Total aquaculture,Tonnes,units,,x
+2015,Alberta,Total aquaculture,Dollars,thousands,,x
+2015,Alberta,Total finfish,Tonnes,units,,x
+2015,Alberta,Total finfish,Dollars,thousands,,x
+2015,Alberta,Total shellfish,Tonnes,units,,x
+2015,Alberta,Total shellfish,Dollars,thousands,,x
+2015,British Columbia,Total aquaculture,Tonnes,units,105131,
+2015,British Columbia,Total aquaculture,Dollars,thousands,,x
+2015,British Columbia,Total finfish,Tonnes,units,93896,
+2015,British Columbia,Total finfish,Dollars,thousands,475988,
+2015,British Columbia,Total shellfish,Tonnes,units,11235,
+2015,British Columbia,Total shellfish,Dollars,thousands,,x
+2016,Canada,Total aquaculture,Tonnes,units,200804,
+2016,Canada,Total aquaculture,Dollars,thousands,1346578,
+2016,Canada,Total finfish,Tonnes,units,160876,
+2016,Canada,Total finfish,Dollars,thousands,1259712,
+2016,Canada,Total shellfish,Tonnes,units,39928,
+2016,Canada,Total shellfish,Dollars,thousands,86865,
+2016,Newfoundland and Labrador,Total aquaculture,Tonnes,units,28622,
+2016,Newfoundland and Labrador,Total aquaculture,Dollars,thousands,167305,
+2016,Newfoundland and Labrador,Total finfish,Tonnes,units,25411,
+2016,Newfoundland and Labrador,Total finfish,Dollars,thousands,,x
+2016,Newfoundland and Labrador,Total shellfish,Tonnes,units,3211,
+2016,Newfoundland and Labrador,Total shellfish,Dollars,thousands,,x
+2016,Prince Edward Island,Total aquaculture,Tonnes,units,24141,
+2016,Prince Edward Island,Total aquaculture,Dollars,thousands,45288,
+2016,Prince Edward Island,Total finfish,Tonnes,units,609,
+2016,Prince Edward Island,Total finfish,Dollars,thousands,3900,
+2016,Prince Edward Island,Total shellfish,Tonnes,units,23532,
+2016,Prince Edward Island,Total shellfish,Dollars,thousands,41388,
+2016,Nova Scotia,Total aquaculture,Tonnes,units,7887,
+2016,Nova Scotia,Total aquaculture,Dollars,thousands,,x
+2016,Nova Scotia,Total finfish,Tonnes,units,6554,
+2016,Nova Scotia,Total finfish,Dollars,thousands,48547,
+2016,Nova Scotia,Total shellfish,Tonnes,units,1333,
+2016,Nova Scotia,Total shellfish,Dollars,thousands,,x
+2016,New Brunswick,Total aquaculture,Tonnes,units,28082,
+2016,New Brunswick,Total aquaculture,Dollars,thousands,,x
+2016,New Brunswick,Total finfish,Tonnes,units,26999,
+2016,New Brunswick,Total finfish,Dollars,thousands,,x
+2016,New Brunswick,Total shellfish,Tonnes,units,1083,
+2016,New Brunswick,Total shellfish,Dollars,thousands,8825,
+2016,Quebec,Total aquaculture,Tonnes,units,1457,
+2016,Quebec,Total aquaculture,Dollars,thousands,11048,
+2016,Quebec,Total finfish,Tonnes,units,1105,
+2016,Quebec,Total finfish,Dollars,thousands,9193,
+2016,Quebec,Total shellfish,Tonnes,units,352,
+2016,Quebec,Total shellfish,Dollars,thousands,1855,
+2016,Ontario,Total aquaculture,Tonnes,units,6030,
+2016,Ontario,Total aquaculture,Dollars,thousands,32500,
+2016,Ontario,Total finfish,Tonnes,units,6030,
+2016,Ontario,Total finfish,Dollars,thousands,32500,
+2016,Ontario,Total shellfish,Tonnes,units,0,
+2016,Ontario,Total shellfish,Dollars,thousands,0,
+2016,Manitoba,Total aquaculture,Tonnes,units,,x
+2016,Manitoba,Total aquaculture,Dollars,thousands,,x
+2016,Manitoba,Total finfish,Tonnes,units,,x
+2016,Manitoba,Total finfish,Dollars,thousands,,x
+2016,Manitoba,Total shellfish,Tonnes,units,,x
+2016,Manitoba,Total shellfish,Dollars,thousands,,x
+2016,Saskatchewan,Total aquaculture,Tonnes,units,,x
+2016,Saskatchewan,Total aquaculture,Dollars,thousands,,x
+2016,Saskatchewan,Total finfish,Tonnes,units,,x
+2016,Saskatchewan,Total finfish,Dollars,thousands,,x
+2016,Saskatchewan,Total shellfish,Tonnes,units,,x
+2016,Saskatchewan,Total shellfish,Dollars,thousands,,x
+2016,Alberta,Total aquaculture,Tonnes,units,,x
+2016,Alberta,Total aquaculture,Dollars,thousands,,x
+2016,Alberta,Total finfish,Tonnes,units,,x
+2016,Alberta,Total finfish,Dollars,thousands,,x
+2016,Alberta,Total shellfish,Tonnes,units,,x
+2016,Alberta,Total shellfish,Dollars,thousands,,x
+2016,British Columbia,Total aquaculture,Tonnes,units,102325,
+2016,British Columbia,Total aquaculture,Dollars,thousands,,x
+2016,British Columbia,Total finfish,Tonnes,units,91908,
+2016,British Columbia,Total finfish,Dollars,thousands,752099,
+2016,British Columbia,Total shellfish,Tonnes,units,10417,
+2016,British Columbia,Total shellfish,Dollars,thousands,23945,
+2017,Canada,Total aquaculture,Tonnes,units,191111,
+2017,Canada,Total aquaculture,Dollars,thousands,1392153,
+2017,Canada,Total finfish,Tonnes,units,151209,
+2017,Canada,Total finfish,Dollars,thousands,1294844,
+2017,Canada,Total shellfish,Tonnes,units,39902,
+2017,Canada,Total shellfish,Dollars,thousands,97309,
+2017,Newfoundland and Labrador,Total aquaculture,Tonnes,units,21712,
+2017,Newfoundland and Labrador,Total aquaculture,Dollars,thousands,162390,
+2017,Newfoundland and Labrador,Total finfish,Tonnes,units,18822,
+2017,Newfoundland and Labrador,Total finfish,Dollars,thousands,158250,
+2017,Newfoundland and Labrador,Total shellfish,Tonnes,units,2890,
+2017,Newfoundland and Labrador,Total shellfish,Dollars,thousands,4140,
+2017,Prince Edward Island,Total aquaculture,Tonnes,units,24508,
+2017,Prince Edward Island,Total aquaculture,Dollars,thousands,46712,
+2017,Prince Edward Island,Total finfish,Tonnes,units,464,
+2017,Prince Edward Island,Total finfish,Dollars,thousands,3900,
+2017,Prince Edward Island,Total shellfish,Tonnes,units,24044,
+2017,Prince Edward Island,Total shellfish,Dollars,thousands,42812,
+2017,Nova Scotia,Total aquaculture,Tonnes,units,13352,
+2017,Nova Scotia,Total aquaculture,Dollars,thousands,116040,
+2017,Nova Scotia,Total finfish,Tonnes,units,11559,
+2017,Nova Scotia,Total finfish,Dollars,thousands,103276,
+2017,Nova Scotia,Total shellfish,Tonnes,units,1793,
+2017,Nova Scotia,Total shellfish,Dollars,thousands,12764,
+2017,New Brunswick,Total aquaculture,Tonnes,units,25165,
+2017,New Brunswick,Total aquaculture,Dollars,thousands,240132,
+2017,New Brunswick,Total finfish,Tonnes,units,23867,
+2017,New Brunswick,Total finfish,Dollars,thousands,227843,
+2017,New Brunswick,Total shellfish,Tonnes,units,1298,
+2017,New Brunswick,Total shellfish,Dollars,thousands,12289,
+2017,Quebec,Total aquaculture,Tonnes,units,1563,
+2017,Quebec,Total aquaculture,Dollars,thousands,12172,
+2017,Quebec,Total finfish,Tonnes,units,1128,
+2017,Quebec,Total finfish,Dollars,thousands,9188,
+2017,Quebec,Total shellfish,Tonnes,units,435,
+2017,Quebec,Total shellfish,Dollars,thousands,2984,
+2017,Ontario,Total aquaculture,Tonnes,units,5900,
+2017,Ontario,Total aquaculture,Dollars,thousands,34000,
+2017,Ontario,Total finfish,Tonnes,units,5900,
+2017,Ontario,Total finfish,Dollars,thousands,34000,
+2017,Ontario,Total shellfish,Tonnes,units,0,
+2017,Ontario,Total shellfish,Dollars,thousands,0,
+2017,Manitoba,Total aquaculture,Tonnes,units,,x
+2017,Manitoba,Total aquaculture,Dollars,thousands,,x
+2017,Manitoba,Total finfish,Tonnes,units,,x
+2017,Manitoba,Total finfish,Dollars,thousands,,x
+2017,Manitoba,Total shellfish,Tonnes,units,,x
+2017,Manitoba,Total shellfish,Dollars,thousands,,x
+2017,Saskatchewan,Total aquaculture,Tonnes,units,,x
+2017,Saskatchewan,Total aquaculture,Dollars,thousands,,x
+2017,Saskatchewan,Total finfish,Tonnes,units,,x
+2017,Saskatchewan,Total finfish,Dollars,thousands,,x
+2017,Saskatchewan,Total shellfish,Tonnes,units,,x
+2017,Saskatchewan,Total shellfish,Dollars,thousands,,x
+2017,Alberta,Total aquaculture,Tonnes,units,,x
+2017,Alberta,Total aquaculture,Dollars,thousands,,x
+2017,Alberta,Total finfish,Tonnes,units,,x
+2017,Alberta,Total finfish,Dollars,thousands,,x
+2017,Alberta,Total shellfish,Tonnes,units,,x
+2017,Alberta,Total shellfish,Dollars,thousands,,x
+2017,British Columbia,Total aquaculture,Tonnes,units,96608,
+2017,British Columbia,Total aquaculture,Dollars,thousands,768529,
+2017,British Columbia,Total finfish,Tonnes,units,87166,
+2017,British Columbia,Total finfish,Dollars,thousands,746209,
+2017,British Columbia,Total shellfish,Tonnes,units,9442,
+2017,British Columbia,Total shellfish,Dollars,thousands,22320,
+2018,Canada,Total aquaculture,Tonnes,units,190184,
+2018,Canada,Total aquaculture,Dollars,thousands,1431707,
+2018,Canada,Total finfish,Tonnes,units,149524,
+2018,Canada,Total finfish,Dollars,thousands,1325736,
+2018,Canada,Total shellfish,Tonnes,units,40661,
+2018,Canada,Total shellfish,Dollars,thousands,105971,
+2018,Newfoundland and Labrador,Total aquaculture,Tonnes,units,18154,
+2018,Newfoundland and Labrador,Total aquaculture,Dollars,thousands,139180,
+2018,Newfoundland and Labrador,Total finfish,Tonnes,units,15107,
+2018,Newfoundland and Labrador,Total finfish,Dollars,thousands,134815,
+2018,Newfoundland and Labrador,Total shellfish,Tonnes,units,3047,
+2018,Newfoundland and Labrador,Total shellfish,Dollars,thousands,4365,
+2018,Prince Edward Island,Total aquaculture,Tonnes,units,24947,
+2018,Prince Edward Island,Total aquaculture,Dollars,thousands,47685,
+2018,Prince Edward Island,Total finfish,Tonnes,units,459,
+2018,Prince Edward Island,Total finfish,Dollars,thousands,4100,
+2018,Prince Edward Island,Total shellfish,Tonnes,units,24487,
+2018,Prince Edward Island,Total shellfish,Dollars,thousands,43585,
+2018,Nova Scotia,Total aquaculture,Tonnes,units,10118,
+2018,Nova Scotia,Total aquaculture,Dollars,thousands,88608,
+2018,Nova Scotia,Total finfish,Tonnes,units,8238,
+2018,Nova Scotia,Total finfish,Dollars,thousands,74211,
+2018,Nova Scotia,Total shellfish,Tonnes,units,1880,
+2018,Nova Scotia,Total shellfish,Dollars,thousands,14397,
+2018,New Brunswick,Total aquaculture,Tonnes,units,30158,
+2018,New Brunswick,Total aquaculture,Dollars,thousands,287781,
+2018,New Brunswick,Total finfish,Tonnes,units,28289,
+2018,New Brunswick,Total finfish,Dollars,thousands,270536,
+2018,New Brunswick,Total shellfish,Tonnes,units,1869,
+2018,New Brunswick,Total shellfish,Dollars,thousands,17245,
+2018,Quebec,Total aquaculture,Tonnes,units,1528,
+2018,Quebec,Total aquaculture,Dollars,thousands,12630,
+2018,Quebec,Total finfish,Tonnes,units,1100,
+2018,Quebec,Total finfish,Dollars,thousands,9217,
+2018,Quebec,Total shellfish,Tonnes,units,428,
+2018,Quebec,Total shellfish,Dollars,thousands,3413,
+2018,Ontario,Total aquaculture,Tonnes,units,5787,
+2018,Ontario,Total aquaculture,Dollars,thousands,32400,
+2018,Ontario,Total finfish,Tonnes,units,5787,
+2018,Ontario,Total finfish,Dollars,thousands,32400,
+2018,Ontario,Total shellfish,Tonnes,units,0,
+2018,Ontario,Total shellfish,Dollars,thousands,0,
+2018,Manitoba,Total aquaculture,Tonnes,units,,x
+2018,Manitoba,Total aquaculture,Dollars,thousands,,x
+2018,Manitoba,Total finfish,Tonnes,units,,x
+2018,Manitoba,Total finfish,Dollars,thousands,,x
+2018,Manitoba,Total shellfish,Tonnes,units,,x
+2018,Manitoba,Total shellfish,Dollars,thousands,,x
+2018,Saskatchewan,Total aquaculture,Tonnes,units,,x
+2018,Saskatchewan,Total aquaculture,Dollars,thousands,,x
+2018,Saskatchewan,Total finfish,Tonnes,units,,x
+2018,Saskatchewan,Total finfish,Dollars,thousands,,x
+2018,Saskatchewan,Total shellfish,Tonnes,units,,x
+2018,Saskatchewan,Total shellfish,Dollars,thousands,,x
+2018,Alberta,Total aquaculture,Tonnes,units,,x
+2018,Alberta,Total aquaculture,Dollars,thousands,,x
+2018,Alberta,Total finfish,Tonnes,units,,x
+2018,Alberta,Total finfish,Dollars,thousands,,x
+2018,Alberta,Total shellfish,Tonnes,units,,x
+2018,Alberta,Total shellfish,Dollars,thousands,,x
+2018,British Columbia,Total aquaculture,Tonnes,units,97783,
+2018,British Columbia,Total aquaculture,Dollars,thousands,814281,
+2018,British Columbia,Total finfish,Tonnes,units,88834,
+2018,British Columbia,Total finfish,Dollars,thousands,791315,
+2018,British Columbia,Total shellfish,Tonnes,units,8949,
+2018,British Columbia,Total shellfish,Dollars,thousands,22966,
+2019,Canada,Total aquaculture,Tonnes,units,187258,
+2019,Canada,Total aquaculture,Dollars,thousands,1231550,
+2019,Canada,Total finfish,Tonnes,units,144066,
+2019,Canada,Total finfish,Dollars,thousands,1115791,
+2019,Canada,Total shellfish,Tonnes,units,43192,
+2019,Canada,Total shellfish,Dollars,thousands,115759,
+2019,Newfoundland and Labrador,Total aquaculture,Tonnes,units,17655,
+2019,Newfoundland and Labrador,Total aquaculture,Dollars,thousands,123015,
+2019,Newfoundland and Labrador,Total finfish,Tonnes,units,14167,
+2019,Newfoundland and Labrador,Total finfish,Dollars,thousands,118015,
+2019,Newfoundland and Labrador,Total shellfish,Tonnes,units,3488,
+2019,Newfoundland and Labrador,Total shellfish,Dollars,thousands,5000,
+2019,Prince Edward Island,Total aquaculture,Tonnes,units,26243,
+2019,Prince Edward Island,Total aquaculture,Dollars,thousands,54399,
+2019,Prince Edward Island,Total finfish,Tonnes,units,492,
+2019,Prince Edward Island,Total finfish,Dollars,thousands,4100,
+2019,Prince Edward Island,Total shellfish,Tonnes,units,25751,
+2019,Prince Edward Island,Total shellfish,Dollars,thousands,50299,
+2019,Nova Scotia,Total aquaculture,Tonnes,units,10143,
+2019,Nova Scotia,Total aquaculture,Dollars,thousands,82128,
+2019,Nova Scotia,Total finfish,Tonnes,units,8202,
+2019,Nova Scotia,Total finfish,Dollars,thousands,69620,
+2019,Nova Scotia,Total shellfish,Tonnes,units,1942,
+2019,Nova Scotia,Total shellfish,Dollars,thousands,12508,
+2019,New Brunswick,Total aquaculture,Tonnes,units,24295,
+2019,New Brunswick,Total aquaculture,Dollars,thousands,205498,
+2019,New Brunswick,Total finfish,Tonnes,units,22397,
+2019,New Brunswick,Total finfish,Dollars,thousands,188367,
+2019,New Brunswick,Total shellfish,Tonnes,units,1898,
+2019,New Brunswick,Total shellfish,Dollars,thousands,17131,
+2019,Quebec,Total aquaculture,Tonnes,units,1468,
+2019,Quebec,Total aquaculture,Dollars,thousands,12257,
+2019,Quebec,Total finfish,Tonnes,units,1067,
+2019,Quebec,Total finfish,Dollars,thousands,9155,
+2019,Quebec,Total shellfish,Tonnes,units,401,
+2019,Quebec,Total shellfish,Dollars,thousands,3102,
+2019,Ontario,Total aquaculture,Tonnes,units,5901,
+2019,Ontario,Total aquaculture,Dollars,thousands,38800,
+2019,Ontario,Total finfish,Tonnes,units,5887,
+2019,Ontario,Total finfish,Dollars,thousands,38080,
+2019,Ontario,Total shellfish,Tonnes,units,14,
+2019,Ontario,Total shellfish,Dollars,thousands,720,
+2019,Manitoba,Total aquaculture,Tonnes,units,,x
+2019,Manitoba,Total aquaculture,Dollars,thousands,,x
+2019,Manitoba,Total finfish,Tonnes,units,,x
+2019,Manitoba,Total finfish,Dollars,thousands,,x
+2019,Manitoba,Total shellfish,Tonnes,units,,..
+2019,Manitoba,Total shellfish,Dollars,thousands,,..
+2019,Saskatchewan,Total aquaculture,Tonnes,units,,x
+2019,Saskatchewan,Total aquaculture,Dollars,thousands,,x
+2019,Saskatchewan,Total finfish,Tonnes,units,,x
+2019,Saskatchewan,Total finfish,Dollars,thousands,,x
+2019,Saskatchewan,Total shellfish,Tonnes,units,,..
+2019,Saskatchewan,Total shellfish,Dollars,thousands,,..
+2019,Alberta,Total aquaculture,Tonnes,units,,x
+2019,Alberta,Total aquaculture,Dollars,thousands,,x
+2019,Alberta,Total finfish,Tonnes,units,,x
+2019,Alberta,Total finfish,Dollars,thousands,,x
+2019,Alberta,Total shellfish,Tonnes,units,,..
+2019,Alberta,Total shellfish,Dollars,thousands,,..
+2019,British Columbia,Total aquaculture,Tonnes,units,100293,
+2019,British Columbia,Total aquaculture,Dollars,thousands,708660,
+2019,British Columbia,Total finfish,Tonnes,units,90595,
+2019,British Columbia,Total finfish,Dollars,thousands,681661,
+2019,British Columbia,Total shellfish,Tonnes,units,9698,
+2019,British Columbia,Total shellfish,Dollars,thousands,26999,
+2020,Canada,Total aquaculture,Tonnes,units,166937,
+2020,Canada,Total aquaculture,Dollars,thousands,1037247,
+2020,Canada,Total finfish,Tonnes,units,139507,
+2020,Canada,Total finfish,Dollars,thousands,956935,
+2020,Canada,Total shellfish,Tonnes,units,27429,
+2020,Canada,Total shellfish,Dollars,thousands,80313,
+2020,Newfoundland and Labrador,Total aquaculture,Tonnes,units,10620,
+2020,Newfoundland and Labrador,Total aquaculture,Dollars,thousands,57605,
+2020,Newfoundland and Labrador,Total finfish,Tonnes,units,7802,
+2020,Newfoundland and Labrador,Total finfish,Dollars,thousands,51665,
+2020,Newfoundland and Labrador,Total shellfish,Tonnes,units,2818,
+2020,Newfoundland and Labrador,Total shellfish,Dollars,thousands,5940,
+2020,Prince Edward Island,Total aquaculture,Tonnes,units,15420,
+2020,Prince Edward Island,Total aquaculture,Dollars,thousands,31022,
+2020,Prince Edward Island,Total finfish,Tonnes,units,627,
+2020,Prince Edward Island,Total finfish,Dollars,thousands,4150,
+2020,Prince Edward Island,Total shellfish,Tonnes,units,14793,
+2020,Prince Edward Island,Total shellfish,Dollars,thousands,26872,
+2020,Nova Scotia,Total aquaculture,Tonnes,units,12719,
+2020,Nova Scotia,Total aquaculture,Dollars,thousands,90158,
+2020,Nova Scotia,Total finfish,Tonnes,units,11710,
+2020,Nova Scotia,Total finfish,Dollars,thousands,79699,
+2020,Nova Scotia,Total shellfish,Tonnes,units,1009,
+2020,Nova Scotia,Total shellfish,Dollars,thousands,10459,
+2020,New Brunswick,Total aquaculture,Tonnes,units,20744,
+2020,New Brunswick,Total aquaculture,Dollars,thousands,139402,
+2020,New Brunswick,Total finfish,Tonnes,units,18900,
+2020,New Brunswick,Total finfish,Dollars,thousands,125159,
+2020,New Brunswick,Total shellfish,Tonnes,units,1844,
+2020,New Brunswick,Total shellfish,Dollars,thousands,14243,
+2020,Quebec,Total aquaculture,Tonnes,units,1410,
+2020,Quebec,Total aquaculture,Dollars,thousands,11474,
+2020,Quebec,Total finfish,Tonnes,units,921,
+2020,Quebec,Total finfish,Dollars,thousands,7977,
+2020,Quebec,Total shellfish,Tonnes,units,489,
+2020,Quebec,Total shellfish,Dollars,thousands,3497,
+2020,Ontario,Total aquaculture,Tonnes,units,5913,
+2020,Ontario,Total aquaculture,Dollars,thousands,33800,
+2020,Ontario,Total finfish,Tonnes,units,5913,
+2020,Ontario,Total finfish,Dollars,thousands,33800,
+2020,Ontario,Total shellfish,Tonnes,units,0,
+2020,Ontario,Total shellfish,Dollars,thousands,0,
+2020,Manitoba,Total aquaculture,Tonnes,units,,x
+2020,Manitoba,Total aquaculture,Dollars,thousands,,x
+2020,Manitoba,Total finfish,Tonnes,units,,x
+2020,Manitoba,Total finfish,Dollars,thousands,,x
+2020,Manitoba,Total shellfish,Tonnes,units,,..
+2020,Manitoba,Total shellfish,Dollars,thousands,,..
+2020,Saskatchewan,Total aquaculture,Tonnes,units,,x
+2020,Saskatchewan,Total aquaculture,Dollars,thousands,,x
+2020,Saskatchewan,Total finfish,Tonnes,units,,x
+2020,Saskatchewan,Total finfish,Dollars,thousands,,x
+2020,Saskatchewan,Total shellfish,Tonnes,units,,..
+2020,Saskatchewan,Total shellfish,Dollars,thousands,,..
+2020,Alberta,Total aquaculture,Tonnes,units,,x
+2020,Alberta,Total aquaculture,Dollars,thousands,,x
+2020,Alberta,Total finfish,Tonnes,units,,x
+2020,Alberta,Total finfish,Dollars,thousands,,x
+2020,Alberta,Total shellfish,Tonnes,units,,..
+2020,Alberta,Total shellfish,Dollars,thousands,,..
+2020,British Columbia,Total aquaculture,Tonnes,units,98486,
+2020,British Columbia,Total aquaculture,Dollars,thousands,665139,
+2020,British Columbia,Total finfish,Tonnes,units,92010,
+2020,British Columbia,Total finfish,Dollars,thousands,645837,
+2020,British Columbia,Total shellfish,Tonnes,units,6476,
+2020,British Columbia,Total shellfish,Dollars,thousands,19302,
+2021,Canada,Total aquaculture,Tonnes,units,188216,
+2021,Canada,Total aquaculture,Dollars,thousands,1337153,
+2021,Canada,Total finfish,Tonnes,units,148735,
+2021,Canada,Total finfish,Dollars,thousands,1223143,
+2021,Canada,Total shellfish,Tonnes,units,39481,
+2021,Canada,Total shellfish,Dollars,thousands,114010,
+2021,Newfoundland and Labrador,Total aquaculture,Tonnes,units,19635,
+2021,Newfoundland and Labrador,Total aquaculture,Dollars,thousands,144915,
+2021,Newfoundland and Labrador,Total finfish,Tonnes,units,15904,
+2021,Newfoundland and Labrador,Total finfish,Dollars,thousands,138335,
+2021,Newfoundland and Labrador,Total shellfish,Tonnes,units,3731,
+2021,Newfoundland and Labrador,Total shellfish,Dollars,thousands,6580,
+2021,Prince Edward Island,Total aquaculture,Tonnes,units,21753,
+2021,Prince Edward Island,Total aquaculture,Dollars,thousands,49200,
+2021,Prince Edward Island,Total finfish,Tonnes,units,483,
+2021,Prince Edward Island,Total finfish,Dollars,thousands,4200,
+2021,Prince Edward Island,Total shellfish,Tonnes,units,21270,
+2021,Prince Edward Island,Total shellfish,Dollars,thousands,45000,
+2021,Nova Scotia,Total aquaculture,Tonnes,units,11057,
+2021,Nova Scotia,Total aquaculture,Dollars,thousands,82983,
+2021,Nova Scotia,Total finfish,Tonnes,units,8968,
+2021,Nova Scotia,Total finfish,Dollars,thousands,71447,
+2021,Nova Scotia,Total shellfish,Tonnes,units,2089,
+2021,Nova Scotia,Total shellfish,Dollars,thousands,11536,
+2021,New Brunswick,Total aquaculture,Tonnes,units,29869,
+2021,New Brunswick,Total aquaculture,Dollars,thousands,259879,
+2021,New Brunswick,Total finfish,Tonnes,units,27423,
+2021,New Brunswick,Total finfish,Dollars,thousands,238531,
+2021,New Brunswick,Total shellfish,Tonnes,units,2446,
+2021,New Brunswick,Total shellfish,Dollars,thousands,21348,
+2021,Quebec,Total aquaculture,Tonnes,units,1263,
+2021,Quebec,Total aquaculture,Dollars,thousands,11915,
+2021,Quebec,Total finfish,Tonnes,units,1028,
+2021,Quebec,Total finfish,Dollars,thousands,8798,
+2021,Quebec,Total shellfish,Tonnes,units,235,
+2021,Quebec,Total shellfish,Dollars,thousands,3117,
+2021,Ontario,Total aquaculture,Tonnes,units,6115,
+2021,Ontario,Total aquaculture,Dollars,thousands,38322,
+2021,Ontario,Total finfish,Tonnes,units,6115,
+2021,Ontario,Total finfish,Dollars,thousands,38322,
+2021,Ontario,Total shellfish,Tonnes,units,0,
+2021,Ontario,Total shellfish,Dollars,thousands,0,
+2021,Manitoba,Total aquaculture,Tonnes,units,,x
+2021,Manitoba,Total aquaculture,Dollars,thousands,,x
+2021,Manitoba,Total finfish,Tonnes,units,,x
+2021,Manitoba,Total finfish,Dollars,thousands,,x
+2021,Manitoba,Total shellfish,Tonnes,units,,..
+2021,Manitoba,Total shellfish,Dollars,thousands,,..
+2021,Saskatchewan,Total aquaculture,Tonnes,units,,x
+2021,Saskatchewan,Total aquaculture,Dollars,thousands,,x
+2021,Saskatchewan,Total finfish,Tonnes,units,,x
+2021,Saskatchewan,Total finfish,Dollars,thousands,,x
+2021,Saskatchewan,Total shellfish,Tonnes,units,,..
+2021,Saskatchewan,Total shellfish,Dollars,thousands,,..
+2021,Alberta,Total aquaculture,Tonnes,units,,x
+2021,Alberta,Total aquaculture,Dollars,thousands,,x
+2021,Alberta,Total finfish,Tonnes,units,,x
+2021,Alberta,Total finfish,Dollars,thousands,,x
+2021,Alberta,Total shellfish,Tonnes,units,,..
+2021,Alberta,Total shellfish,Dollars,thousands,,..
+2021,British Columbia,Total aquaculture,Tonnes,units,96219,
+2021,British Columbia,Total aquaculture,Dollars,thousands,739154,
+2021,British Columbia,Total finfish,Tonnes,units,86509,
+2021,British Columbia,Total finfish,Dollars,thousands,712724,
+2021,British Columbia,Total shellfish,Tonnes,units,9710,
+2021,British Columbia,Total shellfish,Dollars,thousands,26430,
+2022,Canada,Total aquaculture,Tonnes,units,167609,
+2022,Canada,Total aquaculture,Dollars,thousands,1343867,
+2022,Canada,Total finfish,Tonnes,units,127085,
+2022,Canada,Total finfish,Dollars,thousands,1218592,
+2022,Canada,Total shellfish,Tonnes,units,40525,
+2022,Canada,Total shellfish,Dollars,thousands,125274,
+2022,Newfoundland and Labrador,Total aquaculture,Tonnes,units,12978,
+2022,Newfoundland and Labrador,Total aquaculture,Dollars,thousands,71650,
+2022,Newfoundland and Labrador,Total finfish,Tonnes,units,8232,
+2022,Newfoundland and Labrador,Total finfish,Dollars,thousands,63280,
+2022,Newfoundland and Labrador,Total shellfish,Tonnes,units,4746,
+2022,Newfoundland and Labrador,Total shellfish,Dollars,thousands,8370,
+2022,Prince Edward Island,Total aquaculture,Tonnes,units,21901,
+2022,Prince Edward Island,Total aquaculture,Dollars,thousands,49708,
+2022,Prince Edward Island,Total finfish,Tonnes,units,566,
+2022,Prince Edward Island,Total finfish,Dollars,thousands,4350,
+2022,Prince Edward Island,Total shellfish,Tonnes,units,21335,
+2022,Prince Edward Island,Total shellfish,Dollars,thousands,45358,
+2022,Nova Scotia,Total aquaculture,Tonnes,units,15239,
+2022,Nova Scotia,Total aquaculture,Dollars,thousands,158015,
+2022,Nova Scotia,Total finfish,Tonnes,units,13910,
+2022,Nova Scotia,Total finfish,Dollars,thousands,144306,
+2022,Nova Scotia,Total shellfish,Tonnes,units,1328,
+2022,Nova Scotia,Total shellfish,Dollars,thousands,13709,
+2022,New Brunswick,Total aquaculture,Tonnes,units,11994,
+2022,New Brunswick,Total aquaculture,Dollars,thousands,97667,
+2022,New Brunswick,Total finfish,Tonnes,units,9593,
+2022,New Brunswick,Total finfish,Dollars,thousands,73743,
+2022,New Brunswick,Total shellfish,Tonnes,units,2401,
+2022,New Brunswick,Total shellfish,Dollars,thousands,23924,
+2022,Quebec,Total aquaculture,Tonnes,units,1367,
+2022,Quebec,Total aquaculture,Dollars,thousands,12059,
+2022,Quebec,Total finfish,Tonnes,units,969,
+2022,Quebec,Total finfish,Dollars,thousands,8285,
+2022,Quebec,Total shellfish,Tonnes,units,398,
+2022,Quebec,Total shellfish,Dollars,thousands,3774,
+2022,Ontario,Total aquaculture,Tonnes,units,4058,
+2022,Ontario,Total aquaculture,Dollars,thousands,25613,
+2022,Ontario,Total finfish,Tonnes,units,4058,
+2022,Ontario,Total finfish,Dollars,thousands,25613,
+2022,Ontario,Total shellfish,Tonnes,units,0,
+2022,Ontario,Total shellfish,Dollars,thousands,0,
+2022,Manitoba,Total aquaculture,Tonnes,units,,x
+2022,Manitoba,Total aquaculture,Dollars,thousands,,x
+2022,Manitoba,Total finfish,Tonnes,units,,x
+2022,Manitoba,Total finfish,Dollars,thousands,,x
+2022,Manitoba,Total shellfish,Tonnes,units,,..
+2022,Manitoba,Total shellfish,Dollars,thousands,,..
+2022,Saskatchewan,Total aquaculture,Tonnes,units,,x
+2022,Saskatchewan,Total aquaculture,Dollars,thousands,,x
+2022,Saskatchewan,Total finfish,Tonnes,units,,x
+2022,Saskatchewan,Total finfish,Dollars,thousands,,x
+2022,Saskatchewan,Total shellfish,Tonnes,units,,..
+2022,Saskatchewan,Total shellfish,Dollars,thousands,,..
+2022,Alberta,Total aquaculture,Tonnes,units,,x
+2022,Alberta,Total aquaculture,Dollars,thousands,,x
+2022,Alberta,Total finfish,Tonnes,units,,x
+2022,Alberta,Total finfish,Dollars,thousands,,x
+2022,Alberta,Total shellfish,Tonnes,units,,..
+2022,Alberta,Total shellfish,Dollars,thousands,,..
+2022,British Columbia,Total aquaculture,Tonnes,units,98045,
+2022,British Columbia,Total aquaculture,Dollars,thousands,917236,
+2022,British Columbia,Total finfish,Tonnes,units,87730,
+2022,British Columbia,Total finfish,Dollars,thousands,887097,
+2022,British Columbia,Total shellfish,Tonnes,units,10316,
+2022,British Columbia,Total shellfish,Dollars,thousands,30140,
+2023,Canada,Total aquaculture,Tonnes,units,148466,
+2023,Canada,Total aquaculture,Dollars,thousands,1262378,
+2023,Canada,Total finfish,Tonnes,units,109570,
+2023,Canada,Total finfish,Dollars,thousands,1129857,
+2023,Canada,Total shellfish,Tonnes,units,38754,
+2023,Canada,Total shellfish,Dollars,thousands,126782,
+2023,Newfoundland and Labrador,Total aquaculture,Tonnes,units,19942,
+2023,Newfoundland and Labrador,Total aquaculture,Dollars,thousands,185300,
+2023,Newfoundland and Labrador,Total finfish,Tonnes,units,15645,
+2023,Newfoundland and Labrador,Total finfish,Dollars,thousands,177250,
+2023,Newfoundland and Labrador,Total shellfish,Tonnes,units,4297,
+2023,Newfoundland and Labrador,Total shellfish,Dollars,thousands,8050,
+2023,Prince Edward Island,Total aquaculture,Tonnes,units,20684,
+2023,Prince Edward Island,Total aquaculture,Dollars,thousands,51269,
+2023,Prince Edward Island,Total finfish,Tonnes,units,380,
+2023,Prince Edward Island,Total finfish,Dollars,thousands,4300,
+2023,Prince Edward Island,Total shellfish,Tonnes,units,20304,
+2023,Prince Edward Island,Total shellfish,Dollars,thousands,46969,
+2023,Nova Scotia,Total aquaculture,Tonnes,units,12084,
+2023,Nova Scotia,Total aquaculture,Dollars,thousands,120492,
+2023,Nova Scotia,Total finfish,Tonnes,units,10411,
+2023,Nova Scotia,Total finfish,Dollars,thousands,107723,
+2023,Nova Scotia,Total shellfish,Tonnes,units,1532,
+2023,Nova Scotia,Total shellfish,Dollars,thousands,7030,
+2023,New Brunswick,Total aquaculture,Tonnes,units,25420,
+2023,New Brunswick,Total aquaculture,Dollars,thousands,284271,
+2023,New Brunswick,Total finfish,Tonnes,units,22780,
+2023,New Brunswick,Total finfish,Dollars,thousands,258087,
+2023,New Brunswick,Total shellfish,Tonnes,units,2640,
+2023,New Brunswick,Total shellfish,Dollars,thousands,26184,
+2023,Quebec,Total aquaculture,Tonnes,units,1375,
+2023,Quebec,Total aquaculture,Dollars,thousands,12126,
+2023,Quebec,Total finfish,Tonnes,units,1036,
+2023,Quebec,Total finfish,Dollars,thousands,8746,
+2023,Quebec,Total shellfish,Tonnes,units,339,
+2023,Quebec,Total shellfish,Dollars,thousands,3380,
+2023,Ontario,Total aquaculture,Tonnes,units,5071,
+2023,Ontario,Total aquaculture,Dollars,thousands,36829,
+2023,Ontario,Total finfish,Tonnes,units,5071,
+2023,Ontario,Total finfish,Dollars,thousands,36829,
+2023,Ontario,Total shellfish,Tonnes,units,0,
+2023,Ontario,Total shellfish,Dollars,thousands,0,
+2023,Manitoba,Total aquaculture,Tonnes,units,,x
+2023,Manitoba,Total aquaculture,Dollars,thousands,,x
+2023,Manitoba,Total finfish,Tonnes,units,,x
+2023,Manitoba,Total finfish,Dollars,thousands,,x
+2023,Manitoba,Total shellfish,Tonnes,units,,..
+2023,Manitoba,Total shellfish,Dollars,thousands,,..
+2023,Saskatchewan,Total aquaculture,Tonnes,units,,x
+2023,Saskatchewan,Total aquaculture,Dollars,thousands,,x
+2023,Saskatchewan,Total finfish,Tonnes,units,,x
+2023,Saskatchewan,Total finfish,Dollars,thousands,,x
+2023,Saskatchewan,Total shellfish,Tonnes,units,,..
+2023,Saskatchewan,Total shellfish,Dollars,thousands,,..
+2023,Alberta,Total aquaculture,Tonnes,units,,x
+2023,Alberta,Total aquaculture,Dollars,thousands,,x
+2023,Alberta,Total finfish,Tonnes,units,,x
+2023,Alberta,Total finfish,Dollars,thousands,,x
+2023,Alberta,Total shellfish,Tonnes,units,,..
+2023,Alberta,Total shellfish,Dollars,thousands,,..
+2023,British Columbia,Total aquaculture,Tonnes,units,61013,
+2023,British Columbia,Total aquaculture,Dollars,thousands,558175,
+2023,British Columbia,Total finfish,Tonnes,units,51370,
+2023,British Columbia,Total finfish,Dollars,thousands,523005,
+2023,British Columbia,Total shellfish,Tonnes,units,9642,
+2023,British Columbia,Total shellfish,Dollars,thousands,35170,
+2024,Canada,Total aquaculture,Tonnes,units,160238,
+2024,Canada,Total aquaculture,Dollars,thousands,1365820,
+2024,Canada,Total finfish,Tonnes,units,122449,
+2024,Canada,Total finfish,Dollars,thousands,1222010,
+2024,Canada,Total shellfish,Tonnes,units,37611,
+2024,Canada,Total shellfish,Dollars,thousands,134833,
+2024,Newfoundland and Labrador,Total aquaculture,Tonnes,units,26183,
+2024,Newfoundland and Labrador,Total aquaculture,Dollars,thousands,262940,
+2024,Newfoundland and Labrador,Total finfish,Tonnes,units,23159,
+2024,Newfoundland and Labrador,Total finfish,Dollars,thousands,257275,
+2024,Newfoundland and Labrador,Total shellfish,Tonnes,units,3024,
+2024,Newfoundland and Labrador,Total shellfish,Dollars,thousands,5665,
+2024,Prince Edward Island,Total aquaculture,Tonnes,units,20969,
+2024,Prince Edward Island,Total aquaculture,Dollars,thousands,53825,
+2024,Prince Edward Island,Total finfish,Tonnes,units,387,
+2024,Prince Edward Island,Total finfish,Dollars,thousands,4300,
+2024,Prince Edward Island,Total shellfish,Tonnes,units,20582,
+2024,Prince Edward Island,Total shellfish,Dollars,thousands,49525,
+2024,Nova Scotia,Total aquaculture,Tonnes,units,11247,
+2024,Nova Scotia,Total aquaculture,Dollars,thousands,114727,
+2024,Nova Scotia,Total finfish,Tonnes,units,10060,
+2024,Nova Scotia,Total finfish,Dollars,thousands,99525,
+2024,Nova Scotia,Total shellfish,Tonnes,units,1010,
+2024,Nova Scotia,Total shellfish,Dollars,thousands,6225,
+2024,New Brunswick,Total aquaculture,Tonnes,units,27951,
+2024,New Brunswick,Total aquaculture,Dollars,thousands,310597,
+2024,New Brunswick,Total finfish,Tonnes,units,24864,
+2024,New Brunswick,Total finfish,Dollars,thousands,276216,
+2024,New Brunswick,Total shellfish,Tonnes,units,3087,
+2024,New Brunswick,Total shellfish,Dollars,thousands,34381,
+2024,Quebec,Total aquaculture,Tonnes,units,1367,
+2024,Quebec,Total aquaculture,Dollars,thousands,11387,
+2024,Quebec,Total finfish,Tonnes,units,996,
+2024,Quebec,Total finfish,Dollars,thousands,8314,
+2024,Quebec,Total shellfish,Tonnes,units,371,
+2024,Quebec,Total shellfish,Dollars,thousands,3073,
+2024,Ontario,Total aquaculture,Tonnes,units,5647,
+2024,Ontario,Total aquaculture,Dollars,thousands,36099,
+2024,Ontario,Total finfish,Tonnes,units,5647,
+2024,Ontario,Total finfish,Dollars,thousands,36099,
+2024,Ontario,Total shellfish,Tonnes,units,0,
+2024,Ontario,Total shellfish,Dollars,thousands,0,
+2024,Manitoba,Total aquaculture,Tonnes,units,,x
+2024,Manitoba,Total aquaculture,Dollars,thousands,,x
+2024,Manitoba,Total finfish,Tonnes,units,,x
+2024,Manitoba,Total finfish,Dollars,thousands,,x
+2024,Manitoba,Total shellfish,Tonnes,units,,..
+2024,Manitoba,Total shellfish,Dollars,thousands,,..
+2024,Saskatchewan,Total aquaculture,Tonnes,units,,x
+2024,Saskatchewan,Total aquaculture,Dollars,thousands,,x
+2024,Saskatchewan,Total finfish,Tonnes,units,,x
+2024,Saskatchewan,Total finfish,Dollars,thousands,,x
+2024,Saskatchewan,Total shellfish,Tonnes,units,,..
+2024,Saskatchewan,Total shellfish,Dollars,thousands,,..
+2024,Alberta,Total aquaculture,Tonnes,units,,x
+2024,Alberta,Total aquaculture,Dollars,thousands,,x
+2024,Alberta,Total finfish,Tonnes,units,,x
+2024,Alberta,Total finfish,Dollars,thousands,,x
+2024,Alberta,Total shellfish,Tonnes,units,,..
+2024,Alberta,Total shellfish,Dollars,thousands,,..
+2024,British Columbia,Total aquaculture,Tonnes,units,64154,
+2024,British Columbia,Total aquaculture,Dollars,thousands,562814,
+2024,British Columbia,Total finfish,Tonnes,units,54617,
+2024,British Columbia,Total finfish,Dollars,thousands,526850,
+2024,British Columbia,Total shellfish,Tonnes,units,9537,
+2024,British Columbia,Total shellfish,Dollars,thousands,35964,
