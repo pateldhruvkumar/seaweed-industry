@@ -15,6 +15,7 @@ const KpiValuePerLbTab  = lazy(() => import('./tabs/KpiValuePerLbTab'))
 const KpiExportValueTab = lazy(() => import('./tabs/KpiExportValueTab'))
 const EdaTab            = lazy(() => import('./tabs/EdaTab'))
 const CanadaEconomicsTab = lazy(() => import('./tabs/CanadaEconomicsTab'))
+const CanadaLicensingTab = lazy(() => import('./tabs/CanadaLicensingTab'))
 
 // Single source of truth for tab metadata. Sidebar uses `id`/`Icon`/`label`,
 // Topbar uses `title`/`subtitle` of the active tab.
@@ -53,6 +54,11 @@ const TABS = {
     Component: CanadaEconomicsTab,
     title: 'Canada · Economics',
     subtitle: 'Canadian Economic KPIs from StatCan, DFO and UN Comtrade — seaweed exports plus all-aquaculture context.',
+  },
+  'canada-licensing': {
+    Component: CanadaLicensingTab,
+    title: 'Canada · Licensing & Sites',
+    subtitle: 'Cultivation & Harvesting KPIs — licensed sites, permitted area, farm size and operating-cost ratio.',
   },
   'kpi-export-value': {
     Component: KpiExportValueTab,

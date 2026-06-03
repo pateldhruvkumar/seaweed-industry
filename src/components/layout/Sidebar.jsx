@@ -4,6 +4,7 @@ import {
   IconMap,
   IconLeaf,
   IconDollar,
+  IconShieldCheck,
   IconSparkles,
   IconWaves,
   IconChevronRight,
@@ -53,6 +54,7 @@ const NAV_GROUPS = [
     label: 'Canada',
     items: [
       { id: 'canada-economics', label: 'Canada · Economics', Icon: IconMap },
+      { id: 'canada-licensing', label: 'Canada · Licensing & Sites', Icon: IconShieldCheck },
     ],
   },
   {
