@@ -1,0 +1,203 @@
+license,species,speciestyp,county,sitestatus,hectares,has_marine_plant
+AQ1295,American oyster,Shellfish,Inverness,Issued,1.52983139798,False
+AQ1291,American oyster,Shellfish,Inverness,Issued,2.73775900708,False
+AQ1230,American oyster,Shellfish,Richmond,Issued,4.89802370977,False
+AQ1232,American oyster,Shellfish,Richmond,Issued,5.19266732892,False
+AQ1229,American oyster,Shellfish,Richmond,Issued,5.21344955986,False
+AQ1231,American oyster,Shellfish,Richmond,Issued,4.98370058122,False
+AQ0330,American oyster,Shellfish,Victoria,Issued,11.5381744796,False
+AQ1062,American oyster,Shellfish,Victoria,Issued,25.9202753699,False
+AQ0991,American oyster,Shellfish,Richmond,Issued,2.4519961447,False
+AQ0915,American oyster,Shellfish,Inverness,Issued,0.818060494553,False
+AQ0914,American oyster,Shellfish,Inverness,Issued,0.153612421963,False
+AQ0906,American oyster,Shellfish,Inverness,Issued,0.447998689238,False
+AQ0838,American oyster,Shellfish,Richmond,Issued,21.6528697655,False
+AQ0627,American oyster; Blue Mussel,Shellfish,Victoria,Issued,17.3935860835,False
+AQ0193,Atlantic Salmon; Rainbow Trout; Arctic Char; Brook Trout; Blue Mussel; American oyster,Combined Finfish and Shellfish,Victoria,Issued,6.66872287445,False
+AQ0683,Bay Quahog; Sea Scallop; Blue Mussel; American oyster,Shellfish,Richmond,Issued,5.95177826723,False
+AQ0328,American oyster,Shellfish,Victoria,Issued,21.3396630869,False
+AQ0455,American oyster,Shellfish,Cape Breton,Issued,0.831956770605,False
+AQ0496,American oyster,Shellfish,Inverness,Issued,2.23174471473,False
+AQ0320,American oyster,Shellfish,Inverness,Issued,0.351336944572,False
+AQ1088,American oyster,Shellfish,Cape Breton,Issued,3.93789594026,False
+AQ1246,American oyster,Shellfish,Victoria,Issued,11.1215054101,False
+AQ0280,American oyster,Shellfish,Cape Breton,Issued,3.73209621588,False
+AQ1108,American oyster,Shellfish,Cape Breton,Issued,3.83503941366,False
+AQ0136,American oyster; Blue Mussel; Sea Scallop; Bay Scallop,Shellfish,Inverness,Issued,14.99576756,False
+AQ1276,American oyster,Shellfish,Richmond,Issued,0.628290173846,False
+AQ1289,American oyster,Shellfish,Inverness,Issued,3.00047542129,False
+AQ1235,American oyster,Shellfish,Victoria,Issued,17.1199559229,False
+AQ1225,American oyster,Shellfish,Victoria,Issued,3.6868228749,False
+AQ1306,American oyster,Shellfish,Inverness,Issued,4.00881197249,False
+AQ1315,American oyster,Shellfish,Inverness,Issued,3.99969265908,False
+AQ1195,American oyster,Shellfish,Inverness,Issued,4.00144264555,False
+AQ1331,American oyster,Shellfish,Inverness,Issued,3.99995944426,False
+AQ1327,American oyster,Shellfish,Inverness,Issued,4.00344542979,False
+AQ1330,American oyster,Shellfish,Inverness,Issued,3.94234101993,False
+AQ1346,American oyster,Shellfish,Inverness,Issued,4.5000426991,False
+AQ1361,American oyster,Shellfish,Inverness,Issued,2.67333385642,False
+AQ0638,American oyster,Shellfish,Cape Breton,Issued,3.21952434685,False
+AQ1189,Blue Mussel,Shellfish,Victoria,Issued,136.496722847,False
+AQ1374,Blue Mussel,Shellfish,Victoria,Issued,38.2674711933,False
+AQ1187,American oyster; Blue Mussel; Sea Scallop; Kelp,Shellfish,Victoria,Issued,73.2335041912,True
+AQ1373,Blue Mussel,Shellfish,Victoria,Issued,69.2483231873,False
+AQ1091,American oyster; Blue Mussel; Dulse; Finger Kelp; Sea Lettuce; Sugar Kelp,Shellfish; Marine Plants,Guysborough,Issued,4.95685512059,True
+AQ0331,American oyster,Shellfish,Cumberland,Issued,2.16750423554,False
+AQ1228,Bay Quahog,Shellfish,Digby,Issued,1682.02580472,False
+AQ1244,Blue Mussel,Shellfish,Lunenburg,Issued,5.4061486038,False
+AQ1205,Rainbow Trout; Atlantic Salmon,Finfish,Queens,Issued,3.99320798799,False
+AQ1157,Blue Mussel; Bay Scallop; European oyster; Sea Scallop,Shellfish,Lunenburg,Issued,14.4427334782,False
+AQ1114,American oyster; Blue Mussel,Shellfish,Guysborough,Issued,11.0809491658,False
+AQ1113,American oyster; Blue Mussel,Shellfish,Guysborough,Issued,3.09604932052,False
+AQ1100,Blue Mussel,Shellfish,Guysborough,Issued,8.26548944291,False
+AQ0716,Atlantic Salmon; Rainbow Trout,Finfish,Richmond,Issued,22.9741913125,False
+AQ1086,American oyster; Bay Scallop; Bay Quahog; Razor Clam,Shellfish,Pictou,Issued,1.93794875228,False
+AQ1472,American oyster; Blue Mussel; European oyster; Sea Scallop,Shellfish; Marine Plants,Halifax,Issued,6.78237440605,True
+AQ1047,American oyster; Blue Mussel; Sea Scallop,Shellfish,Shelburne,Issued,10.0030437797,False
+AQ1042,Sea Scallop; Bay Scallop; American oyster; European oyster,Shellfish,Annapolis,Issued,98.5008831167,False
+AQ1041,Atlantic Salmon,Finfish,Annapolis,Issued,11.9853798205,False
+AQ1040,Atlantic Salmon; Lump Fish,Finfish,Annapolis,Issued,8.20595097144,False
+AQ1037,European oyster; Blue Mussel; Sea Scallop; American oyster; Soft-shell Clam,Shellfish,Digby,Issued,7.7366234189,False
+AQ1006,Atlantic Cod; Atlantic Halibut; Atlantic Salmon; Rainbow Trout; Blue Mussel; Dulse; Sea Scallop; Sugar Kelp; Finger Kelp; Winged Kelp,Finfish; Shellfish; & Marine P,Lunenburg,Issued,7.61133857069,True
+AQ0955,Rainbow Trout,Finfish,Yarmouth,Issued,4.27869265335,False
+AQ0912,Rainbow Trout,Finfish,Yarmouth,Issued,2.58624660191,False
+AQ0911,American oyster; Bay Scallop; Bay Quahog,Shellfish,Yarmouth,Issued,2.18853058907,False
+AQ0904,American oyster; Blue Mussel; Sea Scallop,Shellfish,Guysborough,Issued,8.44580320035,False
+AQ0900,Rainbow Trout,Finfish,Yarmouth,Issued,4.28251123736,False
+AQ0899,Rainbow Trout,Finfish,Yarmouth,Issued,2.53294675019,False
+AQ0846,European oyster; American oyster; Blue Mussel; Sea Scallop,Shellfish,Lunenburg,Issued,4.50014833526,False
+AQ0845,Atlantic Salmon; Rainbow Trout,Finfish,Inverness,Issued,1.57484748491,False
+AQ0839,American oyster; Blue Mussel,Shellfish,Guysborough,Issued,14.7475090035,False
+AQ0835,Atlantic Salmon; Rainbow Trout,Finfish,Queens,Issued,8.03276893821,False
+AQ0833,Atlantic Salmon; Rainbow Trout,Finfish,Halifax,Issued,3.34530198223,False
+AQ0828,Soft-shell Clam; Sea Scallop; European oyster; Blue Mussel; Bay Quahog; Sugar Kelp,Shellfish; Marine Plants,Digby,Issued,24.0005104205,True
+AQ0814,Rainbow Trout; Atlantic Salmon,Finfish,Inverness,Issued,1.39990304647,False
+AQ1129,American oyster; Bay Quahog; Bay Scallop,Shellfish,Pictou,Issued,6.83452916607,False
+AQ0177,Bay Scallop; Bay Quahog; Bar & Surf Clam; American oyster,Shellfish,Pictou,Issued,22.2366279779,False
+AQ1224,Bar & Surf Clam; Bay Quahog; Bay Scallop; American oyster,Shellfish,Pictou,Issued,58.5418333742,False
+AQ1176,Bay Quahog; American oyster,Shellfish,Pictou,Issued,2.71679342587,False
+AQ0772,Atlantic Salmon; Rainbow Trout,Finfish,Halifax,Issued,35.9985938407,False
+AQ0758,Blue Mussel,Shellfish,Victoria,Issued,33.0334423911,False
+AQ0747,American oyster; Blue Mussel; Sea Scallop,Shellfish,Guysborough,Issued,5.47336809817,False
+AQ0745,Atlantic Salmon; Rainbow Trout,Finfish,Victoria,Issued,21.6009403788,False
+AQ0742,Atlantic Salmon; Rainbow Trout,Finfish,Digby,Issued,1.51615534665,False
+AQ0726,Blue Mussel; Sea Scallop,Shellfish,Richmond,Issued,5.97946737257,False
+AQ0667,Blue Mussel; Sea Scallop,Shellfish,Richmond,Issued,8.02922532555,False
+AQ0664,American oyster; Bay Quahog; Blue Mussel; Soft-shell Clam,Shellfish,Cumberland,Issued,48.5189575923,False
+AQ0652,Blue Mussel; Sea Scallop; European oyster,Shellfish,Lunenburg,Issued,1.05092042789,False
+AQ0634,American oyster,Shellfish,Pictou,Issued,6.91791590925,False
+AQ0613,American oyster; Blue Mussel; Sea Scallop,Shellfish,Guysborough,Issued,6.38997751126,False
+AQ0600,Atlantic Salmon; Rainbow Trout,Finfish,Inverness,Issued,1.39984744134,False
+AQ0595,Blue Mussel; Bay Scallop; Sea Scallop; American oyster,Shellfish,Lunenburg,Issued,2.03470397273,False
+AQ1198,American oyster; Blue Mussel,Shellfish,Guysborough,Issued,23.4499490432,False
+AQ1199,American oyster; Blue Mussel,Shellfish,Guysborough,Issued,28.7516508576,False
+AQ0292,American oyster; European oyster; Blue Mussel,Shellfish,Lunenburg,Issued,8.1147944401,False
+AQ0277,Blue Mussel,Shellfish,Victoria,Issued,35.0043392833,False
+AQ1307,American oyster; Blue Mussel,Shellfish,Guysborough,Issued,6.60990836936,False
+AQ1469,American oyster; Blue Mussel; Bay Scallop; Sea Scallop; European oyster; Kelp; Nori; Oarweed,Shellfish; Marine Plants,Lunenburg,Issued,4.42302024147,True
+AQ1472,American oyster; Blue Mussel; European oyster; Sea Scallop,Shellfish; Marine Plants,Halifax,Issued,0.853963511368,True
+AQ0191,American oyster; Blue Mussel,Shellfish,Guysborough,Issued,2.3500487411,False
+AQ1472,American oyster; Blue Mussel; European oyster; Sea Scallop,Shellfish; Marine Plants,Halifax,Issued,4.92205056106,True
+AQ0148,Blue Mussel,Shellfish,Victoria,Issued,35.0045179619,False
+AQ1472,American oyster; Blue Mussel; European oyster; Sea Scallop,Shellfish; Marine Plants,Halifax,Issued,20.0870136268,True
+AQ0049,Blue Mussel; Dulse; European oyster; Horsetail kelp; Nori; Sea Scallop; Sugar kelp,Shellfish; Marine Plants,Lunenburg,Issued,14.8238234388,True
+AQ0055,Blue Mussel; Bay Scallop; European oyster; Sea Scallop,Shellfish,Lunenburg,Issued,5.40650373198,False
+AQ0040,American oyster; Blue Mussel; Bay Scallop; Sea Scallop; European oyster,Shellfish,Lunenburg,Issued,1.26386133604,False
+AQ1468,American oyster; Blue Mussel; Bay Scallop; Sea Scallop; European oyster; Kelp; Nori; Oarweed,Shellfish; Marine Plants,Lunenburg,Issued,8.49743487919,True
+AQ0039,American oyster; Blue Mussel; Bay Scallop; Sea Scallop; European oyster,Shellfish,Lunenburg,Issued,1.38192008399,False
+AQ1472,American oyster; Blue Mussel; European oyster; Sea Scallop,Shellfish; Marine Plants,Halifax,Issued,10.1583431897,True
+AQ1472,American oyster; Blue Mussel; European oyster; Sea Scallop,Shellfish; Marine Plants,Halifax,Issued,9.24590947216,True
+AQ1472,American oyster; Blue Mussel; European oyster; Sea Scallop,Shellfish; Marine Plants,Halifax,Issued,23.0043633973,True
+AQ1473,Blue Mussel; Sea Scallop; Sugar Kelp,Shellfish; Marine Plants,Guysborough,Issued,29.2335741456,True
+AQ0147,Blue Mussel; Sea Scallop; Sugar Kelp,Shellfish; Marine Plants,Richmond,Issued,8.92737581203,True
+AQ1029,Sea Scallop,Shellfish,Shelburne,Issued,3.15101175579,False
+AQ0502,American oyster; Bay Quahog; Soft-shell Clam,Shellfish,Colchester,Issued,25.7312568791,False
+AQ0325,American oyster; Bay Quahog; Blue Mussel; Horsetail kelp; Sea Lettuce; Sugar kelp,Shellfish; Marine Plants,Colchester,Issued,105.583926782,True
+AQ0335,American oyster,Shellfish,Colchester,Issued,4.88211416941,False
+AQ1035,Bay Quahog; American oyster,Shellfish,Colchester,Issued,14.7657039882,False
+AQ0146,American oyster; Blue Mussel; European oyster,Shellfish,Colchester,Issued,83.435709152,False
+AQ1014,American oyster,Shellfish,Colchester,Issued,14.6770315413,False
+AQ0074,Atlantic Salmon; Rainbow Trout,Finfish,Lunenburg,Issued,0.505260931603,False
+AQ1314,American oyster,Shellfish,Yarmouth,Issued,2.69603778139,False
+AQ0826,Atlantic Salmon; Rainbow Trout,Finfish,Guysborough,Issued,4.20026992296,False
+AQ1308,American oyster; Blue Mussel; Dulse; Finger Kelp; Sea Lettuce; Sugar Kelp,Shellfish; Marine Plants,Guysborough,Issued,135.768072799,True
+AQ1320,American oyster; Bay Quahog,Shellfish,Pictou,Issued,10.2156688952,False
+AQ1147,American oyster; Bay Quahog,Shellfish,Colchester,Issued,41.2676784053,False
+AQ1323,American oyster,Shellfish,Halifax,Issued,4.66329021248,False
+AQ1326,American oyster,Shellfish,Yarmouth,Issued,2.60076654112,False
+AQ0524,American oyster,Shellfish,Antigonish,Issued,2.23383983817,False
+AQ1329,American oyster; Bay Quahog; Bay Scallop,Shellfish,Pictou,Issued,2.94018046852,False
+AQ1332,American oyster; Bay Quahog,Shellfish,Pictou,Issued,2.8533363329,False
+AQ1338,Soft-shell Clam,Shellfish,Digby,Issued,44.335967131,False
+AQ1342,Soft-shell Clam,Shellfish,Digby,Issued,100.987716581,False
+AQ1339,Soft-shell Clam,Shellfish,Annapolis,Issued,41.8313834607,False
+AQ1341,Soft-shell Clam,Shellfish,Yarmouth,Issued,83.4137341107,False
+AQ1336,Soft-shell Clam,Shellfish,Yarmouth,Issued,206.86933173,False
+AQ1344,Soft-shell Clam,Shellfish,Yarmouth,Issued,75.526078752,False
+AQ1340,Soft-shell Clam,Shellfish,Annapolis,Issued,376.95107096,False
+AQ1345,Atlantic Salmon,Finfish,Shelburne,Issued,28.0234762271,False
+AQ0020,American oyster; Blue Mussel,Shellfish,Colchester,Issued,112.73426133,False
+AQ1348,American oyster,Shellfish,Halifax,Issued,3.99997497963,False
+AQ0983,Atlantic Salmon; Rainbow Trout,Finfish,Shelburne,Issued,8.23897124332,False
+AQ1192,Rainbow Trout; Atlantic Salmon,Finfish,Shelburne,Issued,9.3645174025,False
+AQ1349,American oyster; Bay Quahog,Shellfish,Pictou,Issued,3.34126391222,False
+AQ0028,American oyster; Blue Mussel; Dulse; Finger Kelp; Sea Lettuce; Sugar Kelp,Shellfish; Marine Plants,Guysborough,Issued,58.8276646839,True
+AQ1350,American oyster; Bay Quahog,Shellfish,Pictou,Issued,17.3285640384,False
+AQ1354,Atlantic Salmon,Finfish,Digby,Issued,42.1520865603,False
+AQ1353,Atlantic Salmon,Finfish,Digby,Issued,42.1557932483,False
+AQ1359,Atlantic Salmon,Finfish,Shelburne,Issued,39.9959241652,False
+AQ1358,Atlantic Salmon,Finfish,Shelburne,Issued,40.0046436034,False
+AQ1355,American oyster; Bay Quahog,Shellfish,Pictou,Issued,4.48552072985,False
+AQ1351,American oyster,Shellfish,Pictou,Issued,17.2580595263,False
+AQ1360,American oyster; Bay Quahog,Shellfish,Pictou,Issued,7.93506821413,False
+AQ1364,American oyster,Shellfish,Pictou,Issued,2.92672934329,False
+AQ1363,American oyster,Shellfish,Pictou,Issued,5.00422817199,False
+AQ1369,American oyster; Bay Quahog; Bay Scallop,Shellfish,Pictou,Issued,22.8465561119,False
+AQ1186,Blue Mussel,Shellfish,Victoria,Issued,69.248297041,False
+AQ1188,Blue Mussel,Shellfish,Victoria,Issued,38.2306219506,False
+AQ1375,Blue Mussel,Shellfish,Victoria,Issued,66.1233732665,False
+AQ1368,American oyster; Bay Quahog,Shellfish,Pictou,Issued,4.85926677804,False
+AQ1352,American oyster,Shellfish,Pictou,Issued,0.496676841412,False
+AQ1012,Atlantic Salmon; Rainbow Trout,Finfish,Digby,Issued,19.4980779806,False
+AQ1378,American oyster; Bay Quahog; Bay Scallop,Shellfish,Pictou,Issued,12.2411997103,False
+AQ1385,American oyster,Shellfish,Antigonish,Issued,10.2694829026,False
+AQ0725,Blue Mussel,Shellfish,Richmond,Issued,10.1441051393,False
+AQ0728,Blue Mussel; Sea Scallop,Shellfish,Richmond,Issued,4.74629442602,False
+AQ0760,Blue Mussel,Shellfish,Richmond,Issued,4.42075139062,False
+AQ0921,Blue Mussel; Sea Scallop; Sugar Kelp,Shellfish; Marine Plants,Richmond,Issued,6.83136693508,True
+AQ1400,American oyster,Shellfish,Yarmouth,Issued,15.0290208762,False
+AQ0622,American oyster; Blue Mussel; Sea Scallop,Shellfish,Guysborough,Issued,2.65542947483,False
+AQ0621,American oyster; Blue Mussel; Sea Scallop,Shellfish,Guysborough,Issued,4.83985381278,False
+AQ0001,American oyster; Blue Mussel,Shellfish,Guysborough,Issued,50.1693926005,False
+AQ0623,American oyster; Blue Mussel; Sea Scallop; Dulse; Finger Kelp; Sea Lettuce; Sugar Kelp,Shellfish; Marine Plants,Guysborough,Issued,14.2449081181,True
+AQ1087,American oyster,Shellfish,Yarmouth,Issued,3.56384781359,False
+AQ0075,Blue Mussel; European oyster; American oyster; Bay Scallop,Shellfish,Guysborough,Issued,42.2652281442,False
+AQ1222,American oyster,Shellfish,Cape Breton,Issued,4.57683103379,False
+AQ0692,American oyster; Blue Mussel; Sea Scallop; Sugar Kelp,Shellfish; Marine Plants,Richmond,Issued,8.22335343493,True
+AQ1039,Atlantic Salmon; Rainbow Trout; Atlantic Halibut; Atlantic Cod; Haddock; Lump Fish,Finfish,Digby,Issued,29.0806405865,False
+AQ5006,American oyster,Shellfish,Annapolis,Issued Experimental,121.69907174,False
+AQ5003,American oyster,Shellfish,Annapolis,Issued Experimental,33.2134262693,False
+AQ5004,American oyster,Shellfish,Annapolis,Issued Experimental,30.6856683064,False
+AQ5008,American oyster,Shellfish,Digby,Issued Experimental,138.218053997,False
+AQ1347,American oyster; Bay Quahog,Shellfish,Pictou,Issued,1.30323003493,False
+AQ1387,American oyster,Shellfish,Antigonish,Issued,12.1056580182,False
+AQ1427,American oyster,Shellfish,Yarmouth,Issued,7.30924296524,False
+AQ1428,American oyster,Shellfish,Yarmouth,Issued,8.71169831147,False
+AQ1429,American oyster,Shellfish,Yarmouth,Issued,19.8561523123,False
+AQ5010,Rainbow Trout,Finfish,Inverness,Issued Experimental,10.8915331328,False
+AQ0021,American oyster; Bay Quahog; Blue Mussel,Shellfish,Colchester,Issued,45.9008490785,False
+AQ5000,American oyster,Shellfish,Antigonish,Issued Experimental,7.51411293707,False
+AQ1442,American oyster,Shellfish,Antigonish,Issued,3.09203047186,False
+AQ1443,American oyster,Shellfish,Antigonish,Issued,20.2111653503,False
+AQ1444,American oyster,Shellfish,Antigonish,Issued,12.8658996921,False
+AQ5013,Rainbow Trout,Finfish,Inverness,Issued Experimental,34.4228084724,False
+AQ5011,American oyster,Shellfish,Hants,Issued Experimental,3.68438603506,False
+AQ0602,Atlantic Salmon; Rainbow Trout,Finfish,Shelburne,Issued,20.4682449366,False
+AQ0995,Blue Mussel; Sea Scallop,Shellfish,Lunenburg,Issued,1.00592770358,False
+AQ1111,American oyster,Shellfish,Victoria,Issued,6.02859617822,False
+AQ1448,American oyster; Bay Quahog; Bay Scallop; Razor Clam,Shellfish,Pictou,Issued,24.0580246248,False
+AQ1386,American oyster,Shellfish,Antigonish,Issued,7.0527394266,False
+AQ1380,American oyster,Shellfish,Pictou,Issued,11.4209846193,False
+AQ1475,American oyster,Shellfish,Yarmouth,Issued,12.0055124811,False
+AQ1112,American oyster; Bay Quahog,Shellfish,Pictou,Issued,2.57459885731,False
+AQ1313,American oyster,Shellfish,Inverness,Issued,5.63421652206,False

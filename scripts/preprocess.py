@@ -515,4 +515,54 @@ write_json(
     'canada_interprov_trade.json',
 )
 
+# ── CANADA Cultivation & Harvesting — licensing, sites, area, OpEx ratio ──────
+# Seaweed-separability: BC (DFO) is all-aquaculture, no seaweed line; Nova Scotia
+# flags Marine Plants on leases and has a dedicated wild Rockweed lease set.
+bc = pd.read_csv(DATA_DIR / 'canada_bc_aqua_sites.csv')
+nsl = pd.read_csv(DATA_DIR / 'canada_ns_leases.csv')
+nsr = pd.read_csv(DATA_DIR / 'canada_ns_rockweed.csv')
+nsl_ha = pd.to_numeric(nsl['hectares'], errors='coerce')
+mp = nsl['has_marine_plant'] == True  # noqa: E712  (pandas bool column)
+write_json({
+    'bc_sectors': [{'sector': r['sector'], 'count': int(r['site_count'])}
+                   for _, r in bc.iterrows()],
+    'bc_total': int(bc['site_count'].sum()),
+    'ns_leases_total': int(len(nsl)),
+    'ns_marine_plant_leases': int(mp.sum()),
+    'ns_rockweed_leases': int(len(nsr)),
+}, 'canada_aqua_sites.json')
+
+# Permitted area + derived average farm size (Nova Scotia only — BC has no area).
+def _area_block(ha_series, n):
+    tot = float(ha_series.sum())
+    return {'hectares': round(tot, 1), 'leases': int(n),
+            'avg_ha': round(tot / n, 1) if n else None}
+write_json({
+    'ns_all_aquaculture': _area_block(nsl_ha, len(nsl)),
+    'ns_marine_plant': _area_block(nsl_ha[mp], int(mp.sum())),
+    'ns_rockweed_wild': _area_block(pd.to_numeric(nsr['hectares'], errors='coerce'), len(nsr)),
+}, 'canada_permitted_area.json')
+
+# Operating-expense-to-revenue ratio (all aquaculture, StatCan 32-10-0108).
+# Defined as (intermediate inputs + labour) / operating revenue
+#          = ((Gross output - Gross value added) + Salaries and wages) / Total operating revenue
+va_ca = pd.read_csv(DATA_DIR / 'canada_aquaculture_valueadded.csv')
+va_ca = va_ca[va_ca['GEO'] == 'Canada']
+def _comp(comp, yr):
+    r = va_ca[(va_ca['Output and input components'] == comp) & (va_ca['REF_DATE'] == yr)]
+    if not len(r):
+        return None
+    # min_count=1 → an all-NaN (suppressed) selection yields NaN, not 0.0
+    v = pd.to_numeric(r['VALUE'], errors='coerce').sum(min_count=1)
+    return float(v) if pd.notna(v) else None
+opex = []
+for yr in sorted(va_ca['REF_DATE'].unique()):
+    go = _comp('Gross output', yr)
+    gva = _comp('Gross value added (factor cost)', yr)
+    w = _comp('Salaries and wages', yr)
+    rev = _comp('Total operating revenue', yr)
+    if None not in (go, gva, w, rev) and rev:
+        opex.append({'year': int(yr), 'opex_ratio_pct': round(((go - gva) + w) / rev * 100, 1)})
+write_json(opex, 'canada_opex_ratio.json')
+
 print(f'\nDone — all JSON files written to {OUT_DIR}')
