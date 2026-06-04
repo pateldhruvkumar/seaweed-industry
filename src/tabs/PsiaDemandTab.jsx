@@ -29,7 +29,7 @@ export default function PsiaDemandTab() {
         kpi="KPI 2"
         title="Wet vs. Processed"
         accent="Demand"
-        description="The seaweed market increasingly trades as a processed input — dried, frozen, powdered, or extracted. Understanding where the value sits and which downstream channels are scaling fastest is the key strategic question for BC operators."
+        description="The seaweed market increasingly trades as a processed input: dried, frozen, powdered, or extracted. Understanding where the value sits and which downstream channels are scaling fastest is the key strategic question for BC operators."
         stats={[
           { value: '80.6%', label: 'Global volume that moves dried / processed' },
           { value: '$13.6B', label: 'Hydrocolloid market in 2025 · 5% CAGR' },

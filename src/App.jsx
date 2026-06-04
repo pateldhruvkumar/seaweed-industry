@@ -53,12 +53,12 @@ const TABS = {
   'canada-economics': {
     Component: CanadaEconomicsTab,
     title: 'Canada · Economics',
-    subtitle: 'Canadian Economic KPIs from StatCan, DFO and UN Comtrade — seaweed exports plus all-aquaculture context.',
+    subtitle: 'Canadian Economic KPIs from StatCan, DFO and UN Comtrade: seaweed exports plus all-aquaculture context.',
   },
   'canada-licensing': {
     Component: CanadaLicensingTab,
     title: 'Canada · Licensing & Sites',
-    subtitle: 'Cultivation & Harvesting KPIs — licensed sites, permitted area, farm size and operating-cost ratio.',
+    subtitle: 'Cultivation & Harvesting KPIs: licensed sites, permitted area, farm size and operating-cost ratio.',
   },
   'kpi-export-value': {
     Component: KpiExportValueTab,
@@ -68,17 +68,17 @@ const TABS = {
   'kpi-price-wet-tonne': {
     Component: PsiaPricingTab,
     title: 'Price per Wet Tonne by Species and End Use ($/tonne)',
-    subtitle: 'Market price by species and application — global benchmarks 2010–2022 plus BC context.',
+    subtitle: 'Market price by species and application: global benchmarks 2010–2022 plus BC context.',
   },
   'kpi-value-per-lb': {
     Component: KpiValuePerLbTab,
     title: 'Value of Seaweed ($/lb)',
-    subtitle: 'Volume-weighted aquaculture price in $/lb, $/kg, or $/tonne — toggle the unit on the global chart.',
+    subtitle: 'Volume-weighted aquaculture price in $/lb, $/kg, or $/tonne: toggle the unit on the global chart.',
   },
   'kpi-wet-vs-processed': {
     Component: PsiaDemandTab,
     title: 'Wet vs. Processed Kelp Demand',
-    subtitle: 'Demand by product form — wet, dried, processed, hydrocolloid, biostimulant.',
+    subtitle: 'Demand by product form: wet, dried, processed, hydrocolloid, biostimulant.',
   },
   'kpi-gross-output': {
     Component: KpiGrossOutputTab,
@@ -98,7 +98,7 @@ function Loading() {
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('overview')
-  const [chatOpen, setChatOpen] = useState(false)
+  const [chatOpen, setChatOpen] = useState(true)
   const tab = TABS[activeTab]
   const TabComponent = tab.Component
 

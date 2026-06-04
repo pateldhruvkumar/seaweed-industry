@@ -127,7 +127,7 @@ export default function KpiValuePerLbTab() {
         kpi="Market & End-Use"
         title="Value of"
         accent="Seaweed ($/lb)"
-        description="Volume-weighted average aquaculture price, derived from FAO FishStat aquaculture quantity & value tables. Toggle the unit between pounds, kilograms, and tonnes — the underlying $/tonne data is the same."
+        description="Volume-weighted average aquaculture price, derived from FAO FishStat aquaculture quantity & value tables. Toggle the unit between pounds, kilograms, and tonnes: the underlying $/tonne data is the same."
         stats={[
           {
             value: stats ? fmt(stats.latestUnit) : '—',
@@ -176,7 +176,7 @@ export default function KpiValuePerLbTab() {
 
       {/* Global price (year slider + unit toggle) */}
       <TimeFilteredChartCard
-        title="Volume-weighted average aquaculture price — global"
+        title="Volume-weighted average aquaculture price: global"
         subtitle="Sum of value ÷ sum of quantity across all reporting countries each year. Toggle the price unit on the right."
         extraControls={
           <Dropdown

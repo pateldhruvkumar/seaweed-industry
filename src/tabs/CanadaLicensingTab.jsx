@@ -30,9 +30,9 @@ export default function CanadaLicensingTab() {
   const areaRows = useMemo(() => {
     if (!area) return []
     return [
-      { label: 'NS — all aquaculture', ...area.ns_all_aquaculture },
-      { label: 'NS — leases incl. marine plants', ...area.ns_marine_plant },
-      { label: 'NS — wild rockweed (harvest zones)', ...area.ns_rockweed_wild },
+      { label: 'NS: all aquaculture', ...area.ns_all_aquaculture },
+      { label: 'NS: leases incl. marine plants', ...area.ns_marine_plant },
+      { label: 'NS: wild rockweed (harvest zones)', ...area.ns_rockweed_wild },
     ]
   }, [area])
 
@@ -85,7 +85,7 @@ export default function CanadaLicensingTab() {
         </p>
         <p className="text-sm text-slate-700 mt-1.5 leading-relaxed">
           In <strong>British Columbia</strong>, DFO licenses finfish, shellfish and
-          land-based operations only — <strong>seaweed is authorized provincially and
+          land-based operations only: <strong>seaweed is authorized provincially and
           not published</strong>, so BC counts are all-aquaculture. <strong>Nova Scotia</strong>
           is the one province that flags seaweed: lease records mark “marine plant”
           species, and a dedicated <strong>wild rockweed</strong> lease set is published.
@@ -127,7 +127,7 @@ export default function CanadaLicensingTab() {
       <SectionHeader
         kicker="All aquaculture · with caveat"
         title="Licensed sites & leases"
-        subtitle="Site/licence counts — BC by sector (DFO) and Nova Scotia leases, with the seaweed subset called out."
+        subtitle="Site/licence counts: BC by sector (DFO) and Nova Scotia leases, with the seaweed subset called out."
       />
 
       <ChartWithInsights
@@ -136,7 +136,7 @@ export default function CanadaLicensingTab() {
         legend={[{ color: C0, label: 'Licensed sites', desc: 'count of current-valid DFO aquaculture licences in BC, by sector' }]}
         notes={[
           'DFO is the licensing authority for aquaculture in BC.',
-          'There is no marine-plant/seaweed sector — BC seaweed is provincially authorized and unpublished.',
+          'There is no marine-plant/seaweed sector: BC seaweed is provincially authorized and unpublished.',
           'Current-valid snapshot, so no year-over-year trend is available.',
         ]}
         takeaway="BC site counts are all-aquaculture; treat as sector scale, not a seaweed figure."
@@ -153,7 +153,7 @@ export default function CanadaLicensingTab() {
 
       <ChartWithInsights
         tag="KPI · Licensed Aquaculture Sites (count)"
-        title="Nova Scotia aquaculture leases — seaweed subset"
+        title="Nova Scotia aquaculture leases: seaweed subset"
         legend={[{ color: C0, label: 'Leases', desc: 'count of issued NS marine aquaculture / rockweed leases' }]}
         notes={[
           `Of ${num(sites.ns_leases_total)} marine aquaculture leases, ${num(sites.ns_marine_plant_leases)} include marine plants (seaweed co-cultured with shellfish/finfish).`,
@@ -176,7 +176,7 @@ export default function CanadaLicensingTab() {
       <SectionHeader
         kicker="Nova Scotia only"
         title="Permitted area & average farm size"
-        subtitle="Derived from NS lease polygons — BC publishes no area, so this is Nova Scotia only."
+        subtitle="Derived from NS lease polygons: BC publishes no area, so this is Nova Scotia only."
       />
 
       <ChartCard
@@ -186,7 +186,7 @@ export default function CanadaLicensingTab() {
         <DataTable columns={areaColumns} data={areaRows} />
         <p className="mt-3 text-xs text-slate-500 leading-relaxed">
           Note: wild rockweed “leases” are large coastal <em>harvest zones</em>
-          (≈{num(area.ns_rockweed_wild.avg_ha)} ha average), not cultivation farms —
+          (≈{num(area.ns_rockweed_wild.avg_ha)} ha average), not cultivation farms:
           hence the very different scale from the marine-aquaculture leases.
         </p>
         <SourceNote {...SOURCES.nsLeases} />
@@ -202,12 +202,12 @@ export default function CanadaLicensingTab() {
 
       <ChartWithInsights
         tag="KPI · Operating Expense to Revenue Ratio"
-        title="Operating expense to revenue ratio — Canadian aquaculture (%)"
+        title="Operating expense to revenue ratio: Canadian aquaculture (%)"
         legend={[{ color: C0, label: 'OpEx ratio', desc: '(intermediate inputs + labour) ÷ total operating revenue, all aquaculture' }]}
         notes={[
           'Computed from StatCan Table 32-10-0108: ((Gross output − Gross value added) + Salaries & wages) ÷ Total operating revenue.',
           'A high ratio (often >90%) reflects the thin operating margins typical of the sector.',
-          'All-aquaculture (finfish + shellfish) — not seaweed-specific.',
+          'All-aquaculture (finfish + shellfish): not seaweed-specific.',
         ]}
         takeaway="The one time-series KPI in this section; seaweed is not separable, so read as sector-wide cost structure."
       >

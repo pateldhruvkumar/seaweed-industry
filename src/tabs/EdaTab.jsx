@@ -410,7 +410,7 @@ export default function EdaTab() {
         />
       </ChartCard>
 
-      <ChartCard title="Outliers — IQR rule on log₁₀(VALUE)">
+      <ChartCard title="Outliers: IQR rule on log₁₀(VALUE)">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {DATASETS.map(ds => (
             <OutlierBox key={ds} title={ds} stats={outliers?.[ds]} />

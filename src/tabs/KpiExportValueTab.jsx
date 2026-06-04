@@ -76,7 +76,7 @@ export default function KpiExportValueTab() {
         kpi="Market & End-Use"
         title="Export Value of"
         accent="Seaweed Products"
-        description="Total value of seaweed products entering the market each year. FAO publishes production value, not trade flows, so the country breakdown below uses production value as a directional proxy — a true export figure would require UN Comtrade HS 1212.21 trade data."
+        description="Total value of seaweed products entering the market each year. FAO publishes production value, not trade flows, so the country breakdown below uses production value as a directional proxy: a true export figure would require UN Comtrade HS 1212.21 trade data."
         stats={[
           {
             value: stats

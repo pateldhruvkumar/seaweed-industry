@@ -22,7 +22,7 @@ const LEGENDS = {
   exports: [
     { color: C[0], label: 'Total seaweed exports', desc: 'all Canadian seaweed/algae exports (sum of the two HS codes)' },
     { color: C[1], label: 'Food-grade (HS 1212.21)', desc: 'seaweed fit for human consumption' },
-    { color: C[2], label: 'Other / industrial (HS 1212.29)', desc: 'other algae — carrageenan & rockweed feedstock' },
+    { color: C[2], label: 'Other / industrial (HS 1212.29)', desc: 'other algae: carrageenan & rockweed feedstock' },
   ],
   aquaValue: [
     { color: C[0], label: 'Value of sales', desc: 'farm-gate value of all Canadian aquaculture, $M CAD per year' },
@@ -32,8 +32,8 @@ const LEGENDS = {
   ],
   valueAdded: [
     { color: C[0], label: 'Gross output', desc: 'total value of goods & services the sector produces' },
-    { color: C[1], label: 'Gross value added (factor cost)', desc: 'output minus bought-in inputs — the Processing Value-Added KPI' },
-    { color: C[2], label: 'Salaries and wages', desc: 'labour income paid — the jobs / labour indicator' },
+    { color: C[1], label: 'Gross value added (factor cost)', desc: 'output minus bought-in inputs: the Processing Value-Added KPI' },
+    { color: C[2], label: 'Salaries and wages', desc: 'labour income paid: the jobs / labour indicator' },
   ],
   trade: [
     { color: C[0], label: 'Interprovincial exports', desc: 'fishery products shipped to other provinces' },
@@ -135,7 +135,7 @@ export default function CanadaEconomicsTab() {
         </p>
         <p className="text-sm text-slate-700 mt-1.5 leading-relaxed">
           Canada does not report seaweed separately in its official aquaculture
-          statistics — StatCan and DFO track aquaculture as <em>finfish + shellfish</em>.
+          statistics: StatCan and DFO track aquaculture as <em>finfish + shellfish</em>.
           Only <strong>export value</strong> below is seaweed-specific (HS 1212 trade
           codes). The production, value-added and trade-flow series are
           <strong> all-aquaculture aggregates</strong>, labelled as such on each chart.
@@ -184,7 +184,7 @@ export default function CanadaEconomicsTab() {
       <SectionHeader
         kicker="Seaweed-specific"
         title="Export value of Canadian seaweed"
-        subtitle="The one series reported for seaweed specifically — HS 1212.21 (food) + 1212.29 (other)."
+        subtitle="The one series reported for seaweed specifically: HS 1212.21 (food) + 1212.29 (other)."
       />
 
       <ChartWithInsights
@@ -212,7 +212,7 @@ export default function CanadaEconomicsTab() {
       <SectionHeader
         kicker="All aquaculture · with caveat"
         title="Production value, value added & jobs"
-        subtitle="Best available Canadian figures — finfish + shellfish combined, not seaweed-only."
+        subtitle="Best available Canadian figures: finfish + shellfish combined, not seaweed-only."
       />
 
       <ChartWithInsights
@@ -236,13 +236,13 @@ export default function CanadaEconomicsTab() {
 
       <ChartWithInsights
         tag="KPI · Value of Sales (by province)"
-        title={`Aquaculture value of sales by province — ${byProv?.year} ($M)`}
+        title={`Aquaculture value of sales by province: ${byProv?.year} ($M)`}
         legend={LEGENDS.province}
         notes={[
           'Each horizontal bar is one province’s all-aquaculture value of sales in the latest year.',
           'British Columbia leads, followed by the Atlantic provinces (NB, NL, PEI, NS).',
         ]}
-        takeaway="Geographic context for where Canadian aquaculture value sits — seaweed is not separable from these provincial totals."
+        takeaway="Geographic context for where Canadian aquaculture value sits: seaweed is not separable from these provincial totals."
       >
         <BarChart
           data={byProv?.provinces ?? []}
@@ -259,7 +259,7 @@ export default function CanadaEconomicsTab() {
         legend={LEGENDS.valueAdded}
         notes={[
           'Gross value added (factor cost) is the Processing Value Added KPI proxy.',
-          'Salaries and wages is the labour-income indicator — StatCan reports labour income, not headcount.',
+          'Salaries and wages is the labour-income indicator: StatCan reports labour income, not headcount.',
           'For job counts, DFO publishes aquaculture employment estimates (see source link).',
         ]}
         takeaway="Value added and wages are real StatCan series but cover all aquaculture; no seaweed-only figure is published."
@@ -276,10 +276,10 @@ export default function CanadaEconomicsTab() {
 
       <ChartWithInsights
         tag="KPI · Trade Flows Between Provinces"
-        title="Fishery-product trade flows — interprovincial vs. international ($M)"
+        title="Fishery-product trade flows: interprovincial vs. international ($M)"
         legend={LEGENDS.trade}
         notes={[
-          'StatCan classifies trade by product group, not HS code — the closest group is "Fish, crustaceans, shellfish & other fishery products".',
+          'StatCan classifies trade by product group, not HS code: the closest group is "Fish, crustaceans, shellfish & other fishery products".',
           'This is broader than aquaculture and not seaweed-specific; use for directional context only.',
         ]}
         takeaway="No seaweed-granular interprovincial trade exists; this fishery-products aggregate is the nearest available proxy."

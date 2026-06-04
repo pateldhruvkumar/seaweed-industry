@@ -28,7 +28,7 @@ export default function InsightsList({ notes = [], takeaway, heading = 'Key Note
                 />
                 <span>
                   <span className="font-semibold text-slate-800">{l.label}</span>
-                  {l.desc ? ` — ${l.desc}` : ''}
+                  {l.desc ? `: ${l.desc}` : ''}
                 </span>
               </li>
             ))}
