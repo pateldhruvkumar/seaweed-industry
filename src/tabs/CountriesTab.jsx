@@ -66,7 +66,7 @@ export default function CountriesTab() {
   return (
     <div className="space-y-6">
       <VolumeChartCard
-        title={`Top ${topN} producing countries — ${winStart}–${winEnd} average`}
+        title={`Top ${topN} producing countries: ${winStart}–${winEnd} average`}
         controls={
           <>
             <Dropdown label="Window" options={WINDOW_OPTIONS} value={window} onChange={setWindow} />

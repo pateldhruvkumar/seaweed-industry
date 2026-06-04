@@ -30,7 +30,7 @@ export default function PsiaPricingTab() {
         kpi="KPI 1"
         title="Price per"
         accent="Wet Tonne"
-        description="Global $/tonne benchmarks by species and end-use, plus a first look at where BC fits in the picture. Asian farmgate prices are the dominant series in FAO data — the question is how much of a premium BC's certified, food-grade kelp can command."
+        description="Global $/tonne benchmarks by species and end-use, plus a first look at where BC fits in the picture. Asian farmgate prices are the dominant series in FAO data: the question is how much of a premium BC's certified, food-grade kelp can command."
         stats={[
           { value: '$1,351/t', label: 'Kelps NEI · 2022 · stable for 12 years' },
           { value: '74%',      label: 'China share of global aquaculture value' },

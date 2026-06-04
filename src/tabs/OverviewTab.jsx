@@ -149,7 +149,7 @@ export default function OverviewTab() {
       {/* ── Aquaculture share over time ─────────────────────────── */}
       <TimeFilteredChartCard
         title="Aquaculture as a share of global seaweed production"
-        subtitle="Percent of total tonnage — illustrates the long-term shift from wild harvest to farmed output."
+        subtitle="Percent of total tonnage: illustrates the long-term shift from wild harvest to farmed output."
       >
         {([yMin, yMax]) => (
           <LineChart

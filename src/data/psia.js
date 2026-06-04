@@ -41,7 +41,7 @@ export const GLOBAL_AQUA_TREND = {
     'Canada contributes less than 0.01% of global aquaculture volume.',
   ],
   takeaway:
-    'BC enters a large and growing global market but from a very small base. Benchmarking BC prices against global averages requires care — Asian farmgate prices are not directly comparable.',
+    'BC enters a large and growing global market but from a very small base. Benchmarking BC prices against global averages requires care: Asian farmgate prices are not directly comparable.',
 }
 
 export const SPECIES_PRICES_2022 = {
@@ -66,7 +66,7 @@ export const SPECIES_PRICES_2022 = {
     'Commodity':           '#0e7490', // cyan-700
   },
   notes: [
-    'Algae NEI at $33k/t is an outlier — tiny volume, likely lab/nutraceutical grade.',
+    'Algae NEI at $33k/t is an outlier: tiny volume, likely lab/nutraceutical grade.',
     'Kelps NEI (the species most relevant to BC) sits at ~$1,350/t globally.',
     'Laver (Nori) has declined from $2,073/t (2010) as cultivation expanded.',
   ],
@@ -121,9 +121,9 @@ export const SPECIES_PRICE_TREND = {
     { year: 2022, species: 'Fus. Sargassum', price: 948 },
   ],
   notes: [
-    'Nori prices falling as supply scales — a useful warning for BC.',
+    'Nori prices falling as supply scales: a useful warning for BC.',
     'Kelps NEI has held stable at $1,200 – 1,350/t over 12 years.',
-    'Wakame trending slightly upward — demand growing faster than supply.',
+    'Wakame trending slightly upward: demand growing faster than supply.',
   ],
   takeaway:
     'BC should track whether local farmgate prices are above or below these global benchmarks, and by how much. A member survey is the only way to establish this.',
@@ -143,12 +143,12 @@ export const TOP_COUNTRIES_VALUE = {
     { country: 'Russia',      value_musd: 0.2,  highlight: false },
   ],
   notes: [
-    'China dominates at 74% of global value — nearly $100M USD/year.',
+    'China dominates at 74% of global value: nearly $100M USD/year.',
     'Northern America (incl. Canada) contributes less than 0.01%.',
     'Japan and South Korea set the quality benchmark for premium seaweed.',
   ],
   takeaway:
-    "BC's opportunity is not to compete on volume but on premium positioning — food-grade, certified, sustainably-farmed. That justifies a higher $/tonne than Asian commodity prices.",
+    "BC's opportunity is not to compete on volume but on premium positioning: food-grade, certified, sustainably-farmed. That justifies a higher $/tonne than Asian commodity prices.",
 }
 
 export const BC_PRICE_BENCHMARKS = {
@@ -190,7 +190,7 @@ export const FORM_SPLIT = {
     { value: '69.9%', label: 'Powder form',       source: 'Fortune Business Insights 2026' },
   ],
   notes: [
-    '60 – 80% of commercial seaweed moves as dried or processed — consistent across 5+ reports.',
+    '60 – 80% of commercial seaweed moves as dried or processed: consistent across 5+ reports.',
     'Fresh/wet seaweed is the fastest-growing segment (CAGR ~10%) but from a small base.',
     'The processed segment is dominated by food-grade dried seaweed and hydrocolloids.',
   ],
@@ -210,9 +210,9 @@ export const END_USE_SPLIT = {
     { category: 'Other',               share_pct: 3,  color: '#94a3b8' }, // slate-400
   ],
   notes: [
-    'Food & Beverage is the largest single channel at 34% — includes both fresh and dried.',
+    'Food & Beverage is the largest single channel at 34%: includes both fresh and dried.',
     'Hydrocolloids (carrageenan, alginate, agar) = 28% and are entirely processed.',
-    'Agriculture and biostimulants at 16% — the fastest-growing non-food channel.',
+    'Agriculture and biostimulants at 16%: the fastest-growing non-food channel.',
   ],
   takeaway:
     'The two fastest-growing non-commodity channels — biostimulants and animal feed — both require processed kelp, which is where BC operators are investing.',
@@ -246,7 +246,7 @@ export const HYDROCOLLOID_MARKET = {
     'Hydrocolloid market valued at $13.6B USD in 2025, growing at 5.0% CAGR.',
     'Food & beverage accounts for 69.7% of hydrocolloid end-use.',
     'Carrageenan, alginate, and agar together = 62.5% of volume.',
-    'Tate & Lyle acquired CP Kelco for $1.8B (Nov 2024) — a strong demand signal.',
+    'Tate & Lyle acquired CP Kelco for $1.8B (Nov 2024): a strong demand signal.',
   ],
   takeaway:
     'Processed seaweed demand is large and growing. BC operators who invest in extraction capacity are targeting a well-established, expanding market.',
@@ -272,7 +272,7 @@ export const BC_VS_GLOBAL_RADAR = {
     'Regulatory support is improving but permitting timelines remain a barrier.',
   ],
   takeaway:
-    "Low market data availability is itself a KPI finding. PSIA's dashboard directly addresses this gap — it is the tool that closes the loop.",
+    "Low market data availability is itself a KPI finding. PSIA's dashboard directly addresses this gap: it is the tool that closes the loop.",
 }
 
 export const NA_EMERGING_APPS = {

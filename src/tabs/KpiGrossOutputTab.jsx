@@ -74,7 +74,7 @@ export default function KpiGrossOutputTab() {
         kpi="Market & End-Use"
         title="Gross Value of"
         accent="Seaweed Industry Output"
-        description="Total economic output of global seaweed aquaculture, in million USD per year, derived from FAO FishStat country-by-species value records. Capture (wild harvest) is excluded — FAO only publishes value for the aquaculture stream."
+        description="Total economic output of global seaweed aquaculture, in million USD per year, derived from FAO FishStat country-by-species value records. Capture (wild harvest) is excluded: FAO only publishes value for the aquaculture stream."
         stats={[
           {
             value: stats

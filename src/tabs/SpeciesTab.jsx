@@ -82,7 +82,7 @@ export default function SpeciesTab() {
       </VolumeChartCard>
 
       <ChartCard
-        title="Country × species specialization — thousand tonnes / year"
+        title="Country × species specialization: thousand tonnes / year"
         controls={
           <Dropdown
             label="Show top"
