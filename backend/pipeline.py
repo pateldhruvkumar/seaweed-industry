@@ -62,21 +62,46 @@ _CHART_KINDS = {"line", "bar", "donut", "scatter"}
 
 
 def _extract_json(text: str) -> dict | None:
-    """Pull the first JSON object out of an LLM response, tolerating fences/prose."""
+    """Extract the first complete top-level JSON object from an LLM response.
+
+    Tolerates markdown fences and surrounding prose. String-aware so braces
+    inside string values do not confuse the bracket counting.
+    """
     if not text:
         return None
     start = text.find("{")
-    end = text.rfind("}")
-    if start == -1 or end == -1 or end < start:
+    if start == -1:
         return None
-    try:
-        parsed = json.loads(text[start : end + 1])
-    except (json.JSONDecodeError, ValueError):
-        return None
-    return parsed if isinstance(parsed, dict) else None
+    depth = 0
+    in_string = False
+    escape = False
+    for i in range(start, len(text)):
+        ch = text[i]
+        if escape:
+            escape = False
+            continue
+        if ch == "\\" and in_string:
+            escape = True
+            continue
+        if ch == '"':
+            in_string = not in_string
+            continue
+        if in_string:
+            continue
+        if ch == "{":
+            depth += 1
+        elif ch == "}":
+            depth -= 1
+            if depth == 0:
+                try:
+                    parsed = json.loads(text[start : i + 1])
+                except (json.JSONDecodeError, ValueError):
+                    return None
+                return parsed if isinstance(parsed, dict) else None
+    return None
 
 
-def _validate_chart(chart, columns: list[str]) -> dict | None:
+def _validate_chart(chart: object, columns: list[str]) -> dict | None:
     """Return a normalized chart hint, or None if it is unusable."""
     if not isinstance(chart, dict):
         return None

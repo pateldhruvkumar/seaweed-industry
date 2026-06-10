@@ -125,3 +125,18 @@ def test_coerce_suggestions_caps_and_filters():
 def test_coerce_suggestions_non_list():
     assert pipeline._coerce_suggestions("nope") == []
     assert pipeline._coerce_suggestions(None) == []
+
+
+def test_extract_json_ignores_trailing_object():
+    raw = '{"a": 1}  some note: {"b": 2}'
+    assert pipeline._extract_json(raw) == {"a": 1}
+
+
+def test_extract_json_brace_inside_string():
+    raw = '{"summary": "growth was { strong } overall"}'
+    assert pipeline._extract_json(raw) == {"summary": "growth was { strong } overall"}
+
+
+def test_extract_json_nested_object():
+    raw = '{"chart": {"kind": "line"}, "suggestions": ["a"]}'
+    assert pipeline._extract_json(raw) == {"chart": {"kind": "line"}, "suggestions": ["a"]}
