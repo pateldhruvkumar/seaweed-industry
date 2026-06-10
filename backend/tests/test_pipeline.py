@@ -5,12 +5,16 @@ import embeddings as emb
 from db import load_tables
 
 
-def _make_groq_mock(sql: str, summary: str = "Result summary."):
+_DEFAULT_ENRICHMENT = '{"summary": "Result summary.", "suggestions": ["a", "b"], "chart": null}'
+
+
+def _make_groq_mock(sql: str, enrichment: str = _DEFAULT_ENRICHMENT):
+    """First create() call returns SQL; second returns the enrichment JSON string."""
     mock = MagicMock()
     first_call = MagicMock()
     first_call.choices[0].message.content = sql
     second_call = MagicMock()
-    second_call.choices[0].message.content = summary
+    second_call.choices[0].message.content = enrichment
     mock.chat.completions.create.side_effect = [first_call, second_call]
     return mock
 
@@ -41,12 +45,15 @@ def test_run_returns_table(conn):
     with patch("pipeline.get_conn", return_value=conn):
         groq = _make_groq_mock(
             "SELECT Country_Name, SUM(VALUE) AS total FROM seaweed_global_production WHERE PERIOD = 2022 GROUP BY Country_Name ORDER BY total DESC LIMIT 5",
-            "China leads seaweed production in 2022."
+            '{"summary": "China leads seaweed production in 2022.", "suggestions": ["How has China changed since 2010?", "Compare China vs Indonesia"], "chart": null}',
         )
         result = pipeline.run("top 5 countries in 2022", [], groq)
     assert result["type"] == "table"
     assert len(result["data"]) == 5
     assert "Country_Name" in result["data"][0]
+    assert result["answer"] == "China leads seaweed production in 2022."
+    assert result["suggestions"] == ["How has China changed since 2010?", "Compare China vs Indonesia"]
+    assert result["chart"] is None
 
 
 def test_run_rejects_non_select(conn):
@@ -140,3 +147,47 @@ def test_extract_json_brace_inside_string():
 def test_extract_json_nested_object():
     raw = '{"chart": {"kind": "line"}, "suggestions": ["a"]}'
     assert pipeline._extract_json(raw) == {"chart": {"kind": "line"}, "suggestions": ["a"]}
+
+
+def test_run_table_includes_valid_chart(conn):
+    with patch("pipeline.get_conn", return_value=conn):
+        groq = _make_groq_mock(
+            "SELECT Country_Name, SUM(VALUE) AS total FROM seaweed_global_production WHERE PERIOD = 2022 GROUP BY Country_Name ORDER BY total DESC LIMIT 5",
+            '{"summary": "s", "suggestions": [], "chart": {"kind": "bar", "x": "Country_Name", "y": "total", "series": null}}',
+        )
+        result = pipeline.run("top 5 countries in 2022", [], groq)
+    assert result["chart"] == {"kind": "bar", "x": "Country_Name", "y": "total", "series": None}
+
+
+def test_run_table_drops_chart_with_unknown_column(conn):
+    with patch("pipeline.get_conn", return_value=conn):
+        groq = _make_groq_mock(
+            "SELECT Country_Name, SUM(VALUE) AS total FROM seaweed_global_production WHERE PERIOD = 2022 GROUP BY Country_Name ORDER BY total DESC LIMIT 5",
+            '{"summary": "s", "suggestions": [], "chart": {"kind": "bar", "x": "nope", "y": "total"}}',
+        )
+        result = pipeline.run("top 5 countries in 2022", [], groq)
+    assert result["chart"] is None
+
+
+def test_run_table_malformed_enrichment_falls_back(conn):
+    with patch("pipeline.get_conn", return_value=conn):
+        groq = _make_groq_mock(
+            "SELECT Country_Name, SUM(VALUE) AS total FROM seaweed_global_production WHERE PERIOD = 2022 GROUP BY Country_Name ORDER BY total DESC LIMIT 5",
+            "I'm sorry, here is the data but not as JSON.",
+        )
+        result = pipeline.run("top 5 countries in 2022", [], groq)
+    assert result["type"] == "table"
+    assert result["suggestions"] == []
+    assert result["chart"] is None
+    assert isinstance(result["answer"], str) and result["answer"]
+
+
+def test_run_scalar_has_empty_chart_and_suggestions(conn):
+    with patch("pipeline.get_conn", return_value=conn):
+        groq = _make_groq_mock(
+            "SELECT COUNT(DISTINCT Country_Name) AS n FROM seaweed_global_production"
+        )
+        result = pipeline.run("how many countries are there?", [], groq)
+    assert result["type"] == "scalar"
+    assert result["chart"] is None
+    assert result["suggestions"] == []
