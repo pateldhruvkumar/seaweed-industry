@@ -76,3 +76,52 @@ def test_classify_type_scalar():
 def test_classify_type_table():
     assert pipeline._classify_type([{"a": 1, "b": 2}]) == "table"
     assert pipeline._classify_type([{"a": 1}, {"a": 2}]) == "table"
+
+
+def test_extract_json_plain():
+    assert pipeline._extract_json('{"a": 1}') == {"a": 1}
+
+
+def test_extract_json_with_fences_and_prose():
+    raw = 'Sure! ```json\n{"a": 1, "b": "x"}\n``` done'
+    assert pipeline._extract_json(raw) == {"a": 1, "b": "x"}
+
+
+def test_extract_json_invalid_returns_none():
+    assert pipeline._extract_json("not json at all") is None
+    assert pipeline._extract_json("") is None
+
+
+def test_validate_chart_valid():
+    cols = ["PERIOD", "VALUE", "Country_Name"]
+    chart = {"kind": "line", "x": "PERIOD", "y": "VALUE", "series": "Country_Name"}
+    assert pipeline._validate_chart(chart, cols) == chart
+
+
+def test_validate_chart_unknown_kind():
+    assert pipeline._validate_chart(
+        {"kind": "pie", "x": "PERIOD", "y": "VALUE"}, ["PERIOD", "VALUE"]
+    ) is None
+
+
+def test_validate_chart_missing_column():
+    assert pipeline._validate_chart(
+        {"kind": "bar", "x": "nope", "y": "VALUE"}, ["PERIOD", "VALUE"]
+    ) is None
+
+
+def test_validate_chart_drops_bad_series():
+    out = pipeline._validate_chart(
+        {"kind": "line", "x": "PERIOD", "y": "VALUE", "series": "nope"},
+        ["PERIOD", "VALUE"],
+    )
+    assert out == {"kind": "line", "x": "PERIOD", "y": "VALUE", "series": None}
+
+
+def test_coerce_suggestions_caps_and_filters():
+    assert pipeline._coerce_suggestions(["a", "  b  ", "", 5, "c", "d"]) == ["a", "b", "c"]
+
+
+def test_coerce_suggestions_non_list():
+    assert pipeline._coerce_suggestions("nope") == []
+    assert pipeline._coerce_suggestions(None) == []

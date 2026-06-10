@@ -58,6 +58,50 @@ def _extract_sql(text: str) -> str:
     return text.strip("`\n ")
 
 
+_CHART_KINDS = {"line", "bar", "donut", "scatter"}
+
+
+def _extract_json(text: str) -> dict | None:
+    """Pull the first JSON object out of an LLM response, tolerating fences/prose."""
+    if not text:
+        return None
+    start = text.find("{")
+    end = text.rfind("}")
+    if start == -1 or end == -1 or end < start:
+        return None
+    try:
+        parsed = json.loads(text[start : end + 1])
+    except (json.JSONDecodeError, ValueError):
+        return None
+    return parsed if isinstance(parsed, dict) else None
+
+
+def _validate_chart(chart, columns: list[str]) -> dict | None:
+    """Return a normalized chart hint, or None if it is unusable."""
+    if not isinstance(chart, dict):
+        return None
+    kind, x, y = chart.get("kind"), chart.get("x"), chart.get("y")
+    if kind not in _CHART_KINDS or x not in columns or y not in columns:
+        return None
+    series = chart.get("series")
+    if series is not None and series not in columns:
+        series = None
+    return {"kind": kind, "x": x, "y": y, "series": series}
+
+
+def _coerce_suggestions(suggestions) -> list[str]:
+    """Keep at most 3 non-empty strings."""
+    if not isinstance(suggestions, list):
+        return []
+    out = []
+    for s in suggestions:
+        if isinstance(s, str) and s.strip():
+            out.append(s.strip())
+        if len(out) == 3:
+            break
+    return out
+
+
 def _classify_type(rows: list[dict]) -> str:
     if len(rows) == 1 and len(rows[0]) == 1:
         return "scalar"
