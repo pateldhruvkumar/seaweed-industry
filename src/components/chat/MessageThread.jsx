@@ -41,6 +41,7 @@ export default function MessageThread({
           sql={msg.sql}
           data={msg.data}
           type={msg.type}
+          chart={msg.chart}
           streaming={!!msg.streaming}
           onRegenerate={i === lastAssistantIdx ? onRegenerate : undefined}
         />

@@ -7,6 +7,7 @@ export default function MessageBubble({
   sql,
   data,
   type,
+  chart,
   streaming,
   onRegenerate,
 }) {
@@ -42,6 +43,7 @@ export default function MessageBubble({
       sql={sql}
       data={data}
       type={type}
+      chart={chart}
       streaming={streaming}
       onRegenerate={onRegenerate}
     />

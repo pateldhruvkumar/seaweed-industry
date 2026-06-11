@@ -3,6 +3,8 @@ import { render, screen, act } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import AssistantMessage from './AssistantMessage'
 
+vi.mock('./ChatChart', () => ({ default: () => <div data-testid="chat-chart" /> }))
+
 beforeEach(() => {
   vi.useFakeTimers()
   Object.assign(navigator, {
@@ -61,5 +63,27 @@ describe('AssistantMessage', () => {
     )
     await userEvent.click(screen.getByRole('button', { name: /regenerate/i }))
     expect(onRegenerate).toHaveBeenCalledOnce()
+  })
+
+  it('renders a chart above the table for a chartable table result', () => {
+    vi.useRealTimers()
+    render(
+      <AssistantMessage
+        content="answer"
+        type="table"
+        data={[
+          { Country_Name: 'China', total: 5 },
+          { Country_Name: 'Japan', total: 3 },
+        ]}
+        streaming={false}
+      />,
+    )
+    expect(screen.getByTestId('chat-chart')).toBeInTheDocument()
+  })
+
+  it('does not render a chart for a single-row (scalar) result', () => {
+    vi.useRealTimers()
+    render(<AssistantMessage content="answer" type="scalar" data={[{ n: 5 }]} streaming={false} />)
+    expect(screen.queryByTestId('chat-chart')).toBeNull()
   })
 })

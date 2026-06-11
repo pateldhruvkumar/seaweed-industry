@@ -47,7 +47,7 @@ export default function ChatPanel({ onClose }) {
       })
       if (!resp.ok) throw new Error(`HTTP ${resp.status}`)
 
-      const { answer, sql, data, type } = await resp.json()
+      const { answer, sql, data, type, chart, suggestions } = await resp.json()
       setMessages(prev => [
         ...prev,
         {
@@ -57,6 +57,8 @@ export default function ChatPanel({ onClose }) {
           sql,
           data,
           type,
+          chart,
+          suggestions,
           streaming: true,
         },
       ])

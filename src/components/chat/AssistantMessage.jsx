@@ -1,9 +1,11 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import SparkAvatar from './SparkAvatar'
 import TypingDots from './TypingDots'
 import ResultTable from './ResultTable'
+import ChatChart from './ChatChart'
+import { inferChartSpec } from '../../lib/chatChart'
 
 const CHARS_PER_TICK = 3
 const TICK_MS = 18
@@ -29,6 +31,7 @@ export default function AssistantMessage({
   sql,
   data,
   type,
+  chart,
   streaming = false,
   onRegenerate,
 }) {
@@ -78,6 +81,8 @@ export default function AssistantMessage({
     }
   }
 
+  const chartSpec = useMemo(() => inferChartSpec(data, chart), [data, chart])
+
   const showTyping = streaming && revealed.length === 0
   const showActions = done && revealed.length > 0
 
@@ -97,6 +102,8 @@ export default function AssistantMessage({
           </ReactMarkdown>
         )}
       </div>
+
+      {done && chartSpec && <ChatChart data={data} spec={chartSpec} />}
 
       {done && type === 'table' && data?.length > 0 && (
         <div className="mt-2 rounded-xl border border-gray-200 bg-white shadow-card p-2">
