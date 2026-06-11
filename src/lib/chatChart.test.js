@@ -70,4 +70,29 @@ describe('inferChartSpec', () => {
       kind: 'bar', x: 'Country_Name', y: 'total', series: null,
     })
   })
+
+  it('prefers a value-word measure over a numeric id column', () => {
+    const data = [
+      { id: 1, Country_Name: 'China', total: 100 },
+      { id: 2, Country_Name: 'Japan', total: 80 },
+    ]
+    expect(inferChartSpec(data, null)).toEqual({
+      kind: 'bar', x: 'Country_Name', y: 'total', series: null,
+    })
+  })
+
+  it('rejects a hint whose x and y are the same column and falls back to the heuristic', () => {
+    const data = [
+      { Country_Name: 'China', total: 100 },
+      { Country_Name: 'Indonesia', total: 80 },
+    ]
+    const hint = { kind: 'bar', x: 'total', y: 'total', series: null }
+    expect(inferChartSpec(data, hint)).toEqual({
+      kind: 'bar', x: 'Country_Name', y: 'total', series: null,
+    })
+  })
+
+  it('returns null for an empty array', () => {
+    expect(inferChartSpec([], null)).toBeNull()
+  })
 })
