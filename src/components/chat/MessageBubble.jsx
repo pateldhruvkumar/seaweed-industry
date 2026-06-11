@@ -8,6 +8,7 @@ export default function MessageBubble({
   data,
   type,
   chart,
+  suggestions,
   streaming,
   onRegenerate,
 }) {
@@ -44,6 +45,7 @@ export default function MessageBubble({
       data={data}
       type={type}
       chart={chart}
+      suggestions={suggestions}
       streaming={streaming}
       onRegenerate={onRegenerate}
     />

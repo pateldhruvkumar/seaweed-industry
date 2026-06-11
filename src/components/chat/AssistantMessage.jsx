@@ -103,7 +103,7 @@ export default function AssistantMessage({
         )}
       </div>
 
-      {done && chartSpec && <ChatChart data={data} spec={chartSpec} />}
+      {done && type === 'table' && chartSpec && <ChatChart data={data} spec={chartSpec} />}
 
       {done && type === 'table' && data?.length > 0 && (
         <div className="mt-2 rounded-xl border border-gray-200 bg-white shadow-card p-2">

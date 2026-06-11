@@ -78,7 +78,11 @@ describe('AssistantMessage', () => {
         streaming={false}
       />,
     )
-    expect(screen.getByTestId('chat-chart')).toBeInTheDocument()
+    const chart = screen.getByTestId('chat-chart')
+    const table = screen.getByRole('table')
+    expect(chart).toBeInTheDocument()
+    // chart must appear before the table in the DOM
+    expect(chart.compareDocumentPosition(table) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
   })
 
   it('does not render a chart for a single-row (scalar) result', () => {
