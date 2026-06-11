@@ -118,13 +118,17 @@ def _validate_chart(chart: object, columns: list[str]) -> dict | None:
 
 
 def _coerce_suggestions(suggestions) -> list[str]:
-    """Keep at most 3 non-empty strings."""
+    """Keep at most 3 unique, non-empty, stripped strings (order preserved)."""
     if not isinstance(suggestions, list):
         return []
     out = []
+    seen = set()
     for s in suggestions:
         if isinstance(s, str) and s.strip():
-            out.append(s.strip())
+            stripped = s.strip()
+            if stripped not in seen:
+                seen.add(stripped)
+                out.append(stripped)
         if len(out) == 3:
             break
     return out

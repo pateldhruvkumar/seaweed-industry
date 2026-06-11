@@ -164,7 +164,8 @@ export default function AssistantMessage({
               onClick={() => onSuggestion(s)}
               className="text-xs rounded-full border border-gray-200 bg-white px-3 py-1
                          text-gray-600 hover:border-brand-400 hover:bg-brand-50
-                         transition-colors"
+                         transition-colors focus-visible:outline-none
+                         focus-visible:ring-2 focus-visible:ring-brand-500"
             >
               {s}
             </button>

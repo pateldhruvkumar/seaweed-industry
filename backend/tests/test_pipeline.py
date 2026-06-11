@@ -134,6 +134,10 @@ def test_coerce_suggestions_non_list():
     assert pipeline._coerce_suggestions(None) == []
 
 
+def test_coerce_suggestions_dedupes():
+    assert pipeline._coerce_suggestions(["a", "a", "  a  ", "b", "b", "c", "d"]) == ["a", "b", "c"]
+
+
 def test_extract_json_ignores_trailing_object():
     raw = '{"a": 1}  some note: {"b": 2}'
     assert pipeline._extract_json(raw) == {"a": 1}

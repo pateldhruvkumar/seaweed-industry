@@ -106,6 +106,8 @@ describe('AssistantMessage', () => {
     )
     await userEvent.click(screen.getByRole('button', { name: 'Compare to 2010' }))
     expect(onSuggestion).toHaveBeenCalledWith('Compare to 2010')
+    await userEvent.click(screen.getByRole('button', { name: 'Show top 3' }))
+    expect(onSuggestion).toHaveBeenCalledWith('Show top 3')
   })
 
   it('does not render chips when onSuggestion is absent', () => {
