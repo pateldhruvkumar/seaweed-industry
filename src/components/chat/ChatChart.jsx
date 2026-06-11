@@ -53,6 +53,7 @@ export default function ChatChart({ data, spec }) {
   if (spec.kind === 'bar') {
     const rows = [...data]
       .filter(r => r[spec.y] != null && !Number.isNaN(Number(r[spec.y])))
+      // Sort by magnitude so the slice keeps the top MAX_BARS; BarChart re-sorts for display.
       .sort((a, b) => Math.abs(Number(b[spec.y])) - Math.abs(Number(a[spec.y])))
       .slice(0, MAX_BARS)
     return (
@@ -78,6 +79,8 @@ export default function ChatChart({ data, spec }) {
   if (spec.kind === 'scatter') {
     return (
       <Card>
+        {/* ScatterChart uses a log scale and filters out non-positive values internally;
+            if all x/y values are <= 0 it renders its own "No data" fallback. */}
         <ScatterChart
           data={data}
           xKey={spec.x}

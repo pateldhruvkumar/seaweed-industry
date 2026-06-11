@@ -57,4 +57,12 @@ describe('ChatChart', () => {
     expect(el).toHaveAttribute('data-xkey', 'total')
     expect(el).toHaveAttribute('data-labelkey', 'name')
   })
+
+  it('caps a line chart to the top 8 series by summed value', () => {
+    const data = Array.from({ length: 12 }, (_, i) => ({ year: 2000, VALUE: 12 - i, Country: `C${i}` }))
+    render(<ChatChart data={data} spec={{ kind: 'line', x: 'year', y: 'VALUE', series: 'Country' }} />)
+    const el = screen.getByTestId('line-chart')
+    // 12 distinct single-row series -> only the top 8 by summed VALUE are kept.
+    expect(Number(el.getAttribute('data-rows'))).toBeLessThanOrEqual(8)
+  })
 })
