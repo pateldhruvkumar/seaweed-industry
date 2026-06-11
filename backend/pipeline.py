@@ -1,8 +1,11 @@
 import json
+import logging
 import re
 from groq import Groq
 from db import get_conn
 from embeddings import resolve_entities, retrieve_fewshots
+
+logger = logging.getLogger(__name__)
 
 SCHEMA = """
 Tables in DuckDB:
@@ -139,6 +142,8 @@ def _enrich(question: str, rows: list[dict], groq_client: Groq) -> dict:
     Any failure degrades to {summary: None, suggestions: [], chart: None} so the
     chat never breaks on a bad model response.
     """
+    if not rows:
+        return {"summary": None, "suggestions": [], "chart": None}
     columns = list(rows[0].keys())
     prompt = (
         "You are a data analyst. Given a question and its query result, reply with "
@@ -153,7 +158,7 @@ def _enrich(question: str, rows: list[dict], groq_client: Groq) -> dict:
         "otherwise set chart to null.\n"
         f"Columns: {columns}\n"
         f"Question: {question}\n"
-        f"Result rows (first 5): {rows[:5]}"
+        f"Result rows (first 5): {json.dumps(rows[:5])}"
     )
     try:
         completion = groq_client.chat.completions.create(
@@ -163,7 +168,8 @@ def _enrich(question: str, rows: list[dict], groq_client: Groq) -> dict:
             max_tokens=300,
         )
         parsed = _extract_json(completion.choices[0].message.content)
-    except Exception:
+    except Exception as exc:
+        logger.warning("_enrich failed: %s", exc)
         parsed = None
 
     if not parsed:

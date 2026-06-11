@@ -191,3 +191,4 @@ def test_run_scalar_has_empty_chart_and_suggestions(conn):
     assert result["type"] == "scalar"
     assert result["chart"] is None
     assert result["suggestions"] == []
+    assert groq.chat.completions.create.call_count == 1
