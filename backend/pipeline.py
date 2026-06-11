@@ -1,8 +1,11 @@
 import json
+import logging
 import re
 from groq import Groq
 from db import get_conn
 from embeddings import resolve_entities, retrieve_fewshots
+
+logger = logging.getLogger(__name__)
 
 SCHEMA = """
 Tables in DuckDB:
@@ -58,10 +61,130 @@ def _extract_sql(text: str) -> str:
     return text.strip("`\n ")
 
 
+_CHART_KINDS = {"line", "bar", "donut", "scatter"}
+
+
+def _extract_json(text: str) -> dict | None:
+    """Extract the first complete top-level JSON object from an LLM response.
+
+    Tolerates markdown fences and surrounding prose. String-aware so braces
+    inside string values do not confuse the bracket counting.
+    """
+    if not text:
+        return None
+    start = text.find("{")
+    if start == -1:
+        return None
+    depth = 0
+    in_string = False
+    escape = False
+    for i in range(start, len(text)):
+        ch = text[i]
+        if escape:
+            escape = False
+            continue
+        if ch == "\\" and in_string:
+            escape = True
+            continue
+        if ch == '"':
+            in_string = not in_string
+            continue
+        if in_string:
+            continue
+        if ch == "{":
+            depth += 1
+        elif ch == "}":
+            depth -= 1
+            if depth == 0:
+                try:
+                    parsed = json.loads(text[start : i + 1])
+                except (json.JSONDecodeError, ValueError):
+                    return None
+                return parsed if isinstance(parsed, dict) else None
+    return None
+
+
+def _validate_chart(chart: object, columns: list[str]) -> dict | None:
+    """Return a normalized chart hint, or None if it is unusable."""
+    if not isinstance(chart, dict):
+        return None
+    kind, x, y = chart.get("kind"), chart.get("x"), chart.get("y")
+    if kind not in _CHART_KINDS or x not in columns or y not in columns:
+        return None
+    series = chart.get("series")
+    if series is not None and series not in columns:
+        series = None
+    return {"kind": kind, "x": x, "y": y, "series": series}
+
+
+def _coerce_suggestions(suggestions) -> list[str]:
+    """Keep at most 3 unique, non-empty, stripped strings (order preserved)."""
+    if not isinstance(suggestions, list):
+        return []
+    out = []
+    seen = set()
+    for s in suggestions:
+        if isinstance(s, str) and s.strip():
+            stripped = s.strip()
+            if stripped not in seen:
+                seen.add(stripped)
+                out.append(stripped)
+        if len(out) == 3:
+            break
+    return out
+
+
 def _classify_type(rows: list[dict]) -> str:
     if len(rows) == 1 and len(rows[0]) == 1:
         return "scalar"
     return "table"
+
+
+def _enrich(question: str, rows: list[dict], groq_client: Groq) -> dict:
+    """One LLM call returning {summary, suggestions, chart} for a table result.
+
+    Any failure degrades to {summary: None, suggestions: [], chart: None} so the
+    chat never breaks on a bad model response.
+    """
+    if not rows:
+        return {"summary": None, "suggestions": [], "chart": None}
+    columns = list(rows[0].keys())
+    prompt = (
+        "You are a data analyst. Given a question and its query result, reply with "
+        "ONLY a JSON object (no markdown fences, no prose) of this exact shape:\n"
+        '{"summary": "<one sentence answering the question>", '
+        '"suggestions": ["<short follow-up question>", "<another>"], '
+        '"chart": {"kind": "line|bar|donut|scatter", "x": "<column>", '
+        '"y": "<column>", "series": "<column or null>"} }\n'
+        "Rules: suggestions = 2-3 short natural follow-up questions the user might ask "
+        "next. Set chart ONLY when a visualization clearly fits (trend over time -> "
+        "line, ranking -> bar, share of a total -> donut) and x/y are real columns; "
+        "otherwise set chart to null.\n"
+        f"Columns: {columns}\n"
+        f"Question: {question}\n"
+        f"Result rows (first 5): {json.dumps(rows[:5])}"
+    )
+    try:
+        completion = groq_client.chat.completions.create(
+            model=GROQ_MODEL,
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0,
+            max_tokens=300,
+        )
+        parsed = _extract_json(completion.choices[0].message.content)
+    except Exception as exc:
+        logger.warning("_enrich failed: %s", exc)
+        parsed = None
+
+    if not parsed:
+        return {"summary": None, "suggestions": [], "chart": None}
+
+    summary = parsed.get("summary")
+    return {
+        "summary": summary.strip() if isinstance(summary, str) and summary.strip() else None,
+        "suggestions": _coerce_suggestions(parsed.get("suggestions")),
+        "chart": _validate_chart(parsed.get("chart"), columns),
+    }
 
 
 def run(question: str, history: list[dict], groq_client: Groq) -> dict:
@@ -89,6 +212,8 @@ def run(question: str, history: list[dict], groq_client: Groq) -> dict:
             "sql": raw_sql,
             "data": [],
             "type": "error",
+            "chart": None,
+            "suggestions": [],
         }
 
     conn = get_conn()
@@ -100,6 +225,8 @@ def run(question: str, history: list[dict], groq_client: Groq) -> dict:
             "sql": raw_sql,
             "data": [],
             "type": "error",
+            "chart": None,
+            "suggestions": [],
         }
 
     if df.empty:
@@ -108,6 +235,8 @@ def run(question: str, history: list[dict], groq_client: Groq) -> dict:
             "sql": raw_sql,
             "data": [],
             "type": "error",
+            "chart": None,
+            "suggestions": [],
         }
 
     rows = json.loads(df.to_json(orient="records", date_format="iso"))
@@ -116,19 +245,22 @@ def run(question: str, history: list[dict], groq_client: Groq) -> dict:
     if result_type == "scalar":
         val = list(rows[0].values())[0]
         answer = f"The result is {val:,.2f}." if isinstance(val, float) else f"The result is {val}."
-    else:
-        summary = groq_client.chat.completions.create(
-            model=GROQ_MODEL,
-            messages=[{
-                "role": "user",
-                "content": (
-                    f"In one sentence, summarize this data as an answer to: '{question}'\n"
-                    f"Data (first 5 rows): {rows[:5]}"
-                ),
-            }],
-            temperature=0,
-            max_tokens=100,
-        )
-        answer = summary.choices[0].message.content.strip()
+        return {
+            "answer": answer,
+            "sql": raw_sql,
+            "data": rows,
+            "type": "scalar",
+            "chart": None,
+            "suggestions": [],
+        }
 
-    return {"answer": answer, "sql": raw_sql, "data": rows, "type": result_type}
+    enrichment = _enrich(question, rows, groq_client)
+    answer = enrichment["summary"] or "Here are the results — see the table below."
+    return {
+        "answer": answer,
+        "sql": raw_sql,
+        "data": rows,
+        "type": "table",
+        "chart": enrichment["chart"],
+        "suggestions": enrichment["suggestions"],
+    }

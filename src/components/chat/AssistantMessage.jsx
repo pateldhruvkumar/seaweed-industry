@@ -1,9 +1,11 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import SparkAvatar from './SparkAvatar'
 import TypingDots from './TypingDots'
 import ResultTable from './ResultTable'
+import ChatChart from './ChatChart'
+import { inferChartSpec } from '../../lib/chatChart'
 
 const CHARS_PER_TICK = 3
 const TICK_MS = 18
@@ -29,8 +31,11 @@ export default function AssistantMessage({
   sql,
   data,
   type,
+  chart,
+  suggestions,
   streaming = false,
   onRegenerate,
+  onSuggestion,
 }) {
   const final = targetContent ?? content ?? ''
   const isAnimating = streaming && Boolean(targetContent)
@@ -78,6 +83,8 @@ export default function AssistantMessage({
     }
   }
 
+  const chartSpec = useMemo(() => inferChartSpec(data, chart), [data, chart])
+
   const showTyping = streaming && revealed.length === 0
   const showActions = done && revealed.length > 0
 
@@ -97,6 +104,8 @@ export default function AssistantMessage({
           </ReactMarkdown>
         )}
       </div>
+
+      {done && type === 'table' && chartSpec && <ChatChart data={data} spec={chartSpec} />}
 
       {done && type === 'table' && data?.length > 0 && (
         <div className="mt-2 rounded-xl border border-gray-200 bg-white shadow-card p-2">
@@ -143,6 +152,24 @@ export default function AssistantMessage({
               Regenerate
             </button>
           )}
+        </div>
+      )}
+
+      {done && onSuggestion && suggestions?.length > 0 && (
+        <div className="mt-3 flex flex-wrap gap-2">
+          {suggestions.map(s => (
+            <button
+              key={s}
+              type="button"
+              onClick={() => onSuggestion(s)}
+              className="text-xs rounded-full border border-gray-200 bg-white px-3 py-1
+                         text-gray-600 hover:border-brand-400 hover:bg-brand-50
+                         transition-colors focus-visible:outline-none
+                         focus-visible:ring-2 focus-visible:ring-brand-500"
+            >
+              {s}
+            </button>
+          ))}
         </div>
       )}
     </div>

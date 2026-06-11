@@ -7,8 +7,11 @@ export default function MessageBubble({
   sql,
   data,
   type,
+  chart,
+  suggestions,
   streaming,
   onRegenerate,
+  onSuggestion,
 }) {
   if (role === 'user') {
     return (
@@ -42,8 +45,11 @@ export default function MessageBubble({
       sql={sql}
       data={data}
       type={type}
+      chart={chart}
+      suggestions={suggestions}
       streaming={streaming}
       onRegenerate={onRegenerate}
+      onSuggestion={onSuggestion}
     />
   )
 }
