@@ -11,6 +11,7 @@ export default function MessageBubble({
   suggestions,
   streaming,
   onRegenerate,
+  onSuggestion,
 }) {
   if (role === 'user') {
     return (
@@ -48,6 +49,7 @@ export default function MessageBubble({
       suggestions={suggestions}
       streaming={streaming}
       onRegenerate={onRegenerate}
+      onSuggestion={onSuggestion}
     />
   )
 }

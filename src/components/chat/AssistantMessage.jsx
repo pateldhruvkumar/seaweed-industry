@@ -32,8 +32,10 @@ export default function AssistantMessage({
   data,
   type,
   chart,
+  suggestions,
   streaming = false,
   onRegenerate,
+  onSuggestion,
 }) {
   const final = targetContent ?? content ?? ''
   const isAnimating = streaming && Boolean(targetContent)
@@ -150,6 +152,23 @@ export default function AssistantMessage({
               Regenerate
             </button>
           )}
+        </div>
+      )}
+
+      {done && onSuggestion && suggestions?.length > 0 && (
+        <div className="mt-3 flex flex-wrap gap-2">
+          {suggestions.map(s => (
+            <button
+              key={s}
+              type="button"
+              onClick={() => onSuggestion(s)}
+              className="text-xs rounded-full border border-gray-200 bg-white px-3 py-1
+                         text-gray-600 hover:border-brand-400 hover:bg-brand-50
+                         transition-colors"
+            >
+              {s}
+            </button>
+          ))}
         </div>
       )}
     </div>

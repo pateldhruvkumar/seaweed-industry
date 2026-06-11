@@ -45,6 +45,7 @@ export default function MessageThread({
           suggestions={msg.suggestions}
           streaming={!!msg.streaming}
           onRegenerate={i === lastAssistantIdx ? onRegenerate : undefined}
+          onSuggestion={i === lastAssistantIdx ? onSuggestion : undefined}
         />
       ))}
       <div ref={bottomRef} />

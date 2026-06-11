@@ -90,4 +90,35 @@ describe('AssistantMessage', () => {
     render(<AssistantMessage content="answer" type="scalar" data={[{ n: 5 }]} streaming={false} />)
     expect(screen.queryByTestId('chat-chart')).toBeNull()
   })
+
+  it('renders suggestion chips and calls onSuggestion when clicked', async () => {
+    vi.useRealTimers()
+    const onSuggestion = vi.fn()
+    render(
+      <AssistantMessage
+        content="answer"
+        type="table"
+        data={[{ Country_Name: 'China', total: 5 }, { Country_Name: 'Japan', total: 3 }]}
+        streaming={false}
+        suggestions={['Compare to 2010', 'Show top 3']}
+        onSuggestion={onSuggestion}
+      />,
+    )
+    await userEvent.click(screen.getByRole('button', { name: 'Compare to 2010' }))
+    expect(onSuggestion).toHaveBeenCalledWith('Compare to 2010')
+  })
+
+  it('does not render chips when onSuggestion is absent', () => {
+    vi.useRealTimers()
+    render(
+      <AssistantMessage
+        content="answer"
+        type="table"
+        data={[{ Country_Name: 'China', total: 5 }, { Country_Name: 'Japan', total: 3 }]}
+        streaming={false}
+        suggestions={['Compare to 2010']}
+      />,
+    )
+    expect(screen.queryByRole('button', { name: 'Compare to 2010' })).toBeNull()
+  })
 })
