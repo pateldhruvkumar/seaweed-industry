@@ -9,6 +9,7 @@ import {
 } from 'recharts'
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from '../ui/chart'
 import { GRID_COLOR, axisProps } from '../../lib/chartTheme'
+import { formatCompact } from '../../utils/formatters'
 
 /**
  * Generic bar chart. Horizontal by default (good for ranked categorical
@@ -67,14 +68,14 @@ export default function BarChart({
         <CartesianGrid stroke={GRID_COLOR} horizontal={!isHorizontal} vertical={isHorizontal} />
         {isHorizontal ? (
           <>
-            <XAxis type="number" {...axisProps} domain={xDomain} interval={xDtick != null ? 0 : 'preserveEnd'}
+            <XAxis type="number" {...axisProps} tickFormatter={formatCompact} domain={xDomain} interval={xDtick != null ? 0 : 'preserveEnd'}
                    label={xLabel ? { value: xLabel, position: 'insideBottom', offset: -8, fill: '#64748b', fontSize: 11 } : undefined} />
             <YAxis type="category" dataKey={labelKey} {...axisProps} width={150} interval={0} />
           </>
         ) : (
           <>
             <XAxis type="category" dataKey={labelKey} {...axisProps} interval={0} />
-            <YAxis type="number" {...axisProps} domain={yDomain}
+            <YAxis type="number" {...axisProps} tickFormatter={formatCompact} domain={yDomain}
                    label={yLabel ? { value: yLabel, angle: -90, position: 'insideLeft', fill: '#64748b', fontSize: 11 } : undefined} />
           </>
         )}

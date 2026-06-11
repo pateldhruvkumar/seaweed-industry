@@ -8,6 +8,7 @@ import {
 } from 'recharts'
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from '../ui/chart'
 import { GRID_COLOR, axisProps } from '../../lib/chartTheme'
+import { formatCompact } from '../../utils/formatters'
 
 export default function ScatterChart({
   data, xKey, yKey, labelKey, xLabel = '', yLabel = '', height = 460,
@@ -27,6 +28,7 @@ export default function ScatterChart({
           type="number"
           dataKey="x"
           {...axisProps}
+          tickFormatter={formatCompact}
           scale="log"
           domain={['auto', 'auto']}
           allowDataOverflow
@@ -36,6 +38,7 @@ export default function ScatterChart({
           type="number"
           dataKey="y"
           {...axisProps}
+          tickFormatter={formatCompact}
           scale="log"
           domain={['auto', 'auto']}
           allowDataOverflow
