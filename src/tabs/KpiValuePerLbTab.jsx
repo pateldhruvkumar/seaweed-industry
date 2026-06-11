@@ -7,6 +7,8 @@ import LineChart from '../components/charts/LineChart'
 import DataTable from '../components/DataTable'
 import Dropdown from '../components/controls/Dropdown'
 import { BriefingHero } from '../components/psia'
+import AboutDataPanel from '../components/AboutDataPanel'
+import { KPI_VALUE_PER_LB_DATA } from '../data/sources'
 
 /**
  * KPI · Value of Seaweed ($/lb)
@@ -145,6 +147,8 @@ export default function KpiValuePerLbTab() {
           },
         ]}
       />
+
+      <AboutDataPanel {...KPI_VALUE_PER_LB_DATA} />
 
       {/* Headline KPI strip */}
       {stats && (

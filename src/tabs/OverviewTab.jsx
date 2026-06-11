@@ -3,8 +3,10 @@ import { useData } from '../hooks/useData'
 import TimeFilteredChartCard from '../components/TimeFilteredChartCard'
 import VolumeTimeChartCard from '../components/VolumeTimeChartCard'
 import KpiCard from '../components/KpiCard'
+import AboutDataPanel from '../components/AboutDataPanel'
 import AreaChart from '../components/charts/AreaChart'
 import LineChart from '../components/charts/LineChart'
+import { OVERVIEW_DATA } from '../data/sources'
 
 /**
  * Overview tab — the dashboard's "front page".
@@ -77,6 +79,9 @@ export default function OverviewTab() {
 
   return (
     <div className="space-y-6">
+      {/* ── About the data (sources first, collapsed by default) ── */}
+      <AboutDataPanel {...OVERVIEW_DATA} />
+
       {/* ── KPI strip ───────────────────────────────────────────── */}
       {kpis && (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">

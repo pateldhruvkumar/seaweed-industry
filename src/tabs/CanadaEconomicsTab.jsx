@@ -7,6 +7,8 @@ import LineChart from '../components/charts/LineChart'
 import BarChart from '../components/charts/BarChart'
 import { SectionHeader } from '../components/psia'
 import { SOURCES, CANADA_INTRO } from '../data/canada'
+import AboutDataPanel from '../components/AboutDataPanel'
+import { CANADA_ECONOMICS_DATA } from '../data/sources'
 
 /** $M → "$1.37B" for billions, "$15.6M" for millions. */
 const fmtMusd = v =>
@@ -127,6 +129,8 @@ export default function CanadaEconomicsTab() {
           </p>
         </div>
       </div>
+
+      <AboutDataPanel {...CANADA_ECONOMICS_DATA} />
 
       {/* ── Methodology banner ─────────────────────────────────────── */}
       <div className="rounded-xl border border-amber-200 bg-amber-50 px-5 py-4">

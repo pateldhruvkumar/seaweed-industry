@@ -9,6 +9,8 @@ import LineChart from '../components/charts/LineChart'
 import DataTable from '../components/DataTable'
 import { SectionHeader } from '../components/psia'
 import { SOURCES, CANADA_LICENSING_INTRO } from '../data/canada'
+import AboutDataPanel from '../components/AboutDataPanel'
+import { CANADA_LICENSING_DATA } from '../data/sources'
 
 const C0 = '#0d9488' // BarChart/LineChart default — keeps the legend swatch in sync
 const num = v => (v == null ? '—' : Number(v).toLocaleString())
@@ -77,6 +79,8 @@ export default function CanadaLicensingTab() {
           </p>
         </div>
       </div>
+
+      <AboutDataPanel {...CANADA_LICENSING_DATA} />
 
       {/* ── Methodology banner ─────────────────────────────────────── */}
       <div className="rounded-xl border border-amber-200 bg-amber-50 px-5 py-4">

@@ -1,6 +1,8 @@
 import { useData } from '../hooks/useData'
 import VolumeTimeChartCard from '../components/VolumeTimeChartCard'
 import AreaChart from '../components/charts/AreaChart'
+import AboutDataPanel from '../components/AboutDataPanel'
+import { REGIONS_DATA } from '../data/sources'
 
 export default function RegionsTab() {
   const { data: contData,   loading: l1 } = useData('by_continent.json')
@@ -11,6 +13,8 @@ export default function RegionsTab() {
 
   return (
     <div className="space-y-6">
+      <AboutDataPanel {...REGIONS_DATA} />
+
       <VolumeTimeChartCard title="Global seaweed production by continent">
         {([yMin, yMax], factor, volLabel) => (
           <AreaChart
