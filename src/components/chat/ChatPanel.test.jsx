@@ -147,4 +147,31 @@ describe('ChatPanel edit & resend', () => {
     await screen.findByText('edited answer')
     expect(screen.queryByText('ghost answer')).toBeNull()
   })
+
+  it('discards an in-flight error from a request superseded by an edit', async () => {
+    const first = deferred()
+    const fetchMock = vi
+      .fn()
+      .mockReturnValueOnce(first.promise)
+      .mockReturnValueOnce(mockFetchResponse('edited answer'))
+    vi.stubGlobal('fetch', fetchMock)
+
+    render(<ChatPanel onClose={() => {}} />)
+
+    const input = screen.getByPlaceholderText(/ask anything/i)
+    await userEvent.type(input, 'first question{Enter}')
+
+    // Supersede the in-flight request with an edit.
+    await userEvent.click(screen.getByRole('button', { name: /^edit$/i }))
+    const editor = screen.getByDisplayValue('first question')
+    await userEvent.clear(editor)
+    await userEvent.type(editor, 'edited question')
+    await userEvent.click(screen.getByRole('button', { name: /save & resend/i }))
+
+    // The superseded request now fails with a real (non-abort) error.
+    first.resolve({ ok: false, status: 500 })
+
+    await screen.findByText('edited answer')
+    expect(screen.queryByText(/something went wrong/i)).toBeNull()
+  })
 })

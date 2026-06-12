@@ -59,7 +59,7 @@ export default function ChatPanel({ onClose }) {
         },
       ])
     } catch (err) {
-      if (err.name !== 'AbortError') {
+      if (err.name !== 'AbortError' && !controller.signal.aborted) {
         setMessages(prev => [
           ...prev,
           {

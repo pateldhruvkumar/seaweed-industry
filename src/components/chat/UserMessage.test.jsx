@@ -78,4 +78,15 @@ describe('UserMessage', () => {
     expect(onEdit).not.toHaveBeenCalled()
     expect(editor.value).toContain('\n')
   })
+
+  it('a rapid double-submit only calls onEdit once', async () => {
+    const onEdit = vi.fn()
+    render(<UserMessage content="original" onEdit={onEdit} />)
+    await userEvent.click(screen.getByRole('button', { name: /edit/i }))
+    const editor = screen.getByDisplayValue('original')
+    await userEvent.clear(editor)
+    await userEvent.type(editor, 'twice{Enter}{Enter}')
+    expect(onEdit).toHaveBeenCalledTimes(1)
+    expect(onEdit).toHaveBeenCalledWith('twice')
+  })
 })
