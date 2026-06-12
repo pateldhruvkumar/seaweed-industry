@@ -44,7 +44,7 @@ export default function UserMessage({ content, onEdit }) {
           />
           <div className="mt-1 flex items-center justify-end gap-2">
             <span className="mr-auto text-[11px] text-gray-400">
-              Enter to resend · Esc to cancel
+              Enter to resend · Shift+Enter for newline · Esc to cancel
             </span>
             <button
               type="button"

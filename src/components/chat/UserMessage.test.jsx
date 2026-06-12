@@ -68,4 +68,14 @@ describe('UserMessage', () => {
     await userEvent.type(editor, 'via enter{Enter}')
     expect(onEdit).toHaveBeenCalledWith('via enter')
   })
+
+  it('Shift+Enter inserts a newline and does not save', async () => {
+    const onEdit = vi.fn()
+    render(<UserMessage content="original" onEdit={onEdit} />)
+    await userEvent.click(screen.getByRole('button', { name: /edit/i }))
+    const editor = screen.getByDisplayValue('original')
+    await userEvent.type(editor, '{Shift>}{Enter}{/Shift}extra line')
+    expect(onEdit).not.toHaveBeenCalled()
+    expect(editor.value).toContain('\n')
+  })
 })
