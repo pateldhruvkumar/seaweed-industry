@@ -18,6 +18,12 @@ function mockFetchResponse(answer) {
   })
 }
 
+function deferred() {
+  let resolve
+  const promise = new Promise(r => { resolve = r })
+  return { promise, resolve }
+}
+
 afterEach(() => {
   vi.unstubAllGlobals()
 })
@@ -99,5 +105,46 @@ describe('ChatPanel edit & resend', () => {
     expect(body.message).toBe('better second question')
     expect(body.history.map(m => m.role)).toEqual(['user', 'assistant', 'user'])
     expect(body.history[2].content).toBe('better second question')
+    // Known quirk: assistant content stays '' in the messages array (the
+    // typewriter reveals targetContent locally and never writes back).
+    expect(body.history[1].content).toBe('')
+  })
+
+  it('discards an in-flight response that was superseded by an edit', async () => {
+    const first = deferred()
+    const fetchMock = vi
+      .fn()
+      .mockReturnValueOnce(first.promise)
+      .mockReturnValueOnce(mockFetchResponse('edited answer'))
+    vi.stubGlobal('fetch', fetchMock)
+
+    render(<ChatPanel onClose={() => {}} />)
+
+    const input = screen.getByPlaceholderText(/ask anything/i)
+    await userEvent.type(input, 'first question{Enter}')
+
+    // While the first request is still in flight, edit the message and resend.
+    await userEvent.click(screen.getByRole('button', { name: /^edit$/i }))
+    const editor = screen.getByDisplayValue('first question')
+    await userEvent.clear(editor)
+    await userEvent.type(editor, 'edited question')
+    await userEvent.click(screen.getByRole('button', { name: /save & resend/i }))
+
+    // The stale response arrives late (our stub ignores the abort signal).
+    first.resolve({
+      ok: true,
+      json: () =>
+        Promise.resolve({
+          answer: 'ghost answer',
+          sql: null,
+          data: [],
+          type: 'table',
+          chart: null,
+          suggestions: [],
+        }),
+    })
+
+    await screen.findByText('edited answer')
+    expect(screen.queryByText('ghost answer')).toBeNull()
   })
 })

@@ -43,6 +43,7 @@ export default function ChatPanel({ onClose }) {
       if (!resp.ok) throw new Error(`HTTP ${resp.status}`)
 
       const { answer, sql, data, type, chart, suggestions } = await resp.json()
+      if (controller.signal.aborted) return
       setMessages(prev => [
         ...prev,
         {
@@ -71,8 +72,12 @@ export default function ChatPanel({ onClose }) {
         ])
       }
     } finally {
-      setLoading(false)
-      abortRef.current = null
+      // Only the request that still owns abortRef may clear the shared state;
+      // an aborted predecessor must not clobber its successor's loading/stop.
+      if (abortRef.current === controller) {
+        setLoading(false)
+        abortRef.current = null
+      }
     }
   }
 

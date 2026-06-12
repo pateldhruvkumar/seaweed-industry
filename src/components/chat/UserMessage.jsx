@@ -1,10 +1,12 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 
 export default function UserMessage({ content, onEdit }) {
   const [editing, setEditing] = useState(false)
   const [draft, setDraft] = useState(content)
+  const savingRef = useRef(false)
 
   function startEdit() {
+    savingRef.current = false
     setDraft(content)
     setEditing(true)
   }
@@ -17,6 +19,8 @@ export default function UserMessage({ content, onEdit }) {
   function save() {
     const trimmed = draft.trim()
     if (!trimmed) return
+    if (savingRef.current) return
+    savingRef.current = true
     setEditing(false)
     onEdit(trimmed)
   }
