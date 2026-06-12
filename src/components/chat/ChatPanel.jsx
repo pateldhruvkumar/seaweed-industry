@@ -16,16 +16,11 @@ export default function ChatPanel({ onClose }) {
     }
   }, [])
 
-  async function sendMessage(question, replaceLastAssistant = false) {
-    const baseHistory = replaceLastAssistant
-      ? messages.slice(0, -1)
-      : messages
+  function makeUserMsg(text) {
+    return { role: 'user', content: text, sql: null, data: [], type: null }
+  }
 
-    const userMsg = replaceLastAssistant
-      ? null
-      : { role: 'user', content: question, sql: null, data: [], type: null }
-
-    const nextHistory = userMsg ? [...baseHistory, userMsg] : baseHistory
+  async function runQuery(question, nextHistory) {
     setMessages(nextHistory)
     setLoading(true)
 
@@ -81,6 +76,21 @@ export default function ChatPanel({ onClose }) {
     }
   }
 
+  function sendMessage(question, replaceLastAssistant = false) {
+    const baseHistory = replaceLastAssistant
+      ? messages.slice(0, -1)
+      : messages
+    const nextHistory = replaceLastAssistant
+      ? baseHistory
+      : [...baseHistory, makeUserMsg(question)]
+    return runQuery(question, nextHistory)
+  }
+
+  function editMessage(index, newText) {
+    const nextHistory = [...messages.slice(0, index), makeUserMsg(newText)]
+    return runQuery(newText, nextHistory)
+  }
+
   function handleStop() {
     if (abortRef.current) abortRef.current.abort()
   }
@@ -98,6 +108,7 @@ export default function ChatPanel({ onClose }) {
         messages={messages}
         onSuggestion={sendMessage}
         onRegenerate={handleRegenerate}
+        onEdit={editMessage}
       />
       <ChatInput
         onSubmit={sendMessage}
