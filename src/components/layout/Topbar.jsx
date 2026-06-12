@@ -15,7 +15,7 @@ export default function Topbar({ title, subtitle }) {
     <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
       {/* Page title */}
       <div className="min-w-0">
-        <h1 className="text-3xl lg:text-[34px] font-bold text-slate-900 tracking-tight leading-tight">
+        <h1 className="text-2xl sm:text-3xl lg:text-[34px] font-bold text-slate-900 tracking-tight leading-tight">
           {title}
         </h1>
         {subtitle && <p className="text-sm text-slate-500 mt-1">{subtitle}</p>}

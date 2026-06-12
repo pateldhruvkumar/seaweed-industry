@@ -3,6 +3,7 @@ import BarChart from '../charts/BarChart'
 import DonutChart from '../charts/DonutChart'
 import ScatterChart from '../charts/ScatterChart'
 import { PLOT_COLORS } from '../../lib/chartTheme'
+import { formatFull } from '../../utils/formatters'
 
 const HEIGHT = 240
 const MAX_SERIES = 8
@@ -71,7 +72,8 @@ export default function ChatChart({ data, spec }) {
       .slice(0, MAX_SLICES)
     return (
       <Card>
-        <DonutChart data={rows} colors={PLOT_COLORS} height={HEIGHT} />
+        {/* Chat donut values are raw quantities, not percentages. */}
+        <DonutChart data={rows} colors={PLOT_COLORS} height={HEIGHT} valueFormatter={formatFull} />
       </Card>
     )
   }

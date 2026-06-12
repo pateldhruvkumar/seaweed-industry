@@ -10,6 +10,13 @@ export const formatPct = v =>
 export const formatKt = v =>
   v == null ? '—' : `${Math.round(Number(v)).toLocaleString('en-US')} kt`
 
+// Tooltip formatter: the exact value with separators, 1525262.059 -> "1,525,262.06".
+export const formatFull = v => {
+  const n = Number(v)
+  if (v == null || v === '' || !Number.isFinite(n)) return ''
+  return n.toLocaleString('en-US', { maximumFractionDigits: 2 })
+}
+
 // Axis-tick formatter: 20000000 -> "20M", 2500 -> "2.5K", 12.345 -> "12.35".
 export const formatCompact = v => {
   const n = Number(v)

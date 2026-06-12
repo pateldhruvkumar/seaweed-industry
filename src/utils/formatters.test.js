@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { formatMt, formatUSD, formatPct, formatKt, formatCompact } from './formatters'
+import { formatMt, formatUSD, formatPct, formatKt, formatCompact, formatFull } from './formatters'
 
 describe('formatMt', () => {
   it('formats value to 2 dp with Mt suffix', () => {
@@ -59,6 +59,22 @@ describe('formatCompact', () => {
     expect(formatCompact(null)).toBe('')
     expect(formatCompact(undefined)).toBe('')
     expect(formatCompact('abc')).toBe('')
+  })
+})
+
+describe('formatFull', () => {
+  it('shows the full number with thousands separators and at most 2 decimals', () => {
+    expect(formatFull(1525262.0589999997)).toBe('1,525,262.06')
+    expect(formatFull(20000000)).toBe('20,000,000')
+  })
+  it('keeps small numbers plain with at most 2 decimals', () => {
+    expect(formatFull(12.345)).toBe('12.35')
+    expect(formatFull(0)).toBe('0')
+  })
+  it('returns empty string for null/undefined/non-numeric', () => {
+    expect(formatFull(null)).toBe('')
+    expect(formatFull(undefined)).toBe('')
+    expect(formatFull('abc')).toBe('')
   })
 })
 

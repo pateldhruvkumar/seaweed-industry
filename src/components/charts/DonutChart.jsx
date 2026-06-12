@@ -7,12 +7,15 @@ import { ChartContainer, ChartTooltip, ChartTooltipContent } from '../ui/chart'
  * shorter than `data`.
  *
  * Props match the legacy version: { data, colors, centerText, height }.
+ * The default tooltip appends "%" because dashboard callers pass percentage
+ * values; pass `valueFormatter` when `value` is a raw quantity instead.
  */
 export default function DonutChart({
   data,
   colors = ['#0d9488', '#cbd5e1'],
   centerText,
   height = 320,
+  valueFormatter = v => `${v}%`,
 }) {
   if (!data?.length)
     return <div className="h-40 flex items-center justify-center text-slate-400">No data</div>
@@ -27,7 +30,7 @@ export default function DonutChart({
     <ChartContainer config={{}} className="aspect-auto" style={{ height: `${height}px`, width: '100%' }}>
       <PieChart margin={{ top: 10, right: 10, bottom: 10, left: 10 }}>
         <ChartTooltip
-          content={<ChartTooltipContent hideLabel valueFormatter={v => `${v}%`} />}
+          content={<ChartTooltipContent hideLabel valueFormatter={valueFormatter} />}
         />
         <Pie
           data={rows}

@@ -9,7 +9,7 @@ import {
 } from 'recharts'
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from '../ui/chart'
 import { GRID_COLOR, axisProps } from '../../lib/chartTheme'
-import { formatCompact } from '../../utils/formatters'
+import { formatCompact, formatFull } from '../../utils/formatters'
 
 /**
  * Generic bar chart. Horizontal by default (good for ranked categorical
@@ -18,16 +18,10 @@ import { formatCompact } from '../../utils/formatters'
  * Props match the legacy Plotly version so callers don't change:
  *   data, labelKey, valueKey, colorKey, color, orientation,
  *   sort, xLabel, yLabel, showLabels, format, xDtick, yDtick, height
+ *
+ * Without an explicit `format`, bar labels abbreviate (K/M/B) while the
+ * tooltip shows the exact value; a caller-supplied `format` applies to both.
  */
-
-function defaultFormat(v) {
-  const n = Number(v)
-  if (!Number.isFinite(n) || n === 0) return '0'
-  const abs = Math.abs(n)
-  if (abs >= 100) return Math.round(n).toLocaleString()
-  if (abs >= 10) return n.toFixed(1)
-  return n.toFixed(2)
-}
 
 export default function BarChart({
   data,
@@ -40,7 +34,7 @@ export default function BarChart({
   xLabel = '',
   yLabel = '',
   showLabels = true,
-  format = defaultFormat,
+  format,
   xDtick,
   yDtick,
   height = 420,
@@ -57,6 +51,9 @@ export default function BarChart({
 
   const xDomain = xDtick != null ? [0, undefined] : undefined
   const yDomain = yDtick != null ? [0, undefined] : undefined
+
+  const labelFormat = format || formatCompact
+  const tooltipFormat = format || formatFull
 
   return (
     <ChartContainer config={{}} className="aspect-auto" style={{ height: `${height}px`, width: '100%' }}>
@@ -79,7 +76,7 @@ export default function BarChart({
                    label={yLabel ? { value: yLabel, angle: -90, position: 'insideLeft', fill: '#64748b', fontSize: 11 } : undefined} />
           </>
         )}
-        <ChartTooltip cursor={{ fill: '#f1f5f9' }} content={<ChartTooltipContent valueFormatter={format} hideLabel={isHorizontal ? false : false} />} />
+        <ChartTooltip cursor={{ fill: '#f1f5f9' }} content={<ChartTooltipContent valueFormatter={tooltipFormat} hideLabel={isHorizontal ? false : false} />} />
         <Bar dataKey={valueKey} fill={color} radius={isHorizontal ? [0, 4, 4, 0] : [4, 4, 0, 0]}>
           {rows.map((row, i) => (
             <Cell key={i} fill={colorKey ? row[colorKey] || color : color} />
@@ -88,7 +85,7 @@ export default function BarChart({
             <LabelList
               dataKey={valueKey}
               position={isHorizontal ? 'right' : 'top'}
-              formatter={format}
+              formatter={labelFormat}
               style={{ fill: '#475569', fontSize: 11 }}
             />
           )}

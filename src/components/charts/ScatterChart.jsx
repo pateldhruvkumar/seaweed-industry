@@ -8,7 +8,7 @@ import {
 } from 'recharts'
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from '../ui/chart'
 import { GRID_COLOR, axisProps } from '../../lib/chartTheme'
-import { formatCompact } from '../../utils/formatters'
+import { formatCompact, formatFull } from '../../utils/formatters'
 
 export default function ScatterChart({
   data, xKey, yKey, labelKey, xLabel = '', yLabel = '', height = 460,
@@ -44,7 +44,7 @@ export default function ScatterChart({
           allowDataOverflow
           label={yLabel ? { value: yLabel, angle: -90, position: 'insideLeft', fill: '#64748b', fontSize: 11 } : undefined}
         />
-        <ChartTooltip cursor={{ strokeDasharray: '3 3' }} content={<ChartTooltipContent hideLabel />} />
+        <ChartTooltip cursor={{ strokeDasharray: '3 3' }} content={<ChartTooltipContent hideLabel valueFormatter={formatFull} />} />
         <Scatter data={points} fill="#1f77b4" fillOpacity={0.65} isAnimationActive={false}>
           <LabelList dataKey="label" position="top" style={{ fill: '#475569', fontSize: 9 }} />
         </Scatter>

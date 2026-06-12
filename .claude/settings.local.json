@@ -61,7 +61,18 @@
       "Bash(gh pr create --base main --head feature/ai-chat-enhancements --title 'feat\\(chat\\): AI chat Phase A — in-response charts + follow-up suggestions' --body ' *)",
       "PowerShell(npx vitest run src/utils/formatters.test.js src/components/chat/ResultTable.test.jsx)",
       "PowerShell(try { \\(Invoke-WebRequest -Uri http://localhost:8000/health -UseBasicParsing -TimeoutSec 5\\).StatusCode } catch { \"backend not reachable\" })",
-      "PowerShell(npm test)"
+      "PowerShell(npm test)",
+      "PowerShell(npm run lint)",
+      "Bash(git -C \"D:/github/seaweed-industry\" add src/components/chat/UserMessage.jsx src/components/chat/UserMessage.test.jsx)",
+      "Bash(git -C \"D:/github/seaweed-industry\" commit -m \"fix\\(chat\\): document Shift+Enter in edit hint and test newline behavior\")",
+      "Bash(git -C D:/github/seaweed-industry log --oneline --follow -- src/components/chat/UserMessage.jsx)",
+      "Bash(git -C D:/github/seaweed-industry show 1628888~1:src/components/chat/ChatPanel.jsx)",
+      "Bash(git -C D:/github/seaweed-industry show 1628888:src/components/chat/ChatPanel.test.jsx)",
+      "Bash(git -C D:/github/seaweed-industry show HEAD:.worktrees/dashboard/src/components/chat/ChatPanel.test.jsx)",
+      "Bash(python -m uvicorn main:app --port 8000)",
+      "Bash(git -C D:/github/seaweed-industry show 953acf1 -- src/components/chat/UserMessage.jsx)",
+      "Bash(git -C D:/github/seaweed-industry show 3fd6a27 -- src/components/chat/ChatPanel.jsx src/components/chat/UserMessage.jsx)",
+      "Bash(gh pr *)"
     ]
   }
 }

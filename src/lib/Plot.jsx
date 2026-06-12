@@ -40,16 +40,24 @@ export default function Plot({
     Plotly.react(node, data, themedLayout, themedConfig)
   }, [data, themedLayout, themedConfig])
 
-  // Mirror react-plotly.js' useResizeHandler: re-run plotly's resize logic
-  // whenever the window changes size. We only attach the listener if the
-  // caller opted in.
+  // Mirror react-plotly.js' useResizeHandler, but observe the container
+  // instead of the window: the available width also changes when the chat
+  // panel or nav drawer toggles, which never fires a window resize.
   useEffect(() => {
     if (!useResizeHandler) return
-    const handler = () => {
-      if (containerRef.current) Plotly.Plots.resize(containerRef.current)
+    const node = containerRef.current
+    if (!node) return
+    if (typeof ResizeObserver === 'undefined') {
+      const handler = () => Plotly.Plots.resize(node)
+      window.addEventListener('resize', handler)
+      return () => window.removeEventListener('resize', handler)
     }
-    window.addEventListener('resize', handler)
-    return () => window.removeEventListener('resize', handler)
+    const observer = new ResizeObserver(() => {
+      // Plotly throws on zero-size containers (e.g. mid-unmount).
+      if (node.offsetWidth > 0 && node.offsetHeight > 0) Plotly.Plots.resize(node)
+    })
+    observer.observe(node)
+    return () => observer.disconnect()
   }, [useResizeHandler])
 
   // Tear down plotly state when the chart unmounts so we don't leak DOM
