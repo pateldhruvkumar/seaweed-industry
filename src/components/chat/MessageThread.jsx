@@ -6,6 +6,7 @@ export default function MessageThread({
   messages,
   onSuggestion,
   onRegenerate,
+  onEdit,
 }) {
   const bottomRef = useRef(null)
 
@@ -46,6 +47,7 @@ export default function MessageThread({
           streaming={!!msg.streaming}
           onRegenerate={i === lastAssistantIdx ? onRegenerate : undefined}
           onSuggestion={i === lastAssistantIdx ? onSuggestion : undefined}
+          onEdit={msg.role === 'user' && onEdit ? text => onEdit(i, text) : undefined}
         />
       ))}
       <div ref={bottomRef} />
