@@ -111,6 +111,7 @@ export default function ChatPanel({ onClose }) {
       <ChatHeader onClose={onClose} />
       <MessageThread
         messages={messages}
+        loading={loading}
         onSuggestion={sendMessage}
         onRegenerate={handleRegenerate}
         onEdit={editMessage}

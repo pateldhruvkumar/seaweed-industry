@@ -25,7 +25,7 @@ export default function MessageBubble({
         className="animate-fade-in rounded-lg border border-rose-200 bg-rose-50
                    text-rose-800 text-sm px-3 py-2"
       >
-        {content}
+        {content || targetContent}
       </div>
     )
   }

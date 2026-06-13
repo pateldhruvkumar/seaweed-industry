@@ -1,9 +1,12 @@
 import { useEffect, useRef } from 'react'
 import MessageBubble from './MessageBubble'
 import EmptyState from './EmptyState'
+import SparkAvatar from './SparkAvatar'
+import TypingDots from './TypingDots'
 
 export default function MessageThread({
   messages,
+  loading = false,
   onSuggestion,
   onRegenerate,
   onEdit,
@@ -14,7 +17,7 @@ export default function MessageThread({
     if (bottomRef.current?.scrollIntoView) {
       bottomRef.current.scrollIntoView({ behavior: 'smooth' })
     }
-  }, [messages])
+  }, [messages, loading])
 
   if (messages.length === 0) {
     return (
@@ -50,6 +53,15 @@ export default function MessageThread({
           onEdit={msg.role === 'user' && onEdit ? text => onEdit(i, text) : undefined}
         />
       ))}
+      {loading && (
+        <div className="animate-fade-in">
+          <div className="flex items-center gap-2 mb-1">
+            <SparkAvatar size={20} />
+            <span className="text-xs font-medium text-gray-500">PSIA AI</span>
+          </div>
+          <TypingDots />
+        </div>
+      )}
       <div ref={bottomRef} />
     </div>
   )

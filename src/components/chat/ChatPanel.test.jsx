@@ -28,6 +28,64 @@ afterEach(() => {
   vi.unstubAllGlobals()
 })
 
+describe('ChatPanel pending indicator', () => {
+  it('shows a thinking indicator while the request is in flight', async () => {
+    const pending = deferred()
+    const fetchMock = vi.fn().mockReturnValueOnce(pending.promise)
+    vi.stubGlobal('fetch', fetchMock)
+
+    render(<ChatPanel onClose={() => {}} />)
+
+    const input = screen.getByPlaceholderText(/ask anything/i)
+    await userEvent.type(input, 'slow question{Enter}')
+
+    expect(screen.getByLabelText(/assistant is typing/i)).toBeInTheDocument()
+
+    pending.resolve({
+      ok: true,
+      json: () =>
+        Promise.resolve({
+          answer: 'slow answer',
+          sql: null,
+          data: [],
+          type: 'table',
+          chart: null,
+          suggestions: [],
+        }),
+    })
+
+    await screen.findByText('slow answer')
+    expect(screen.queryByLabelText(/assistant is typing/i)).toBeNull()
+  })
+})
+
+describe('ChatPanel error replies', () => {
+  it('shows the backend error message in the error bubble', async () => {
+    const fetchMock = vi.fn().mockReturnValue(
+      Promise.resolve({
+        ok: true,
+        json: () =>
+          Promise.resolve({
+            answer: 'Only read queries are supported.',
+            sql: 'WITH t AS (SELECT 1) SELECT * FROM t',
+            data: [],
+            type: 'error',
+            chart: null,
+            suggestions: [],
+          }),
+      })
+    )
+    vi.stubGlobal('fetch', fetchMock)
+
+    render(<ChatPanel onClose={() => {}} />)
+
+    const input = screen.getByPlaceholderText(/ask anything/i)
+    await userEvent.type(input, 'growth question{Enter}')
+
+    await screen.findByText('Only read queries are supported.')
+  })
+})
+
 describe('ChatPanel edit & resend', () => {
   it('editing a user message truncates the thread and resends from that point', async () => {
     const fetchMock = vi
