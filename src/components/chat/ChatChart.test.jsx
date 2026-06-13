@@ -14,7 +14,8 @@ vi.mock('../charts/BarChart', () => ({
 vi.mock('../charts/DonutChart', () => ({
   default: props => <div data-testid="donut-chart"
     data-rows={props.data.length}
-    data-haslabelvalue={String(props.data.every(d => 'label' in d && 'value' in d))} />,
+    data-haslabelvalue={String(props.data.every(d => 'label' in d && 'value' in d))}
+    data-fmt={props.valueFormatter ? props.valueFormatter(1525262.0589999997) : ''} />,
 }))
 vi.mock('../charts/ScatterChart', () => ({
   default: props => <div data-testid="scatter-chart"
@@ -49,6 +50,11 @@ describe('ChatChart', () => {
     const el = screen.getByTestId('donut-chart')
     expect(Number(el.getAttribute('data-rows'))).toBeLessThanOrEqual(8)
     expect(el).toHaveAttribute('data-haslabelvalue', 'true')
+  })
+
+  it('gives the DonutChart a full-number tooltip formatter (not the % default)', () => {
+    render(<ChatChart data={RANKING} spec={{ kind: 'donut', x: 'name', y: 'total', series: null }} />)
+    expect(screen.getByTestId('donut-chart')).toHaveAttribute('data-fmt', '1,525,262.06')
   })
 
   it('renders a ScatterChart with x/y/label keys', () => {

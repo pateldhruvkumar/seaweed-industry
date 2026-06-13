@@ -15,6 +15,8 @@ import {
   TOP_COUNTRIES_VALUE,
   BC_PRICE_BENCHMARKS,
 } from '../data/psia'
+import AboutDataPanel from '../components/AboutDataPanel'
+import { PSIA_PRICING_DATA } from '../data/sources'
 
 /**
  * PSIA Briefing — KPI 1 · Price per Wet Tonne by Species & End Use ($/tonne)
@@ -37,6 +39,8 @@ export default function PsiaPricingTab() {
           { value: '< 0.01%',  label: 'Canada share of global volume' },
         ]}
       />
+
+      <AboutDataPanel {...PSIA_PRICING_DATA} />
 
       <SectionHeader
         kicker="KPI 1"

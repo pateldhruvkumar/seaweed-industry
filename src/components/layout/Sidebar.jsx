@@ -10,14 +10,16 @@ import {
   IconChevronRight,
   IconExternal,
   IconReport,
+  IconX,
 } from '../../lib/icons'
 import psiaLogo from '../../assets/psia-logo-white-green.png'
 
 /**
- * Vertical primary navigation. Lives at the left edge of the page on
- * desktop (hidden on small screens). Inspired by SaaS analytics dashboards
- * — section labels above grouped items, an active pill state, and an
- * "info" card pinned to the bottom.
+ * Vertical primary navigation. A sticky column at the left edge of the page
+ * on desktop (lg+); below that it becomes an off-canvas drawer controlled by
+ * the `open`/`onClose` props (the hamburger in App's mobile header toggles
+ * it). Inspired by SaaS analytics dashboards — section labels above grouped
+ * items, an active pill state, and an "info" card pinned to the bottom.
  *
  * The "Market & End-Use KPIs" group uses the official KPI names from the
  * stakeholder tracker verbatim, so each entry is much longer than the
@@ -92,23 +94,42 @@ const NAV_GROUPS = [
   },
 ]
 
-export default function Sidebar({ active, onChange }) {
+export default function Sidebar({ active, onChange, open = false, onClose }) {
   return (
-    <aside className="hidden lg:flex w-72 shrink-0 bg-slate-900 text-slate-200 flex-col h-screen sticky top-0">
+    <aside
+      className={`
+        fixed inset-y-0 left-0 z-40 w-72 max-w-[85vw] bg-slate-900 text-slate-200
+        flex flex-col h-screen transform transition-transform duration-200 ease-out
+        ${open ? 'translate-x-0' : '-translate-x-full'}
+        lg:sticky lg:top-0 lg:z-auto lg:max-w-none lg:shrink-0
+        lg:translate-x-0 lg:transition-none
+      `}
+    >
       {/* Brand */}
-      <a
-        href="https://seaweedindustry.ca/"
-        target="_blank"
-        rel="noreferrer"
-        className="px-5 pt-6 pb-8 block"
-      >
-        <img
-          src={psiaLogo}
-          alt="Pacific Seaweed Industry Association"
-          className="w-full h-auto"
-        />
-        <p className="text-[11px] text-slate-400 mt-2">Global dashboard</p>
-      </a>
+      <div className="relative">
+        <a
+          href="https://seaweedindustry.ca/"
+          target="_blank"
+          rel="noreferrer"
+          className="px-5 pt-6 pb-8 block"
+        >
+          <img
+            src={psiaLogo}
+            alt="Pacific Seaweed Industry Association"
+            className="w-full h-auto"
+          />
+          <p className="text-[11px] text-slate-400 mt-2">Global dashboard</p>
+        </a>
+        {/* Drawer close — only relevant below lg where the sidebar overlays */}
+        <button
+          type="button"
+          onClick={onClose}
+          aria-label="Close navigation"
+          className="lg:hidden absolute top-3 right-3 w-8 h-8 grid place-items-center rounded-lg text-slate-400 hover:text-white hover:bg-slate-800/60"
+        >
+          <IconX className="w-4 h-4" />
+        </button>
+      </div>
 
       {/* Nav groups */}
       <nav className="flex-1 overflow-y-auto px-3 pb-4 space-y-6 no-scrollbar">

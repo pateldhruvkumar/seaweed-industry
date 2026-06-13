@@ -13,6 +13,7 @@ import {
   ChartLegendContent,
 } from '../ui/chart'
 import { PLOT_COLORS, GRID_COLOR, axisProps, buildSeriesConfig } from '../../lib/chartTheme'
+import { formatCompact, formatFull } from '../../utils/formatters'
 
 export default function LineChart({
   data, xKey = 'year', yKey, groupKey,
@@ -48,12 +49,13 @@ export default function LineChart({
         <XAxis dataKey={xKey} {...axisProps} label={{ value: 'Year', position: 'insideBottom', offset: -4, fill: '#64748b', fontSize: 11 }} />
         <YAxis
           {...axisProps}
+          tickFormatter={formatCompact}
           scale={yLog ? 'log' : 'auto'}
           domain={yLog ? ['auto', 'auto'] : undefined}
           allowDataOverflow={yLog}
           label={yLabel ? { value: yLabel, angle: -90, position: 'insideLeft', fill: '#64748b', fontSize: 11 } : undefined}
         />
-        <ChartTooltip cursor={{ stroke: '#e2e8f0' }} content={<ChartTooltipContent />} />
+        <ChartTooltip cursor={{ stroke: '#e2e8f0' }} content={<ChartTooltipContent valueFormatter={formatFull} />} />
         {groupKey && <Legend content={<ChartLegendContent />} />}
         {groups.map((g, i) => (
           <Line

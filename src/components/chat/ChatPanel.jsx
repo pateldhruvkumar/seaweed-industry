@@ -16,16 +16,11 @@ export default function ChatPanel({ onClose }) {
     }
   }, [])
 
-  async function sendMessage(question, replaceLastAssistant = false) {
-    const baseHistory = replaceLastAssistant
-      ? messages.slice(0, -1)
-      : messages
+  function makeUserMsg(text) {
+    return { role: 'user', content: text, sql: null, data: [], type: null }
+  }
 
-    const userMsg = replaceLastAssistant
-      ? null
-      : { role: 'user', content: question, sql: null, data: [], type: null }
-
-    const nextHistory = userMsg ? [...baseHistory, userMsg] : baseHistory
+  async function runQuery(question, nextHistory) {
     setMessages(nextHistory)
     setLoading(true)
 
@@ -48,6 +43,7 @@ export default function ChatPanel({ onClose }) {
       if (!resp.ok) throw new Error(`HTTP ${resp.status}`)
 
       const { answer, sql, data, type, chart, suggestions } = await resp.json()
+      if (controller.signal.aborted) return
       setMessages(prev => [
         ...prev,
         {
@@ -63,7 +59,7 @@ export default function ChatPanel({ onClose }) {
         },
       ])
     } catch (err) {
-      if (err.name !== 'AbortError') {
+      if (err.name !== 'AbortError' && !controller.signal.aborted) {
         setMessages(prev => [
           ...prev,
           {
@@ -76,9 +72,28 @@ export default function ChatPanel({ onClose }) {
         ])
       }
     } finally {
-      setLoading(false)
-      abortRef.current = null
+      // Only the request that still owns abortRef may clear the shared state;
+      // an aborted predecessor must not clobber its successor's loading/stop.
+      if (abortRef.current === controller) {
+        setLoading(false)
+        abortRef.current = null
+      }
     }
+  }
+
+  function sendMessage(question, replaceLastAssistant = false) {
+    const baseHistory = replaceLastAssistant
+      ? messages.slice(0, -1)
+      : messages
+    const nextHistory = replaceLastAssistant
+      ? baseHistory
+      : [...baseHistory, makeUserMsg(question)]
+    return runQuery(question, nextHistory)
+  }
+
+  function editMessage(index, newText) {
+    const nextHistory = [...messages.slice(0, index), makeUserMsg(newText)]
+    return runQuery(newText, nextHistory)
   }
 
   function handleStop() {
@@ -96,8 +111,10 @@ export default function ChatPanel({ onClose }) {
       <ChatHeader onClose={onClose} />
       <MessageThread
         messages={messages}
+        loading={loading}
         onSuggestion={sendMessage}
         onRegenerate={handleRegenerate}
+        onEdit={editMessage}
       />
       <ChatInput
         onSubmit={sendMessage}

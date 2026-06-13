@@ -7,6 +7,8 @@ import ScatterChart from '../components/charts/ScatterChart'
 import DataTable from '../components/DataTable'
 import Dropdown from '../components/controls/Dropdown'
 import { formatKt, formatUSD } from '../utils/formatters'
+import AboutDataPanel from '../components/AboutDataPanel'
+import { ECONOMICS_DATA } from '../data/sources'
 
 const WINDOW_OPTIONS = [
   { label: '2020–2024', value: '2020-2024' },
@@ -57,6 +59,8 @@ export default function EconomicsTab() {
 
   return (
     <div className="space-y-6">
+      <AboutDataPanel {...ECONOMICS_DATA} />
+
       <TimeFilteredChartCard title="Global volume-weighted average aquaculture price (USD per tonne live weight)">
         {([yMin, yMax]) => (
           <LineChart

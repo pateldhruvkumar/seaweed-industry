@@ -13,7 +13,7 @@ def client():
          patch("main.load_model"), \
          patch("main.build_entity_index"), \
          patch("main.build_fewshot_index"), \
-         patch("main.Groq"):
+         patch("main.OpenAI"):
         from main import app
         return TestClient(app)
 

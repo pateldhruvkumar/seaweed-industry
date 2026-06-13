@@ -17,7 +17,7 @@ Browser (React + Vite)
                      ├── Embeddings  (BAAI/bge-small-en-v1.5)
                      │     ├── Entity resolution
                      │     └── Few-shot retrieval
-                     ├── Groq LLM  (llama-3.3-70b-versatile)
+                     ├── OpenRouter LLM  (qwen/qwen3.6-35b-a3b)
                      │     ├── SQL generation
                      │     └── Result summarization
                      └── DuckDB (in-memory)
@@ -40,7 +40,7 @@ FAO tables loaded at startup from `dataset/`:
 | Layer | Tech |
 |---|---|
 | Frontend | React 18, Vite, Tailwind CSS, Plotly.js, Vitest |
-| Backend | FastAPI, Uvicorn, DuckDB, Groq SDK, Sentence Transformers, pytest |
+| Backend | FastAPI, Uvicorn, DuckDB, OpenAI SDK (OpenRouter), Sentence Transformers, pytest |
 
 ---
 
@@ -78,7 +78,7 @@ Create `backend/.env` with the following:
 
 | Variable | Required | Description |
 |---|---|---|
-| `GROQ_API_KEY` | Yes | API key from [console.groq.com](https://console.groq.com) |
+| `OPENROUTER_API_KEY` | Yes | API key from [openrouter.ai/keys](https://openrouter.ai/keys) |
 
 ---
 
@@ -97,6 +97,6 @@ Create `backend/.env` with the following:
 
 Deploy to any Python host (Railway, Fly.io, Render, etc.):
 
-1. Set `GROQ_API_KEY` as an environment variable on the host.
+1. Set `OPENROUTER_API_KEY` as an environment variable on the host.
 2. Ensure the `dataset/` CSVs are bundled — they are loaded into DuckDB at startup.
 3. Update `allow_origins` in `backend/main.py` with the backend's public URL so the frontend can reach it.

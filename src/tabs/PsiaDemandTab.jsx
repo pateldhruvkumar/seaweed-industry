@@ -15,6 +15,8 @@ import {
   BC_VS_GLOBAL_RADAR,
   NA_EMERGING_APPS,
 } from '../data/psia'
+import AboutDataPanel from '../components/AboutDataPanel'
+import { PSIA_DEMAND_DATA } from '../data/sources'
 
 /**
  * PSIA Briefing — KPI 2 · Wet vs. Processed Kelp Demand
@@ -36,6 +38,8 @@ export default function PsiaDemandTab() {
           { value: '$3.2B', label: 'Biostimulants opportunity by 2030 (NA)' },
         ]}
       />
+
+      <AboutDataPanel {...PSIA_DEMAND_DATA} />
 
       <SectionHeader
         kicker="KPI 2"
