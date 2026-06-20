@@ -2,13 +2,37 @@ import { useEffect, useRef, useState } from 'react'
 import ChatHeader from './ChatHeader'
 import MessageThread from './MessageThread'
 import ChatInput from './ChatInput'
+import ThreadHistory from './ThreadHistory'
+import { listThreads, getThread, saveThread, deleteThread } from '../../lib/threadStore'
 
 const API_URL = 'http://localhost:8000/chat'
+const SAVE_DEBOUNCE_MS = 500
 
 export default function ChatPanel({ onClose }) {
-  const [messages, setMessages] = useState([])
+  // Hydrate from the most-recently-updated saved thread (read once on mount via
+  // a lazy initializer — avoids a set-state-in-effect mount load).
+  const [initialThread] = useState(() => listThreads()[0] ?? null)
+  const [messages, setMessages] = useState(initialThread?.messages ?? [])
   const [loading, setLoading] = useState(false)
+  const [activeId, setActiveId] = useState(initialThread?.id ?? null)
+  const [historyOpen, setHistoryOpen] = useState(false)
   const abortRef = useRef(null)
+  // Holds the active thread id for the save effect without making it a dep
+  // (assigning the id mid-save must not re-trigger the effect).
+  const activeIdRef = useRef(initialThread?.id ?? null)
+
+  // Debounce-persist the active thread whenever the conversation changes.
+  useEffect(() => {
+    if (messages.length === 0) return
+    const handle = setTimeout(() => {
+      const saved = saveThread(activeIdRef.current, messages)
+      if (saved.id !== activeIdRef.current) {
+        activeIdRef.current = saved.id
+        setActiveId(saved.id)
+      }
+    }, SAVE_DEBOUNCE_MS)
+    return () => clearTimeout(handle)
+  }, [messages])
 
   useEffect(() => {
     return () => {
@@ -106,9 +130,36 @@ export default function ChatPanel({ onClose }) {
     sendMessage(lastUser.content, true)
   }
 
+  function handleNewChat() {
+    if (abortRef.current) abortRef.current.abort()
+    setMessages([])
+    setActiveId(null)
+    activeIdRef.current = null
+    setHistoryOpen(false)
+  }
+
+  function handleSelectThread(id) {
+    if (abortRef.current) abortRef.current.abort()
+    const thread = getThread(id)
+    if (!thread) return
+    setMessages(thread.messages)
+    setActiveId(id)
+    activeIdRef.current = id
+    setHistoryOpen(false)
+  }
+
+  function handleDeleteThread(id) {
+    deleteThread(id)
+    if (id === activeIdRef.current) {
+      setMessages([])
+      setActiveId(null)
+      activeIdRef.current = null
+    }
+  }
+
   return (
-    <div className="flex flex-col h-full bg-gradient-to-b from-brand-50/40 via-white to-white">
-      <ChatHeader onClose={onClose} />
+    <div className="relative flex flex-col h-full bg-gradient-to-b from-brand-50/40 via-white to-white">
+      <ChatHeader onClose={onClose} onHistory={() => setHistoryOpen(true)} />
       <MessageThread
         messages={messages}
         loading={loading}
@@ -120,6 +171,14 @@ export default function ChatPanel({ onClose }) {
         onSubmit={sendMessage}
         onStop={handleStop}
         loading={loading}
+      />
+      <ThreadHistory
+        open={historyOpen}
+        activeId={activeId}
+        onSelect={handleSelectThread}
+        onDelete={handleDeleteThread}
+        onNewChat={handleNewChat}
+        onClose={() => setHistoryOpen(false)}
       />
     </div>
   )
