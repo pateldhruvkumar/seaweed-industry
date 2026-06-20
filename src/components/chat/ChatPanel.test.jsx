@@ -1,7 +1,8 @@
-import { describe, it, expect, vi, afterEach } from 'vitest'
-import { render, screen } from '@testing-library/react'
+import { describe, it, expect, vi, afterEach, beforeEach } from 'vitest'
+import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import ChatPanel from './ChatPanel'
+import { listThreads, saveThread } from '../../lib/threadStore'
 
 function mockFetchResponse(answer) {
   return Promise.resolve({
@@ -27,6 +28,8 @@ function deferred() {
 afterEach(() => {
   vi.unstubAllGlobals()
 })
+
+beforeEach(() => localStorage.clear())
 
 describe('ChatPanel pending indicator', () => {
   it('shows a thinking indicator while the request is in flight', async () => {
@@ -231,5 +234,67 @@ describe('ChatPanel edit & resend', () => {
 
     await screen.findByText('edited answer')
     expect(screen.queryByText(/something went wrong/i)).toBeNull()
+  })
+})
+
+describe('ChatPanel saved threads', () => {
+  it('persists a conversation and reloads it on remount', async () => {
+    const fetchMock = vi.fn().mockReturnValue(mockFetchResponse('persisted answer'))
+    vi.stubGlobal('fetch', fetchMock)
+
+    const { unmount } = render(<ChatPanel onClose={() => {}} />)
+    await userEvent.type(screen.getByPlaceholderText(/ask anything/i), 'remember me{Enter}')
+    await screen.findByText('persisted answer')
+
+    await waitFor(() => expect(listThreads()).toHaveLength(1))
+    expect(listThreads()[0].title).toBe('remember me')
+
+    unmount()
+    render(<ChatPanel onClose={() => {}} />)
+    expect(await screen.findByText('remember me')).toBeInTheDocument()
+  })
+
+  it('"New chat" clears the view but keeps the saved thread', async () => {
+    const fetchMock = vi.fn().mockReturnValue(mockFetchResponse('answer one'))
+    vi.stubGlobal('fetch', fetchMock)
+
+    render(<ChatPanel onClose={() => {}} />)
+    await userEvent.type(screen.getByPlaceholderText(/ask anything/i), 'first thread{Enter}')
+    await screen.findByText('answer one')
+    await waitFor(() => expect(listThreads()).toHaveLength(1))
+
+    await userEvent.click(screen.getByRole('button', { name: /history/i }))
+    await userEvent.click(screen.getByRole('button', { name: /new chat/i }))
+
+    expect(screen.queryByText('first thread')).toBeNull()
+    expect(listThreads()).toHaveLength(1)
+  })
+
+  it('loads a saved thread from the history list', async () => {
+    const older = saveThread(null, [{ role: 'user', content: 'older chat', sql: null, data: [], type: null }])
+    vi.spyOn(Date, 'now').mockReturnValue(older.updatedAt + 1000)
+    saveThread(null, [{ role: 'user', content: 'newer chat', sql: null, data: [], type: null }])
+    Date.now.mockRestore()
+
+    render(<ChatPanel onClose={() => {}} />)
+    expect(await screen.findByText('newer chat')).toBeInTheDocument()
+
+    await userEvent.click(screen.getByRole('button', { name: /history/i }))
+    await userEvent.click(screen.getByText('older chat'))
+
+    expect(await screen.findByText('older chat')).toBeInTheDocument()
+  })
+
+  it('deleting the active thread from history clears the view', async () => {
+    saveThread(null, [{ role: 'user', content: 'doomed chat', sql: null, data: [], type: null }])
+
+    render(<ChatPanel onClose={() => {}} />)
+    expect(await screen.findByText('doomed chat')).toBeInTheDocument()
+
+    await userEvent.click(screen.getByRole('button', { name: /history/i }))
+    await userEvent.click(screen.getByRole('button', { name: /delete doomed chat/i }))
+
+    expect(screen.queryByText('doomed chat')).toBeNull()
+    expect(listThreads()).toHaveLength(0)
   })
 })
