@@ -1,6 +1,7 @@
 import { exportFilename } from './branding'
 import { buildExcelBlob } from './toExcel'
 import { buildPdfBlob } from './toPdf'
+import { buildPptxBlob } from './toPptx'
 
 /** Trigger a browser download for a Blob. */
 export function triggerDownload(blob, filename) {
@@ -27,6 +28,9 @@ export async function exportTab(format, opts) {
   } else if (format === 'pdf') {
     blob = await buildPdfBlob(opts)
     ext = 'pdf'
+  } else if (format === 'pptx') {
+    blob = await buildPptxBlob(opts)
+    ext = 'pptx'
   } else {
     throw new Error(`Unsupported export format: ${format}`)
   }

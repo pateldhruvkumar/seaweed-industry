@@ -5,6 +5,7 @@ import { IconDownload, IconChevronDown } from '../../lib/icons'
 // Formats grow per phase: Excel (phase 1), PDF (phase 2), PowerPoint (phase 3).
 const FORMATS = [
   { id: 'pdf', label: 'PDF (.pdf)' },
+  { id: 'pptx', label: 'PowerPoint (.pptx)' },
   { id: 'xlsx', label: 'Excel (.xlsx)' },
 ]
 
