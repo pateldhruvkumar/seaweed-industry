@@ -1,5 +1,11 @@
-import { describe, it, expect } from 'vitest'
-import { collectSources } from './captureTab'
+import { describe, it, expect, vi } from 'vitest'
+
+vi.mock('html-to-image', () => ({
+  toPng: vi.fn(() => Promise.resolve('data:image/png;base64,HTML')),
+}))
+
+import { captureTab, collectSources } from './captureTab'
+import { toPng } from 'html-to-image'
 
 describe('collectSources', () => {
   it('reads text from elements marked data-export-source, trimmed', () => {
@@ -19,15 +25,6 @@ describe('collectSources', () => {
     expect(collectSources(null)).toEqual([])
   })
 })
-
-import { vi } from 'vitest'
-
-vi.mock('html-to-image', () => ({
-  toPng: vi.fn(() => Promise.resolve('data:image/png;base64,HTML')),
-}))
-
-import { captureTab } from './captureTab'
-import { toPng } from 'html-to-image'
 
 describe('captureTab', () => {
   it('images Plotly sections via toImage and others via html-to-image, in order', async () => {
@@ -52,5 +49,18 @@ describe('captureTab', () => {
 
   it('returns [] for a null root', async () => {
     expect(await captureTab(null)).toEqual([])
+  })
+
+  it('skips a section whose capture throws and keeps the rest', async () => {
+    toPng.mockRejectedValueOnce(new Error('boom'))
+    const root = document.createElement('div')
+    const bad = document.createElement('section')
+    bad.innerHTML = '<h3>Bad</h3><div>x</div>'
+    const good = document.createElement('section')
+    good.innerHTML = '<h3>Good</h3><div>y</div>'
+    root.append(bad, good)
+    const blocks = await captureTab(root)
+    expect(blocks).toHaveLength(1)
+    expect(blocks[0].title).toBe('Good')
   })
 })

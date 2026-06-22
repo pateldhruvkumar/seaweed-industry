@@ -48,8 +48,8 @@ function drawFooters(doc, sources) {
   }
 }
 
-/** Build a lightly-branded PDF of the tab as a Blob. */
-export async function buildPdfBlob({ rootEl, tabTitle, tabSubtitle }) {
+/** Build the PDF document. Exported for testing. */
+export async function buildPdfDoc({ rootEl, tabTitle, tabSubtitle }) {
   const blocks = await captureTab(rootEl)
   const sources = collectSources(rootEl)
   const logo = await loadImageDataUrl(psiaLogoUrl).catch(() => null)
@@ -60,8 +60,13 @@ export async function buildPdfBlob({ rootEl, tabTitle, tabSubtitle }) {
 
   for (const block of blocks) {
     const props = doc.getImageProperties(block.imageDataUrl)
-    const imgH = (props.height / props.width) * contentW
+    if (!props.width || !props.height) continue // skip degenerate capture
+
     const titleH = block.title ? 16 : 0
+    let imgW = contentW
+    let imgH = (props.height / props.width) * contentW
+
+    // Start a fresh page if this block won't fit in the remaining space.
     if (y + titleH + imgH > PAGE.h - 60) {
       doc.addPage()
       y = drawHeader(doc, tabTitle, tabSubtitle, logo)
@@ -72,10 +77,25 @@ export async function buildPdfBlob({ rootEl, tabTitle, tabSubtitle }) {
       doc.text(block.title, MARGIN, y)
       y += titleH
     }
-    doc.addImage(block.imageDataUrl, 'PNG', MARGIN, y, contentW, imgH)
+
+    // Cap to the page's available height, preserving aspect ratio (centered).
+    const availH = FOOTER_Y - y - 10
+    if (imgH > availH) {
+      const scale = availH / imgH
+      imgW = contentW * scale
+      imgH = availH
+    }
+    const x = MARGIN + (contentW - imgW) / 2
+    doc.addImage(block.imageDataUrl, 'PNG', x, y, imgW, imgH)
     y += imgH + 24
   }
 
   drawFooters(doc, sources)
+  return doc
+}
+
+/** Build a lightly-branded PDF of the tab as a Blob. */
+export async function buildPdfBlob(opts) {
+  const doc = await buildPdfDoc(opts)
   return doc.output('blob')
 }

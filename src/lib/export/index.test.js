@@ -4,8 +4,13 @@ vi.mock('./toExcel', () => ({
   buildExcelBlob: vi.fn(() => new Blob(['x'], { type: 'application/octet-stream' })),
 }))
 
+vi.mock('./toPdf', () => ({
+  buildPdfBlob: vi.fn(() => Promise.resolve(new Blob(['pdf'], { type: 'application/pdf' }))),
+}))
+
 import { exportTab } from './index'
 import { buildExcelBlob } from './toExcel'
+import { buildPdfBlob } from './toPdf'
 
 describe('exportTab', () => {
   beforeEach(() => {
@@ -15,6 +20,7 @@ describe('exportTab', () => {
     })
     vi.spyOn(HTMLAnchorElement.prototype, 'click').mockImplementation(() => {})
     buildExcelBlob.mockClear()
+    buildPdfBlob.mockClear()
   })
 
   afterEach(() => { vi.restoreAllMocks() })
@@ -38,5 +44,11 @@ describe('exportTab', () => {
     await expect(
       exportTab('rtf', { rootEl: null, tabId: 't', tabTitle: 'X' }),
     ).rejects.toThrow(/unsupported/i)
+  })
+
+  it('builds a pdf blob for the pdf format', async () => {
+    await exportTab('pdf', { rootEl: null, tabId: 't', tabTitle: 'Overview' })
+    expect(buildPdfBlob).toHaveBeenCalledOnce()
+    expect(URL.createObjectURL).toHaveBeenCalledOnce()
   })
 })

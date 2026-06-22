@@ -8,7 +8,8 @@ vi.mock('./captureTab', () => ({
   collectSources: vi.fn(() => ['Source: FAO FishStat']),
 }))
 
-import { buildPdfBlob } from './toPdf'
+import { buildPdfBlob, buildPdfDoc } from './toPdf'
+import { captureTab, collectSources } from './captureTab'
 
 describe('buildPdfBlob', () => {
   it('returns a non-empty PDF Blob', async () => {
@@ -19,5 +20,16 @@ describe('buildPdfBlob', () => {
     })
     expect(blob).toBeInstanceOf(Blob)
     expect(blob.size).toBeGreaterThan(0)
+  })
+
+  it('paginates multiple blocks and invokes captureTab/collectSources', async () => {
+    captureTab.mockResolvedValueOnce(
+      Array.from({ length: 8 }, (_, i) => ({ title: `C${i}`, imageDataUrl: PNG })),
+    )
+    const rootEl = document.createElement('div')
+    const doc = await buildPdfDoc({ rootEl, tabTitle: 'Overview', tabSubtitle: '' })
+    expect(captureTab).toHaveBeenCalledWith(rootEl)
+    expect(collectSources).toHaveBeenCalledWith(rootEl)
+    expect(doc.getNumberOfPages()).toBeGreaterThan(1)
   })
 })

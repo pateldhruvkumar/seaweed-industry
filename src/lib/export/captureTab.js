@@ -29,22 +29,26 @@ export async function captureTab(rootEl, { scale = 2 } = {}) {
   if (!rootEl) return []
   const blocks = []
   for (const section of Array.from(rootEl.children)) {
-    const plotNode = section.querySelector('.js-plotly-plot')
-    let imageDataUrl
-    if (plotNode) {
-      imageDataUrl = await Plotly.toImage(plotNode, {
-        format: 'png',
-        scale,
-        width: plotNode.clientWidth || 900,
-        height: plotNode.clientHeight || 460,
-      })
-    } else {
-      imageDataUrl = await toPng(section, {
-        pixelRatio: scale,
-        backgroundColor: '#ffffff',
-      })
+    try {
+      const plotNode = section.querySelector('.js-plotly-plot')
+      let imageDataUrl
+      if (plotNode) {
+        imageDataUrl = await Plotly.toImage(plotNode, {
+          format: 'png',
+          scale,
+          width: plotNode.clientWidth || 900,
+          height: plotNode.clientHeight || 460,
+        })
+      } else {
+        imageDataUrl = await toPng(section, {
+          pixelRatio: scale,
+          backgroundColor: '#ffffff',
+        })
+      }
+      blocks.push({ title: sectionTitle(section), imageDataUrl })
+    } catch (err) {
+      console.warn('[captureTab] section capture failed, skipping:', err)
     }
-    blocks.push({ title: sectionTitle(section), imageDataUrl })
   }
   return blocks
 }
