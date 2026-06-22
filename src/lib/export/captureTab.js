@@ -3,6 +3,15 @@ import * as plotlyModule from 'plotly.js-dist-min'
 
 const Plotly = plotlyModule.default ?? plotlyModule
 
+/** Reject if `promise` doesn't settle within `ms`. */
+function withTimeout(promise, ms, label) {
+  let timer
+  const timeout = new Promise((_, reject) => {
+    timer = setTimeout(() => reject(new Error(`${label} capture exceeded ${ms}ms`)), ms)
+  })
+  return Promise.race([promise, timeout]).finally(() => clearTimeout(timer))
+}
+
 /**
  * Collect source/caveat citations marked with `data-export-source`.
  * Whitespace is collapsed so multi-line SourceNote markup reads as one line.
@@ -40,7 +49,7 @@ function resolveSectionContainer(rootEl) {
  * `Plotly.toImage`; everything else (Recharts SVG, KPI strips, tables,
  * insight panels) is imaged with `html-to-image`.
  */
-export async function captureTab(rootEl, { scale = 2 } = {}) {
+export async function captureTab(rootEl, { scale = 2, captureTimeout = 15000 } = {}) {
   if (!rootEl) return []
   const container = resolveSectionContainer(rootEl)
   const blocks = []
@@ -49,22 +58,30 @@ export async function captureTab(rootEl, { scale = 2 } = {}) {
       const plotNode = section.querySelector('.js-plotly-plot')
       let imageDataUrl
       if (plotNode) {
-        imageDataUrl = await Plotly.toImage(plotNode, {
-          format: 'png',
-          scale,
-          width: plotNode.clientWidth || 900,
-          height: plotNode.clientHeight || 460,
-        })
+        imageDataUrl = await withTimeout(
+          Plotly.toImage(plotNode, {
+            format: 'png',
+            scale,
+            width: plotNode.clientWidth || 900,
+            height: plotNode.clientHeight || 460,
+          }),
+          captureTimeout,
+          'plotly',
+        )
       } else {
-        imageDataUrl = await toPng(section, {
-          pixelRatio: scale,
-          backgroundColor: '#ffffff',
-          skipFonts: true,
-        })
+        imageDataUrl = await withTimeout(
+          toPng(section, {
+            pixelRatio: scale,
+            backgroundColor: '#ffffff',
+            skipFonts: true,
+          }),
+          captureTimeout,
+          'section',
+        )
       }
       blocks.push({ title: sectionTitle(section), imageDataUrl })
     } catch (err) {
-      console.warn('[captureTab] section capture failed, skipping:', err)
+      console.warn('[captureTab] section capture failed or timed out, skipping:', err)
     }
   }
   return blocks

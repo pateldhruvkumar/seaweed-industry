@@ -80,4 +80,16 @@ describe('captureTab', () => {
     const blocks = await captureTab(root)
     expect(blocks.map(b => b.title)).toEqual(['One', 'Two'])
   })
+
+  it('skips a section whose capture hangs past the timeout', async () => {
+    toPng.mockImplementationOnce(() => new Promise(() => {})) // never resolves
+    const root = document.createElement('div')
+    const s1 = document.createElement('section')
+    s1.innerHTML = '<h3>Slow</h3><div>x</div>'
+    const s2 = document.createElement('section')
+    s2.innerHTML = '<h3>Fast</h3><div>y</div>'
+    root.append(s1, s2) // two direct children -> no wrapper descent
+    const blocks = await captureTab(root, { captureTimeout: 20 })
+    expect(blocks.map(b => b.title)).toEqual(['Fast'])
+  })
 })
