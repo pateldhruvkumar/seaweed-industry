@@ -16,9 +16,15 @@
 - **Assembly approach:** **A — Minimal-touch capture.** Export works off what is already rendered, with near-zero changes to existing chart components. (Approaches B "structured registry" and C "per-chart only" were considered and rejected for v1: B is more invasive/slower to ship; C does not deliver the whole-tab report the sponsor needs.)
 
 ### Existing structure this builds on
-- All charts render through `src/lib/Plot.jsx` (a thin wrapper over `plotly.js-dist-min`) into a DOM node carrying Plotly's `.js-plotly-plot` class. Each node exposes `.data` (traces) and `.layout`.
-- Tabs mix Plotly **charts**, **KPI cards** (`KpiCard`), **tables** (`DataTable`/`ResultTable`), and **insight panels** (`ChartWithInsights`/`InsightsList`) — all rendered HTML.
+- **Charts are mostly Recharts** (`src/components/charts/*` → `src/components/ui/chart.jsx`), rendered as inline **SVG**. Recharts holds its data in React props, **not** in the DOM — there are no readable "traces" on the rendered nodes.
+- **Plotly is used only by `Heatmap.jsx` and `EdaTab.jsx`** (via `src/lib/Plot.jsx`, wrapping `plotly.js-dist-min`). Those render a node with the `.js-plotly-plot` class.
+- Tabs mix charts, **KPI cards** (`KpiCard`), **tables** (`DataTable`/`ResultTable`), and **insight panels** (`ChartWithInsights`/`InsightsList`) — all rendered HTML/SVG.
+- Source data lives in `public/data/*.json`, fetched and cached by the `useData` hook (`src/hooks/useData.js`); each tab loads a known set of these files.
 - `Topbar.jsx` renders the active tab's title + subtitle. `SourceNote.jsx` renders per-chart source/caveat citations.
+
+### Consequences for capture
+- **Images:** Recharts SVG captures cleanly with `html-to-image`. Plotly nodes (heatmap/EDA) are captured with `Plotly.toImage` for fidelity. This is *easier* than the original Plotly-everywhere assumption.
+- **Data (Excel):** Because Recharts data is not in the DOM, Excel exports the **source datasets the active tab loaded** (read from the `useData` cache), not the exact in-DOM series. See §5.
 
 ---
 
@@ -31,8 +37,8 @@ All client-side and **lazy-loaded** (dynamic `import()`) only when the user firs
 | `jspdf` | PDF generation |
 | `pptxgenjs` | PowerPoint generation |
 | `xlsx` (SheetJS) | Excel generation |
-| `html-to-image` | Capture HTML blocks (KPI cards, tables, insight panels) to PNG |
-| `plotly.js-dist-min` (already bundled) | `Plotly.toImage(node, { format: 'png', scale: 2 })` for crisp chart images |
+| `html-to-image` | Capture Recharts SVG + HTML sections (KPI cards, tables, insight panels) to PNG — the primary capture path |
+| `plotly.js-dist-min` (already bundled) | `Plotly.toImage(node, { format: 'png', scale: 2 })` for the Plotly-only nodes (heatmap, EDA tab) |
 
 ---
 
@@ -40,13 +46,14 @@ All client-side and **lazy-loaded** (dynamic `import()`) only when the user firs
 
 | File | Responsibility |
 |---|---|
-| `captureTab.js` | Walk the **direct-child sections** of the content root in DOM order; emit ordered blocks `{ kind: 'chart' \| 'rich', title, imageDataUrl, data? }`. A section is `chart` when it is a standalone chart card (a single `.js-plotly-plot` node with no interleaved prose); everything else (KPI strip, insight panel, table) is `rich`. `chart` blocks → image via `Plotly.toImage` + title from the nearest `ChartCard` heading (fallback `node.layout.title`). `rich` blocks → image via `html-to-image` of the whole section (preserves layout, including any embedded chart). For data export, charts inside `rich` sections are still found via `.js-plotly-plot`. Also collects source-note text (see §6). |
-| `extractPlotData.js` | Convert a chart node's `.data` traces into tabular rows. Multi-line / shared-x traces → one table keyed on x; heatmap → x×y matrix; unrecognized shape → return empty + an `imageOnly: true` flag. |
-| `toPdf.js` | Build the branded PDF (see §5). |
-| `toPptx.js` | Build the branded deck (see §5). |
-| `toExcel.js` | Build the workbook (see §5). |
-| `branding.js` | PSIA logo asset, brand hex (sourced from `chartTheme`), header/footer drawing helpers, `exportFilename(tab, date, ext)`. |
-| `index.js` | Public entry: `exportTab(format, { rootEl, tabTitle, tabSubtitle, sources })`. |
+| `captureTab.js` | Walk the **direct-child sections** of the content root in DOM order; emit ordered image blocks `{ title, imageDataUrl }`, plus a `collectSources(rootEl)` helper. Per section: if it contains a `.js-plotly-plot` node, image it with `Plotly.toImage` (heatmap/EDA); otherwise image the whole section with `html-to-image` (Recharts SVG, KPI strips, tables, insight panels all capture fine). Title comes from the section's heading. |
+| `toPdf.js` | Build the branded PDF from image blocks (see §5). |
+| `toPptx.js` | Build the branded deck from image blocks (see §5). |
+| `toExcel.js` | Build the workbook from the active tab's **source datasets** (read via the `useData` accessors), not the DOM (see §5). |
+| `branding.js` | PSIA logo asset, brand hex (sourced from `chartTheme`), header/footer drawing helpers, `exportFilename(tab, ext, date)`, `sanitizeSheetName(name, used)`, `loadImageDataUrl(url)`. |
+| `index.js` | Public entry: `exportTab(format, { rootEl, tabId, tabTitle, tabSubtitle })`. |
+
+`extractPlotData` (Plotly-trace → rows) is **not** part of this design — chart data is sourced from the `useData` cache, not from rendered nodes.
 
 ---
 
@@ -54,7 +61,12 @@ All client-side and **lazy-loaded** (dynamic `import()`) only when the user firs
 
 - **`src/components/export/ExportMenu.jsx`** — a button + dropdown (PDF / PowerPoint / Excel) rendered in the **Topbar**, to the right of the title. Shows a spinner while exporting; disabled during an in-flight export.
 - **`src/hooks/useExport.js`** — `{ exporting, error, run(format) }`. Lazy-imports `src/lib/export`, locates the content root, triggers the browser file download, and handles errors.
-- **`src/App.jsx`** — one small change: wrap the rendered `<TabComponent />` in `<div id="tab-content">` so the exporter has a stable root element. **No per-tab changes.**
+- **`src/hooks/useData.js`** — add three small accessors so Excel can find the active tab's datasets without a static, drift-prone map:
+  - `setActiveTab(id)` — records which tab is mounting.
+  - on each load (cache hit or fetch), associate `filename` with the current active tab.
+  - `getTabDatasetFilenames(id)` → `string[]` and `getCachedData(filename)` → the cached JSON.
+- **`src/App.jsx`** — two small changes: wrap the rendered `<TabComponent />` in `<div id="tab-content">` (stable export root), and call `setActiveTab(activeTab)` so dataset loads are attributed to the right tab. Pass `activeTab`/title/subtitle to the Topbar's `ExportMenu`. **No per-tab changes.**
+- **`src/components/layout/Topbar.jsx`** — accept an optional `actions` slot and render `ExportMenu` there.
 - **`src/components/SourceNote.jsx`** — add a `data-export-source` marker attribute (one line) so source/caveat lines can be reliably collected into export footers and the Excel "About" sheet.
 
 ---
@@ -64,20 +76,19 @@ All client-side and **lazy-loaded** (dynamic `import()`) only when the user firs
 ### PDF (`jspdf`)
 - Brand-teal header band: white PSIA logo + dashboard name + export date.
 - Tab title + subtitle.
-- **Block-by-block compose** (charts via `Plotly.toImage`, KPI/table/insight blocks via `html-to-image`) flowed and paginated.
+- **Section-by-section compose:** each image block from `captureTab` (Recharts SVG via `html-to-image`; Plotly nodes via `Plotly.toImage`) placed in DOM order, scaled to page width, paginated.
 - Footer: source citations + caveat + page number.
-- *Decision:* block-compose rather than one full-page screenshot — avoids Plotly rendering glitches inside `html-to-image` and reuses the same block enumeration as the other two formats.
+- *Decision:* compose from per-section images rather than one giant screenshot — gives pagination control and reuses the same block enumeration as PPTX.
 
 ### PowerPoint (`pptxgenjs`), 16:9
 - Title slide: logo, dashboard name, tab title + subtitle, date.
-- One slide per section in DOM order: each `chart` block becomes a chart-image slide; each `rich` block (KPI strip, insight panel, table) becomes its own image slide. Source footnote where available.
+- One slide per image block in DOM order (chart, KPI strip, insight panel, or table), each with its title and a source footnote where available.
 - Branded slide master with footer + page number.
 
 ### Excel (`xlsx`)
-- "About" sheet: tab title, export date, full source list + caveat, dashboard URL.
-- One data sheet per **Plotly chart**, from `extractPlotData` (sheet name = sanitized chart title, truncated to Excel's 31-char limit).
-- Charts whose trace shape cannot be parsed are listed on the "About" sheet as "image-only."
-- **v1 scope:** Excel exports Plotly-chart data only. HTML-only tables (e.g., the Economics species-price `DataTable`) appear in the PDF/PPTX as captured images but do **not** get Excel sheets in v1 (a `rich`-section data hook is a possible follow-on).
+- "About" sheet: tab title, export date, full source list + caveat, dashboard URL, and the note **"Source datasets as loaded; charts on the dashboard may apply year-range filters."**
+- One data sheet per **source dataset** the active tab loaded — filenames from `getTabDatasetFilenames(tabId)`, data from `getCachedData(filename)`. Array-of-objects datasets convert directly via SheetJS `json_to_sheet`; sheet name = sanitized dataset name (≤ 31 chars, deduped).
+- Non-tabular datasets (e.g., the `country_species_matrix.json` `{countries, species, values}` shape) are listed on the "About" sheet as "matrix data — see dashboard" rather than forced into a sheet.
 
 ---
 
@@ -92,8 +103,8 @@ All client-side and **lazy-loaded** (dynamic `import()`) only when the user firs
 ## 7. Error Handling
 
 - Each format builder wrapped in try/catch → non-blocking inline message in `ExportMenu` ("Export failed — try again"); detail to `console.error`.
-- Guard: if `#tab-content` is missing or no chart nodes have rendered yet (tab still loading), disable Export or show "Wait for the tab to finish loading."
-- `Plotly.toImage` is async per chart; run with a sane concurrency cap.
+- Guard: if `#tab-content` is missing or still shows loading skeletons (no chart/section content yet), disable Export or show "Wait for the tab to finish loading."
+- Image capture (`html-to-image` / `Plotly.toImage`) is async per section; run sequentially or with a small concurrency cap.
 - Filenames sanitized; large PDFs/decks are acceptable.
 
 ---
@@ -101,13 +112,13 @@ All client-side and **lazy-loaded** (dynamic `import()`) only when the user firs
 ## 8. Testing (Vitest, matching existing setup)
 
 **Unit**
-- `extractPlotData`: line, multi-line shared-x, heatmap, and unknown-shape cases.
-- `exportFilename`: naming/format.
-- `captureTab`: block enumeration over a jsdom fixture (`.js-plotly-plot` + KPI/table blocks), with `Plotly.toImage` mocked → assert correct ordered block list.
+- `branding`: `exportFilename` (slug + date + ext) and `sanitizeSheetName` (≤ 31 chars, illegal-char strip, dedupe).
+- `useData` accessors: `setActiveTab` + load attribution → `getTabDatasetFilenames`; `getCachedData` round-trip.
+- `captureTab`: section enumeration over a jsdom fixture (a Plotly-class section + a plain SVG/HTML section), with `Plotly.toImage` and `html-to-image` mocked → assert correct ordered image blocks; `collectSources` reads `data-export-source` text.
 - `useExport`: state transitions (`exporting` true/false), download trigger, and error path (mocked export module).
 
 **Smoke**
-- Each builder (`toPdf`/`toPptx`/`toExcel`) returns a non-empty Blob given fixture blocks (no binary-content assertions; heavy libs partially mocked as needed).
+- Each builder (`toPdf`/`toPptx`/`toExcel`) returns a non-empty Blob given fixture inputs (no binary-content assertions; heavy libs partially mocked as needed).
 
 **Manual (preview)**
 - Load the app; click Export → each format on Overview, Economics, and a KPI tab; confirm files download and open correctly.
@@ -116,9 +127,9 @@ All client-side and **lazy-loaded** (dynamic `import()`) only when the user firs
 
 ## 9. Phasing (each step a shippable commit on `feature/export-reporting`)
 
-1. **Foundation + Excel** — `captureTab`, `extractPlotData`, `ExportMenu`, `useExport`, App/SourceNote touches, `toExcel`. Simplest format proves the pipeline end-to-end. **Verify early:** confirm `html-to-image` renders a `rich` section that embeds a Plotly chart (e.g., a `ChartWithInsights` panel) acceptably. If it does not, fall back to compositing the `Plotly.toImage` output over the captured text region. This is the design's main technical risk — settle it before building PDF/PPTX on top.
-2. **PDF** — `toPdf` with branded chrome + pagination.
-3. **PowerPoint** — `toPptx` with slide master.
+1. **Foundation + Excel** — `branding` helpers, `useData` accessors, `ExportMenu`, `useExport`, App/Topbar/SourceNote touches, `toExcel`. Excel needs no image capture, so it proves the menu → download pipeline end-to-end first.
+2. **PDF** — `captureTab` + `toPdf` with branded chrome + pagination. **Verify early in this phase:** Recharts SVG is the happy path for `html-to-image`; confirm the **Plotly** sections (heatmap, EDA tab) capture acceptably via `Plotly.toImage`. EDA fidelity is the main capture risk — settle it before PPTX.
+3. **PowerPoint** — `toPptx` with slide master (reuses `captureTab` from phase 2).
 
 Tests accompany each step.
 
