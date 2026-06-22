@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useRef } from 'react'
 
 /**
  * Drives a tab export. `exporting` holds the in-flight format (or null);
@@ -8,9 +8,12 @@ import { useState, useCallback } from 'react'
 export function useExport({ tabId, tabTitle, tabSubtitle }) {
   const [exporting, setExporting] = useState(null)
   const [error, setError] = useState(null)
+  const inFlight = useRef(false)
 
   const run = useCallback(
     async format => {
+      if (inFlight.current) return
+      inFlight.current = true
       setError(null)
       setExporting(format)
       try {
@@ -25,6 +28,7 @@ export function useExport({ tabId, tabTitle, tabSubtitle }) {
         setError(e.message || 'Export failed')
       } finally {
         setExporting(null)
+        inFlight.current = false
       }
     },
     [tabId, tabTitle, tabSubtitle],

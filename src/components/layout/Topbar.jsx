@@ -9,6 +9,7 @@
  * Props:
  *   title    – the active page's headline ("Overview", "Countries", etc.)
  *   subtitle – small caption beneath the title
+ *   actions  – optional right-aligned slot (e.g. export menu)
  */
 export default function Topbar({ title, subtitle, actions }) {
   return (

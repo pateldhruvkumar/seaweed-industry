@@ -16,8 +16,15 @@ export default function ExportMenu({ tabId, tabTitle, tabSubtitle }) {
     function onDocClick(e) {
       if (ref.current && !ref.current.contains(e.target)) setOpen(false)
     }
+    function onKeyDown(e) {
+      if (e.key === 'Escape') setOpen(false)
+    }
     document.addEventListener('mousedown', onDocClick)
-    return () => document.removeEventListener('mousedown', onDocClick)
+    document.addEventListener('keydown', onKeyDown)
+    return () => {
+      document.removeEventListener('mousedown', onDocClick)
+      document.removeEventListener('keydown', onKeyDown)
+    }
   }, [])
 
   async function handlePick(format) {
@@ -31,6 +38,8 @@ export default function ExportMenu({ tabId, tabTitle, tabSubtitle }) {
         type="button"
         onClick={() => setOpen(o => !o)}
         disabled={!!exporting}
+        aria-haspopup="menu"
+        aria-expanded={open}
         className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-700 shadow-sm hover:bg-slate-50 disabled:opacity-60"
       >
         <IconDownload className="w-4 h-4" />
@@ -54,10 +63,7 @@ export default function ExportMenu({ tabId, tabTitle, tabSubtitle }) {
       )}
 
       {error && (
-        <p
-          role="alert"
-          className="absolute right-0 mt-1 whitespace-nowrap text-[11px] text-rose-600"
-        >
+        <p role="alert" className="mt-1 max-w-[14rem] text-right text-[11px] text-rose-600">
           {error}
         </p>
       )}

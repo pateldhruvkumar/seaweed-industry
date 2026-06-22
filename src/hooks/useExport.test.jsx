@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import { renderHook, act, waitFor } from '@testing-library/react'
+import { renderHook, act } from '@testing-library/react'
 
 const exportTab = vi.fn(() => Promise.resolve())
 vi.mock('../lib/export', () => ({ exportTab: (...a) => exportTab(...a) }))
@@ -29,7 +29,7 @@ describe('useExport', () => {
     exportTab.mockRejectedValueOnce(new Error('boom'))
     const { result } = renderHook(() => useExport({ tabId: 't', tabTitle: 'T' }))
     await act(async () => { await result.current.run('xlsx') })
-    await waitFor(() => expect(result.current.error).toBe('boom'))
+    expect(result.current.error).toBe('boom')
   })
 
   it('errors when there is no #tab-content', async () => {
