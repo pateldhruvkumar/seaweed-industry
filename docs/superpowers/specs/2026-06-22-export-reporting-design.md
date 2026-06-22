@@ -40,7 +40,7 @@ All client-side and **lazy-loaded** (dynamic `import()`) only when the user firs
 
 | File | Responsibility |
 |---|---|
-| `captureTab.js` | Walk the active tab's content root in DOM order; emit ordered blocks `{ kind: 'chart' \| 'kpis' \| 'table' \| 'insights', title, imageDataUrl, data? }`. Charts located via `.js-plotly-plot`; title from the nearest `ChartCard` heading (fallback `node.layout.title`); non-chart blocks captured with `html-to-image`. Also collects source-note text (see §6). |
+| `captureTab.js` | Walk the **direct-child sections** of the content root in DOM order; emit ordered blocks `{ kind: 'chart' \| 'rich', title, imageDataUrl, data? }`. A section is `chart` when it is a standalone chart card (a single `.js-plotly-plot` node with no interleaved prose); everything else (KPI strip, insight panel, table) is `rich`. `chart` blocks → image via `Plotly.toImage` + title from the nearest `ChartCard` heading (fallback `node.layout.title`). `rich` blocks → image via `html-to-image` of the whole section (preserves layout, including any embedded chart). For data export, charts inside `rich` sections are still found via `.js-plotly-plot`. Also collects source-note text (see §6). |
 | `extractPlotData.js` | Convert a chart node's `.data` traces into tabular rows. Multi-line / shared-x traces → one table keyed on x; heatmap → x×y matrix; unrecognized shape → return empty + an `imageOnly: true` flag. |
 | `toPdf.js` | Build the branded PDF (see §5). |
 | `toPptx.js` | Build the branded deck (see §5). |
@@ -70,14 +70,14 @@ All client-side and **lazy-loaded** (dynamic `import()`) only when the user firs
 
 ### PowerPoint (`pptxgenjs`), 16:9
 - Title slide: logo, dashboard name, tab title + subtitle, date.
-- One slide per chart: chart image + source footnote.
-- A "Highlights" slide: KPI-strip image + insight bullets (when present).
+- One slide per section in DOM order: each `chart` block becomes a chart-image slide; each `rich` block (KPI strip, insight panel, table) becomes its own image slide. Source footnote where available.
 - Branded slide master with footer + page number.
 
 ### Excel (`xlsx`)
 - "About" sheet: tab title, export date, full source list + caveat, dashboard URL.
-- One data sheet per chart, from `extractPlotData` (sheet name = sanitized chart title, truncated to Excel's 31-char limit).
-- Charts whose data cannot be parsed are listed on the "About" sheet as "image-only."
+- One data sheet per **Plotly chart**, from `extractPlotData` (sheet name = sanitized chart title, truncated to Excel's 31-char limit).
+- Charts whose trace shape cannot be parsed are listed on the "About" sheet as "image-only."
+- **v1 scope:** Excel exports Plotly-chart data only. HTML-only tables (e.g., the Economics species-price `DataTable`) appear in the PDF/PPTX as captured images but do **not** get Excel sheets in v1 (a `rich`-section data hook is a possible follow-on).
 
 ---
 
@@ -116,7 +116,7 @@ All client-side and **lazy-loaded** (dynamic `import()`) only when the user firs
 
 ## 9. Phasing (each step a shippable commit on `feature/export-reporting`)
 
-1. **Foundation + Excel** — `captureTab`, `extractPlotData`, `ExportMenu`, `useExport`, App/SourceNote touches, `toExcel`. Simplest format proves the pipeline end-to-end.
+1. **Foundation + Excel** — `captureTab`, `extractPlotData`, `ExportMenu`, `useExport`, App/SourceNote touches, `toExcel`. Simplest format proves the pipeline end-to-end. **Verify early:** confirm `html-to-image` renders a `rich` section that embeds a Plotly chart (e.g., a `ChartWithInsights` panel) acceptably. If it does not, fall back to compositing the `Plotly.toImage` output over the captured text region. This is the design's main technical risk — settle it before building PDF/PPTX on top.
 2. **PDF** — `toPdf` with branded chrome + pagination.
 3. **PowerPoint** — `toPptx` with slide master.
 
