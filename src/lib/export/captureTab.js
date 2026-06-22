@@ -59,6 +59,7 @@ export async function captureTab(rootEl, { scale = 2 } = {}) {
         imageDataUrl = await toPng(section, {
           pixelRatio: scale,
           backgroundColor: '#ffffff',
+          skipFonts: true,
         })
       }
       blocks.push({ title: sectionTitle(section), imageDataUrl })

@@ -45,6 +45,10 @@ describe('captureTab', () => {
     expect(blocks[1]).toMatchObject({ title: 'KPIs' })
     expect(blocks[1].imageDataUrl).toBe('data:image/png;base64,HTML')
     expect(toPng).toHaveBeenCalledTimes(1) // only the rich section
+    expect(toPng).toHaveBeenCalledWith(
+      expect.any(HTMLElement),
+      expect.objectContaining({ skipFonts: true }),
+    )
   })
 
   it('returns [] for a null root', async () => {
