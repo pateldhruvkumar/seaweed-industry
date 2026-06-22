@@ -63,4 +63,17 @@ describe('captureTab', () => {
     expect(blocks).toHaveLength(1)
     expect(blocks[0].title).toBe('Good')
   })
+
+  it('descends through a single wrapper to reach the real section row', async () => {
+    const root = document.createElement('div')
+    const wrapper = document.createElement('div') // the tab's space-y-6 root
+    const s1 = document.createElement('section')
+    s1.innerHTML = '<h3>One</h3><div>a</div>'
+    const s2 = document.createElement('section')
+    s2.innerHTML = '<h3>Two</h3><div>b</div>'
+    wrapper.append(s1, s2)
+    root.append(wrapper) // root has exactly one wrapper child
+    const blocks = await captureTab(root)
+    expect(blocks.map(b => b.title)).toEqual(['One', 'Two'])
+  })
 })

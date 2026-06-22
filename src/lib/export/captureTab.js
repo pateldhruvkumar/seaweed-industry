@@ -19,6 +19,21 @@ function sectionTitle(section) {
   return h && h.textContent.trim() ? h.textContent.trim() : ''
 }
 
+function resolveSectionContainer(rootEl) {
+  let container = rootEl
+  // Tabs render their content inside a single wrapper element (e.g. a
+  // `space-y-6` div); descend through such wrappers so we iterate the real
+  // section row rather than treating the whole tab as one block.
+  while (
+    container.children.length === 1 &&
+    container.firstElementChild &&
+    container.firstElementChild.children.length > 1
+  ) {
+    container = container.firstElementChild
+  }
+  return container
+}
+
 /**
  * Walk the direct-child sections of `rootEl` and produce ordered image blocks
  * `{ title, imageDataUrl }`. Plotly sections (heatmap/EDA) are imaged with
@@ -27,8 +42,9 @@ function sectionTitle(section) {
  */
 export async function captureTab(rootEl, { scale = 2 } = {}) {
   if (!rootEl) return []
+  const container = resolveSectionContainer(rootEl)
   const blocks = []
-  for (const section of Array.from(rootEl.children)) {
+  for (const section of Array.from(container.children)) {
     try {
       const plotNode = section.querySelector('.js-plotly-plot')
       let imageDataUrl
