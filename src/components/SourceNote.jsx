@@ -14,7 +14,7 @@ import { IconExternal } from '../lib/icons'
  */
 export default function SourceNote({ source, href, caveat }) {
   return (
-    <p className="mt-2 text-[11px] text-slate-400 leading-snug">
+    <p data-export-source className="mt-2 text-[11px] text-slate-400 leading-snug">
       <span className="font-medium text-slate-500">Source: </span>
       {source}
       {href && (
