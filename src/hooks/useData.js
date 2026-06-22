@@ -25,12 +25,20 @@ export function getCachedData(filename) {
   return cache[filename] ?? null
 }
 
+/** Test-only: clear module state so test cases stay deterministic. */
+export function __resetForTests() {
+  for (const k of Object.keys(cache)) delete cache[k]
+  for (const k of Object.keys(tabDatasets)) delete tabDatasets[k]
+  activeTab = null
+}
+
 export function useData(filename) {
   const [data, setData] = useState(cache[filename] ?? null)
   const [loading, setLoading] = useState(!cache[filename])
   const [error, setError] = useState(null)
 
   useEffect(() => {
+    // Attribute even cache hits so export knows which tab uses this file.
     recordLoad(filename)
     if (cache[filename]) {
       setData(cache[filename])

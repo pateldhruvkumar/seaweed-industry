@@ -45,6 +45,7 @@ export function sanitizeSheetName(name, used = new Set()) {
 /** Fetch an image URL and resolve a base64 data URL (for jsPDF / pptxgenjs). */
 export async function loadImageDataUrl(url) {
   const res = await fetch(url)
+  if (!res.ok) throw new Error(`Failed to load image: ${res.status} ${url}`)
   const blob = await res.blob()
   return new Promise((resolve, reject) => {
     const reader = new FileReader()

@@ -1,11 +1,12 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { renderHook, waitFor } from '@testing-library/react'
 import {
-  useData, setActiveTab, getTabDatasetFilenames, getCachedData,
+  useData, setActiveTab, getTabDatasetFilenames, getCachedData, __resetForTests,
 } from './useData'
 
 describe('useData export accessors', () => {
   beforeEach(() => {
+    __resetForTests()
     vi.stubGlobal(
       'fetch',
       vi.fn(() => Promise.resolve({ json: () => Promise.resolve([{ year: 2020, v: 1 }]) })),

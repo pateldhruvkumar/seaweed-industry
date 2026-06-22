@@ -1,5 +1,5 @@
-import { describe, it, expect } from 'vitest'
-import { isoDate, exportFilename, sanitizeSheetName } from './branding'
+import { describe, it, expect, vi } from 'vitest'
+import { isoDate, exportFilename, sanitizeSheetName, loadImageDataUrl } from './branding'
 
 describe('isoDate', () => {
   it('formats a date as YYYY-MM-DD', () => {
@@ -31,5 +31,31 @@ describe('sanitizeSheetName', () => {
     const b = sanitizeSheetName('Sheet', used)
     expect(a).toBe('Sheet')
     expect(b).not.toBe('Sheet')
+  })
+})
+
+describe('sanitizeSheetName (long-name dedupe)', () => {
+  it('keeps deduped names within 31 chars when the base is long', () => {
+    const used = new Set()
+    const long = 'x'.repeat(40)
+    const a = sanitizeSheetName(long, used)
+    const b = sanitizeSheetName(long, used)
+    expect(a.length).toBeLessThanOrEqual(31)
+    expect(b.length).toBeLessThanOrEqual(31)
+    expect(b).not.toBe(a)
+  })
+})
+
+describe('loadImageDataUrl', () => {
+  it('resolves a data URL on a successful fetch', async () => {
+    global.fetch = vi.fn(() =>
+      Promise.resolve({ ok: true, blob: () => Promise.resolve(new Blob(['x'], { type: 'image/png' })) }),
+    )
+    const out = await loadImageDataUrl('/logo.png')
+    expect(String(out)).toMatch(/^data:/)
+  })
+  it('rejects on a non-ok HTTP status', async () => {
+    global.fetch = vi.fn(() => Promise.resolve({ ok: false, status: 404 }))
+    await expect(loadImageDataUrl('/missing.png')).rejects.toThrow('404')
   })
 })
