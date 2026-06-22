@@ -19,7 +19,8 @@ export function buildWorkbook({ tabId, tabTitle, rootEl }) {
   getTabDatasetFilenames(tabId).forEach(fn => {
     const data = getCachedData(fn)
     const isTabular =
-      Array.isArray(data) && data.length > 0 && typeof data[0] === 'object'
+      Array.isArray(data) && data.length > 0 &&
+      data[0] !== null && typeof data[0] === 'object'
     if (isTabular) {
       const ws = XLSX.utils.json_to_sheet(data)
       const name = sanitizeSheetName(fn.replace(/\.json$/i, ''), used)

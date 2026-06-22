@@ -14,6 +14,16 @@ describe('buildWorkbook', () => {
     getCachedData.mockReset()
   })
 
+  it('dedupes sheets when a dataset name collides with About', () => {
+    getTabDatasetFilenames.mockReturnValue(['About.json', 'prod.json'])
+    getCachedData.mockImplementation(() => [{ year: 2020, value: 1 }])
+    const wb = buildWorkbook({ tabId: 't', tabTitle: 'T', rootEl: null })
+    const names = wb.SheetNames
+    expect(new Set(names).size).toBe(names.length) // all unique
+    expect(names[0]).toBe('About')
+    expect(names).toContain('About (2)')
+  })
+
   it('adds an About sheet first plus one sheet per array dataset', () => {
     getTabDatasetFilenames.mockReturnValue(['prod.json', 'matrix.json'])
     getCachedData.mockImplementation(fn =>
