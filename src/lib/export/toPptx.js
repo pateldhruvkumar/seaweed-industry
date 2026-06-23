@@ -32,7 +32,8 @@ export async function buildPptxBlob({ rootEl, tabTitle, tabSubtitle }) {
   })
 
   // Content slides
-  const footnote = sources.length ? `Sources: ${sources.join(' · ')}` : ''
+  const rawFootnote = sources.length ? `Sources: ${sources.join(' · ')}` : ''
+  const footnote = rawFootnote.length > 180 ? `${rawFootnote.slice(0, 177)}…` : rawFootnote
   blocks.forEach(block => {
     const s = pptx.addSlide()
     if (block.title) {

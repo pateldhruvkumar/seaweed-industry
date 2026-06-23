@@ -8,9 +8,14 @@ vi.mock('./toPdf', () => ({
   buildPdfBlob: vi.fn(() => Promise.resolve(new Blob(['pdf'], { type: 'application/pdf' }))),
 }))
 
+vi.mock('./toPptx', () => ({
+  buildPptxBlob: vi.fn(() => Promise.resolve(new Blob(['pptx'], { type: 'application/vnd.openxmlformats-officedocument.presentationml.presentation' }))),
+}))
+
 import { exportTab } from './index'
 import { buildExcelBlob } from './toExcel'
 import { buildPdfBlob } from './toPdf'
+import { buildPptxBlob } from './toPptx'
 
 describe('exportTab', () => {
   beforeEach(() => {
@@ -21,6 +26,7 @@ describe('exportTab', () => {
     vi.spyOn(HTMLAnchorElement.prototype, 'click').mockImplementation(() => {})
     buildExcelBlob.mockClear()
     buildPdfBlob.mockClear()
+    buildPptxBlob.mockClear()
   })
 
   afterEach(() => { vi.restoreAllMocks() })
@@ -49,6 +55,12 @@ describe('exportTab', () => {
   it('builds a pdf blob for the pdf format', async () => {
     await exportTab('pdf', { rootEl: null, tabId: 't', tabTitle: 'Overview' })
     expect(buildPdfBlob).toHaveBeenCalledOnce()
+    expect(URL.createObjectURL).toHaveBeenCalledOnce()
+  })
+
+  it('builds a pptx blob for the pptx format', async () => {
+    await exportTab('pptx', { rootEl: null, tabId: 't', tabTitle: 'Overview' })
+    expect(buildPptxBlob).toHaveBeenCalledOnce()
     expect(URL.createObjectURL).toHaveBeenCalledOnce()
   })
 })

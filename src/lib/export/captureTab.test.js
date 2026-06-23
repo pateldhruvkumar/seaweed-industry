@@ -81,6 +81,15 @@ describe('captureTab', () => {
     expect(blocks.map(b => b.title)).toEqual(['One', 'Two'])
   })
 
+  it('does not descend into a single <section> card root', async () => {
+    const root = document.createElement('div')
+    const section = document.createElement('section')
+    section.innerHTML = '<header><h3>Card</h3></header><div>body</div>'
+    root.append(section) // single child is a SECTION
+    const blocks = await captureTab(root)
+    expect(blocks.map(b => b.title)).toEqual(['Card'])
+  })
+
   it('skips a section whose capture hangs past the timeout', async () => {
     toPng.mockImplementationOnce(() => new Promise(() => {})) // never resolves
     const root = document.createElement('div')

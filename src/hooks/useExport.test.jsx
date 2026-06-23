@@ -39,4 +39,12 @@ describe('useExport', () => {
     expect(result.current.error).toMatch(/wait for the tab/i)
     expect(exportTab).not.toHaveBeenCalled()
   })
+
+  it('refuses to export while the tab is still loading (skeleton present)', async () => {
+    document.body.innerHTML = '<div id="tab-content"><div class="animate-pulse"></div></div>'
+    const { result } = renderHook(() => useExport({ tabId: 't', tabTitle: 'T' }))
+    await act(async () => { await result.current.run('xlsx') })
+    expect(result.current.error).toMatch(/wait for the tab/i)
+    expect(exportTab).not.toHaveBeenCalled()
+  })
 })

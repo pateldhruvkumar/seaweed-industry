@@ -18,7 +18,7 @@ export function useExport({ tabId, tabTitle, tabSubtitle }) {
       setExporting(format)
       try {
         const rootEl = document.getElementById('tab-content')
-        if (!rootEl) {
+        if (!rootEl || rootEl.querySelector('.animate-pulse')) {
           throw new Error('Wait for the tab to finish loading, then try again.')
         }
         const { exportTab } = await import('../lib/export')

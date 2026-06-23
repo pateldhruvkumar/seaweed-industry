@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react'
 import { useExport } from '../../hooks/useExport'
 import { IconDownload, IconChevronDown } from '../../lib/icons'
 
-// Formats grow per phase: Excel (phase 1), PDF (phase 2), PowerPoint (phase 3).
+// Export formats, in menu order. PDF first (the primary shareable report).
 const FORMATS = [
   { id: 'pdf', label: 'PDF (.pdf)' },
   { id: 'pptx', label: 'PowerPoint (.pptx)' },

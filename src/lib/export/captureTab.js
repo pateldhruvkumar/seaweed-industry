@@ -36,6 +36,7 @@ function resolveSectionContainer(rootEl) {
   while (
     container.children.length === 1 &&
     container.firstElementChild &&
+    container.firstElementChild.tagName !== 'SECTION' &&
     container.firstElementChild.children.length > 1
   ) {
     container = container.firstElementChild
