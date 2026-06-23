@@ -981,8 +981,9 @@ git commit -m "feat(export): add actions slot to Topbar"
 In `src/App.jsx`, add after the existing imports near the top:
 ```jsx
 import ExportMenu from './components/export/ExportMenu'
-import { setActiveTab } from './hooks/useData'
+import { setActiveTab as setExportActiveTab } from './hooks/useData'
 ```
+**Note:** alias the import — `App` already has a local `const [activeTab, setActiveTab] = useState(...)`, so importing the bare name `setActiveTab` would be a duplicate-declaration error.
 
 - [ ] **Step 2: Attribute dataset loads to the active tab**
 
@@ -991,7 +992,7 @@ Inside `App()`, immediately after `const tab = TABS[activeTab]` and before `cons
   // Attribute useData() loads to the current tab (read during export). Calling
   // the module setter during render runs before child tabs mount, so a freshly
   // mounted tab's dataset loads are recorded under the correct id.
-  setActiveTab(activeTab)
+  setExportActiveTab(activeTab)
 ```
 
 - [ ] **Step 3: Render ExportMenu and wrap the tab content**
