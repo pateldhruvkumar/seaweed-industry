@@ -10,5 +10,6 @@ vi.mock('plotly.js-dist-min', () => ({
     react: () => Promise.resolve(),
     purge: () => {},
     Plots: { resize: () => {} },
+    toImage: () => Promise.resolve('data:image/png;base64,iVBORw0KGgo='),
   },
 }))

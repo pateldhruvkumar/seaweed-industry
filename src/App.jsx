@@ -2,7 +2,9 @@ import { useState, Suspense, lazy } from 'react'
 import Sidebar from './components/layout/Sidebar'
 import Topbar from './components/layout/Topbar'
 import ChatPanel from './components/chat/ChatPanel'
+import ExportMenu from './components/export/ExportMenu'
 import { IconMenu } from './lib/icons'
+import { setActiveTab as setExportActiveTab } from './hooks/useData'
 import psiaLogo from './assets/psia-logo-white-green.png'
 
 const OverviewTab       = lazy(() => import('./tabs/OverviewTab'))
@@ -109,6 +111,10 @@ export default function App() {
       window.matchMedia('(min-width: 1280px)').matches
   )
   const tab = TABS[activeTab]
+  // Attribute useData() loads to the current tab (read during export). Calling
+  // the module setter during render runs before child tabs mount, so a freshly
+  // mounted tab's dataset loads are recorded under the correct id.
+  setExportActiveTab(activeTab)
   const TabComponent = tab.Component
 
   function handleTabChange(id) {
@@ -154,10 +160,22 @@ export default function App() {
 
         <main className="flex-1 w-full">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10 py-6 lg:py-8">
-            <Topbar title={tab.title} subtitle={tab.subtitle} />
-            <Suspense fallback={<Loading />}>
-              <TabComponent />
-            </Suspense>
+            <Topbar
+              title={tab.title}
+              subtitle={tab.subtitle}
+              actions={
+                <ExportMenu
+                  tabId={activeTab}
+                  tabTitle={tab.title}
+                  tabSubtitle={tab.subtitle}
+                />
+              }
+            />
+            <div id="tab-content">
+              <Suspense fallback={<Loading />}>
+                <TabComponent />
+              </Suspense>
+            </div>
           </div>
         </main>
       </div>
