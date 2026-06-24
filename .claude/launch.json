@@ -5,13 +5,8 @@
       "name": "dev",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev"],
-      "port": 5173
-    },
-    {
-      "name": "preview-export",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev", "--", "--port", "5188", "--strictPort"],
-      "port": 5188
+      "port": 5173,
+      "autoPort": true
     }
   ]
 }

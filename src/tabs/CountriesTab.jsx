@@ -6,6 +6,8 @@ import BarChart from '../components/charts/BarChart'
 import LineChart from '../components/charts/LineChart'
 import Dropdown from '../components/controls/Dropdown'
 import MultiSelect from '../components/controls/MultiSelect'
+import AboutDataPanel from '../components/AboutDataPanel'
+import { COUNTRIES_DATA } from '../data/sources'
 
 const WINDOW_OPTIONS = [
   { label: '2020–2024', value: '2020-2024' },
@@ -65,6 +67,8 @@ export default function CountriesTab() {
 
   return (
     <div className="space-y-6">
+      <AboutDataPanel {...COUNTRIES_DATA} />
+
       <VolumeChartCard
         title={`Top ${topN} producing countries: ${winStart}–${winEnd} average`}
         controls={

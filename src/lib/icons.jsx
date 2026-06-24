@@ -154,6 +154,43 @@ export const IconReport = props => (
   </Svg>
 )
 
+export const IconMenu = props => (
+  <Svg {...props}>
+    <line x1="4" y1="6" x2="20" y2="6" />
+    <line x1="4" y1="12" x2="20" y2="12" />
+    <line x1="4" y1="18" x2="20" y2="18" />
+  </Svg>
+)
+
+export const IconHistory = props => (
+  <Svg {...props}>
+    <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+    <path d="M3 3v5h5" />
+    <path d="M12 7v5l4 2" />
+  </Svg>
+)
+
+export const IconPlus = props => (
+  <Svg {...props}>
+    <line x1="12" y1="5" x2="12" y2="19" />
+    <line x1="5" y1="12" x2="19" y2="12" />
+  </Svg>
+)
+
+export const IconTrash = props => (
+  <Svg {...props}>
+    <polyline points="3 6 5 6 21 6" />
+    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+  </Svg>
+)
+
+export const IconX = props => (
+  <Svg {...props}>
+    <line x1="18" y1="6" x2="6" y2="18" />
+    <line x1="6" y1="6" x2="18" y2="18" />
+  </Svg>
+)
+
 /**
  * Decorative mini-sparkline. Not data-bound — a single hand-drawn trend
  * curve that adds visual interest to KPI cards. Inherits stroke color from

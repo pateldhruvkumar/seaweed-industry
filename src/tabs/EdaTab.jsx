@@ -25,6 +25,8 @@ import {
   ChartLegendContent,
 } from '../components/ui/chart'
 import { PLOT_COLORS, GRID_COLOR, axisProps, buildSeriesConfig } from '../lib/chartTheme'
+import AboutDataPanel from '../components/AboutDataPanel'
+import { EDA_DATA } from '../data/sources'
 
 const DATASETS = ['global_production', 'aquaculture_quantity', 'aquaculture_value', 'capture_quantity']
 
@@ -284,6 +286,8 @@ export default function EdaTab() {
 
   return (
     <div className="space-y-6">
+      <AboutDataPanel {...EDA_DATA} />
+
       <ChartCard title="Dataset summary statistics">
         <DataTable columns={SUMMARY_COLS} data={summary ?? []} />
       </ChartCard>

@@ -7,6 +7,8 @@ import LineChart from '../components/charts/LineChart'
 import BarChart from '../components/charts/BarChart'
 import { SectionHeader } from '../components/psia'
 import { SOURCES, CANADA_INTRO } from '../data/canada'
+import AboutDataPanel from '../components/AboutDataPanel'
+import { CANADA_ECONOMICS_DATA } from '../data/sources'
 
 /** $M → "$1.37B" for billions, "$15.6M" for millions. */
 const fmtMusd = v =>
@@ -110,13 +112,13 @@ export default function CanadaEconomicsTab() {
   return (
     <div className="space-y-8">
       {/* ── Header ─────────────────────────────────────────────────── */}
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-900 via-slate-900 to-brand-900 text-white p-8 lg:p-10">
+      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-900 via-slate-900 to-brand-900 text-white p-6 sm:p-8 lg:p-10">
         <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-brand-400 via-brand-500 to-cyan-400" />
         <div className="max-w-3xl">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-300">
             Canada · Economic KPIs
           </p>
-          <h2 className="mt-3 text-3xl lg:text-4xl font-bold tracking-tight">
+          <h2 className="mt-3 text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight">
             {CANADA_INTRO.title}
           </h2>
           <p className="mt-4 text-sm text-slate-300 leading-relaxed">
@@ -127,6 +129,8 @@ export default function CanadaEconomicsTab() {
           </p>
         </div>
       </div>
+
+      <AboutDataPanel {...CANADA_ECONOMICS_DATA} />
 
       {/* ── Methodology banner ─────────────────────────────────────── */}
       <div className="rounded-xl border border-amber-200 bg-amber-50 px-5 py-4">

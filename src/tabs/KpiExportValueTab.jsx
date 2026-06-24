@@ -6,6 +6,8 @@ import KpiCard from '../components/KpiCard'
 import LineChart from '../components/charts/LineChart'
 import BarChart from '../components/charts/BarChart'
 import { BriefingHero } from '../components/psia'
+import AboutDataPanel from '../components/AboutDataPanel'
+import { KPI_EXPORT_VALUE_DATA } from '../data/sources'
 
 /**
  * KPI · Export Value of Seaweed Products ($/year)
@@ -96,6 +98,8 @@ export default function KpiExportValueTab() {
           },
         ]}
       />
+
+      <AboutDataPanel {...KPI_EXPORT_VALUE_DATA} />
 
       {/* Caveat banner */}
       <div className="rounded-xl border border-amber-200 bg-amber-50 px-5 py-4">

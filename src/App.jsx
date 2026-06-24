@@ -3,7 +3,9 @@ import Sidebar from './components/layout/Sidebar'
 import Topbar from './components/layout/Topbar'
 import ChatPanel from './components/chat/ChatPanel'
 import ExportMenu from './components/export/ExportMenu'
+import { IconMenu } from './lib/icons'
 import { setActiveTab as setExportActiveTab } from './hooks/useData'
+import psiaLogo from './assets/psia-logo-white-green.png'
 
 const OverviewTab       = lazy(() => import('./tabs/OverviewTab'))
 const CountriesTab      = lazy(() => import('./tabs/CountriesTab'))
@@ -100,7 +102,14 @@ function Loading() {
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('overview')
-  const [chatOpen, setChatOpen] = useState(true)
+  const [sidebarOpen, setSidebarOpen] = useState(false)
+  // Side-by-side chat only has room on wide screens; on phones/tablets it
+  // renders as a full-screen overlay, so start it closed there.
+  const [chatOpen, setChatOpen] = useState(
+    () =>
+      typeof window !== 'undefined' &&
+      window.matchMedia('(min-width: 1280px)').matches
+  )
   const tab = TABS[activeTab]
   // Attribute useData() loads to the current tab (read during export). Calling
   // the module setter during render runs before child tabs mount, so a freshly
@@ -108,13 +117,49 @@ export default function App() {
   setExportActiveTab(activeTab)
   const TabComponent = tab.Component
 
+  function handleTabChange(id) {
+    setActiveTab(id)
+    setSidebarOpen(false)
+  }
+
   return (
     <div className="min-h-screen flex">
-      <Sidebar active={activeTab} onChange={setActiveTab} />
+      <Sidebar
+        active={activeTab}
+        onChange={handleTabChange}
+        open={sidebarOpen}
+        onClose={() => setSidebarOpen(false)}
+      />
+
+      {/* Backdrop behind the nav drawer on small screens */}
+      {sidebarOpen && (
+        <div
+          className="fixed inset-0 z-30 bg-slate-900/50 lg:hidden"
+          aria-hidden="true"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
 
       <div className="flex-1 flex flex-col min-w-0">
+        {/* Mobile header — hamburger + brand. Hidden once the sidebar docks at lg. */}
+        <header className="lg:hidden sticky top-0 z-20 flex items-center gap-3 bg-slate-900 text-white px-4 py-3 shadow-chrome">
+          <button
+            type="button"
+            onClick={() => setSidebarOpen(true)}
+            aria-label="Open navigation"
+            className="w-9 h-9 grid place-items-center rounded-lg hover:bg-slate-800/60"
+          >
+            <IconMenu className="w-5 h-5" />
+          </button>
+          <img
+            src={psiaLogo}
+            alt="Pacific Seaweed Industry Association"
+            className="h-7 w-auto"
+          />
+        </header>
+
         <main className="flex-1 w-full">
-          <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-8">
+          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10 py-6 lg:py-8">
             <Topbar
               title={tab.title}
               subtitle={tab.subtitle}
@@ -135,9 +180,9 @@ export default function App() {
         </main>
       </div>
 
-      {/* Chat panel — fixed right side */}
+      {/* Chat panel — full-screen overlay on small screens, docked column on lg+ */}
       {chatOpen && (
-        <div className="w-96 flex-shrink-0 flex flex-col h-screen sticky top-0">
+        <div className="fixed inset-0 z-50 flex flex-col bg-white lg:sticky lg:inset-auto lg:top-0 lg:z-auto lg:h-screen lg:w-80 xl:w-96 lg:shrink-0 lg:bg-transparent lg:border-l lg:border-slate-200/70">
           <ChatPanel onClose={() => setChatOpen(false)} />
         </div>
       )}
@@ -146,7 +191,7 @@ export default function App() {
       {!chatOpen && (
         <button
           onClick={() => setChatOpen(true)}
-          className="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-teal-700 hover:bg-teal-800 text-white text-sm font-medium px-4 py-2.5 rounded-full shadow-lg transition-colors"
+          className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-50 flex items-center gap-2 bg-teal-700 hover:bg-teal-800 text-white text-sm font-medium px-4 py-2.5 rounded-full shadow-lg transition-colors"
         >
           <span>💬</span> Ask AI
         </button>

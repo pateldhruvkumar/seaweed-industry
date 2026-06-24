@@ -178,7 +178,7 @@ export default function MultiSelect({
         </button>
 
         {open && (
-          <div className="absolute z-30 left-0 mt-1 w-72 bg-white border border-slate-200 rounded-lg shadow-lg overflow-hidden animate-fade-in">
+          <div className="absolute z-30 left-0 mt-1 w-72 max-w-[calc(100vw-2rem)] bg-white border border-slate-200 rounded-lg shadow-lg overflow-hidden animate-fade-in">
             <div className="p-2 border-b border-slate-100">
               <input
                 ref={searchRef}

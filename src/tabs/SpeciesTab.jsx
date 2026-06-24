@@ -8,6 +8,8 @@ import BarChart from '../components/charts/BarChart'
 import Heatmap from '../components/charts/Heatmap'
 import AreaChart from '../components/charts/AreaChart'
 import Dropdown from '../components/controls/Dropdown'
+import AboutDataPanel from '../components/AboutDataPanel'
+import { SPECIES_DATA } from '../data/sources'
 
 const WINDOW_OPTIONS = [
   { label: '2020–2024', value: '2020-2024' },
@@ -59,6 +61,8 @@ export default function SpeciesTab() {
 
   return (
     <div className="space-y-6">
+      <AboutDataPanel {...SPECIES_DATA} />
+
       <VolumeChartCard
         title="Top 15 species / groups by output"
         controls={

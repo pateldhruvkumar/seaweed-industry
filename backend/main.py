@@ -9,7 +9,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from groq import Groq
+from openai import OpenAI
 from pydantic import BaseModel
 
 import pipeline
@@ -19,17 +19,21 @@ from embeddings import build_entity_index, build_fewshot_index, load_model
 load_dotenv()
 
 FEWSHOT_PATH = Path(__file__).parent / "few_shots.json"
-_groq_client: Groq | None = None
+OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
+_llm_client: OpenAI | None = None
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    global _groq_client
+    global _llm_client
     conn = load_tables()
     load_model()
     build_entity_index(conn)
     build_fewshot_index(FEWSHOT_PATH)
-    _groq_client = Groq(api_key=os.environ["GROQ_API_KEY"])
+    _llm_client = OpenAI(
+        base_url=OPENROUTER_BASE_URL,
+        api_key=os.environ["OPENROUTER_API_KEY"],
+    )
     yield
 
 
@@ -64,4 +68,4 @@ def health():
 @app.post("/chat")
 def chat(req: ChatRequest):
     history = [m.model_dump() for m in req.history]
-    return pipeline.run(req.message, history, _groq_client)
+    return pipeline.run(req.message, history, _llm_client)

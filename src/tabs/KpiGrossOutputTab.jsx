@@ -7,6 +7,8 @@ import LineChart from '../components/charts/LineChart'
 import AreaChart from '../components/charts/AreaChart'
 import BarChart from '../components/charts/BarChart'
 import { BriefingHero } from '../components/psia'
+import AboutDataPanel from '../components/AboutDataPanel'
+import { KPI_GROSS_OUTPUT_DATA } from '../data/sources'
 
 /**
  * KPI · Gross Value of Seaweed Industry Output ($/year)
@@ -97,6 +99,8 @@ export default function KpiGrossOutputTab() {
           },
         ]}
       />
+
+      <AboutDataPanel {...KPI_GROSS_OUTPUT_DATA} />
 
       {/* Headline KPI strip */}
       {stats && (
