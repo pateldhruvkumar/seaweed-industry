@@ -35,3 +35,7 @@ __pycache__/
 backend/.env
 .env
 .env.local
+
+# Generated brag/case-study video output
+brag-output/
+brag-output-*/

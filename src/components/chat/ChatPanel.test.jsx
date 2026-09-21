@@ -1,8 +1,14 @@
 import { describe, it, expect, vi, afterEach, beforeEach } from 'vitest'
-import { render, screen, waitFor } from '@testing-library/react'
+import { render, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import ChatPanel from './ChatPanel'
 import { listThreads, saveThread } from '../../lib/threadStore'
+
+// The saved-chats rail is permanently mounted beside the conversation, and a
+// thread's title is its first user message — so the same string legitimately
+// appears in both places. Scope assertions to the region actually under test.
+const thread = () => within(screen.getByTestId('message-thread'))
+const rail = () => within(screen.getByTestId('thread-rail'))
 
 function mockFetchResponse(answer) {
   return Promise.resolve({
@@ -116,11 +122,11 @@ describe('ChatPanel edit & resend', () => {
     await screen.findByText('edited answer')
 
     // Branch-by-discard: everything after the edited message is gone
-    expect(screen.getByText('edited question')).toBeInTheDocument()
-    expect(screen.queryByText('first question')).toBeNull()
-    expect(screen.queryByText('first answer')).toBeNull()
-    expect(screen.queryByText('second question')).toBeNull()
-    expect(screen.queryByText('second answer')).toBeNull()
+    expect(thread().getByText('edited question')).toBeInTheDocument()
+    expect(thread().queryByText('first question')).toBeNull()
+    expect(thread().queryByText('first answer')).toBeNull()
+    expect(thread().queryByText('second question')).toBeNull()
+    expect(thread().queryByText('second answer')).toBeNull()
 
     // The resend hit the API with the truncated history
     expect(fetchMock).toHaveBeenCalledTimes(3)
@@ -155,11 +161,11 @@ describe('ChatPanel edit & resend', () => {
     await screen.findByText('edited answer')
 
     // Earlier turn survives; the old second turn is replaced
-    expect(screen.getByText('first question')).toBeInTheDocument()
-    expect(screen.getByText('first answer')).toBeInTheDocument()
-    expect(screen.getByText('better second question')).toBeInTheDocument()
-    expect(screen.queryByText('second question')).toBeNull()
-    expect(screen.queryByText('second answer')).toBeNull()
+    expect(thread().getByText('first question')).toBeInTheDocument()
+    expect(thread().getByText('first answer')).toBeInTheDocument()
+    expect(thread().getByText('better second question')).toBeInTheDocument()
+    expect(thread().queryByText('second question')).toBeNull()
+    expect(thread().queryByText('second answer')).toBeNull()
 
     // History sent = first user msg + first answer + the edited user msg
     const body = JSON.parse(fetchMock.mock.calls[2][1].body)
@@ -251,7 +257,7 @@ describe('ChatPanel saved threads', () => {
 
     unmount()
     render(<ChatPanel onClose={() => {}} />)
-    expect(await screen.findByText('remember me')).toBeInTheDocument()
+    expect(await thread().findByText('remember me')).toBeInTheDocument()
   })
 
   it('"New chat" clears the view but keeps the saved thread', async () => {
@@ -263,10 +269,11 @@ describe('ChatPanel saved threads', () => {
     await screen.findByText('answer one')
     await waitFor(() => expect(listThreads()).toHaveLength(1))
 
-    await userEvent.click(screen.getByRole('button', { name: /history/i }))
-    await userEvent.click(screen.getByRole('button', { name: /new chat/i }))
+    await userEvent.click(rail().getByRole('button', { name: /new chat/i }))
 
-    expect(screen.queryByText('first thread')).toBeNull()
+    // Cleared from the conversation, but still listed in the rail.
+    expect(thread().queryByText('first thread')).toBeNull()
+    expect(rail().getByText('first thread')).toBeInTheDocument()
     expect(listThreads()).toHaveLength(1)
   })
 
@@ -277,24 +284,24 @@ describe('ChatPanel saved threads', () => {
     Date.now.mockRestore()
 
     render(<ChatPanel onClose={() => {}} />)
-    expect(await screen.findByText('newer chat')).toBeInTheDocument()
+    expect(await thread().findByText('newer chat')).toBeInTheDocument()
 
-    await userEvent.click(screen.getByRole('button', { name: /history/i }))
-    await userEvent.click(screen.getByText('older chat'))
+    // The rail is permanently visible, so the thread is one click away.
+    await userEvent.click(rail().getByText('older chat'))
 
-    expect(await screen.findByText('older chat')).toBeInTheDocument()
+    expect(await thread().findByText('older chat')).toBeInTheDocument()
   })
 
   it('deleting the active thread from history clears the view', async () => {
     saveThread(null, [{ role: 'user', content: 'doomed chat', sql: null, data: [], type: null }])
 
     render(<ChatPanel onClose={() => {}} />)
-    expect(await screen.findByText('doomed chat')).toBeInTheDocument()
+    expect(await thread().findByText('doomed chat')).toBeInTheDocument()
 
-    await userEvent.click(screen.getByRole('button', { name: /history/i }))
-    await userEvent.click(screen.getByRole('button', { name: /delete doomed chat/i }))
+    await userEvent.click(rail().getByRole('button', { name: /delete doomed chat/i }))
 
-    expect(screen.queryByText('doomed chat')).toBeNull()
+    expect(thread().queryByText('doomed chat')).toBeNull()
+    expect(rail().queryByText('doomed chat')).toBeNull()
     expect(listThreads()).toHaveLength(0)
   })
 })

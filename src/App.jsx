@@ -2,6 +2,7 @@ import { useState, Suspense, lazy } from 'react'
 import Sidebar from './components/layout/Sidebar'
 import Topbar from './components/layout/Topbar'
 import ChatPanel from './components/chat/ChatPanel'
+import ChatModal from './components/chat/ChatModal'
 import ExportMenu from './components/export/ExportMenu'
 import { IconMenu } from './lib/icons'
 import { setActiveTab as setExportActiveTab } from './hooks/useData'
@@ -103,13 +104,9 @@ function Loading() {
 export default function App() {
   const [activeTab, setActiveTab] = useState('overview')
   const [sidebarOpen, setSidebarOpen] = useState(false)
-  // Side-by-side chat only has room on wide screens; on phones/tablets it
-  // renders as a full-screen overlay, so start it closed there.
-  const [chatOpen, setChatOpen] = useState(
-    () =>
-      typeof window !== 'undefined' &&
-      window.matchMedia('(min-width: 1280px)').matches
-  )
+  // The chat is a modal now, so it always starts closed — auto-opening it on
+  // wide screens would cover the dashboard on every page load.
+  const [chatOpen, setChatOpen] = useState(false)
   const tab = TABS[activeTab]
   // Attribute useData() loads to the current tab (read during export). Calling
   // the module setter during render runs before child tabs mount, so a freshly
@@ -180,12 +177,10 @@ export default function App() {
         </main>
       </div>
 
-      {/* Chat panel — full-screen overlay on small screens, docked column on lg+ */}
-      {chatOpen && (
-        <div className="fixed inset-0 z-50 flex flex-col bg-white lg:sticky lg:inset-auto lg:top-0 lg:z-auto lg:h-screen lg:w-80 xl:w-96 lg:shrink-0 lg:bg-transparent lg:border-l lg:border-slate-200/70">
-          <ChatPanel onClose={() => setChatOpen(false)} />
-        </div>
-      )}
+      {/* Chat lives in a centered modal so the dashboard keeps its full width */}
+      <ChatModal open={chatOpen} onClose={() => setChatOpen(false)}>
+        <ChatPanel onClose={() => setChatOpen(false)} />
+      </ChatModal>
 
       {/* Floating toggle button when chat is closed */}
       {!chatOpen && (

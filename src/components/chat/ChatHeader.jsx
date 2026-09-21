@@ -17,7 +17,7 @@ export default function ChatHeader({ onClose, onHistory }) {
             type="button"
             aria-label="Chat history"
             onClick={onHistory}
-            className="text-gray-400 hover:text-gray-600 w-7 h-7 inline-flex items-center justify-center rounded-md hover:bg-gray-100"
+            className="md:hidden text-gray-400 hover:text-gray-600 w-7 h-7 inline-flex items-center justify-center rounded-md hover:bg-gray-100"
           >
             <IconHistory className="w-4 h-4" />
           </button>

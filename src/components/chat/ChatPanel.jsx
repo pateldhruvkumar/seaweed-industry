@@ -158,20 +158,9 @@ export default function ChatPanel({ onClose }) {
   }
 
   return (
-    <div className="relative flex flex-col h-full bg-gradient-to-b from-brand-50/40 via-white to-white">
-      <ChatHeader onClose={onClose} onHistory={() => setHistoryOpen(true)} />
-      <MessageThread
-        messages={messages}
-        loading={loading}
-        onSuggestion={sendMessage}
-        onRegenerate={handleRegenerate}
-        onEdit={editMessage}
-      />
-      <ChatInput
-        onSubmit={sendMessage}
-        onStop={handleStop}
-        loading={loading}
-      />
+    // Row layout: saved-chats rail + the conversation column. `min-w-0` lets the
+    // conversation shrink so wide result tables scroll instead of stretching it.
+    <div className="relative flex h-full w-full overflow-hidden bg-gradient-to-b from-brand-50/40 via-white to-white">
       <ThreadHistory
         open={historyOpen}
         activeId={activeId}
@@ -180,6 +169,21 @@ export default function ChatPanel({ onClose }) {
         onNewChat={handleNewChat}
         onClose={() => setHistoryOpen(false)}
       />
+      <div className="flex min-w-0 flex-1 flex-col">
+        <ChatHeader onClose={onClose} onHistory={() => setHistoryOpen(true)} />
+        <MessageThread
+          messages={messages}
+          loading={loading}
+          onSuggestion={sendMessage}
+          onRegenerate={handleRegenerate}
+          onEdit={editMessage}
+        />
+        <ChatInput
+          onSubmit={sendMessage}
+          onStop={handleStop}
+          loading={loading}
+        />
+      </div>
     </div>
   )
 }

@@ -18,8 +18,6 @@ export default function ThreadHistory({ open, activeId, onSelect, onDelete, onNe
   // every render, so bumping this after a delete pulls in the updated list.
   const [, forceRefresh] = useState(0)
 
-  if (!open) return null
-
   const threads = listThreads()
 
   function handleDelete(e, id) {
@@ -29,14 +27,21 @@ export default function ThreadHistory({ open, activeId, onSelect, onDelete, onNe
   }
 
   return (
-    <div className="absolute inset-0 z-20 flex flex-col bg-white/95 backdrop-blur animate-fade-in">
+    // Permanent rail from md up; below that it collapses and `open` floats it
+    // over the conversation instead.
+    <div
+      data-testid="thread-rail"
+      className={`${
+        open ? 'flex absolute inset-y-0 left-0 z-20 shadow-xl' : 'hidden'
+      } md:flex md:static md:z-auto md:shadow-none w-64 shrink-0 flex-col border-r border-gray-200 bg-white/95 backdrop-blur`}
+    >
       <div className="flex items-center justify-between px-3 py-2.5 shadow-chrome">
         <span className="text-sm font-semibold text-gray-900">Saved chats</span>
         <button
           type="button"
-          aria-label="Close history"
+          aria-label="Close saved chats"
           onClick={onClose}
-          className="text-gray-400 hover:text-gray-600 w-6 h-6 inline-flex items-center justify-center rounded-md hover:bg-gray-100"
+          className="md:hidden text-gray-400 hover:text-gray-600 w-6 h-6 inline-flex items-center justify-center rounded-md hover:bg-gray-100"
         >
           <IconX className="w-4 h-4" />
         </button>

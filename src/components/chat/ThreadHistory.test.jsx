@@ -17,12 +17,24 @@ function seedTwo() {
 const noop = () => {}
 
 describe('ThreadHistory', () => {
-  it('renders nothing when closed', () => {
+  // The rail is always mounted so it can sit permanently beside the conversation
+  // on desktop; `open` only drives the small-screen collapse, which is CSS-only.
+  it('stays mounted when closed so the desktop rail always shows the list', () => {
     seedTwo()
-    const { container } = render(
+    render(
       <ThreadHistory open={false} onSelect={noop} onDelete={noop} onNewChat={noop} onClose={noop} />
     )
-    expect(container).toBeEmptyDOMElement()
+    expect(screen.getByText('older chat')).toBeInTheDocument()
+  })
+
+  it('collapses on small screens when closed and expands when open', () => {
+    seedTwo()
+    const { rerender } = render(
+      <ThreadHistory open={false} onSelect={noop} onDelete={noop} onNewChat={noop} onClose={noop} />
+    )
+    expect(screen.getByTestId('thread-rail')).toHaveClass('hidden')
+    rerender(<ThreadHistory open onSelect={noop} onDelete={noop} onNewChat={noop} onClose={noop} />)
+    expect(screen.getByTestId('thread-rail')).not.toHaveClass('hidden')
   })
 
   it('lists saved chats newest-first when open', () => {
