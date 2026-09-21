@@ -28,4 +28,11 @@ describe('ChatHeader', () => {
     render(<ChatHeader onClose={() => {}} />)
     expect(screen.queryByRole('button', { name: /history/i })).toBeNull()
   })
+
+  // The saved-chats rail is permanently visible from md up, so the toggle would
+  // be a redundant second control there.
+  it('hides the history button from md up, where the rail is permanent', () => {
+    render(<ChatHeader onClose={() => {}} onHistory={() => {}} />)
+    expect(screen.getByRole('button', { name: /history/i })).toHaveClass('md:hidden')
+  })
 })

@@ -21,7 +21,7 @@ export default function MessageThread({
 
   if (messages.length === 0) {
     return (
-      <div className="flex-1 overflow-y-auto p-4">
+      <div data-testid="message-thread" className="flex-1 overflow-y-auto p-4">
         <EmptyState onSubmit={onSuggestion} />
       </div>
     )
@@ -35,7 +35,7 @@ export default function MessageThread({
   })()
 
   return (
-    <div className="flex-1 overflow-y-auto px-4 py-5 space-y-6">
+    <div data-testid="message-thread" className="flex-1 overflow-y-auto px-4 py-5 space-y-6">
       {messages.map((msg, i) => (
         <MessageBubble
           key={i}
